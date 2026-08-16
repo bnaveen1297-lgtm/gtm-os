@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GTM OS — Your Go-To-Market Operating System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1B2A;--ink2:#2C3E50;--ink3:#64748B;--ink4:#94A3B8;
+  --rule:#E2E8F0;--rule2:#CBD5E1;--bg:#F8F7F4;--bg2:#fff;--bg3:#F1F0ED;
+  --blue:#2563EB;--blue2:#1D4ED8;--blue-l:#EFF6FF;--blue-m:rgba(37,99,235,.12);
+  --green:#059669;--green-l:#ECFDF5;--amber:#D97706;--amber-l:#FFFBEB;
+  --red:#DC2626;--red-l:#FEF2F2;--purple:#7C3AED;--purple-l:#F5F3FF;
+  --sans:'Inter',sans-serif;--serif:'Playfair Display',Georgia,serif;--mono:'JetBrains Mono',monospace;
+  --r:8px;--r2:14px;--shadow:0 1px 3px rgba(13,27,42,.08),0 4px 12px rgba(13,27,42,.06);
+  --shadow2:0 8px 32px rgba(13,27,42,.12);
+}
+*{font-family:var(--sans)}
+body{background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:2px}
+
+/* VIEWS */
+.view{display:none}.view.active{display:block}
+#view-app.active{display:flex!important;height:100vh;overflow:hidden}
+
+/* NAV */
+.lp-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(248,247,244,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-mark{width:30px;height:30px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px}
+.logo-name{font-size:15px;font-weight:800;letter-spacing:-.3px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink2);transition:color .15s}
+.nav-links a:hover{color:var(--blue)}
+.btn-nav{padding:8px 18px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:background .15s}
+.btn-nav:hover{background:var(--blue2)}
+
+/* HERO */
+.hero{padding:140px 48px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-l);color:var(--blue);border:1px solid rgba(37,99,235,.2);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-h1{font-family:var(--serif);font-size:50px;font-weight:900;line-height:1.08;letter-spacing:-.8px;margin-bottom:18px}
+.hero-h1 em{font-style:normal;color:var(--blue)}
+.hero-sub{font-size:16px;color:var(--ink3);line-height:1.75;max-width:480px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;margin-bottom:24px}
+.btn-primary-lg{padding:13px 26px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:14px;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.35);transition:all .2s}
+.btn-primary-lg:hover{background:var(--blue2);transform:translateY(-1px)}
+.btn-ghost-lg{padding:13px 22px;background:transparent;color:var(--ink2);border:1.5px solid var(--rule2);border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-ghost-lg:hover{border-color:var(--blue);color:var(--blue)}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.hero-tag{font-size:11px;color:var(--ink3);background:var(--bg3);padding:4px 10px;border-radius:20px;border:1px solid var(--rule)}
+
+/* TICKER CARD */
+.ticker{background:var(--bg2);border:1px solid var(--rule);border-radius:20px;box-shadow:var(--shadow2);overflow:hidden}
+.ticker-hdr{background:var(--ink);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.ticker-title{font-size:12px;color:rgba(255,255,255,.6);font-family:var(--mono)}
+.ticker-dots{display:flex;gap:6px}
+.tdot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15)}
+.tdot.g{background:#22c55e}
+.ticker-body{padding:18px}
+.ticker-co{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg3);border-radius:var(--r);margin-bottom:14px}
+.ticker-co-icon{width:34px;height:34px;background:var(--blue-l);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ticker-co-name{font-size:13px;font-weight:700}
+.ticker-co-url{font-size:11px;color:var(--ink3);font-family:var(--mono)}
+.tick-row{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:var(--r);margin-bottom:5px;font-size:12px}
+.tick-row.done{background:var(--green-l);border:1px solid rgba(5,150,105,.15)}
+.tick-row.running{background:var(--blue-l);border:1px solid rgba(37,99,235,.15)}
+.tick-row.pending{background:var(--bg3);opacity:.45}
+.tick-label{flex:1;font-weight:600}
+.tick-status{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.s-done{color:var(--green)}.s-running{color:var(--blue)}.s-pending{color:var(--ink4)}
+.tick-spin{width:12px;height:12px;border:2px solid var(--blue-m);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* STATS */
+.stats-bar{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg2)}
+.stats-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:26px 0;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:none}
+.stat-in{padding:0 28px}
+.stat-n{font-family:var(--serif);font-size:34px;font-weight:900;line-height:1}
+.stat-n span{font-size:20px;color:var(--blue)}
+.stat-label{font-size:12px;color:var(--ink3);margin-top:4px;font-weight:500}
+
+/* MODULES GRID */
+.section{max-width:1200px;margin:0 auto;padding:72px 48px}
+.eyebrow{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)}
+.section-h2{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-.4px;margin-bottom:10px}
+.section-sub{font-size:15px;color:var(--ink3);line-height:1.7;max-width:540px;margin-bottom:44px}
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r2);overflow:hidden}
+.mod{background:var(--bg2);padding:26px;transition:background .15s}
+.mod:hover{background:var(--blue-l)}
+.mod-num{font-size:10px;font-weight:700;color:var(--ink4);font-family:var(--mono);margin-bottom:8px}
+.mod-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.mod-title{font-size:13px;font-weight:700;margin-bottom:5px}
+.mod-desc{font-size:12px;color:var(--ink3);line-height:1.6}
+.mod-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px}
+.mod-tag{font-size:10px;color:var(--blue);background:var(--blue-l);padding:2px 7px;border-radius:4px;font-weight:600}
+
+/* BCG DARK SECTION */
+.dark-section{background:var(--ink);padding:72px 48px}
+.dark-inner{max-width:1200px;margin:0 auto}
+.dark-eyebrow{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:var(--mono)}
+.dark-h2{font-family:var(--serif);font-size:36px;font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.4px;margin-bottom:12px}
+.dark-sub{font-size:15px;color:rgba(255,255,255,.5);line-height:1.7;max-width:540px;margin-bottom:48px}
+.bcg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.bcg-cell{background:var(--ink);padding:26px;border-top:3px solid transparent;transition:border-color .2s}
+.bcg-cell:hover{border-top-color:var(--blue)}
+.bcg-label{font-size:9px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono);margin-bottom:7px}
+.bcg-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:7px}
+.bcg-body{font-size:12px;color:rgba(255,255,255,.45);line-height:1.7}
+
+/* CRM SECTION */
+.crm-section{background:var(--bg3);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:72px 48px}
+.crm-inner{max-width:1200px;margin:0 auto}
+.crm-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.crm-card{background:var(--bg2);border:1.5px solid var(--rule);border-radius:var(--r2);padding:20px;cursor:pointer;transition:all .2s}
+.crm-card:hover,.crm-card.sel{border-color:var(--blue);box-shadow:var(--shadow)}
+.crm-logo{font-size:26px;margin-bottom:8px}
+.crm-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.crm-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;margin-bottom:8px}
+.crm-desc{font-size:11.5px;color:var(--ink3);line-height:1.6}
+.crm-detail{margin-top:24px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:26px;display:none}
+.crm-detail.open{display:block}
+.crm-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.crm-col-title{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.crm-li{font-size:12px;color:var(--ink);display:flex;gap:6px;margin-bottom:5px;line-height:1.5}
+.crm-li::before{content:"→";color:var(--blue);flex-shrink:0}
+.pipe-flow{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:14px}
+.pipe-pill{background:var(--blue-l);color:var(--blue);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(37,99,235,.2)}
+.pipe-arr{color:var(--ink4);font-size:11px}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.plan{background:var(--bg2);border:1.5px solid var(--rule);border-radius:var(--r2);padding:26px;position:relative;transition:box-shadow .2s}
+.plan:hover{box-shadow:var(--shadow2)}
+.plan.feat{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.plan-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px}
+.plan-name{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.plan-price{font-family:var(--serif);font-size:38px;font-weight:900;color:var(--ink);line-height:1}
+.plan-price span{font-size:14px;font-weight:600;color:var(--ink3);font-family:var(--sans)}
+.plan-desc{font-size:12.5px;color:var(--ink3);margin:8px 0 18px;line-height:1.6}
+.plan-divider{height:1px;background:var(--rule);margin-bottom:18px}
+.plan-feat{display:flex;gap:8px;margin-bottom:9px;font-size:12.5px;color:var(--ink2)}
+.plan-feat-check{color:var(--green);flex-shrink:0}
+.plan-btn{width:100%;padding:10px;border-radius:var(--r);font-size:13px;font-weight:700;cursor:pointer;border:none;margin-top:18px;transition:all .15s}
+.plan-btn.p{background:var(--blue);color:#fff}.plan-btn.p:hover{background:var(--blue2)}
+.plan-btn.g{background:transparent;color:var(--ink2);border:1.5px solid var(--rule2)}.plan-btn.g:hover{border-color:var(--blue);color:var(--blue)}
+
+/* FOOTER CTA */
+.footer-cta{padding:88px 48px;text-align:center;background:linear-gradient(135deg,var(--ink) 0%,#1a3a5c 100%)}
+.footer-cta h2{font-family:var(--serif);font-size:40px;font-weight:900;color:#fff;letter-spacing:-.5px;margin-bottom:14px}
+.footer-cta p{font-size:15px;color:rgba(255,255,255,.55);max-width:440px;margin:0 auto 32px;line-height:1.7}
+.btn-footer{padding:14px 32px;background:#fff;color:var(--blue);border-radius:var(--r);font-size:14px;font-weight:800;border:none;cursor:pointer;transition:all .2s}
+.btn-footer:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.lp-footer{background:var(--ink);padding:24px 48px;border-top:1px solid rgba(255,255,255,.06)}
+.lp-footer-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.lp-copy{font-size:12px;color:rgba(255,255,255,.25)}
+.lp-flinks{display:flex;gap:18px}
+.lp-flinks a{font-size:12px;color:rgba(255,255,255,.25);transition:color .15s}
+.lp-flinks a:hover{color:rgba(255,255,255,.7)}
+
+/* AUTH MODAL */
+.modal-bg{display:none;position:fixed;inset:0;z-index:1000;background:rgba(13,27,42,.55);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.auth-box{background:var(--bg2);border-radius:20px;padding:38px;width:400px;max-width:95vw;box-shadow:var(--shadow2);border:1px solid var(--rule);position:relative}
+.auth-close{position:absolute;top:14px;right:16px;border:none;background:none;font-size:20px;cursor:pointer;color:var(--ink3);line-height:1}
+.auth-logo{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.auth-logo-mark{width:26px;height:26px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:11px}
+.auth-logo-name{font-size:13px;font-weight:800}
+.auth-h2{font-family:var(--serif);font-size:24px;font-weight:800;color:var(--ink);margin-bottom:5px;letter-spacing:-.3px}
+.auth-sub{font-size:13px;color:var(--ink3);margin-bottom:24px;line-height:1.6}
+.auth-err{background:var(--red-l);color:var(--red);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:12px;display:none}
+.auth-err.show{display:block}
+.btn-google{width:100%;padding:11px;border:1.5px solid var(--rule2);border-radius:var(--r);background:var(--bg2);color:var(--ink);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s}
+.btn-google:hover{border-color:var(--blue);background:var(--blue-l)}
+.btn-google svg{width:18px;height:18px;flex-shrink:0}
+.auth-div{display:flex;align-items:center;gap:10px;margin:18px 0}
+.auth-div-line{flex:1;height:1px;background:var(--rule)}
+.auth-div-text{font-size:11px;color:var(--ink4);font-weight:500}
+.auth-input{width:100%;padding:10px 13px;border:1.5px solid var(--rule2);border-radius:var(--r);font-size:13px;color:var(--ink);background:var(--bg);transition:border-color .15s;margin-bottom:10px;outline:none}
+.auth-input:focus{border-color:var(--blue)}
+.auth-input::placeholder{color:var(--ink4)}
+.btn-auth{width:100%;padding:11px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:13px;font-weight:700;border:none;cursor:pointer;transition:background .15s}
+.btn-auth:hover{background:var(--blue2)}
+.auth-switch{text-align:center;margin-top:14px;font-size:12px;color:var(--ink3)}
+.auth-switch a{color:var(--blue);cursor:pointer;font-weight:600}
+
+/* APP SIDEBAR */
+.sb{width:242px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--rule);display:flex;flex-direction:column;overflow-y:auto}
+.sb-top{padding:16px 14px 12px;border-bottom:1px solid var(--rule)}
+.sb-logo{display:flex;align-items:center;gap:8px}
+.sb-logo-mark{width:24px;height:24px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:10px}
+.sb-logo-name{font-size:13px;font-weight:800;letter-spacing:-.2px}
+.sb-user{margin-top:10px;display:flex;align-items:center;gap:8px;padding:7px 9px;background:var(--bg3);border-radius:var(--r)}
+.sb-avatar{width:24px;height:24px;border-radius:50%;background:var(--blue-l);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--blue);flex-shrink:0;overflow:hidden}
+.sb-avatar img{width:100%;height:100%;object-fit:cover}
+.sb-uname{font-size:11.5px;font-weight:600;color:var(--ink);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-out{border:none;background:none;color:var(--ink4);cursor:pointer;font-size:11px;flex-shrink:0;padding:2px 4px;border-radius:4px}
+.sb-out:hover{color:var(--red)}
+.sb-sec{padding:10px 8px 2px}
+.sb-sec-label{font-size:9px;font-weight:700;color:var(--ink4);letter-spacing:.12em;text-transform:uppercase;padding:0 8px 5px;font-family:var(--mono)}
+.sbi{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:7px;cursor:pointer;transition:all .15s;color:var(--ink3);font-size:12px;font-weight:500;margin-bottom:1px;position:relative}
+.sbi:hover{background:var(--bg3);color:var(--ink)}
+.sbi.act{background:var(--blue-l);color:var(--blue);font-weight:600}
+.sbi.act::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2.5px;height:14px;background:var(--blue);border-radius:2px}
+.sbi-ic{font-size:13px;width:16px;text-align:center}
+.sbi-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;background:var(--blue-l);color:var(--blue)}
+.sbi-badge.done{background:var(--green-l);color:var(--green)}
+
+/* APP MAIN */
+.app-main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:50px;border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 24px;gap:10px;background:var(--bg2);flex-shrink:0}
+.topbar-title{font-size:13px;font-weight:700;color:var(--ink)}
+.topbar-sub{font-size:11.5px;color:var(--ink3)}
+.topbar-right{margin-left:auto;display:flex;gap:8px}
+.app-page{flex:1;overflow-y:auto;padding:24px;background:var(--bg)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue2)}
+.btn-border{background:transparent;color:var(--ink2);border:1.5px solid var(--rule2)}.btn-border:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm{padding:5px 11px;font-size:11px}
+
+/* INPUT */
+.input-panel{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:26px;margin-bottom:22px;box-shadow:var(--shadow)}
+.input-section{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.input-section:first-child{margin-top:0}
+.input-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.input-group{flex:1;min-width:160px}
+.input-label{font-size:11px;font-weight:600;color:var(--ink3);margin-bottom:4px;display:block}
+input,textarea,select{width:100%;background:var(--bg);border:1.5px solid var(--rule2);border-radius:var(--r);color:var(--ink);font-size:13px;padding:8px 11px;outline:none;transition:border-color .15s}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);background:var(--bg2)}
+textarea{resize:vertical;min-height:76px;line-height:1.6}
+select option{background:var(--bg2)}
+input::placeholder,textarea::placeholder{color:var(--ink4)}
+
+/* SEC HDR */
+.sec-hdr{margin-bottom:22px}
+.sec-eyebrow{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;font-family:var(--mono)}
+.sec-title{font-family:var(--serif);font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.3px;margin-bottom:5px}
+.sec-sub{font-size:13px;color:var(--ink3);line-height:1.6;max-width:580px}
+
+/* CARDS & OUT */
+.out-block{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+.out-hdr{display:flex;align-items:center;gap:11px;padding:14px 18px;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .15s}
+.out-hdr:hover{background:var(--bg3)}
+.out-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.out-title{font-size:13px;font-weight:700;color:var(--ink)}
+.out-sub{font-size:11px;color:var(--ink3);margin-top:1px}
+.out-actions{margin-left:auto;display:flex;gap:5px}
+.out-body{padding:18px;display:none}
+.out-body.open{display:block}
+.out-chev{color:var(--ink4);transition:transform .2s;flex-shrink:0}
+.out-chev.open{transform:rotate(180deg)}
+.copy-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border:1px solid var(--rule2);border-radius:5px;background:none;color:var(--ink3);font-size:11px;cursor:pointer;transition:all .15s}
+.copy-btn:hover{color:var(--ink);border-color:var(--ink3)}
+
+/* CONTENT */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:14px}
+.metric-card{background:var(--bg3);border:1px solid var(--rule);border-radius:var(--r);padding:12px}
+.metric-label{font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.metric-value{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin:2px}
+.tag-blue{background:var(--blue-l);color:var(--blue)}.tag-green{background:var(--green-l);color:var(--green)}
+.tag-red{background:var(--red-l);color:var(--red)}.tag-amber{background:var(--amber-l);color:var(--amber)}
+.tag-gray{background:var(--bg3);color:var(--ink3);border:1px solid var(--rule)}
+.divider{height:1px;background:var(--rule);margin:14px 0}
+.script-block{background:var(--bg3);border-radius:var(--r);padding:13px;margin-bottom:9px;border-left:3px solid var(--blue)}
+.script-label{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.script-text{font-size:12.5px;color:var(--ink);line-height:1.7;white-space:pre-wrap}
+.roadmap-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-radius:var(--r);overflow:hidden;border:1px solid var(--rule)}
+.rc{background:var(--bg2);padding:14px}
+.rc-hdr{font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px}
+.rc-item{display:flex;gap:5px;font-size:12px;color:var(--ink2);margin-bottom:5px;line-height:1.5}
+.rc-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:6px}
+.check-item{display:flex;gap:9px;padding:9px 0;border-bottom:1px solid var(--rule)}
+.check-item:last-child{border-bottom:none}
+.chk{width:17px;height:17px;border:2px solid var(--rule2);border-radius:5px;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.chk.on{background:var(--green);border-color:var(--green)}
+.chk-text{font-size:12.5px;line-height:1.5;flex:1}
+.chk-text.on{text-decoration:line-through;color:var(--ink3)}
+.empty-state{text-align:center;padding:56px 20px}
+.empty-icon{font-size:36px;margin-bottom:14px}
+.empty-title{font-size:15px;font-weight:700;margin-bottom:5px}
+.empty-sub{font-size:13px;color:var(--ink3);margin-bottom:22px;line-height:1.6}
+.gen-wrap{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:36px;text-align:center;box-shadow:var(--shadow)}
+.gen-spin{width:38px;height:38px;border:3px solid var(--rule2);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 18px}
+.gen-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.gen-msg{font-size:13px;color:var(--ink3);margin-bottom:18px}
+.gen-steps{text-align:left;max-width:340px;margin:0 auto}
+.gen-step{display:flex;align-items:center;gap:9px;padding:7px 0;font-size:12px;color:var(--ink3);border-bottom:1px solid var(--rule)}
+.gen-step:last-child{border-bottom:none}
+.gen-step.act{color:var(--blue);font-weight:600}
+.gen-step.done{color:var(--green)}
+.gen-bar{height:3px;background:var(--rule);border-radius:2px;margin-top:18px;overflow:hidden}
+.gen-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .5s ease}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:9px 18px;border-radius:var(--r);z-index:9999;transition:transform .3s;pointer-events:none}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* CRM INTELLIGENCE */
+.cadence-timeline{position:relative;padding-left:28px;margin-top:14px}
+.cadence-timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:2px;background:var(--rule)}
+.cadence-step{position:relative;margin-bottom:18px}
+.cadence-dot{position:absolute;left:-19px;top:4px;width:10px;height:10px;border-radius:50%;border:2px solid var(--blue);background:var(--bg2);z-index:1}
+.cadence-day{font-size:10px;font-weight:700;color:var(--blue);font-family:var(--mono);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em}
+.cadence-action{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.cadence-detail{font-size:12px;color:var(--ink3);line-height:1.5}
+.integration-card{background:var(--bg3);border:1px solid var(--rule);border-radius:var(--r);padding:14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px}
+.integration-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.integration-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.integration-desc{font-size:12px;color:var(--ink3);line-height:1.5}
+.integration-tags{margin-top:6px;display:flex;gap:5px;flex-wrap:wrap}
+.churn-signal{display:flex;gap:12px;padding:12px;background:var(--bg3);border-radius:var(--r);margin-bottom:8px;border-left:3px solid transparent}
+.churn-signal.high{border-left-color:var(--red)}
+.churn-signal.med{border-left-color:var(--amber)}
+.churn-signal.low{border-left-color:var(--green)}
+.cs-risk{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.cs-signal{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.cs-action{font-size:12px;color:var(--ink3)}
+.similar-card{background:var(--bg3);border:1px solid var(--rule);border-radius:var(--r);padding:12px;margin-bottom:8px}
+.similar-co{font-size:13px;font-weight:700;margin-bottom:4px}
+.similar-detail{font-size:12px;color:var(--ink3);line-height:1.6}
+</style>
+</head>
+<body>
+<!-- LANDING -->
+<div id="view-landing" class="view active">
+<nav class="lp-nav">
+  <div class="logo-wrap"><div class="logo-mark">G</div><div><div class="logo-name">GTM OS</div></div></div>
+  <div class="nav-links">
+    <a href="#modules">Modules</a><a href="#crm-section">CRM Guide</a><a href="#pricing">Pricing</a>
+    <button class="btn-nav" onclick="openAuth('login')">Sign in</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow"><div class="hero-dot"></div>AI-Powered GTM Strategy</div>
+    <h1 class="hero-h1">Your complete<br><em>Go-To-Market</em><br>Operating System</h1>
+    <p class="hero-sub">Paste your website. Get your ICP, GTM strategy, sales playbook, CRM blueprint — with churn signals, cadence design, and integration stack — built to BCG depth in 60 seconds.</p>
+    <div class="hero-btns">
+      <button class="btn-primary-lg" onclick="openAuth('signup')">Get started free →</button>
+      <button class="btn-ghost-lg" onclick="openAuth('login')">Sign in</button>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">ICP Profiles</span><span class="hero-tag">Sales Playbook</span>
+      <span class="hero-tag">CRM Blueprint</span><span class="hero-tag">Churn Signals</span>
+      <span class="hero-tag">Outreach Cadence</span><span class="hero-tag">Integration Stack</span>
+    </div>
+  </div>
+  <div>
+    <div class="ticker">
+      <div class="ticker-hdr">
+        <span class="ticker-title">gtmos — running analysis</span>
+        <div class="ticker-dots"><div class="tdot"></div><div class="tdot"></div><div class="tdot g"></div></div>
+      </div>
+      <div class="ticker-body">
+        <div class="ticker-co">
+          <div class="ticker-co-icon">🏢</div>
+          <div><div class="ticker-co-name" id="tick-co">Analysing…</div><div class="ticker-co-url" id="tick-url">https://yourcompany.com</div></div>
+        </div>
+        <div id="tick-rows">
+          <div class="tick-row done"><div style="font-size:13px">🏢</div><div class="tick-label">Business Profile</div><div class="tick-status s-done">✓ Done</div></div>
+          <div class="tick-row done"><div style="font-size:13px">🎯</div><div class="tick-label">ICP Engine — 3 profiles</div><div class="tick-status s-done">✓ Done</div></div>
+          <div class="tick-row running"><div class="tick-spin"></div><div class="tick-label">CRM + Cadence Design</div><div class="tick-status s-running">Running…</div></div>
+          <div class="tick-row pending"><div style="font-size:13px">📖</div><div class="tick-label">Sales Playbook</div><div class="tick-status s-pending">Queued</div></div>
+          <div class="tick-row pending"><div style="font-size:13px">🔗</div><div class="tick-label">Integration Stack</div><div class="tick-status s-pending">Queued</div></div>
+          <div class="tick-row pending"><div style="font-size:13px">📉</div><div class="tick-label">Churn Signals</div><div class="tick-status s-pending">Queued</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-in"><div class="stat-n">8<span>×</span></div><div class="stat-label">modules per analysis</div></div></div>
+    <div class="stat"><div class="stat-in"><div class="stat-n">60<span>s</span></div><div class="stat-label">URL to full GTM strategy</div></div></div>
+    <div class="stat"><div class="stat-in"><div class="stat-n">4<span>+</span></div><div class="stat-label">CRM blueprints with cadence</div></div></div>
+    <div class="stat"><div class="stat-in"><div class="stat-n">BCG<span>-level</span></div><div class="stat-label">strategic output depth</div></div></div>
+  </div>
+</div>
+
+<div id="modules" class="section">
+  <div class="eyebrow">What you get</div>
+  <h2 class="section-h2">Eight strategy modules,<br>built in parallel</h2>
+  <p class="section-sub">Each module is independently exportable. Together they form a complete commercial operating system — from first ICP to churn prevention.</p>
+  <div class="modules-grid">
+    <div class="mod"><div class="mod-num">01</div><div class="mod-icon" style="background:#EFF6FF">🏢</div><div class="mod-title">Business Profile</div><div class="mod-desc">Positioning, moat, market size, strengths and risks — the foundation every strategy starts with.</div><div class="mod-tags"><span class="mod-tag">Positioning</span><span class="mod-tag">Moat</span><span class="mod-tag">Risk flags</span></div></div>
+    <div class="mod"><div class="mod-num">02</div><div class="mod-icon" style="background:#F0FDF4">🎯</div><div class="mod-title">ICP Engine</div><div class="mod-desc">3 ranked ICPs with firmographics, triggers, disqualifiers, a day-in-their-life and pitch angle.</div><div class="mod-tags"><span class="mod-tag">3 profiles</span><span class="mod-tag">Deal size</span><span class="mod-tag">Win rate</span></div></div>
+    <div class="mod"><div class="mod-num">03</div><div class="mod-icon" style="background:#FEF3C7">🗺️</div><div class="mod-title">GTM Strategy</div><div class="mod-desc">Motion, wedge, channel priority with tactics, 90-day roadmap and full competitor battlecards.</div><div class="mod-tags"><span class="mod-tag">Motion</span><span class="mod-tag">Roadmap</span><span class="mod-tag">Battlecards</span></div></div>
+    <div class="mod"><div class="mod-num">04</div><div class="mod-icon" style="background:#F5F3FF">📖</div><div class="mod-title">Sales Playbook</div><div class="mod-desc">Email, LinkedIn, cold call, WhatsApp sequences. Objection matrix, discovery questions, MEDDIC qualification.</div><div class="mod-tags"><span class="mod-tag">Scripts</span><span class="mod-tag">Objections</span><span class="mod-tag">Closing</span></div></div>
+    <div class="mod"><div class="mod-num">05</div><div class="mod-icon" style="background:#ECFDF5">🗃️</div><div class="mod-title">CRM Blueprint</div><div class="mod-desc">CRM recommendation by ICP and stage. Pipeline stages, lead scoring, automation flows and similar company benchmarks.</div><div class="mod-tags"><span class="mod-tag">Pipeline</span><span class="mod-tag">Scoring</span><span class="mod-tag">Automations</span></div></div>
+    <div class="mod"><div class="mod-num">06</div><div class="mod-icon" style="background:#FFF7ED">🔗</div><div class="mod-title">CRM Intelligence</div><div class="mod-desc">Outreach cadence by channel, integration stack (email/WhatsApp/tools), churn signals, and productivity tracking.</div><div class="mod-tags"><span class="mod-tag">Cadence</span><span class="mod-tag">Integrations</span><span class="mod-tag">Churn signals</span></div></div>
+    <div class="mod"><div class="mod-num">07</div><div class="mod-icon" style="background:#F8FAFC">📊</div><div class="mod-title">MIS & Metrics</div><div class="mod-desc">North star, leading and lagging indicators, funnel benchmarks, weekly review agenda, investor metrics.</div><div class="mod-tags"><span class="mod-tag">KPIs</span><span class="mod-tag">Dashboards</span><span class="mod-tag">Benchmarks</span></div></div>
+    <div class="mod"><div class="mod-num">08</div><div class="mod-icon" style="background:#F0FDF4">✅</div><div class="mod-title">Execution Plan</div><div class="mod-desc">Week-by-week checklist with owners and tools. Hiring signals, tool stack, and anti-patterns to avoid.</div><div class="mod-tags"><span class="mod-tag">30-day plan</span><span class="mod-tag">Hiring</span><span class="mod-tag">Stack</span></div></div>
+  </div>
+</div>
+
+<div class="dark-section">
+  <div class="dark-inner">
+    <div class="dark-eyebrow">The output standard</div>
+    <h2 class="dark-h2">Built like a BCG strategy brief</h2>
+    <p class="dark-sub">Every output follows the frameworks used by top strategy firms — adapted for founders and sales leaders who need to move fast.</p>
+    <div class="bcg-grid">
+      <div class="bcg-cell"><div class="bcg-label">Framework</div><div class="bcg-title">Situation → Complication → Resolution</div><div class="bcg-body">Every section diagnoses the real problem before prescribing the solution. No generic advice.</div></div>
+      <div class="bcg-cell"><div class="bcg-label">Specificity</div><div class="bcg-title">Named competitors, real scripts, actual CRM fields</div><div class="bcg-body">Not "consider email outreach." Actual subject lines, openers, and objection responses for your ICP.</div></div>
+      <div class="bcg-cell"><div class="bcg-label">Prioritisation</div><div class="bcg-title">Ranked by signal strength, not listed alphabetically</div><div class="bcg-body">ICPs by win rate. Channels by effort/ROI. Churn signals by severity. No ambiguity about where to start.</div></div>
+      <div class="bcg-cell"><div class="bcg-label">CRM Intelligence</div><div class="bcg-title">Cadence, integrations, churn, productivity</div><div class="bcg-body">Not just a CRM pick — a full operating system: what to track, when to reach out, and how to spot churn 30 days early.</div></div>
+      <div class="bcg-cell"><div class="bcg-label">Commercial rigour</div><div class="bcg-title">Deal size, win rate, sales cycle per ICP</div><div class="bcg-body">Quantified wherever possible. Benchmarks calibrated to your stage and market.</div></div>
+      <div class="bcg-cell"><div class="bcg-label">Living document</div><div class="bcg-title">Auto-saved to your account. Regenerate anytime.</div><div class="bcg-body">Update inputs, re-run the analysis. Every module refreshes. Your GTM evolves as your business does.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="crm-section" class="crm-section">
+  <div class="crm-inner">
+    <div class="eyebrow">CRM Decision Guide</div>
+    <h2 class="section-h2">Which CRM fits your business?</h2>
+    <p class="section-sub">GTM OS selects the right CRM based on your ICP, stage, and team. Here's a preview of what the full blueprint looks like.</p>
+    <div class="crm-cards">
+      <div class="crm-card sel" id="lp-crm-0" onclick="lpSelectCRM(0)"><div class="crm-logo">🟠</div><div class="crm-name">HubSpot</div><div class="crm-badge" style="background:#FFF7ED;color:#D97706">B2B SaaS · Growth</div><div class="crm-desc">Best free tier. Grows from 0 to Series B without migration. Native email sequences and lead scoring.</div></div>
+      <div class="crm-card" id="lp-crm-1" onclick="lpSelectCRM(1)"><div class="crm-logo">🔵</div><div class="crm-name">Zoho CRM</div><div class="crm-badge" style="background:#EFF6FF;color:#2563EB">MFDs · India · Lean teams</div><div class="crm-desc">Most features per rupee. Deep WhatsApp integration. Ideal for financial services and distribution businesses.</div></div>
+      <div class="crm-card" id="lp-crm-2" onclick="lpSelectCRM(2)"><div class="crm-logo">🟢</div><div class="crm-name">Pipedrive</div><div class="crm-badge" style="background:#ECFDF5;color:#059669">Sales-led · SMB</div><div class="crm-desc">Built for salespeople. Best pipeline visualisation. No fluff — just deals, activities, and revenue.</div></div>
+      <div class="crm-card" id="lp-crm-3" onclick="lpSelectCRM(3)"><div class="crm-logo">⚫</div><div class="crm-name">Notion CRM</div><div class="crm-badge" style="background:#F8FAFC;color:#64748B">Pre-revenue · Solo</div><div class="crm-desc">Zero cost. Maximum flexibility. Build your system before you know what you need. Graduate when you have 50+ deals.</div></div>
+    </div>
+    <div id="lp-crm-details">
+      <div id="lp-crm-d0" class="crm-detail open">
+        <div style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:18px">HubSpot — Recommended Setup for B2B SaaS</div>
+        <div class="crm-detail-grid">
+          <div><div class="crm-col-title">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Lead In</span><span class="pipe-arr">→</span><span class="pipe-pill">MQL</span><span class="pipe-arr">→</span><span class="pipe-pill">Discovery</span><span class="pipe-arr">→</span><span class="pipe-pill">Demo</span><span class="pipe-arr">→</span><span class="pipe-pill">Proposal</span><span class="pipe-arr">→</span><span class="pipe-pill">Closed Won</span></div></div>
+          <div><div class="crm-col-title">Key Fields to Track</div><div class="crm-li">ICP fit score (1–10)</div><div class="crm-li">Lead source + campaign</div><div class="crm-li">Champion name + title</div><div class="crm-li">Decision maker confirmed?</div><div class="crm-li">Competitor in deal</div><div class="crm-li">Expected close date</div></div>
+          <div><div class="crm-col-title">Automation Flows</div><div class="crm-li">New lead → email in 2min</div><div class="crm-li">No activity 3 days → nudge task</div><div class="crm-li">Demo booked → prep doc created</div><div class="crm-li">Won → CS handoff triggered</div><div class="crm-col-title" style="margin-top:12px">Lead Scoring</div><div class="crm-li">+30 demo requested</div><div class="crm-li">+20 email opened</div><div class="crm-li">+25 visited pricing page</div></div>
+        </div>
+      </div>
+      <div id="lp-crm-d1" class="crm-detail">
+        <div style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:18px">Zoho CRM — Setup for MFDs &amp; Financial Services</div>
+        <div class="crm-detail-grid">
+          <div><div class="crm-col-title">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Enquiry</span><span class="pipe-arr">→</span><span class="pipe-pill">KYC Done</span><span class="pipe-arr">→</span><span class="pipe-pill">Needs Analysis</span><span class="pipe-arr">→</span><span class="pipe-pill">Proposal Sent</span><span class="pipe-arr">→</span><span class="pipe-pill">First SIP</span><span class="pipe-arr">→</span><span class="pipe-pill">Active Client</span></div></div>
+          <div><div class="crm-col-title">Key Fields</div><div class="crm-li">ARN / AMFI license status</div><div class="crm-li">AUM band (0-10L, 10-50L…)</div><div class="crm-li">Risk profile completed?</div><div class="crm-li">WhatsApp opted in?</div><div class="crm-li">Preferred contact time</div><div class="crm-li">Referral source</div></div>
+          <div><div class="crm-col-title">Automations</div><div class="crm-li">New lead → WhatsApp in 60s</div><div class="crm-li">Stale 5 days → reminder to RM</div><div class="crm-li">SIP started → 30d check-in</div><div class="crm-li">Anniversary → re-review trigger</div></div>
+        </div>
+      </div>
+      <div id="lp-crm-d2" class="crm-detail">
+        <div style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:18px">Pipedrive — Setup for Sales-Led SMB</div>
+        <div class="crm-detail-grid">
+          <div><div class="crm-col-title">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Contact Made</span><span class="pipe-arr">→</span><span class="pipe-pill">Qualified</span><span class="pipe-arr">→</span><span class="pipe-pill">Meeting Set</span><span class="pipe-arr">→</span><span class="pipe-pill">Proposal</span><span class="pipe-arr">→</span><span class="pipe-pill">Won</span></div></div>
+          <div><div class="crm-col-title">Key Fields</div><div class="crm-li">Deal value estimate</div><div class="crm-li">Expected close date</div><div class="crm-li">Products interested in</div><div class="crm-li">Last activity date</div><div class="crm-li">Lost reason (if lost)</div></div>
+          <div><div class="crm-col-title">Automations</div><div class="crm-li">Idle 3 days → auto task for rep</div><div class="crm-li">Deal stagnant → manager alert</div><div class="crm-li">Won → invoice trigger</div><div class="crm-li">Lost → exit survey email</div></div>
+        </div>
+      </div>
+      <div id="lp-crm-d3" class="crm-detail">
+        <div style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:18px">Notion CRM — For Pre-Revenue Founders</div>
+        <div class="crm-detail-grid">
+          <div><div class="crm-col-title">Stages</div><div class="pipe-flow"><span class="pipe-pill">Prospect</span><span class="pipe-arr">→</span><span class="pipe-pill">Contacted</span><span class="pipe-arr">→</span><span class="pipe-pill">Interested</span><span class="pipe-arr">→</span><span class="pipe-pill">Decided</span></div></div>
+          <div><div class="crm-col-title">Key Fields</div><div class="crm-li">Status + priority</div><div class="crm-li">Company + contact</div><div class="crm-li">Notes from calls</div><div class="crm-li">Next action + date</div><div class="crm-li">Deal size estimate</div></div>
+          <div><div class="crm-col-title">When to Migrate</div><div class="crm-li">When you hit 50+ active deals</div><div class="crm-li">When you hire your first SDR</div><div class="crm-li">When you need email sequences</div><div class="crm-li">When reporting takes &gt;1h/week</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pricing" class="section">
+  <div class="eyebrow">Business Plan</div>
+  <h2 class="section-h2">Simple, transparent pricing</h2>
+  <p class="section-sub">Start free. Upgrade when you need unlimited analyses, team collaboration, or API access.</p>
+  <div class="pricing-grid">
+    <div class="plan"><div class="plan-name">Starter</div><div class="plan-price">Free<span></span></div><div class="plan-desc">For solo founders exploring their first GTM motion.</div><div class="plan-divider"></div><div class="plan-feat"><span class="plan-feat-check">✓</span>3 full analyses per month</div><div class="plan-feat"><span class="plan-feat-check">✓</span>All 8 modules included</div><div class="plan-feat"><span class="plan-feat-check">✓</span>CRM Intelligence module</div><div class="plan-feat"><span class="plan-feat-check">✓</span>PDF / JSON export</div><button class="plan-btn g" onclick="openAuth('signup')">Get started free</button></div>
+    <div class="plan feat"><div class="plan-badge">Most popular</div><div class="plan-name">Growth</div><div class="plan-price">₹2,499<span>/mo</span></div><div class="plan-desc">For sales leaders building repeatable GTM systems.</div><div class="plan-divider"></div><div class="plan-feat"><span class="plan-feat-check">✓</span>Unlimited analyses</div><div class="plan-feat"><span class="plan-feat-check">✓</span>Team workspace (up to 5)</div><div class="plan-feat"><span class="plan-feat-check">✓</span>Churn signal dashboard</div><div class="plan-feat"><span class="plan-feat-check">✓</span>Integration setup guides</div><div class="plan-feat"><span class="plan-feat-check">✓</span>Cadence templates export</div><button class="plan-btn p" onclick="openAuth('signup')">Start free trial</button></div>
+    <div class="plan"><div class="plan-name">Scale</div><div class="plan-price">₹7,999<span>/mo</span></div><div class="plan-desc">For consultants and agencies serving multiple clients.</div><div class="plan-divider"></div><div class="plan-feat"><span class="plan-feat-check">✓</span>Everything in Growth</div><div class="plan-feat"><span class="plan-feat-check">✓</span>Unlimited team members</div><div class="plan-feat"><span class="plan-feat-check">✓</span>White-label exports</div><div class="plan-feat"><span class="plan-feat-check">✓</span>Multi-brand workspaces</div><div class="plan-feat"><span class="plan-feat-check">✓</span>API access</div><button class="plan-btn g" onclick="window.location.href='mailto:hello@gtmos.ai'">Talk to us</button></div>
+  </div>
+</div>
+
+<div class="footer-cta">
+  <h2>Ready to build your GTM OS?</h2>
+  <p>Paste your website. Get your strategy, playbook, CRM blueprint, and churn signals in 60 seconds.</p>
+  <button class="btn-footer" onclick="openAuth('signup')">Start for free →</button>
+</div>
+<footer class="lp-footer"><div class="lp-footer-in"><div class="lp-copy">© 2025 GTM OS. Built for founders, sales leaders and GTM builders.</div><div class="lp-flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:hello@gtmos.ai">Contact</a></div></div></footer>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-bg" id="auth-modal">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuth()">×</button>
+    <div class="auth-logo"><div class="auth-logo-mark">G</div><div class="auth-logo-name">GTM OS</div></div>
+    <h2 class="auth-h2" id="auth-h2">Create your account</h2>
+    <p class="auth-sub" id="auth-sub">Get your full GTM strategy in 60 seconds.</p>
+    <div class="auth-err" id="auth-err"></div>
+    <button class="btn-google" onclick="signInGoogle()">
+      <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-div"><div class="auth-div-line"></div><div class="auth-div-text">or email</div><div class="auth-div-line"></div></div>
+    <input class="auth-input" type="email" id="auth-email" placeholder="you@company.com">
+    <input class="auth-input" type="password" id="auth-pw" placeholder="Password (8+ chars)">
+    <div id="auth-name-wrap" style="display:none"><input class="auth-input" type="text" id="auth-name" placeholder="Your full name"></div>
+    <button class="btn-auth" id="auth-submit" onclick="submitAuth()">Create account</button>
+    <div class="auth-switch" id="auth-switch">Already have an account? <a onclick="switchAuth()">Sign in</a></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="view-app" class="view">
+  <div class="sb">
+    <div class="sb-top">
+      <div class="sb-logo"><div class="sb-logo-mark">G</div><div class="sb-logo-name">GTM OS</div></div>
+      <div class="sb-user"><div class="sb-avatar" id="sb-av">?</div><div class="sb-uname" id="sb-nm">…</div><button class="sb-out" onclick="signOut()" title="Sign out">↩</button></div>
+    </div>
+    <div class="sb-sec"><div class="sb-sec-label">Setup</div>
+      <div class="sbi act" id="nav-input" onclick="nav('input')"><span class="sbi-ic">🔍</span>Business Input<span class="sbi-badge" id="badge-input">Start</span></div>
+    </div>
+    <div class="sb-sec"><div class="sb-sec-label">Strategy</div>
+      <div class="sbi" id="nav-biz"      onclick="nav('biz')"><span class="sbi-ic">🏢</span>Business Profile</div>
+      <div class="sbi" id="nav-icp"      onclick="nav('icp')"><span class="sbi-ic">🎯</span>ICP Engine</div>
+      <div class="sbi" id="nav-gtm"      onclick="nav('gtm')"><span class="sbi-ic">🗺️</span>GTM Strategy</div>
+    </div>
+    <div class="sb-sec"><div class="sb-sec-label">Execution</div>
+      <div class="sbi" id="nav-playbook" onclick="nav('playbook')"><span class="sbi-ic">📖</span>Sales Playbook</div>
+      <div class="sbi" id="nav-crm"      onclick="nav('crm')"><span class="sbi-ic">🗃️</span>CRM Blueprint</div>
+      <div class="sbi" id="nav-crmi"     onclick="nav('crmi')"><span class="sbi-ic">🔗</span>CRM Intelligence</div>
+      <div class="sbi" id="nav-mis"      onclick="nav('mis')"><span class="sbi-ic">📊</span>MIS & Metrics</div>
+      <div class="sbi" id="nav-checklist"onclick="nav('checklist')"><span class="sbi-ic">✅</span>Execution Plan</div>
+    </div>
+  </div>
+  <div class="app-main">
+    <div class="topbar">
+      <div><div class="topbar-title" id="app-title">Business Input</div><div class="topbar-sub" id="app-sub">Tell us about your business</div></div>
+      <div class="topbar-right">
+        <button class="btn btn-border btn-sm" onclick="exportData()">↗ Export</button>
+        <button class="btn btn-blue btn-sm" onclick="nav('input')">+ New</button>
+      </div>
+    </div>
+    <div class="app-page" id="app-page"></div>
+  </div>
+</div>
+<div id="toast"></div>
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import{getAuth,GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,onAuthStateChanged,signOut as fbOut,updateProfile}
+  from'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import{getFirestore,doc,getDoc,setDoc,serverTimestamp}
+  from'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const app=initializeApp({apiKey:"AIzaSyCxS_yTqtgvGalHW-LD-jiT8AvI0N_5VvY",authDomain:"pronto-ai-9601d.firebaseapp.com",projectId:"pronto-ai-9601d",storageBucket:"pronto-ai-9601d.firebasestorage.app",messagingSenderId:"1058387234213",appId:"1:1058387234213:web:61afba588e3730354dec4c"});
+const auth=getAuth(app),db=getFirestore(app),gp=new GoogleAuthProvider();
+
+let U=null,authMode='signup';
+const S={input:{url:'',desc:'',uv:'',stage:'',team:'',revenue:'',icp:'',geo:'',competitors:'',channels:''},generated:false,data:{},checks:{}};
+
+onAuthStateChanged(auth,async user=>{
+  U=user;
+  if(user){closeAuth();showApp();setSBUser(user);await loadData(user.uid);nav('input');}
+  else{showLanding();}
+});
+
+function showLanding(){
+  document.getElementById('view-landing').style.display='block';
+  document.getElementById('view-app').style.display='none';
+  document.getElementById('view-landing').classList.add('active');
+  document.getElementById('view-app').classList.remove('active');
+}
+function showApp(){
+  document.getElementById('view-landing').style.display='none';
+  document.getElementById('view-app').style.display='flex';
+  document.getElementById('view-app').classList.add('active');
+}
+function setSBUser(u){
+  const n=document.getElementById('sb-nm'),a=document.getElementById('sb-av');
+  if(n) n.textContent=u.displayName||u.email?.split('@')[0]||'User';
+  if(a){if(u.photoURL){a.innerHTML=`<img src="${u.photoURL}" referrerpolicy="no-referrer">`;}else{a.textContent=(u.displayName||u.email||'U')[0].toUpperCase();}}
+}
+
+async function loadData(uid){
+  try{
+    const snap=await getDoc(doc(db,'gtmos',uid));
+    if(snap.exists()){
+      const d=snap.data();
+      if(d.input)Object.assign(S.input,d.input);
+      if(d.data)S.data=d.data;
+      if(d.generated)S.generated=d.generated;
+      if(d.checks)S.checks=d.checks;
+      if(S.generated){document.getElementById('badge-input').textContent='✓';document.getElementById('badge-input').className='sbi-badge done';}
+    }
+  }catch(e){console.warn('Load',e);}
+}
+async function saveData(){
+  if(!U)return;
+  try{await setDoc(doc(db,'gtmos',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
+  catch(e){console.warn('Save',e);}
+}
+
+function openAuth(mode){authMode=mode||'signup';document.getElementById('auth-modal').classList.add('open');refreshAuth();}
+function closeAuth(){document.getElementById('auth-modal').classList.remove('open');}
+function switchAuth(){authMode=authMode==='login'?'signup':'login';refreshAuth();}
+function refreshAuth(){
+  const s=authMode==='signup';
+  document.getElementById('auth-h2').textContent=s?'Create your account':'Welcome back';
+  document.getElementById('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
+  document.getElementById('auth-submit').textContent=s?'Create account':'Sign in';
+  document.getElementById('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don\'t have an account? <a onclick=\"switchAuth()\">Sign up free</a>";
+  document.getElementById('auth-name-wrap').style.display=s?'block':'none';
+  document.getElementById('auth-err').classList.remove('show');
+}
+function showErr(m){const e=document.getElementById('auth-err');e.textContent=m;e.classList.add('show');}
+async function signInGoogle(){
+  try{
+    const r=await signInWithPopup(auth,gp);
+    await setDoc(doc(db,'users',r.user.uid),{email:r.user.email,displayName:r.user.displayName,photoURL:r.user.photoURL,lastLogin:serverTimestamp(),provider:'google'},{merge:true});
+  }catch(e){if(e.code!=='auth/popup-closed-by-user')showErr(e.message);}
+}
+async function submitAuth(){
+  const email=document.getElementById('auth-email').value.trim();
+  const pw=document.getElementById('auth-pw').value;
+  const name=document.getElementById('auth-name')?.value.trim();
+  if(!email||!pw){showErr('Email and password required');return;}
+  const btn=document.getElementById('auth-submit');btn.textContent='…';btn.disabled=true;
+  try{
+    if(authMode==='signup'){
+      const c=await createUserWithEmailAndPassword(auth,email,pw);
+      if(name)await updateProfile(c.user,{displayName:name});
+      await setDoc(doc(db,'users',c.user.uid),{email,displayName:name||'',provider:'email',signupDate:serverTimestamp()});
+    }else{await signInWithEmailAndPassword(auth,email,pw);}
+  }catch(e){
+    const m={'auth/email-already-in-use':'Email already registered — sign in instead','auth/wrong-password':'Incorrect password','auth/user-not-found':'No account with this email','auth/weak-password':'Password must be 8+ characters'};
+    showErr(m[e.code]||e.message);btn.textContent=authMode==='signup'?'Create account':'Sign in';btn.disabled=false;
+  }
+}
+async function signOut(){await fbOut(auth);S.data={};S.generated=false;}
+
+const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Business Profile','Positioning, moat and market fit'],icp:['ICP Engine','Ideal customer profiles ranked by fit'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],mis:['MIS & Metrics','KPIs, benchmarks and review cadence'],checklist:['Execution Plan','Week-by-week action checklist']};
+
+function nav(page){
+  document.querySelectorAll('.sbi').forEach(e=>e.classList.remove('act'));
+  const el=document.getElementById('nav-'+page);if(el)el.classList.add('act');
+  const [t,s]=PAGE_META[page]||['GTM OS',''];
+  document.getElementById('app-title').textContent=t;
+  document.getElementById('app-sub').textContent=s;
+  const renders={input:renderInput,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
+  const fn=renders[page];
+  document.getElementById('app-page').innerHTML=fn?fn():'';
+  if(page==='input')bindInput();
+}
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function tog(id){document.getElementById('body-'+id)?.classList.toggle('open');document.getElementById('chev-'+id)?.classList.toggle('open');}
+function copyEl(id){const el=document.getElementById(id);if(!el)return;navigator.clipboard.writeText(el.innerText).then(()=>toast('Copied'));}
+function toast(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);}
+function outBlock(id,ic,bg,title,sub,fn){return`<div class="out-block"><div class="out-hdr" onclick="tog('${id}')"><div class="out-icon" style="background:${bg}">${ic}</div><div><div class="out-title">${title}</div><div class="out-sub">${sub}</div></div><div class="out-actions"><button class="copy-btn" onclick="event.stopPropagation();copyEl('body-${id}')">⎘ Copy</button></div><svg class="out-chev open" id="chev-${id}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="out-body open" id="body-${id}">${fn()}</div></div>`;}
+function requireData(k){
+  if(!S.generated)return`<div class="empty-state"><div class="empty-icon">🔒</div><div class="empty-title">Not generated yet</div><div class="empty-sub">Run an analysis to unlock this module</div><button class="btn btn-blue" onclick="nav('input')">Start analysis →</button></div>`;
+  if(!S.data[k])return`<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-title">Module data missing</div><div class="empty-sub">Try regenerating</div><button class="btn btn-border" onclick="nav('input')">Regenerate →</button></div>`;
+  return null;
+}
+
+function renderInput(){return`<div class="sec-hdr"><div class="sec-eyebrow">Step 1</div><div class="sec-title">Tell us about your business</div><div class="sec-sub">The more detail you give, the sharper every module becomes. Fields marked * drive the most output quality.</div></div>
+<div class="input-panel">
+<div class="input-section">Your product or service *</div>
+<div class="input-row"><div class="input-group" style="flex:2"><label class="input-label">Website URL</label><input id="in-url" type="url" placeholder="https://yourcompany.com" value="${esc(S.input.url)}"></div><div class="input-group"><label class="input-label">Stage *</label><select id="in-stage"><option value="">Select…</option>${['Pre-revenue','0→1 (first customers)','Early growth ($0–1M ARR)','Scaling ($1M–10M ARR)','Growth ($10M+ ARR)','Bootstrapped / profitable'].map(s=>`<option ${S.input.stage===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="input-group"><label class="input-label">Team size</label><select id="in-team"><option value="">Select…</option>${['Solo founder','2–5','6–15','16–50','50+'].map(s=>`<option ${S.input.team===s?'selected':''}>${s}</option>`).join('')}</select></div></div>
+<div class="input-row"><div class="input-group" style="flex:3"><label class="input-label">What does your product/service do? Name the problem, buyer, outcome. *</label><textarea id="in-desc" placeholder="e.g. We help B2B SaaS companies reduce churn by identifying at-risk accounts 30 days early using product usage signals…">${esc(S.input.desc)}</textarea></div></div>
+<div class="input-row"><div class="input-group" style="flex:2"><label class="input-label">Your #1 unfair advantage — why you, not a competitor? *</label><textarea id="in-uv" rows="2" placeholder="e.g. Only platform that predicts churn using product telemetry — no CRM data needed. Built by ex-Gainsight team.">${esc(S.input.uv)}</textarea></div><div class="input-group"><label class="input-label">Current MRR/ARR</label><input id="in-rev" placeholder="e.g. ₹12L MRR" value="${esc(S.input.revenue)}"></div></div>
+<div class="input-section">Your market</div>
+<div class="input-row"><div class="input-group" style="flex:2"><label class="input-label">Who is your best customer? (ICP hypothesis) *</label><textarea id="in-icp" rows="2" placeholder="e.g. VP Customer Success, B2B SaaS, 50–500 employees, Series A/B, using Salesforce, had churn issues last 12 months…">${esc(S.input.icp)}</textarea></div><div class="input-group"><label class="input-label">Target geographies</label><input id="in-geo" placeholder="e.g. India, US, SEA" value="${esc(S.input.geo)}"></div></div>
+<div class="input-row"><div class="input-group"><label class="input-label">Main competitors</label><input id="in-comp" placeholder="e.g. Gainsight, ChurnZero" value="${esc(S.input.competitors)}"></div><div class="input-group"><label class="input-label">Channels you currently use</label><input id="in-ch" placeholder="e.g. cold email, LinkedIn" value="${esc(S.input.channels)}"></div></div>
+</div>
+<div style="display:flex;gap:12px;align-items:center">
+<button class="btn btn-blue" onclick="generate()" style="padding:11px 26px;font-size:14px">⚡ Generate GTM OS</button>
+<span style="font-size:12px;color:var(--ink3)">All 8 modules in ~45 seconds · Auto-saved</span>
+</div>
+${S.generated?'<div style="margin-top:10px;font-size:12px;color:var(--green);font-weight:600">✓ Analysis complete — navigate modules from the sidebar</div>':''}`;}
+
+function bindInput(){
+  const m={url:'url',stage:'stage',team:'team',desc:'desc',uv:'uv',rev:'revenue',icp:'icp',geo:'geo',comp:'competitors',ch:'channels'};
+  Object.entries(m).forEach(([id,key])=>{const el=document.getElementById('in-'+id);if(el)el.addEventListener('change',()=>S.input[key]=el.value);});
+}
+
+async function callAI(prompt){
+  const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:1800})});
+  const d=await r.json();return d.content?.[0]?.text||'';
+}
+function parseJ(text){
+  try{return JSON.parse(text.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim());}
+  catch(e){const m=text.match(/\{[\s\S]*\}|\[[\s\S]*\]/);if(m)try{return JSON.parse(m[0]);}catch(e2){}return{raw:text};}
+}
+
+async function generate(){
+  const m={url:'url',stage:'stage',team:'team',desc:'desc',uv:'uv',rev:'revenue',icp:'icp',geo:'geo',comp:'competitors',ch:'channels'};
+  Object.entries(m).forEach(([id,key])=>{const el=document.getElementById('in-'+id);if(el)S.input[key]=el.value;});
+  const ctx=`BUSINESS URL: ${S.input.url}\nDESCRIPTION: ${S.input.desc}\nUNIQUE VALUE: ${S.input.uv}\nSTAGE: ${S.input.stage}\nTEAM: ${S.input.team}\nREVENUE: ${S.input.revenue}\nICP: ${S.input.icp}\nGEO: ${S.input.geo}\nCOMPETITORS: ${S.input.competitors}\nCHANNELS: ${S.input.channels}`;
+  const page=document.getElementById('app-page');
+  const steps=['Understanding business model','Identifying ideal customer profiles','Building GTM strategy','Writing sales playbook','Designing CRM blueprint','Building CRM Intelligence layer','Defining metrics & MIS','Creating execution plan'];
+  let stepDone=new Array(8).fill(false);
+  const showLoad=(pct,ai)=>`<div class="gen-wrap"><div class="gen-spin"></div><div class="gen-title">Building your GTM OS…</div><div class="gen-msg">Running all 8 modules in parallel</div><div class="gen-steps">${steps.map((s,i)=>`<div class="gen-step ${i===ai?'act':''} ${stepDone[i]?'done':''}"><div style="width:16px;text-align:center">${stepDone[i]?'✓':i===ai?'→':'○'}</div>${s}</div>`).join('')}</div><div class="gen-bar"><div class="gen-fill" style="width:${pct}%"></div></div></div>`;
+  const upd=(pct,ai,...done)=>{done.forEach(d=>stepDone[d]=true);page.innerHTML=showLoad(pct,ai);};
+  page.innerHTML=showLoad(5,0);
+  try{
+    const [bizR,icpR]=await Promise.all([callAI(bizP(ctx)),callAI(icpP(ctx))]);
+    upd(25,2,0,1);S.data.biz=parseJ(bizR);S.data.icp=parseJ(icpR);
+    const [gtmR,pbR]=await Promise.all([callAI(gtmP(ctx,S.data)),callAI(pbP(ctx,S.data))]);
+    upd(50,4,2,3);S.data.gtm=parseJ(gtmR);S.data.playbook=parseJ(pbR);
+    const [crmR,crmiR]=await Promise.all([callAI(crmP(ctx,S.data)),callAI(crmiP(ctx,S.data))]);
+    upd(72,6,4,5);S.data.crm=parseJ(crmR);S.data.crmi=parseJ(crmiR);
+    const [misR,ckR]=await Promise.all([callAI(misP(ctx,S.data)),callAI(ckP(ctx,S.data))]);
+    upd(95,7,6);S.data.mis=parseJ(misR);S.data.checklist=parseJ(ckR);
+    stepDone[7]=true;page.innerHTML=showLoad(100,7);
+    S.generated=true;
+    document.getElementById('badge-input').textContent='✓';
+    document.getElementById('badge-input').className='sbi-badge done';
+    await saveData();toast('GTM OS generated — explore the modules');
+    setTimeout(()=>nav('biz'),800);
+  }catch(e){page.innerHTML=`<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-title">Generation failed</div><div class="empty-sub">${e.message}</div><button class="btn btn-blue" onclick="nav('input')">← Retry</button></div>`;}
+}
+
+// ── Prompts ──────────────────────────────────────────────────────────────
+function bizP(ctx){return`BCG consultant. Return ONLY valid JSON, no markdown.\n${ctx}\n{"companyName":"","oneLiner":"1-sentence description","category":"market category","businessModel":"B2B SaaS/Services/Platform/etc","revenueModel":"subscription/usage/etc","stage":"assessment","keyProblem":"core problem in 1 sentence","solution":"solution in 2 sentences","moat":"defensible advantage","gtmReadiness":"1-10 score + reason","marketSize":"TAM estimate","topStrengths":["s1","s2","s3"],"topRisks":["r1","r2","r3"],"blindSpots":["b1","b2"],"positioningStatement":"For [ICP], [Co] is the [cat] that [benefit] unlike [alt]","investorNarrative":"3-sentence investor narrative"}`;}
+
+function icpP(ctx){return`B2B GTM strategist. Return ONLY valid JSON, no markdown.\n${ctx}\n{"icps":[{"rank":1,"name":"descriptive ICP label","title":"job titles","company":"company type + size","industry":"industries","geography":"location","painPoints":["p1","p2","p3"],"triggers":["buying trigger","trigger 2"],"disqualifiers":["d1","d2"],"pitchAngle":"how to pitch this ICP","channels":["best channels"],"winRate":"% with rationale","dealSize":"ACV estimate","salesCycle":"typical length","dayInLife":"1 paragraph on their day and where your product fits","objectionToExpect":"most likely first objection","tags":["tag1","tag2"]}]}`;}
+
+function gtmP(ctx,d){return`McKinsey GTM expert. Return ONLY valid JSON, no markdown.\n${ctx}\nTOP ICP:${JSON.stringify(d.icp?.icps?.[0])}\n{"motion":"PLG/Sales-led/Channel/Community/Hybrid","motionReason":"2-sentence reasoning","wedge":"sharpest market entry","wedgeReason":"why win here first","pricingStrategy":"model + rationale","channels":[{"name":"","priority":1,"why":"","effort":"Low/Med/High","timeToROI":"","tactics":["t1","t2"],"icon":"emoji"}],"roadmap":{"days1_30":["a1","a2","a3","a4"],"days31_60":["a1","a2","a3","a4"],"days61_90":["a1","a2","a3","a4"]},"competitorMatrix":[{"competitor":"","theirStrength":"","yourAdvantage":"","weaknesses":"","winLine":"one-liner","landmine":"trap question to expose their weakness"}],"keyHypotheses":["h1","h2","h3"]}`;}
+
+function pbP(ctx,d){return`Sales playbook expert. Write REAL scripts. Return ONLY valid JSON.\n${ctx}\nICP:${JSON.stringify(d.icp?.icps?.[0])}\n{"coldEmail":{"subject":"","opener":"2 sentences","pitch":"2 sentences","proof":"1 stat or social proof","cta":"clear ask","followUp1":"day 3 new angle","followUp2":"day 7 breakup email"},"linkedIn":{"connectionNote":"<200 chars","inmailSubject":"","inmail":"full message","followUp":"after acceptance","engagementPlay":"how to warm up before connecting"},"coldCall":{"opener":"first 8 words","permissionAsk":"1 sentence","pitchLine":"30-second pitch","qualifyingQuestions":["q1","q2","q3","q4"],"handleGatekeeper":"exact words","close":"booking next step"},"whatsApp":{"first":"casual first message","followUp":"day 2 follow up"},"discoveryQuestions":["dq1","dq2","dq3","dq4","dq5","dq6"],"qualificationFramework":{"mustHave":["m1","m2","m3"],"niceToHave":["n1","n2"],"dealBreakers":["db1","db2","db3"]},"objections":[{"objection":"exact words","response":"exact response","reframe":"how to reframe","category":"price/timing/competition/trust"}],"closingTechniques":["technique with example","t2","t3"]}`;}
+
+function crmP(ctx,d){return`RevOps expert. Return ONLY valid JSON.\n${ctx}\nSTAGE:${d.biz?.stage} MOTION:${d.gtm?.motion}\n{"recommendation":"HubSpot/Zoho/Pipedrive/Notion/Salesforce","reason":"2 sentences why this CRM fits","tier":"Free/Starter/Pro/Enterprise","monthlyCost":"INR or USD estimate","setupTime":"realistic setup duration","pipelineStages":[{"stage":"","definition":"entry criteria","exitCriteria":"what moves it forward","conversionRate":"est %","avgTimeInStage":"days","keyActivity":"main rep action"}],"keyFields":["field — why it matters","f2","f3","f4","f5"],"leadScoring":[{"signal":"","points":10,"category":"firmographic/behavioral/intent","rationale":"why this matters"}],"automations":[{"trigger":"","action":"","tool":"CRM/Zapier/native","impact":"problem this solves"}],"dashboards":[{"name":"","audience":"","metrics":["m1","m2"],"frequency":"daily/weekly/monthly"}],"implementationPlan":["week 1","week 2","week 3","week 4"],"commonMistakes":["m1","m2","m3"],"similarCompanies":[{"company":"similar business name","crm":"what they use","whyItWorks":"2 sentences","keyLearning":"1 takeaway for the user"}]}`;}
+
+function crmiP(ctx,d){return`CRM Intelligence and Revenue Operations expert. Return ONLY valid JSON.\n${ctx}\nCRM:${d.crm?.recommendation} ICP:${JSON.stringify(d.icp?.icps?.[0])} CHANNELS:${ctx.split('CHANNELS:')[1]||''}\n{"outreachCadence":[{"day":"Day 1","channel":"Cold Call/Email/WhatsApp/LinkedIn","action":"specific action","script":"what to say","goal":"what to achieve","ifNoResponse":"what happens next"}],"integrationStack":[{"category":"Email/WhatsApp/Calendar/Analytics/Enrichment/Support","tool":"specific tool","nativeOrZapier":"native/zapier/both","cost":"monthly","setup":"how to connect","whyThisOne":"why over alternatives","alternativeIf":"alternative if budget is tight"}],"productivityMetrics":[{"metric":"metric name","description":"what it measures","howToTrack":"where/how to measure","benchmark":"industry standard","redLine":"when to investigate","frequency":"daily/weekly"}],"churnSignals":[{"signal":"observable event","severity":"high/medium/low","timeToChurn":"how long before churn","action":"what to do immediately","crmField":"field to track this in CRM","automationIdea":"how to automate detection"}],"productAnalytics":{"freeTools":["tool1 with use case","t2","t3"],"paidTools":["tool with use case","t2"],"keyEvents":["product event to track","e2","e3","e4"],"powerUserSignals":["signal that a user is a power user","s2","s3"],"atRiskSignals":["signal that a user might churn","s2","s3"]},"retentionPlaybook":[{"trigger":"what happens","action":"exact response","owner":"who does this","timeline":"when","template":"message template if applicable"}],"weeklyOperatingRhythm":[{"day":"Monday/Tuesday/etc","activity":"specific activity","duration":"minutes","tool":"tool used","output":"what comes out of this"}]}`;}
+
+function misP(ctx,d){return`Revenue analytics expert. Return ONLY valid JSON.\n${ctx}\nMOTION:${d.gtm?.motion} STAGE:${d.biz?.stage}\n{"northStar":{"metric":"the one number","why":"reason","currentBaseline":"where they likely are","target":"90-day ambitious target","howToMeasure":"where to track"},"leadingIndicators":[{"metric":"","description":"","frequency":"daily/weekly","benchmark":"","target":"","redLine":"when to act"}],"laggingIndicators":[{"metric":"","description":"","frequency":"monthly","benchmark":"","target":""}],"funnelBenchmarks":[{"stage":"","industryConversion":"benchmark %","yourTarget":"%","impactIfMissed":"downstream effect"}],"weeklyReview":{"duration":"30 min","agenda":["item1","item2","item3","item4"],"whoAttends":"","keyQuestion":"the one question this meeting must answer"},"monthlyReview":{"agenda":["i1","i2","i3"]},"investorMetrics":["m1 — why investors care","m2","m3","m4"],"redFlags":["warning — what to do","w2","w3"],"vanityMetrics":["metric to ignore — why","v2"]}`;}
+
+function ckP(ctx,d){return`GTM execution expert. Write SPECIFIC actions. Return ONLY valid JSON.\n${ctx}\nMOTION:${d.gtm?.motion} STAGE:${d.biz?.stage}\n{"week1":[{"task":"exact action","owner":"Founder/Sales/Marketing","tool":"specific tool","timeEstimate":"hours","outcome":"measurable result","ifStuck":"what to do if blocked"}],"week2":[{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],"week3":[{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],"week4":[{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],"hiringSignals":[{"role":"exact title","signal":"milestone that triggers hire","notBefore":"condition","firstHireProfile":"what to look for","expectedImpact":"what this unlocks"}],"toolStack":[{"category":"","tool":"","tier":"Free/Paid","cost":"monthly","priority":"Must/Nice","setupTime":""}],"antiPatterns":["mistake to avoid — context","ap2","ap3"]}`;}
+
+// ── Render: Biz ───────────────────────────────────────────────────────────
+function renderBiz(){
+  const err=requireData('biz');if(err)return err;const d=S.data.biz;
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 01</div><div class="sec-title">Business Profile</div><div class="sec-sub">${d.oneLiner||''}</div></div>
+${outBlock('biz1','🏢','#EFF6FF','Overview & Positioning','Category, model, and positioning statement',()=>`
+<div class="metric-grid">${[['Category',d.category],['Model',d.businessModel],['Revenue Model',d.revenueModel],['Market Size',d.marketSize],['GTM Readiness',d.gtmReadiness]].map(([l,v])=>`<div class="metric-card"><div class="metric-label">${l}</div><div class="metric-value" style="font-size:13px;margin-top:3px">${v||'—'}</div></div>`).join('')}</div>
+<div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:14px;margin-top:6px">
+<div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">Positioning Statement</div>
+<div style="font-size:14px;font-style:italic;color:var(--ink);line-height:1.6">"${d.positioningStatement||''}"</div></div>
+${d.investorNarrative?`<div style="margin-top:12px;padding:13px;background:var(--purple-l);border-radius:var(--r);border-left:3px solid var(--purple)"><div style="font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Investor Narrative</div><div style="font-size:13px;color:var(--ink2);line-height:1.7">${d.investorNarrative}</div></div>`:''}
+`)}
+${outBlock('biz2','⚡','#F0FDF4','Problem → Solution → Moat','The three-layer commercial case',()=>`
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+${[['🔴 Problem',d.keyProblem,'var(--red)'],['✅ Solution',d.solution,'var(--green)'],['🛡️ Moat',d.moat,'var(--blue)']].map(([t,v,c])=>`<div style="background:var(--bg3);border-radius:var(--r);padding:13px;border-top:3px solid ${c}"><div style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:5px">${t}</div><div style="font-size:12.5px;line-height:1.6;color:var(--ink)">${v||'—'}</div></div>`).join('')}
+</div>
+`)}
+${outBlock('biz3','📋','#FFF7ED','Strengths, Risks & Blind Spots','Strategic self-assessment',()=>`
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+${[['Strengths',d.topStrengths,'var(--green)'],['Risks',d.topRisks,'var(--red)'],['Blind Spots',d.blindSpots,'var(--amber)']].map(([lbl,items,c])=>`<div><div style="font-size:11px;font-weight:700;color:${c};text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">${lbl}</div>${(items||[]).map(s=>`<div style="display:flex;gap:6px;margin-bottom:6px;font-size:12px;line-height:1.5;color:var(--ink2)"><span style="color:${c};flex-shrink:0">→</span>${s}</div>`).join('')}</div>`).join('')}
+</div>
+`)}`;
+}
+
+// ── Render: ICP ───────────────────────────────────────────────────────────
+function renderICP(){
+  const err=requireData('icp');if(err)return err;const icps=S.data.icp?.icps||[];
+  const cols=['var(--blue)','var(--green)','var(--amber)'];const bgs=['#EFF6FF','#F0FDF4','#FFFBEB'];
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 02</div><div class="sec-title">ICP Engine</div><div class="sec-sub">${icps.length} ideal customer profiles ranked by win rate and commercial fit</div></div>
+${icps.map((icp,i)=>outBlock('icp'+i,['🥇','🥈','🥉'][i],bgs[i%3],`ICP ${i+1}: ${icp.name}`,`${icp.title} · ${icp.company}`,()=>`
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px">
+${[['Win Rate',icp.winRate],['Deal Size',icp.dealSize],['Sales Cycle',icp.salesCycle]].map(([l,v])=>`<div class="metric-card" style="border-top:3px solid ${cols[i%3]}"><div class="metric-label">${l}</div><div class="metric-value" style="font-size:14px;margin-top:3px;color:${cols[i%3]}">${v||'—'}</div></div>`).join('')}
+</div>
+${icp.dayInLife?`<div style="background:var(--bg3);border-radius:var(--r);padding:13px;margin-bottom:12px;border-left:3px solid ${cols[i%3]}"><div style="font-size:10px;font-weight:700;color:${cols[i%3]};text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Day in Their Life</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.7">${icp.dayInLife}</div></div>`:''}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+<div><div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Pain Points</div>${(icp.painPoints||[]).map(p=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--red);flex-shrink:0">→</span>${p}</div>`).join('')}</div>
+<div><div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Buying Triggers</div>${(icp.triggers||[]).map(t=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--green);flex-shrink:0">⚡</span>${t}</div>`).join('')}</div>
+</div>
+<div style="background:${bgs[i%3]};border-radius:var(--r);padding:13px;margin-bottom:12px;border:1px solid rgba(0,0,0,.06)">
+<div style="font-size:10px;font-weight:700;color:${cols[i%3]};text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Pitch Angle</div>
+<div style="font-size:13px;color:var(--ink);line-height:1.7">${icp.pitchAngle||''}</div>
+</div>
+${icp.objectionToExpect?`<div style="background:var(--amber-l);border-radius:var(--r);padding:11px;margin-bottom:12px;border-left:3px solid var(--amber)"><div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">First Objection to Expect</div><div style="font-size:12.5px;color:var(--ink)">"${icp.objectionToExpect}"</div></div>`:''}
+<div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Walk Away If…</div>
+<div style="display:flex;gap:5px;flex-wrap:wrap">${(icp.disqualifiers||[]).map(d=>`<span class="tag tag-red">✗ ${d}</span>`).join('')}</div>
+`)).join('')}`;
+}
+
+// ── Render: GTM ───────────────────────────────────────────────────────────
+function renderGTM(){
+  const err=requireData('gtm');if(err)return err;const d=S.data.gtm;
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 03</div><div class="sec-title">GTM Strategy</div><div class="sec-sub">Motion, channels, competitive positioning, and 90-day execution roadmap</div></div>
+${outBlock('gtm1','🚀','#EFF6FF','GTM Motion & Wedge','Recommended strategy and market entry',()=>`
+<div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r2);padding:18px;margin-bottom:14px">
+<div style="font-size:26px;font-weight:800;color:var(--blue);margin-bottom:6px">${d.motion}</div>
+<div style="font-size:13px;color:var(--ink2);line-height:1.7">${d.motionReason}</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div style="background:var(--bg3);border-radius:var(--r);padding:13px"><div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Market Wedge</div><div style="font-size:13px;font-weight:700;margin-bottom:3px">${d.wedge||''}</div><div style="font-size:12px;color:var(--ink3);line-height:1.5">${d.wedgeReason||''}</div></div>
+<div style="background:var(--bg3);border-radius:var(--r);padding:13px"><div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Pricing Strategy</div><div style="font-size:12.5px;color:var(--ink);line-height:1.6">${d.pricingStrategy||''}</div></div>
+</div>
+${d.keyHypotheses?.length?`<div style="margin-top:12px"><div style="font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Hypotheses to Test in 30 Days</div>${d.keyHypotheses.map((h,i)=>`<div style="display:flex;gap:8px;margin-bottom:6px;font-size:12px"><div style="width:18px;height:18px;background:var(--amber-l);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--amber);flex-shrink:0">${i+1}</div>${h}</div>`).join('')}</div>`:''}
+`)}
+${outBlock('gtm2','📡','#F0FDF4','Channel Priority','Ranked by effort vs. ROI with tactics',()=>`
+${(d.channels||[]).map((ch,i)=>`<div style="padding:12px 0;border-bottom:1px solid var(--rule);display:flex;gap:12px;align-items:flex-start">
+<div style="width:22px;height:22px;border-radius:6px;background:${['var(--green-l)','var(--amber-l)','var(--bg3)'][Math.min(i,2)]};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:${['var(--green)','var(--amber)','var(--ink3)'][Math.min(i,2)]};flex-shrink:0;margin-top:2px">${i+1}</div>
+<div style="font-size:20px;flex-shrink:0">${ch.icon||'📢'}</div>
+<div style="flex:1"><div style="font-size:13px;font-weight:700;margin-bottom:2px">${ch.name}</div><div style="font-size:12px;color:var(--ink3);margin-bottom:5px">${ch.why}</div>${ch.tactics?.length?`<div style="display:flex;gap:4px;flex-wrap:wrap">${ch.tactics.map(t=>`<span class="tag tag-blue">${t}</span>`).join('')}</div>`:''}</div>
+<div style="text-align:right;flex-shrink:0"><span class="tag ${i===0?'tag-green':i===1?'tag-amber':'tag-gray'}">Effort: ${ch.effort}</span><div style="font-size:10px;color:var(--ink3);margin-top:3px">ROI in ${ch.timeToROI}</div></div>
+</div>`).join('')}
+`)}
+${outBlock('gtm3','🗓️','#FFFBEB','90-Day Roadmap','Sprint-by-sprint priorities',()=>`
+<div class="roadmap-cols">${[['Days 1–30',d.roadmap?.days1_30],['Days 31–60',d.roadmap?.days31_60],['Days 61–90',d.roadmap?.days61_90]].map(([l,items])=>`<div class="rc"><div class="rc-hdr">${l}</div>${(items||[]).map(it=>`<div class="rc-item"><div class="rc-dot"></div>${it}</div>`).join('')}</div>`).join('')}
+</div>
+`)}
+${outBlock('gtm4','⚔️','#FEF2F2','Competitor Battlecards','Positioning and win strategy per competitor',()=>`
+${(d.competitorMatrix||[]).map(c=>`<div style="background:var(--bg3);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;margin-bottom:10px">
+<div style="font-size:14px;font-weight:700;margin-bottom:9px">vs ${c.competitor}</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:9px">
+<div><div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Their Strength</div><div style="font-size:12px;color:var(--ink2);line-height:1.6">${c.theirStrength}</div></div>
+<div><div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Your Advantage</div><div style="font-size:12px;color:var(--ink2);line-height:1.6">${c.yourAdvantage}</div></div>
+</div>
+${c.weaknesses?`<div style="font-size:12px;color:var(--ink3);margin-bottom:7px"><span style="font-weight:700;color:var(--amber)">Real weakness: </span>${c.weaknesses}</div>`:''}
+<div style="background:var(--green-l);border:1px solid rgba(5,150,105,.2);border-radius:var(--r);padding:10px 13px;font-size:12.5px;color:var(--ink);line-height:1.5">💬 When they mention ${c.competitor}: "${c.winLine}"</div>
+${c.landmine?`<div style="margin-top:7px;font-size:12px;padding:8px 12px;background:var(--amber-l);border-radius:var(--r);border-left:3px solid var(--amber)"><span style="font-weight:700;color:var(--amber)">Landmine: </span>"${c.landmine}"</div>`:''}
+</div>`).join('')}
+`)}`;
+}
+
+// ── Render: Playbook ──────────────────────────────────────────────────────
+function renderPlaybook(){
+  const err=requireData('playbook');if(err)return err;const d=S.data.playbook;
+  const channels=[['email','✉️','#EFF6FF','Email Sequence',d.coldEmail,['subject','opener','pitch','proof','cta','followUp1','followUp2']],['li','💼','#F0FDF4','LinkedIn',d.linkedIn,['connectionNote','inmailSubject','inmail','followUp','engagementPlay']],['call','📞','#FFFBEB','Cold Call',d.coldCall,['opener','permissionAsk','pitchLine','handleGatekeeper','close']],['wa','💬','#F0FDF4','WhatsApp',d.whatsApp,['first','followUp']]];
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 04</div><div class="sec-title">Sales Playbook</div><div class="sec-sub">Real scripts for every channel, objection handling, discovery questions and qualification</div></div>
+${channels.map(([id,ic,bg,title,ch,keys])=>ch?outBlock('pb-'+id,ic,bg,title,'',()=>`
+${keys.map(k=>ch[k]?`<div class="script-block"><div class="script-label">${k.replace(/([A-Z])/g,' $1').trim()}</div><div class="script-text">${ch[k]}</div></div>`:'').join('')}
+${id==='call'&&ch.qualifyingQuestions?`<div class="script-block"><div class="script-label">Qualifying Questions</div>${ch.qualifyingQuestions.map((q,i)=>`<div style="display:flex;gap:7px;margin-bottom:5px;font-size:12.5px"><span style="color:var(--blue);font-weight:700">${i+1}.</span>${q}</div>`).join('')}</div>`:''}
+`):'').join('')}
+${outBlock('pb-disc','❓','#FFF7ED','Discovery Questions','Six questions to qualify fast',()=>`
+${(d.discoveryQuestions||[]).map((q,i)=>`<div style="display:flex;gap:9px;padding:9px 0;border-bottom:1px solid var(--rule)"><div style="width:20px;height:20px;border-radius:5px;background:var(--blue-l);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--blue);flex-shrink:0">${i+1}</div><div style="font-size:13px;line-height:1.5">${q}</div></div>`).join('')}
+`)}
+${outBlock('pb-qual','✅','#ECFDF5','Qualification Framework','What signals to look for',()=>`
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+${[['Must Have',d.qualificationFramework?.mustHave,'var(--green)'],['Nice to Have',d.qualificationFramework?.niceToHave,'var(--amber)'],['Deal Breakers',d.qualificationFramework?.dealBreakers,'var(--red)']].map(([lbl,items,c])=>`<div><div style="font-size:11px;font-weight:700;color:${c};text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">${lbl}</div>${(items||[]).map(s=>`<div class="tag ${c==='var(--green)'?'tag-green':c==='var(--amber)'?'tag-amber':'tag-red'}" style="display:block;margin-bottom:5px">${c==='var(--green)'?'✓':c==='var(--amber)'?'+':'✗'} ${s}</div>`).join('')}</div>`).join('')}
+</div>
+`)}
+${outBlock('pb-obj','🛡️','#FEF2F2','Objection Handling',`${(d.objections||[]).length} objections with response and reframe`,()=>`
+${(d.objections||[]).map(o=>`<div style="margin-bottom:12px;background:var(--bg3);border-radius:var(--r2);overflow:hidden">
+<div style="padding:9px 13px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between">
+<div style="font-size:12.5px;font-weight:600">"${o.objection}"</div>
+<span class="tag ${o.category==='price'?'tag-red':o.category==='timing'?'tag-amber':o.category==='competition'?'tag-blue':'tag-gray'}">${o.category}</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr">
+<div style="padding:11px 13px;border-right:1px solid var(--rule)"><div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Response</div><div style="font-size:12px;color:var(--ink);line-height:1.6">${o.response}</div></div>
+<div style="padding:11px 13px"><div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Reframe</div><div style="font-size:12px;color:var(--ink);line-height:1.6">${o.reframe||''}</div></div>
+</div></div>`).join('')}
+`)}`;
+}
+
+// ── Render: CRM Blueprint ─────────────────────────────────────────────────
+function renderCRM(){
+  const err=requireData('crm');if(err)return err;const d=S.data.crm;
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 05</div><div class="sec-title">CRM Blueprint</div><div class="sec-sub">${d.recommendation} recommended · ${d.monthlyCost}/mo · Setup: ${d.setupTime||'1–2 weeks'}</div></div>
+${outBlock('crm1','🗃️','#EFF6FF','CRM Recommendation','Why this CRM fits your exact situation',()=>`
+<div style="display:flex;align-items:center;gap:18px;padding:18px;background:var(--blue-l);border-radius:var(--r2);margin-bottom:14px">
+<div style="font-size:44px;font-weight:900;color:var(--blue);font-family:var(--serif);line-height:1">${d.recommendation}</div>
+<div><div style="font-size:14px;font-weight:700;margin-bottom:3px">${d.tier} — ${d.monthlyCost}/mo</div><div style="font-size:13px;color:var(--ink2);line-height:1.7">${d.reason}</div></div>
+</div>
+${d.commonMistakes?.length?`<div><div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Common Mistakes to Avoid</div>${d.commonMistakes.map(m=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--red)">✗</span>${m}</div>`).join('')}</div>`:''}
+`)}
+${outBlock('crm2','📊','#F0FDF4','Pipeline Stages','Entry, exit criteria and conversion rates',()=>`
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:16px">${(d.pipelineStages||[]).map((s,i)=>`<span style="background:var(--blue-l);color:var(--blue);font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;border:1px solid rgba(37,99,235,.2)">${s.stage}</span>${i<d.pipelineStages.length-1?'<span style="color:var(--ink4);font-size:11px">→</span>':''}`).join('')}</div>
+${(d.pipelineStages||[]).map((s,i)=>`<div style="display:grid;grid-template-columns:120px 1fr 1fr 70px 70px;gap:9px;padding:9px 0;border-bottom:1px solid var(--rule);align-items:start">
+<div style="font-size:12px;font-weight:700;color:var(--blue)">${s.stage}</div>
+<div><div style="font-size:9px;font-weight:700;color:var(--ink3);margin-bottom:2px">Entry</div><div style="font-size:11px;color:var(--ink2);line-height:1.4">${s.definition}</div></div>
+<div><div style="font-size:9px;font-weight:700;color:var(--ink3);margin-bottom:2px">Exit</div><div style="font-size:11px;color:var(--ink2);line-height:1.4">${s.exitCriteria}</div></div>
+<div><div style="font-size:9px;font-weight:700;color:var(--ink3);margin-bottom:2px">Conv.</div><div style="font-size:12px;font-weight:700;color:var(--green)">${s.conversionRate}</div></div>
+<div><div style="font-size:9px;font-weight:700;color:var(--ink3);margin-bottom:2px">Days</div><div style="font-size:11px;color:var(--ink3)">${s.avgTimeInStage||'—'}</div></div>
+</div>`).join('')}
+`)}
+${outBlock('crm3','⭐','#FFFBEB','Lead Scoring','Points system — only work high-score leads',()=>`
+${(d.leadScoring||[]).map(s=>`<div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg3);border-radius:var(--r);margin-bottom:6px">
+<div style="width:38px;height:38px;border-radius:8px;background:var(--blue-l);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--blue);flex-shrink:0">+${s.points}</div>
+<div><div style="font-size:12.5px;font-weight:600">${s.signal}</div><div style="font-size:11px;color:var(--ink3)">${s.category} — ${s.rationale||''}</div></div>
+</div>`).join('')}
+`)}
+${outBlock('crm4','⚙️','#F0FDF4','Automation Flows','Set-and-forget workflows',()=>`
+${(d.automations||[]).map(a=>`<div style="display:flex;gap:11px;padding:11px;background:var(--bg3);border-radius:var(--r);margin-bottom:7px">
+<div style="font-size:18px">⚡</div>
+<div style="flex:1"><div style="font-size:12px;color:var(--ink3);margin-bottom:2px">Trigger: <span style="color:var(--amber);font-weight:600">${a.trigger}</span></div>
+<div style="font-size:13px;font-weight:600;margin-bottom:4px">${a.action}</div>
+<div style="display:flex;gap:7px"><span class="tag tag-blue">${a.tool}</span><span style="font-size:11px;color:var(--ink3);padding-top:2px">→ ${a.impact||''}</span></div>
+</div></div>`).join('')}
+`)}
+${d.similarCompanies?.length?outBlock('crm5','🏆','#F5F3FF','Similar Companies & Benchmarks','How businesses like yours use this CRM',()=>`
+${d.similarCompanies.map(c=>`<div style="background:var(--bg3);border-radius:var(--r2);padding:14px;margin-bottom:10px">
+<div style="font-size:13px;font-weight:700;margin-bottom:4px">${c.company} <span class="tag tag-gray">${c.crm}</span></div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:5px">${c.whyItWorks}</div>
+<div style="font-size:12px;color:var(--blue);font-weight:600">Key learning: ${c.keyLearning}</div>
+</div>`).join('')}
+`):''}`;
+}
+
+// ── Render: CRM Intelligence ──────────────────────────────────────────────
+function renderCRMI(){
+  const err=requireData('crmi');if(err)return err;const d=S.data.crmi;
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 06</div><div class="sec-title">CRM Intelligence</div><div class="sec-sub">Outreach cadence, integration stack, churn signals, and productivity tracking — the operational layer behind your CRM</div></div>
+${outBlock('crmi1','📅','#EFF6FF','Outreach Cadence','Day-by-day sequence across all channels',()=>`
+<div class="cadence-timeline">
+${(d.outreachCadence||[]).map(step=>`<div class="cadence-step">
+<div class="cadence-dot"></div>
+<div class="cadence-day">${step.day} — ${step.channel}</div>
+<div class="cadence-action">${step.action}</div>
+${step.script?`<div style="margin:5px 0;padding:8px 11px;background:var(--blue-l);border-radius:var(--r);font-size:12px;color:var(--ink);line-height:1.6;font-style:italic">"${step.script}"</div>`:''}
+<div class="cadence-detail">Goal: ${step.goal}${step.ifNoResponse?` · If no response: ${step.ifNoResponse}`:''}</div>
+</div>`).join('')}
+</div>
+`)}
+${outBlock('crmi2','🔗','#F0FDF4','Integration Stack','Every tool, how it connects, and what it replaces',()=>`
+${(d.integrationStack||[]).map(t=>`<div class="integration-card">
+<div class="integration-icon">${t.category==='Email'?'✉️':t.category==='WhatsApp'?'💬':t.category==='Calendar'?'📅':t.category==='Analytics'?'📊':t.category==='Enrichment'?'🔍':t.category==='Support'?'🎧':'🔧'}</div>
+<div style="flex:1">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+<div class="integration-name">${t.tool}</div>
+<div style="display:flex;gap:5px"><span class="tag tag-gray">${t.category}</span><span class="tag ${t.nativeOrZapier==='native'?'tag-green':'tag-amber'}">${t.nativeOrZapier}</span></div>
+</div>
+<div class="integration-desc">${t.whyThisOne}</div>
+<div class="integration-tags">
+<span class="tag tag-blue">${t.cost}/mo</span>
+${t.setup?`<span style="font-size:11px;color:var(--ink3);padding-top:2px">Setup: ${t.setup}</span>`:''}
+${t.alternativeIf?`<span style="font-size:11px;color:var(--ink3);padding-top:2px">Alt: ${t.alternativeIf}</span>`:''}
+</div>
+</div></div>`).join('')}
+`)}
+${outBlock('crmi3','📉','#FEF2F2','Churn Signals','Observable events ranked by severity — with CRM field and automation',()=>`
+${(d.churnSignals||[]).map(s=>`<div class="churn-signal ${s.severity==='high'?'high':s.severity==='medium'?'med':'low'}">
+<div style="flex:1">
+<div class="cs-risk" style="color:${s.severity==='high'?'var(--red)':s.severity==='medium'?'var(--amber)':'var(--green)'}">${s.severity} risk · ${s.timeToChurn} to churn</div>
+<div class="cs-signal">${s.signal}</div>
+<div class="cs-action">Action: ${s.action}</div>
+${s.crmField?`<div style="margin-top:4px;font-size:11px;color:var(--ink3)">CRM field: <span style="color:var(--blue)">${s.crmField}</span></div>`:''}
+${s.automationIdea?`<div style="margin-top:3px;font-size:11px;color:var(--purple)">Automate: ${s.automationIdea}</div>`:''}
+</div>
+</div>`).join('')}
+`)}
+${outBlock('crmi4','📊','#F0FDF4','Productivity Metrics','What to track to know if your team is actually working',()=>`
+${(d.productivityMetrics||[]).map(m=>`<div style="padding:11px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:160px 1fr 1fr 80px;gap:10px;align-items:start">
+<div style="font-size:12px;font-weight:700;color:var(--blue)">${m.metric}</div>
+<div><div style="font-size:10px;font-weight:700;color:var(--ink3);margin-bottom:2px">What it measures</div><div style="font-size:11.5px;color:var(--ink2);line-height:1.4">${m.description}</div></div>
+<div><div style="font-size:10px;font-weight:700;color:var(--ink3);margin-bottom:2px">Benchmark → Red line</div><div style="font-size:11.5px;color:var(--green);font-weight:600">${m.benchmark}</div>${m.redLine?`<div style="font-size:10px;color:var(--red);margin-top:2px">🚨 ${m.redLine}</div>`:''}</div>
+<div><span class="tag tag-gray">${m.frequency}</span></div>
+</div>`).join('')}
+`)}
+${d.productAnalytics?outBlock('crmi5','🔍','#F5F3FF','Product Analytics','Tools and signals for retention and expansion',()=>`
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px">
+<div><div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Power User Signals</div>${(d.productAnalytics.powerUserSignals||[]).map(s=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--green)">⚡</span>${s}</div>`).join('')}</div>
+<div><div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">At-Risk Signals</div>${(d.productAnalytics.atRiskSignals||[]).map(s=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--red)">⚠</span>${s}</div>`).join('')}</div>
+</div>
+<div style="margin-bottom:14px"><div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Key Events to Track</div><div style="display:flex;flex-wrap:wrap;gap:5px">${(d.productAnalytics.keyEvents||[]).map(e=>`<span class="tag tag-blue">${e}</span>`).join('')}</div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div><div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Free Analytics Tools</div>${(d.productAnalytics.freeTools||[]).map(t=>`<div class="integration-card" style="padding:9px 11px;margin-bottom:6px"><div style="font-size:12.5px;font-weight:600">${t}</div></div>`).join('')}</div>
+<div><div style="font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Paid Tools (when ready)</div>${(d.productAnalytics.paidTools||[]).map(t=>`<div class="integration-card" style="padding:9px 11px;margin-bottom:6px"><div style="font-size:12.5px;font-weight:600">${t}</div></div>`).join('')}</div>
+</div>
+`):''}
+${d.retentionPlaybook?.length?outBlock('crmi6','🔄','#ECFDF5','Retention Playbook','Triggered actions to prevent churn',()=>`
+${d.retentionPlaybook.map((p,i)=>`<div style="display:flex;gap:11px;padding:12px;background:var(--bg3);border-radius:var(--r);margin-bottom:7px">
+<div style="width:26px;height:26px;border-radius:6px;background:var(--green-l);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--green);flex-shrink:0">${i+1}</div>
+<div style="flex:1">
+<div style="font-size:12px;color:var(--amber);font-weight:600;margin-bottom:2px">Trigger: ${p.trigger}</div>
+<div style="font-size:13px;font-weight:700;margin-bottom:3px">${p.action}</div>
+<div style="display:flex;gap:7px;margin-bottom:${p.template?'5px':'0'}"><span class="tag tag-blue">👤 ${p.owner}</span><span class="tag tag-gray">⏱ ${p.timeline}</span></div>
+${p.template?`<div style="padding:8px 11px;background:var(--bg2);border-radius:var(--r);font-size:12px;color:var(--ink);line-height:1.6;font-style:italic;border-left:3px solid var(--green)">"${p.template}"</div>`:''}
+</div></div>`).join('')}
+`):''}
+${d.weeklyOperatingRhythm?.length?outBlock('crmi7','🗓️','#FFFBEB','Weekly Operating Rhythm','Daily cadence for your revenue team',()=>`
+${d.weeklyOperatingRhythm.map(r=>`<div style="display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--rule)">
+<div style="width:70px;font-size:10px;font-weight:700;color:var(--blue);flex-shrink:0;padding-top:2px">${r.day}</div>
+<div style="flex:1"><div style="font-size:12.5px;font-weight:600;margin-bottom:2px">${r.activity}</div><div style="font-size:11.5px;color:var(--ink3)">Output: ${r.output}</div></div>
+<div style="flex-shrink:0;text-align:right"><span class="tag tag-gray">${r.duration}</span><div style="font-size:10px;color:var(--ink3);margin-top:3px">${r.tool}</div></div>
+</div>`).join('')}
+`):''}`;
+}
+
+// ── Render: MIS ───────────────────────────────────────────────────────────
+function renderMIS(){
+  const err=requireData('mis');if(err)return err;const d=S.data.mis;
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 07</div><div class="sec-title">MIS & Metrics</div><div class="sec-sub">What to measure, what to ignore, and how to run your revenue reviews</div></div>
+${outBlock('mis1','⭐','#EFF6FF','North Star Metric','The one number that drives everything else',()=>`
+<div style="text-align:center;padding:24px;background:var(--blue-l);border-radius:var(--r2);margin-bottom:14px">
+<div style="font-size:40px;font-weight:900;color:var(--blue);font-family:var(--serif);letter-spacing:-1px;line-height:1">${d.northStar?.metric}</div>
+<div style="font-size:13px;color:var(--ink2);margin:7px 0 12px;line-height:1.6">${d.northStar?.why}</div>
+<div style="display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center">
+<span class="tag tag-green">Target: ${d.northStar?.target||d.northStar?.['90dayTarget']}</span>
+${d.northStar?.currentBaseline?`<span class="tag tag-gray">Now: ${d.northStar.currentBaseline}</span>`:''}
+</div>
+</div>
+${d.northStar?.howToMeasure?`<div style="font-size:12.5px;color:var(--ink3);padding:9px 13px;background:var(--bg3);border-radius:var(--r)">📐 How to measure: ${d.northStar.howToMeasure}</div>`:''}
+`)}
+${outBlock('mis2','📈','#F0FDF4','Leading Indicators','Track these weekly to predict revenue 30–60 days out',()=>`
+${(d.leadingIndicators||[]).map(m=>`<div style="padding:11px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:140px 1fr 1fr 80px;gap:10px;align-items:start">
+<div style="font-size:12px;font-weight:700;color:var(--blue)">${m.metric}</div>
+<div><div style="font-size:9px;font-weight:700;color:var(--ink3);margin-bottom:2px">What it measures</div><div style="font-size:11.5px;color:var(--ink2);line-height:1.4">${m.description}</div></div>
+<div><div style="font-size:9px;font-weight:700;color:var(--ink3);margin-bottom:2px">Benchmark → Target</div><div style="font-size:12px;color:var(--green);font-weight:600">${m.benchmark} → ${m.target}</div>${m.redLine?`<div style="font-size:10px;color:var(--red);margin-top:2px">🚨 ${m.redLine}</div>`:''}</div>
+<span class="tag tag-gray">${m.frequency}</span>
+</div>`).join('')}
+`)}
+${outBlock('mis3','📉','#FFFBEB','Lagging Indicators','Outcome metrics reviewed monthly',()=>`
+<div class="metric-grid">${(d.laggingIndicators||[]).map(m=>`<div class="metric-card" style="border-top:3px solid var(--amber)"><div class="metric-label">${m.metric}</div><div style="font-size:11px;color:var(--ink3);margin:3px 0;line-height:1.4">${m.description}</div><div style="font-size:11px;color:var(--amber);font-weight:600">Target: ${m.target}</div></div>`).join('')}</div>
+`)}
+${outBlock('mis4','📋','#F5F3FF','Review Cadence & Red Flags','Agenda, investor metrics, vanity metrics to skip',()=>`
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+<div style="background:var(--bg3);border-radius:var(--r2);padding:14px"><div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Weekly Review</div>${(d.weeklyReview?.agenda||[]).map(i=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px"><span style="color:var(--blue)">→</span>${i}</div>`).join('')}${d.weeklyReview?.keyQuestion?`<div style="margin-top:8px;font-size:12px;color:var(--blue);font-weight:600;font-style:italic">"${d.weeklyReview.keyQuestion}"</div>`:''}</div>
+<div style="background:var(--bg3);border-radius:var(--r2);padding:14px"><div style="font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Monthly Review</div>${(d.monthlyReview?.agenda||[]).map(i=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px"><span style="color:var(--purple)">→</span>${i}</div>`).join('')}</div>
+</div>
+${d.redFlags?.length?`<div style="background:var(--amber-l);border-radius:var(--r);padding:12px;margin-bottom:12px"><div style="font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">🚨 Red Flags — Act Immediately</div>${d.redFlags.map(f=>`<div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--amber)">⚠</span>${f}</div>`).join('')}</div>`:''}
+${d.vanityMetrics?.length?`<div style="background:var(--red-l);border-radius:var(--r);padding:12px"><div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Vanity Metrics — Don't Track</div>${d.vanityMetrics.map(m=>`<div style="font-size:12px;color:var(--ink2);display:flex;gap:6px;margin-bottom:4px"><span style="color:var(--red)">✗</span>${m}</div>`).join('')}</div>`:''}
+`)}`;
+}
+
+// ── Render: Checklist ─────────────────────────────────────────────────────
+function renderChecklist(){
+  const err=requireData('checklist');if(err)return err;const d=S.data.checklist;
+  const weeks=[['week1','Week 1'],['week2','Week 2'],['week3','Week 3'],['week4','Week 4']];
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 08</div><div class="sec-title">Execution Plan</div><div class="sec-sub">Your 30-day action checklist with owners, tools, outcomes. Check off as you go — saved automatically.</div></div>
+${weeks.map(([key,label])=>outBlock('ck-'+key,'📅','#EFF6FF',label,'Specific tasks with owners and tools',()=>`
+${(d[key]||[]).map((item,i)=>`<div class="check-item" id="cki-${key}-${i}">
+<div class="chk ${S.checks[key+'-'+i]?'on':''}" onclick="toggleCheck('${key}','${i}')">${S.checks[key+'-'+i]?'<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>':''}</div>
+<div style="flex:1">
+<div class="chk-text ${S.checks[key+'-'+i]?'on':''}">${item.task}</div>
+<div style="margin-top:4px;display:flex;gap:5px;flex-wrap:wrap">
+<span class="tag tag-blue">👤 ${item.owner}</span>
+${item.tool?`<span class="tag tag-gray">🔧 ${item.tool}</span>`:''}
+${item.timeEstimate?`<span class="tag tag-gray">⏱ ${item.timeEstimate}</span>`:''}
+</div>
+${item.outcome?`<div style="font-size:11px;color:var(--ink3);margin-top:3px">✓ ${item.outcome}</div>`:''}
+${item.ifStuck?`<div style="font-size:11px;color:var(--amber);margin-top:2px">🔄 If stuck: ${item.ifStuck}</div>`:''}
+</div>
+</div>`).join('')}
+`)).join('')}
+${d.hiringSignals?.length?outBlock('ck-hire','👥','#F0FDF4','Hiring Signals','When to make your first commercial hire',()=>`
+${d.hiringSignals.map(h=>`<div style="background:var(--bg3);border-radius:var(--r2);padding:14px;margin-bottom:9px">
+<div style="font-size:13px;font-weight:700;margin-bottom:5px">${h.role}</div>
+<div style="font-size:12px;color:var(--ink2);margin-bottom:3px">Signal: <span style="color:var(--green);font-weight:600">${h.signal}</span></div>
+<div style="font-size:11px;color:var(--ink3);margin-bottom:${h.firstHireProfile?'3px':'0'}">Not before: ${h.notBefore}</div>
+${h.firstHireProfile?`<div style="font-size:11px;color:var(--blue)">Look for: ${h.firstHireProfile}</div>`:''}
+</div>`).join('')}
+`):''}
+${d.toolStack?.length?outBlock('ck-tools','🔧','#F5F3FF','Tool Stack','What to buy, what to skip',()=>`
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px">
+${d.toolStack.map(t=>`<div style="background:var(--bg3);border:1px solid var(--rule);border-radius:var(--r);padding:11px">
+<div style="display:flex;justify-content:space-between;margin-bottom:4px"><div style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em">${t.category}</div><span class="tag ${t.priority==='Must'||t.priority==='Must-Have'?'tag-green':'tag-gray'}">${t.priority}</span></div>
+<div style="font-size:13px;font-weight:700;margin-bottom:2px">${t.tool}</div>
+<div style="font-size:11px;color:var(--ink3)">${t.tier} · ${t.cost}</div>
+</div>`).join('')}
+</div>
+`):''}
+${d.antiPatterns?.length?outBlock('ck-ap','⚠️','#FEF2F2','Anti-Patterns to Avoid','Common mistakes at this stage',()=>`
+${d.antiPatterns.map((ap,i)=>`<div style="display:flex;gap:9px;padding:9px 0;border-bottom:1px solid var(--rule)"><div style="width:18px;height:18px;border-radius:4px;background:var(--red-l);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--red);flex-shrink:0">${i+1}</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.5">${ap}</div></div>`).join('')}
+`):''}`;
+}
+
+function toggleCheck(week,idx){
+  const key=week+'-'+idx;S.checks[key]=!S.checks[key];
+  const box=document.querySelector(`#cki-${week}-${idx} .chk`);
+  const txt=document.querySelector(`#cki-${week}-${idx} .chk-text`);
+  if(box){box.classList.toggle('on',S.checks[key]);box.innerHTML=S.checks[key]?'<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>':'';}
+  if(txt)txt.classList.toggle('on',S.checks[key]);
+  saveData();
+}
+
+function exportData(){
+  if(!S.generated){toast('Generate an analysis first');return;}
+  const blob=new Blob([JSON.stringify({input:S.input,data:S.data},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gtmos-export.json';a.click();
+  toast('Exported');
+}
+
+// ── Ticker animation ──────────────────────────────────────────────────────
+const tickExamples=[
+  {co:'ChurnSense AI',url:'churnsense.ai',st:['done','done','done','running','pending','pending']},
+  {co:'AssetPlus',url:'assetplus.in',st:['done','done','done','done','running','pending']},
+  {co:'Chesslang',url:'chesslang.com',st:['done','done','done','done','done','running']},
+];
+let tickIdx=0;
+function runTicker(){
+  const ex=tickExamples[tickIdx%tickExamples.length];
+  const cEl=document.getElementById('tick-co');const uEl=document.getElementById('tick-url');
+  if(cEl)cEl.textContent=ex.co;if(uEl)uEl.textContent='https://'+ex.url;
+  const labels=['Business Profile','ICP Engine — 3 profiles','CRM + Cadence Design','Sales Playbook','Integration Stack','Churn Signals'];
+  const icons=['🏢','🎯','🗃️','📖','🔗','📉'];
+  const rows=document.getElementById('tick-rows');
+  if(!rows)return;
+  rows.innerHTML=labels.map((l,i)=>{
+    const st=ex.st[i];const done=st==='done',run=st==='running';
+    return`<div class="tick-row ${done?'done':run?'running':'pending'}">${run?'<div class="tick-spin"></div>':`<div style="font-size:13px">${icons[i]}</div>`}<div class="tick-label">${l}</div><div class="tick-status ${done?'s-done':run?'s-running':'s-pending'}">${done?'✓ Done':run?'Running…':'Queued'}</div></div>`;
+  }).join('');
+  tickIdx++;
+}
+setInterval(runTicker,3200);
+
+// ── LP CRM selector ───────────────────────────────────────────────────────
+function lpSelectCRM(i){
+  [0,1,2,3].forEach(j=>{
+    document.getElementById('lp-crm-'+j)?.classList.toggle('sel',i===j);
+    const d=document.getElementById('lp-crm-d'+j);if(d)d.classList.toggle('open',i===j);
+  });
+}
+
+// ── Window exports ────────────────────────────────────────────────────────
+Object.assign(window,{
+  openAuth,closeAuth,switchAuth,signInGoogle,submitAuth,signOut,
+  nav,generate,tog,copyEl,toggleCheck,exportData,lpSelectCRM
+});
+</script>
+</body>
+</html>
