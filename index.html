@@ -6,6 +6,8 @@
 <title>Engine 360 - AI-Powered Go-To-Market Operating System</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z' stroke='%232563EB' stroke-width='3.5' fill='white'/%3E%3Crect x='11' y='13' width='14' height='3.5' rx='1.75' fill='%232563EB'/%3E%3Crect x='11' y='18.25' width='14' height='3.5' rx='1.75' fill='%231B2B4B'/%3E%3Crect x='11' y='23.5' width='10' height='3.5' rx='1.75' fill='%239CA3AF'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#2563EB">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="description" content="Engine 360 gives founders and sales leaders a complete go-to-market operating system. ICP, strategy, playbook, CRM blueprint and churn signals in 60 seconds.">
@@ -811,7 +813,7 @@ const app=initializeApp({apiKey:"AIzaSyCxS_yTqtgvGalHW-LD-jiT8AvI0N_5VvY",authDo
 const auth=getAuth(app),db=getFirestore(app),gp=new GoogleAuthProvider();
 
 let U=null,authMode='signup';
-const S={input:{url:'',desc:'',uv:'',stage:'',team:'',revenue:'',icp:'',geo:'',competitors:'',channels:''},generated:false,data:{},checks:{}};
+const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{}};
 
 onAuthStateChanged(auth,async user=>{
   U=user;
@@ -819,8 +821,10 @@ onAuthStateChanged(auth,async user=>{
     closeAuth();
     showApp();
     setSBUser(user);
-    await loadData(user.uid);
-    nav('input');
+    const hasData=await loadData(user.uid);
+    // If previous session had data, go straight to dashboard
+    // Otherwise go to input
+    nav(hasData?'dashboard':'input');
   }else{
     showLanding();
   }
@@ -885,13 +889,19 @@ async function loadData(uid){
       if(d.data)S.data=d.data;
       if(d.generated)S.generated=d.generated;
       if(d.checks)S.checks=d.checks;
-      if(S.generated){document.getElementById('badge-input').textContent='Done';document.getElementById('badge-input').className='sbi-badge done';}
+      if(d.connections)S.connections=d.connections;
+      if(d.liveData)S.liveData=d.liveData;
+      if(S.generated){
+        const badge=document.getElementById('badge-input');
+        if(badge){badge.textContent='Done';badge.className='sbi-badge done';}
+      }
     }
-  }catch(e){console.warn('Load',e);}
+    return S.generated; // return whether we have data
+  }catch(e){console.warn('Load',e);return false;}
 }
 async function saveData(){
   if(!U)return;
-  try{await setDoc(doc(db,'engine360',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
+  try{await setDoc(doc(db,'engine360',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,connections:S.connections||{},liveData:S.liveData||{},updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
   catch(e){console.warn('Save',e);}
 }
 
