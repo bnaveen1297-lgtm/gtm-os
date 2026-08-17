@@ -907,15 +907,24 @@ async function signOut(){
 
 const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Business Profile','Positioning, moat and market fit'],icp:['ICP Engine','Ideal customer profiles ranked by fit'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],mis:['MIS & Metrics','KPIs, benchmarks and review cadence'],checklist:['Execution Plan','Week-by-week action checklist']};
 
+let _generating=false;
 function nav(page){
+  // Block navigation during generation - overlay handles UI
+  if(_generating){
+    toast('Analysis in progress — please wait');
+    return;
+  }
   document.querySelectorAll('.sbi').forEach(e=>e.classList.remove('act'));
   const el=document.getElementById('nav-'+page);if(el)el.classList.add('act');
-  const [t,s]=PAGE_META[page]||['GTM OS',''];
-  document.getElementById('app-title').textContent=t;
-  document.getElementById('app-sub').textContent=s;
+  const [t,s]=PAGE_META[page]||['Engine 360',''];
+  const titleEl=document.getElementById('app-title');
+  const subEl=document.getElementById('app-sub');
+  if(titleEl)titleEl.textContent=t;
+  if(subEl)subEl.textContent=s;
   const renders={input:renderInput,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
-  document.getElementById('app-page').innerHTML=fn?fn():'';
+  const pageEl=document.getElementById('app-page');
+  if(pageEl)pageEl.innerHTML=fn?fn():'';
   if(page==='input')bindInput();
 }
 
@@ -979,8 +988,28 @@ function bindInput(){
 }
 
 async function callAI(prompt){
-  const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:1800})});
-  const d=await r.json();return d.content?.[0]?.text||'';
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),55000);
+  try{
+    const r=await fetch('/ai',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:1800}),
+      signal:controller.signal
+    });
+    clearTimeout(timeout);
+    if(!r.ok){
+      const err=await r.text();
+      throw new Error('API error '+r.status+': '+err.slice(0,200));
+    }
+    const d=await r.json();
+    if(d.error)throw new Error(d.error.message||JSON.stringify(d.error));
+    return d.content?.[0]?.text||'{}';
+  }catch(e){
+    clearTimeout(timeout);
+    if(e.name==='AbortError')throw new Error('Request timed out (55s). Try again.');
+    throw e;
+  }
 }
 function parseJ(text){
   try{return JSON.parse(text.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim());}
@@ -999,13 +1028,18 @@ async function generate(){
   }
 
   // Global overlay - persists across screen switches
-  let overlay=document.getElementById('gen-overlay');
-  if(!overlay){
-    overlay=document.createElement('div');
-    overlay.id='gen-overlay';
-    overlay.style.cssText='position:fixed;inset:0;z-index:500;background:rgba(255,255,255,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px';
-    document.body.appendChild(overlay);
-  }
+  // Set generating flag
+  _generating=true;
+
+  // Remove any stale overlay
+  const stale=document.getElementById('gen-overlay');
+  if(stale)stale.remove();
+
+  // Create fresh overlay attached to body (not app-page)
+  const overlay=document.createElement('div');
+  overlay.id='gen-overlay';
+  overlay.style.cssText='position:fixed;inset:0;z-index:10000;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;font-family:Inter,sans-serif';
+  document.body.appendChild(overlay);
 
   const steps=[
     'Fetching website and company data',
@@ -1111,23 +1145,32 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
     document.getElementById('badge-input').className='sbi-badge done';
     await saveData();
 
-    // Remove overlay and navigate to dashboard
+    // Done - release lock, remove overlay, go to dashboard
+    _generating=false;
     setTimeout(()=>{
-      overlay.remove();
+      const ov=document.getElementById('gen-overlay');
+      if(ov)ov.remove();
       nav('dashboard');
       toast('Your GTM OS is ready');
-    },600);
+    },500);
 
   }catch(e){
     console.error('Generation error:',e);
-    overlay.innerHTML=`
-    <div style="text-align:center;max-width:380px">
-      <div style="width:48px;height:48px;background:#FEF2F2;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    _generating=false;
+    const errOv=document.getElementById('gen-overlay');
+    if(errOv)errOv.innerHTML=`<div style="text-align:center;max-width:400px;padding:32px">
+      <div style="width:56px;height:56px;background:#FEF2F2;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;color:#1B2B4B;margin-bottom:8px">Generation failed</div>
-      <div style="font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.6">${e.message||'Something went wrong. Check your API key is set in Vercel environment variables.'}</div>
-      <button onclick="document.getElementById('gen-overlay').remove();nav('input')" style="padding:10px 24px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Try again</button>
+      <div style="font-family:'DM Sans',sans-serif;font-size:19px;font-weight:800;color:#1B2B4B;margin-bottom:10px">Generation failed</div>
+      <div style="font-size:13px;color:#64748B;margin-bottom:8px;line-height:1.6">${e.message||'API call failed'}</div>
+      <div style="font-size:12px;color:#9CA3AF;margin-bottom:24px;padding:12px;background:#F8F9FC;border-radius:6px;text-align:left;line-height:1.8">
+        <strong style="color:#1B2B4B">Common fixes:</strong><br>
+        1. Verify CLAUDE_KEY is set in Vercel > Settings > Environment Variables<br>
+        2. Make sure the key starts with sk-ant-api...<br>
+        3. Redeploy after adding the key
+      </div>
+      <button onclick="const ov=document.getElementById('gen-overlay');if(ov)ov.remove();" style="padding:11px 28px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Close and retry</button>
     </div>`;
   }
 }
