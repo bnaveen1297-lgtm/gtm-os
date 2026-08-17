@@ -556,25 +556,30 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-badge"><div class="badge-dot"></div>8 Modules · URL to Strategy · 60 Seconds</div>
-  <h1 class="hero-h1">Your complete<br><span class="hl">go-to-market</span><br>operating system.</h1>
-  <p class="hero-sub">Paste your website URL. Engine 360 researches your business, builds your ICP, strategy, playbook, CRM blueprint and churn signals — in under 60 seconds.</p>
-  <div class="hero-btns">
-    <button class="btn-hero-p" onclick="openAuth('signup')">Start for free</button>
-    <button class="btn-hero-s" onclick="openAuth('login')">Sign in to your account</button>
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 24px 60px;text-align:center;background:#ffffff">
+  <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:5px 16px 5px 10px;font-size:12px;color:#2563EB;margin-bottom:24px;font-weight:600;font-family:Inter,sans-serif">
+    <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block;flex-shrink:0"></span>
+    8 Modules · URL to Strategy · 60 Seconds
   </div>
-  <div class="hero-tags">
-    <span class="hero-tag">ICP Profiles</span>
-    <span class="hero-tag">GTM Strategy</span>
-    <span class="hero-tag">Sales Playbook</span>
-    <span class="hero-tag">CRM Blueprint</span>
-    <span class="hero-tag">Churn Signals</span>
-    <span class="hero-tag">Outreach Cadence</span>
-    <span class="hero-tag">90-Day Roadmap</span>
-    <span class="hero-tag">Execution Plan</span>
+  <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,7vw,64px);font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:#1B2B4B;margin-bottom:18px;max-width:700px">
+    Your complete <span style="color:#2563EB">go-to-market</span> operating system.
+  </h1>
+  <p style="font-size:15px;color:#64748B;line-height:1.7;max-width:440px;margin:0 auto 28px;font-family:Inter,sans-serif">
+    Paste your website URL. Engine 360 researches your business, builds your ICP, strategy, playbook, CRM blueprint and churn signals in 60 seconds.
+  </p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+    <button onclick="openAuth('signup')" style="padding:13px 26px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 2px 12px rgba(37,99,235,.3)">Start for free →</button>
+    <button onclick="openAuth('login')" style="padding:13px 22px;background:#fff;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:7px;font-size:15px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif">Sign in</button>
   </div>
-</section>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:420px">
+    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">ICP Profiles</span>
+    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">GTM Strategy</span>
+    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Sales Playbook</span>
+    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">CRM Blueprint</span>
+    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Churn Signals</span>
+    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">90-Day Roadmap</span>
+  </div>
+</div>
 
 <div class="stats-bar">
   <div class="stats-inner">
