@@ -433,53 +433,89 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
   .lp-footer{padding:16px 20px}
   .lp-footer-in{flex-direction:column;gap:8px;text-align:center}
   /* APP MOBILE */
-  #view-app.active{flex-direction:column!important;height:100vh!important}
-  /* Sidebar becomes a scrollable top strip */
+  #view-app{flex-direction:column!important}
+
+  /* Sidebar = thin horizontal scrollable tab bar */
   .sb{
-    width:100%!important;height:auto!important;
+    width:100%!important;
+    min-height:48px!important;
+    max-height:48px!important;
     flex-direction:row!important;
-    overflow-x:auto!important;overflow-y:hidden!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
     flex-shrink:0!important;
-    display:flex!important;
     align-items:center!important;
-    padding:0 4px!important;
-    min-height:52px!important;
+    padding:4px 8px!important;
+    gap:4px!important;
     border-bottom:1px solid var(--nav-rule)!important;
+    /* hide scrollbar */
+    scrollbar-width:none!important;
+    -ms-overflow-style:none!important;
   }
-  /* Hide top logo block on mobile - save space */
+  .sb::-webkit-scrollbar{display:none!important}
+
+  /* Hide logo and section labels */
   .sb-top{display:none!important}
-  /* All nav sections flow inline */
-  .sb-sec{
-    display:flex!important;
-    flex-direction:row!important;
-    align-items:center!important;
-    gap:2px!important;
-    padding:6px 4px!important;
-    flex-shrink:0!important;
-  }
   .sb-sec-label{display:none!important}
-  /* Each nav item is compact pill */
-  .sbi{
-    padding:6px 12px!important;
-    white-space:nowrap!important;
-    font-size:11px!important;
-    flex-shrink:0!important;
-    border-radius:20px!important;
+  .sb-user{display:none!important}
+
+  /* Sections are flat row */
+  .sb-sec{
+    display:contents!important;
   }
-  .sbi.act{background:rgba(37,99,235,.3)!important}
-  /* Hide icons on mobile, show text only */
+
+  /* Each nav item = compact pill */
+  .sbi{
+    padding:5px 12px!important;
+    border-radius:20px!important;
+    font-size:11px!important;
+    font-weight:500!important;
+    white-space:nowrap!important;
+    flex-shrink:0!important;
+    margin-bottom:0!important;
+  }
+  .sbi.act{
+    background:rgba(37,99,235,.35)!important;
+    color:#fff!important;
+    font-weight:600!important;
+  }
+  .sbi.act::before{display:none!important}
   .sbi-ic{display:none!important}
   .sbi-badge{display:none!important}
-  /* Active indicator different on mobile */
-  .sbi.act::before{display:none!important}
-  /* Main content fills remaining height */
-  .app-main{flex:1!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
-  .topbar{padding:0 14px!important;height:44px!important;flex-shrink:0!important}
-  .app-page{flex:1!important;padding:14px!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important}
+
+  /* Main content: fills ALL remaining space */
+  .app-main{
+    flex:1!important;
+    width:100%!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    overflow:hidden!important;
+  }
+  .topbar{
+    height:44px!important;
+    padding:0 14px!important;
+    flex-shrink:0!important;
+    background:var(--bg)!important;
+    border-bottom:1px solid var(--rule)!important;
+  }
+  .app-page{
+    flex:1!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:16px!important;
+    background:var(--bg2)!important;
+    -webkit-overflow-scrolling:touch!important;
+    min-height:0!important;
+  }
+
+  /* Content fixes */
   .input-row{flex-direction:column!important}
   .roadmap-cols{grid-template-columns:1fr!important}
   .crm-panel-grid{grid-template-columns:1fr!important}
   .metric-grid{grid-template-columns:repeat(2,1fr)!important}
+  .out-hdr{padding:11px 12px!important}
+  .sec-title{font-size:17px!important}
 }
 @media(max-width:480px){
   .mods-grid{grid-template-columns:1fr}
@@ -778,7 +814,12 @@ function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
   if(lp){lp.style.cssText='display:none!important';}
-  if(app){app.style.cssText='display:flex!important;height:100vh;overflow:hidden;';}
+  if(app){
+    const isMobile=window.innerWidth<=768;
+    app.style.cssText=isMobile
+      ?'display:flex!important;flex-direction:column!important;height:100vh!important;overflow:hidden!important;'
+      :'display:flex!important;flex-direction:row!important;height:100vh!important;overflow:hidden!important;';
+  }
 }
 function setSBUser(u){
   const n=document.getElementById('sb-nm'),a=document.getElementById('sb-av');
@@ -1783,6 +1824,16 @@ Object.assign(window,{
 </script>
 <script>function lpSelectCRM(i){document.querySelectorAll(".crm-tab").forEach((t,j)=>t.classList.toggle("sel",i===j));[0,1,2,3].forEach(j=>{const d=document.getElementById("lp-crm-d"+j);if(d)d.classList.toggle("open",i===j);});}window.lpSelectCRM=lpSelectCRM;</script>
 <script>
+// Re-apply app layout on resize/orientation change
+window.addEventListener('resize',()=>{
+  const app=document.getElementById('view-app');
+  if(app&&app.style.display!=='none'){
+    const isMobile=window.innerWidth<=768;
+    app.style.cssText=isMobile
+      ?'display:flex!important;flex-direction:column!important;height:100vh!important;overflow:hidden!important;'
+      :'display:flex!important;flex-direction:row!important;height:100vh!important;overflow:hidden!important;';
+  }
+});
 window.addEventListener('scroll',()=>{
   const nav=document.querySelector('.lp-nav');
   if(nav)nav.classList.toggle('scrolled',window.scrollY>20);
