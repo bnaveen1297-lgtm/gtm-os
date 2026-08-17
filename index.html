@@ -3,290 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Engine 360 - Go-To-Market Operating System</title>
+<title>Engine 360 — Go-To-Market Operating System</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z' stroke='%232563EB' stroke-width='3.5' fill='white'/%3E%3Crect x='11' y='13' width='14' height='3.5' rx='1.75' fill='%232563EB'/%3E%3Crect x='11' y='18.25' width='14' height='3.5' rx='1.75' fill='%231B2B4B'/%3E%3Crect x='11' y='23.5' width='10' height='3.5' rx='1.75' fill='%239CA3AF'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#2563EB">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="description" content="Engine 360 gives founders and sales leaders a complete go-to-market operating system. ICP, strategy, playbook, CRM blueprint and churn signals in 60 seconds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@700;800&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500&display=swap');
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:#fff;color:#1B2B4B;-webkit-font-smoothing:antialiased}
+button{cursor:pointer;border:none;font-family:inherit}
+a{text-decoration:none;color:inherit}
+input,textarea,select{font-family:inherit;outline:none}
+
+/* APP SHELL - only used inside the product */
+#view-landing{display:block}
+#view-app{display:none}
+
+/* ── APP SHELL CSS ── */
 :root{
-  --blue:#2563EB;
-  --blue2:#1D4ED8;
-  --blue3:#3B82F6;
-  --navy:#1B2B4B;
-  --navy2:#243660;
-  --bg:#FFFFFF;
-  --bg2:#F8F9FC;
-  --bg3:#EEF1F8;
-  --bg4:#E3E8F4;
-  --ink:var(--navy);
-  --ink2:#2D4072;
-  --ink3:#64748B;
-  --ink4:#9CA3AF;
-  --rule:#E2E8F0;
-  --rule2:#CBD5E1;
-  --green:#16A34A;
-  --green2:#15803D;
-  --green-l:#F0FDF4;
-  --red:#DC2626;
-  --red-l:#FEF2F2;
-  --amber:#D97706;
-  --amber-l:#FFFBEB;
-  --purple:#7C3AED;
-  --purple-l:#F5F3FF;
-  --blue-l:#EFF6FF;
-  --blue-m:rgba(37,99,235,.08);
-  --green-m:rgba(22,163,74,.08);
-  --red-m:rgba(220,38,38,.08);
-  --amber-m:rgba(217,119,6,.08);
-  --nav:var(--navy);
-  --nav2:var(--navy2);
-  --nav-t1:#FFFFFF;
-  --nav-t2:rgba(255,255,255,.6);
-  --nav-t3:rgba(255,255,255,.3);
-  --nav-rule:rgba(255,255,255,.08);
-  --sans:"Inter",system-ui,sans-serif;
-  --display:"DM Sans",system-ui,sans-serif;
-  --mono:"JetBrains Mono",monospace;
+  --blue:#2563EB;--navy:#1B2B4B;--green:#16A34A;--red:#DC2626;--amber:#D97706;--purple:#7C3AED;
+  --bg:#fff;--bg2:#F8F9FC;--bg3:#EEF1F8;--rule:#E2E8F0;--rule2:#CBD5E1;
+  --ink:#1B2B4B;--ink2:#2D4072;--ink3:#64748B;--ink4:#9CA3AF;
+  --green-l:#F0FDF4;--blue-l:#EFF6FF;--red-l:#FEF2F2;--amber-l:#FFFBEB;--purple-l:#F5F3FF;
+  --green-m:rgba(22,163,74,.08);--blue-m:rgba(37,99,235,.08);--red-m:rgba(220,38,38,.08);--amber-m:rgba(217,119,6,.08);
+  --nav:#1B2B4B;--nav-rule:rgba(255,255,255,.08);--nav-t1:#fff;--nav-t2:rgba(255,255,255,.6);--nav-t3:rgba(255,255,255,.35);
+  --display:"DM Sans",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;
   --r:6px;--r2:10px;--r3:16px;
   --shadow:0 1px 3px rgba(27,43,75,.07),0 4px 16px rgba(27,43,75,.05);
-  --shadow2:0 8px 32px rgba(27,43,75,.12),0 2px 8px rgba(27,43,75,.07);
-  --transition:.18s cubic-bezier(.4,0,.2,1);
+  --shadow2:0 8px 32px rgba(27,43,75,.12);
 }
-*{font-family:var(--sans)}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer;border:none;background:none;font-family:inherit}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:2px}
-/* views controlled by JS */
-
-/* ── LOGO SVG ─────────────────────────────────────────────────── */
-.logo-svg{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-svg svg{width:28px;height:28px;flex-shrink:0}
-.logo-wordmark{font-family:var(--display);font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.3px;display:flex;align-items:center;gap:0}
-.logo-wordmark .w360{color:var(--blue)}
-.logo-svg-sm svg{width:22px;height:22px}
-.logo-wordmark-sm{font-size:13px}
-
-/* ── NAV ─────────────────────────────────────────────────────── */
-.lp-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;height:60px;
-  background:rgba(255,255,255,.96);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--rule);
-  transition:box-shadow var(--transition);
-}
-.lp-nav.scrolled{box-shadow:0 2px 12px rgba(27,43,75,.08)}
-.nav-right{display:flex;gap:8px;align-items:center}
-.nav-links{display:flex;gap:2px;align-items:center;margin-right:8px}
-.nav-link{padding:6px 12px;font-size:13px;color:var(--ink3);border-radius:var(--r);transition:all var(--transition);font-weight:500}
-.nav-link:hover{color:var(--ink);background:var(--bg2)}
-.btn-sign{padding:7px 16px;background:transparent;color:var(--ink2);border:1.5px solid var(--rule2);border-radius:var(--r);font-size:13px;font-weight:600;transition:all var(--transition)}
-.btn-sign:hover{border-color:var(--blue);color:var(--blue)}
-.btn-start{padding:8px 18px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:13px;font-weight:700;transition:all var(--transition);box-shadow:0 2px 8px rgba(37,99,235,.25)}
-.btn-start:hover{background:var(--blue2);box-shadow:0 4px 14px rgba(37,99,235,.35);transform:translateY(-1px)}
-
-/* ── HERO ─────────────────────────────────────────────────────── */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:120px 48px 80px;text-align:center;
-  background:linear-gradient(180deg,#fff 0%,var(--bg2) 100%);
-  position:relative;overflow:hidden;
-}
-.hero-bg-grid{
-  position:absolute;inset:0;z-index:0;
-  background-image:linear-gradient(rgba(37,99,235,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.04) 1px,transparent 1px);
-  background-size:48px 48px;
-  mask-image:radial-gradient(ellipse 70% 70% at 50% 0%,black 40%,transparent 100%);
-  pointer-events:none;
-}
-.hero-glow{position:absolute;z-index:0;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(37,99,235,.07) 0%,transparent 65%);pointer-events:none}
-.hero-badge{opacity:1!important;visibility:visible!important;position:relative;z-index:1;
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--blue-l);border:1px solid rgba(37,99,235,.2);
-  border-radius:20px;padding:5px 16px 5px 10px;
-  font-size:12px;color:var(--blue);margin-bottom:28px;font-weight:600;
-  
-}
-.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;display:inline-block;}
-.badge-pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px rgba(22,163,74,.2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(22,163,74,.2)}50%{box-shadow:0 0 0 5px rgba(22,163,74,.1)}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.hero-h1{opacity:1!important;visibility:visible!important;position:relative;z-index:1;
-  font-family:var(--display);font-size:clamp(32px,5.5vw,68px);
-  font-weight:800;line-height:1.06;letter-spacing:-1.5px;
-  color:#1B2B4B;margin-bottom:20px;max-width:820px;
-  
-}
-.hero-h1 .hl{color:var(--blue)}
-.hero-sub{opacity:1!important;visibility:visible!important;position:relative;z-index:1;
-  font-size:17px;color:#64748B;line-height:1.75;
-  max-width:500px;margin:0 auto 36px;
-  
-}
-.hero-btns{opacity:1!important;visibility:visible!important;position:relative;z-index:1;display:flex;gap:10px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
-.btn-hero-p{padding:13px 28px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:15px;font-weight:700;transition:all var(--transition);font-family:var(--display);box-shadow:0 4px 14px rgba(37,99,235,.3)}
-.btn-hero-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.4)}
-.btn-hero-s{padding:13px 22px;background:transparent;color:var(--ink2);border:1.5px solid var(--rule2);border-radius:var(--r);font-size:15px;font-weight:600;transition:all var(--transition)}
-.btn-hero-s:hover{border-color:var(--blue);color:var(--blue)}
-.hero-tags{opacity:1!important;visibility:visible!important;position:relative;z-index:1;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
-.hero-tag{font-size:11.5px;color:var(--ink3);background:var(--bg);padding:5px 12px;border-radius:20px;border:1px solid var(--rule);font-weight:500;transition:all var(--transition)}
-.hero-tag:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-l)}
-
-/* ── STATS ─────────────────────────────────────────────────────── */
-.stats-bar{background:var(--navy);border-top:none}
-.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{padding:28px 32px;border-right:1px solid var(--nav-rule)}
-.stat:last-child{border-right:none}
-.stat-n{font-family:var(--display);font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px}
-.stat-n em{font-style:normal;color:var(--green)}
-.stat-label{font-size:12px;color:var(--nav-t2);margin-top:4px}
-
-/* ── SECTION DIVIDER ─────────────────────────────────────────── */
-.section-divider{display:flex;align-items:center;gap:16px;padding:56px 48px 0;max-width:1280px;margin:0 auto}
-.section-divider-line{flex:1;height:1px;background:var(--rule)}
-.section-divider-text{font-size:10px;font-weight:700;color:var(--ink4);letter-spacing:.16em;text-transform:uppercase;font-family:var(--mono);white-space:nowrap}
-
-/* ── MODULES ─────────────────────────────────────────────────── */
-.modules-wrap{padding:32px 48px 72px;max-width:1280px;margin:0 auto}
-.mods-hdr{margin-bottom:28px}
-.mods-ey{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono);margin-bottom:7px}
-.mods-h2{font-family:var(--display);font-size:clamp(20px,2.8vw,32px);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.1}
-.mods-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r2);overflow:hidden}
-.mod{background:var(--bg);padding:24px 20px;transition:background var(--transition),transform var(--transition);position:relative;overflow:hidden}
-.mod:hover{background:var(--bg2)}
-.mod-top{position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity var(--transition)}
-.mod:hover .mod-top{opacity:1}
-.mod-num{font-size:10px;color:var(--ink4);font-family:var(--mono);margin-bottom:14px;font-weight:500}
-.mod-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--rule);background:var(--bg2);flex-shrink:0}
-.mod-icon svg{width:18px;height:18px}
-.mod-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:5px;font-family:var(--display)}
-.mod-desc{font-size:11.5px;color:var(--ink3);line-height:1.65}
-.mod-chips{margin-top:11px;display:flex;flex-wrap:wrap;gap:3px}
-.mod-chip{font-size:9.5px;color:var(--blue);background:var(--blue-l);padding:2px 8px;border-radius:3px;font-weight:700;letter-spacing:.04em;font-family:var(--mono)}
-
-/* ── DARK STRIP ──────────────────────────────────────────────── */
-.dark-strip{background:var(--navy);padding:72px 48px}
-.dark-strip-inner{max-width:1200px;margin:0 auto}
-.strip-ey{font-size:10px;font-weight:700;color:var(--nav-t3);letter-spacing:.14em;text-transform:uppercase;font-family:var(--mono);margin-bottom:7px}
-.strip-h2{font-family:var(--display);font-size:clamp(24px,3.5vw,42px);font-weight:800;color:#fff;letter-spacing:-.8px;line-height:1.08;margin-bottom:8px}
-.strip-sub{font-size:14px;color:var(--nav-t2);line-height:1.7;max-width:460px;margin-bottom:48px}
-.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--nav-rule)}
-.pr{background:var(--navy);padding:24px;border-top:2px solid transparent;transition:border-color var(--transition)}
-.pr:hover{border-top-color:var(--blue)}
-.pr-label{font-size:9px;font-weight:700;color:var(--nav-t3);letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono);margin-bottom:6px}
-.pr-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;font-family:var(--display)}
-.pr-body{font-size:12px;color:var(--nav-t2);line-height:1.7}
-
-/* ── CRM SECTION ─────────────────────────────────────────────── */
-.crm-sec{padding:72px 48px;max-width:1200px;margin:0 auto}
-.sec-ey{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono);margin-bottom:7px}
-.sec-h2{font-family:var(--display);font-size:clamp(20px,2.8vw,32px);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.12;margin-bottom:8px}
-.sec-sub{font-size:14px;color:var(--ink3);line-height:1.7;max-width:440px;margin-bottom:32px}
-.crm-tabs{display:flex;border-bottom:2px solid var(--rule);overflow-x:auto;-webkit-overflow-scrolling:touch}
-.crm-tab{padding:11px 18px;font-size:13px;font-weight:500;color:var(--ink3);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all var(--transition);white-space:nowrap}
-.crm-tab:hover{color:var(--navy)}
-.crm-tab.sel{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
-.crm-panel{background:var(--bg2);border:1px solid var(--rule);border-top:none;border-radius:0 0 var(--r2) var(--r2);padding:24px;display:none}
-.crm-panel.open{display:block}
-.crm-panel-meta{font-size:11px;color:var(--ink4);font-family:var(--mono);margin-bottom:16px;padding:5px 12px;background:var(--bg3);border-radius:var(--r);display:inline-block}
-.crm-panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.crm-col-hdr{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono);margin-bottom:10px}
-.crm-li{display:flex;gap:8px;font-size:12.5px;color:var(--ink2);margin-bottom:6px;line-height:1.5}
-.crm-li::before{content:"›";color:var(--blue);flex-shrink:0;font-size:14px;margin-top:-1px;font-weight:700}
-.pipe-flow{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:10px}
-.pipe-pill{background:var(--blue-l);color:var(--blue);font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:var(--r);border:1px solid rgba(37,99,235,.2);font-family:var(--mono)}
-.pipe-arr{color:var(--ink4);font-size:12px;font-weight:700}
-
-/* ── PRICING ─────────────────────────────────────────────────── */
-.pricing-sec{padding:72px 48px;background:var(--bg2);border-top:1px solid var(--rule)}
-.pricing-inner{max-width:1050px;margin:0 auto}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
-.plan{background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:28px;position:relative;transition:box-shadow var(--transition),transform var(--transition)}
-.plan:hover{box-shadow:var(--shadow2);transform:translateY(-2px)}
-.plan.feat{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
-.plan.feat:hover{box-shadow:0 0 0 3px rgba(37,99,235,.08),var(--shadow2)}
-.plan-badge{display:inline-block;font-size:9px;font-weight:700;color:var(--blue);background:var(--blue-l);padding:3px 10px;border-radius:3px;margin-bottom:12px;letter-spacing:.1em;text-transform:uppercase;font-family:var(--mono);border:1px solid rgba(37,99,235,.2)}
-.plan-name{font-size:10px;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:.14em;font-family:var(--mono);margin-bottom:8px}
-.plan-price{font-family:var(--display);font-size:38px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-1px}
-.plan-price span{font-size:14px;font-weight:400;color:var(--ink3);letter-spacing:0}
-.plan-desc{font-size:13px;color:var(--ink3);margin:8px 0 18px;line-height:1.6}
-.plan-rule{height:1px;background:var(--rule);margin-bottom:18px}
-.plan-feat{display:flex;gap:8px;margin-bottom:8px;font-size:12.5px;color:var(--ink2);align-items:flex-start}
-.plan-check{color:var(--green);flex-shrink:0;font-weight:700;margin-top:1px}
-.plan-btn{width:100%;padding:11px;border-radius:var(--r);font-size:13px;font-weight:700;border:none;margin-top:20px;transition:all var(--transition);font-family:var(--display)}
-.plan-btn-p{background:var(--blue);color:#fff}.plan-btn-p:hover{background:var(--blue2);transform:translateY(-1px)}
-.plan-btn-g{background:transparent;color:var(--ink2);border:1.5px solid var(--rule2)}.plan-btn-g:hover{border-color:var(--blue);color:var(--blue)}
-
-/* ── FOOTER ──────────────────────────────────────────────────── */
-.footer-cta{padding:88px 48px;text-align:center;background:var(--navy);position:relative;overflow:hidden}
-.footer-cta::before{content:"";position:absolute;bottom:-50%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(37,99,235,.15) 0%,transparent 70%);pointer-events:none}
-.footer-cta h2{font-family:var(--display);font-size:clamp(26px,4vw,50px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:12px;line-height:1.06;position:relative}
-.footer-cta p{font-size:15px;color:var(--nav-t2);max-width:400px;margin:0 auto 32px;line-height:1.7;position:relative}
-.btn-footer{padding:13px 30px;background:var(--green);color:#fff;border-radius:var(--r);font-size:14px;font-weight:700;transition:all var(--transition);font-family:var(--display);box-shadow:0 4px 14px rgba(22,163,74,.35);position:relative}
-.btn-footer:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(22,163,74,.45)}
-.lp-footer{background:rgba(0,0,0,.25);padding:20px 48px;border-top:1px solid var(--nav-rule)}
-.lp-footer-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.lp-copy{font-size:11px;color:var(--nav-t3)}
-.lp-flinks{display:flex;gap:18px}
-.lp-flinks a{font-size:11px;color:var(--nav-t3);transition:color var(--transition)}.lp-flinks a:hover{color:#fff}
-
-/* ── AUTH MODAL ──────────────────────────────────────────────── */
-.modal-bg{display:none;position:fixed;inset:0;z-index:1000;background:rgba(27,43,75,.45);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px}
-.modal-bg.open{display:flex;}
-.auth-box{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r3);padding:36px;width:400px;max-width:100%;box-shadow:var(--shadow2);}
-.auth-close{position:absolute;top:14px;right:16px;border:none;background:none;font-size:20px;color:var(--ink3);line-height:1;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background var(--transition)}
-.auth-close:hover{background:var(--bg2)}
-.auth-logo{display:flex;align-items:center;gap:8px;margin-bottom:22px}
-.auth-h2{font-family:var(--display);font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px;letter-spacing:-.3px}
-.auth-sub{font-size:13px;color:var(--ink3);margin-bottom:24px;line-height:1.6}
-.auth-err{background:var(--red-l);color:var(--red);border:1px solid rgba(220,38,38,.2);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:12px;display:none}
-.auth-err.show{display:block}
-.btn-google{width:100%;padding:11px;border:1.5px solid var(--rule2);border-radius:var(--r);background:var(--bg);color:var(--ink);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;transition:all var(--transition)}
-.btn-google:hover{border-color:var(--blue);background:var(--blue-l)}
-.btn-google svg{width:18px;height:18px;flex-shrink:0}
-.auth-div{display:flex;align-items:center;gap:10px;margin:16px 0}
-.auth-div-line{flex:1;height:1px;background:var(--rule)}
-.auth-div-text{font-size:10px;color:var(--ink4);font-family:var(--mono)}
-.auth-input{width:100%;padding:10px 13px;border:1.5px solid var(--rule2);border-radius:var(--r);font-size:13px;color:var(--ink);background:var(--bg);transition:border-color var(--transition),box-shadow var(--transition);margin-bottom:10px;outline:none}
-.auth-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
-.auth-input::placeholder{color:var(--ink4)}
-.btn-auth{width:100%;padding:11px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:13px;font-weight:700;border:none;transition:all var(--transition);font-family:var(--display)}
-.btn-auth:hover{background:var(--blue2)}
-.auth-switch{text-align:center;margin-top:14px;font-size:12.5px;color:var(--ink3)}
-.auth-switch a{color:var(--blue);font-weight:600}
-
-/* ── APP SHELL ───────────────────────────────────────────────── */
-.sb{width:236px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+.sb{width:236px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto}
 .sb-top{padding:16px 14px 12px;border-bottom:1px solid var(--nav-rule)}
-.sb-user{margin-top:10px;display:flex;align-items:center;gap:8px;padding:8px 9px;background:rgba(255,255,255,.06);border-radius:var(--r);border:1px solid var(--nav-rule)}
+.sb-user{margin-top:10px;display:flex;align-items:center;gap:8px;padding:8px 9px;background:rgba(255,255,255,.06);border-radius:var(--r);border:1px solid var(--nav-rule);cursor:pointer;position:relative}
 .sb-avatar{width:26px;height:26px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden}
 .sb-avatar img{width:100%;height:100%;object-fit:cover}
-.sb-uname{font-size:12px;font-weight:500;color:var(--nav-t2);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sb-out{color:var(--nav-t3);font-size:10px;flex-shrink:0;padding:3px 7px;border-radius:3px;border:1px solid var(--nav-rule);transition:all var(--transition)}
-.sb-out:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.sb-uname{font-size:12px;color:var(--nav-t2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sb-sec{padding:10px 8px 4px}
-.sb-sec-label{font-size:9px;font-weight:600;color:var(--nav-t3);letter-spacing:.14em;text-transform:uppercase;padding:0 7px 6px;font-family:var(--mono)}
-.sbi{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:var(--r);transition:all var(--transition);color:var(--nav-t2);font-size:12px;font-weight:500;margin-bottom:1px;position:relative}
+.sb-sec-label{font-size:9px;color:var(--nav-t3);letter-spacing:.14em;text-transform:uppercase;padding:0 7px 6px;font-family:var(--mono)}
+.sbi{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:var(--r);cursor:pointer;color:var(--nav-t2);font-size:12px;font-weight:500;margin-bottom:1px;position:relative;transition:background .15s}
 .sbi:hover{background:rgba(255,255,255,.07);color:#fff}
 .sbi.act{background:rgba(37,99,235,.3);color:#fff;font-weight:600}
 .sbi.act::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:16px;background:var(--green);border-radius:2px}
 .sbi-ic{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .sbi-ic svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.sbi-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:rgba(37,99,235,.35);color:#fff;font-family:var(--mono);flex-shrink:0}
+.sbi-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:rgba(37,99,235,.35);color:#fff;font-family:var(--mono)}
 .sbi-badge.done{background:rgba(22,163,74,.35);color:#86efac}
 .app-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .topbar{height:52px;border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 22px;gap:12px;background:var(--bg);flex-shrink:0}
@@ -294,35 +53,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .topbar-sub{font-size:11.5px;color:var(--ink3)}
 .topbar-right{margin-left:auto;display:flex;gap:8px}
 .app-page{flex:1;overflow-y:auto;padding:22px;background:var(--bg2)}
-
-/* ── BUTTONS ─────────────────────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--r);font-size:12.5px;font-weight:600;transition:all var(--transition)}
-.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue2)}
-.btn-green{background:var(--green);color:#fff}.btn-green:hover{background:var(--green2)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--r);font-size:12.5px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.btn-blue{background:var(--blue);color:#fff;border:none}.btn-blue:hover{opacity:.9}
+.btn-green{background:var(--green);color:#fff;border:none}.btn-green:hover{opacity:.9}
 .btn-border{background:transparent;color:var(--ink2);border:1.5px solid var(--rule2)}.btn-border:hover{border-color:var(--blue);color:var(--blue)}
 .btn-sm{padding:5px 11px;font-size:11.5px}
-
-/* ── INPUTS ──────────────────────────────────────────────────── */
-.input-panel{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:24px;margin-bottom:18px;box-shadow:var(--shadow)}
-.input-section{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin:18px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--rule)}
-.input-section:first-child{margin-top:0}
-.input-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-.input-group{flex:1;min-width:150px}
-.input-label{font-size:11.5px;font-weight:600;color:var(--ink2);margin-bottom:5px;display:block}
-input,textarea,select{width:100%;background:var(--bg);border:1.5px solid var(--rule2);border-radius:var(--r);color:var(--navy);font-size:13px;padding:10px 13px;outline:none;transition:border-color var(--transition),box-shadow var(--transition)}
+input,textarea,select{width:100%;background:var(--bg);border:1.5px solid var(--rule2);border-radius:var(--r);color:var(--navy);font-size:13px;padding:10px 13px;transition:border-color .15s}
 input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 textarea{resize:vertical;min-height:80px;line-height:1.6}
-select option{background:var(--bg)}
-input::placeholder,textarea::placeholder{color:var(--ink4)}
-
-/* ── OUTPUT BLOCKS ───────────────────────────────────────────── */
+.input-label{font-size:11.5px;font-weight:600;color:var(--ink2);margin-bottom:5px;display:block}
+.input-panel{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:24px;margin-bottom:18px;box-shadow:var(--shadow)}
 .sec-hdr{margin-bottom:22px}
 .sec-eyebrow{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px;font-family:var(--mono)}
-.sec-title{font-family:var(--display);font-size:21px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin-bottom:5px}
+.sec-title{font-family:var(--display);font-size:21px;font-weight:800;color:var(--navy);margin-bottom:5px}
 .sec-sub{font-size:13px;color:var(--ink3);line-height:1.6;max-width:580px}
-.out-block{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow);transition:box-shadow var(--transition)}
-.out-block:hover{box-shadow:var(--shadow2)}
-.out-hdr{display:flex;align-items:center;gap:11px;padding:14px 16px;border-bottom:1px solid var(--rule);transition:background var(--transition)}
+.out-block{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow)}
+.out-hdr{display:flex;align-items:center;gap:11px;padding:14px 16px;border-bottom:1px solid var(--rule);cursor:pointer}
 .out-hdr:hover{background:var(--bg2)}
 .out-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--rule);background:var(--bg2)}
 .out-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -330,14 +76,13 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 .out-sub{font-size:11px;color:var(--ink3);margin-top:1px}
 .out-actions{margin-left:auto;display:flex;gap:5px}
 .out-body{padding:18px;display:none}
-.out-body.open{display:block;}
-.out-chev{color:var(--ink4);transition:transform var(--transition);flex-shrink:0}
+.out-body.open{display:block}
+.out-chev{color:var(--ink4);transition:transform .2s;flex-shrink:0}
 .out-chev.open{transform:rotate(180deg)}
-.copy-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border:1.5px solid var(--rule2);border-radius:var(--r);background:none;color:var(--ink3);font-size:10px;transition:all var(--transition);font-family:var(--mono)}
-.copy-btn:hover{color:var(--navy);border-color:var(--blue);background:var(--blue-l)}
+.copy-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border:1.5px solid var(--rule2);border-radius:var(--r);background:none;color:var(--ink3);font-size:10px;cursor:pointer}
+.copy-btn:hover{color:var(--navy);border-color:var(--blue)}
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:14px}
-.metric-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;transition:border-color var(--transition)}
-.metric-card:hover{border-color:var(--blue)}
+.metric-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px}
 .metric-label{font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;font-family:var(--mono)}
 .metric-value{font-size:16px;font-weight:800;color:var(--navy);font-family:var(--display)}
 .tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;margin:2px}
@@ -353,550 +98,247 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 .rc-hdr{font-size:9px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin-bottom:8px}
 .rc-item{display:flex;gap:6px;font-size:12px;color:var(--ink2);margin-bottom:5px;line-height:1.5}
 .rc-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px}
-.check-item{display:flex;gap:9px;padding:10px 0;border-bottom:1px solid var(--rule)}
-.check-item:last-child{border-bottom:none}
-.chk{width:17px;height:17px;border:1.5px solid var(--rule2);border-radius:4px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
-.chk.on{background:var(--green);border-color:var(--green)}
-.chk.on svg{display:block}
-.chk svg{display:none;width:10px;height:10px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.chk-text{font-size:12.5px;line-height:1.5;flex:1;color:var(--navy)}
-.chk-text.on{text-decoration:line-through;color:var(--ink3)}
 .empty-state{text-align:center;padding:56px 20px}
 .empty-icon{width:48px;height:48px;background:var(--bg3);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .empty-icon svg{width:24px;height:24px;stroke:var(--ink3);fill:none;stroke-width:1.5;stroke-linecap:round}
 .empty-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px;font-family:var(--display)}
 .empty-sub{font-size:13px;color:var(--ink3);margin-bottom:22px;line-height:1.6}
 .gen-wrap{background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:36px;text-align:center;box-shadow:var(--shadow)}
-.gen-spin{width:36px;height:36px;border:2.5px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.gen-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px;font-family:var(--display)}
-.gen-msg{font-size:13px;color:var(--ink3);margin-bottom:20px}
-.gen-steps{text-align:left;max-width:340px;margin:0 auto}
-.gen-step{display:flex;align-items:flex-start;gap:9px;padding:7px 0;font-size:12px;color:var(--ink3);border-bottom:1px solid var(--rule)}
-.gen-step:last-child{border-bottom:none}
-.gen-step.act{color:var(--blue);font-weight:600}
-.gen-step.done{color:var(--green)}
-.gen-step-icon{width:16px;flex-shrink:0;text-align:center;font-weight:700}
-.gen-bar{height:3px;background:var(--rule);border-radius:2px;margin-top:18px;overflow:hidden}
-.gen-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;transition:width .6s ease}
-#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--navy);color:#fff;font-size:13px;font-weight:500;padding:10px 18px;border-radius:var(--r);z-index:9999;transition:transform .25s;pointer-events:none;box-shadow:var(--shadow2)}
-#toast.show{transform:translateX(-50%) translateY(0)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(22,163,74,.2)}50%{box-shadow:0 0 0 5px rgba(22,163,74,.1)}}
 .cadence-timeline{position:relative;padding-left:22px;margin-top:12px}
 .cadence-timeline::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:1.5px;background:var(--rule2)}
 .cadence-step{position:relative;margin-bottom:16px}
-.cadence-dot{position:absolute;left:-16px;top:5px;width:8px;height:8px;border-radius:50%;border:2px solid var(--blue);background:var(--bg);z-index:1}
+.cadence-dot{position:absolute;left:-16px;top:5px;width:8px;height:8px;border-radius:50%;border:2px solid var(--blue);background:var(--bg)}
 .cadence-day{font-size:10px;font-weight:700;color:var(--blue);font-family:var(--mono);margin-bottom:2px;text-transform:uppercase;letter-spacing:.08em}
 .cadence-action{font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:2px}
 .cadence-detail{font-size:11.5px;color:var(--ink3);line-height:1.5}
-.integration-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:13px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:border-color var(--transition)}
-.integration-card:hover{border-color:var(--blue)}
-.int-icon{width:32px;height:32px;border-radius:7px;background:var(--bg3);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.int-icon svg{width:15px;height:15px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round}
-.integration-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;font-family:var(--display)}
-.integration-desc{font-size:11.5px;color:var(--ink3);line-height:1.5}
-.integration-tags{margin-top:5px;display:flex;gap:4px;flex-wrap:wrap}
-.churn-signal{display:flex;gap:10px;padding:12px;background:var(--bg2);border-radius:var(--r);margin-bottom:7px;border-left:3px solid transparent;transition:border-left-color var(--transition)}
+.churn-signal{display:flex;gap:10px;padding:12px;background:var(--bg2);border-radius:var(--r);margin-bottom:7px;border-left:3px solid transparent}
 .churn-signal.high{border-left-color:var(--red)}.churn-signal.med{border-left-color:var(--amber)}.churn-signal.low{border-left-color:var(--green)}
-.cs-risk{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;font-family:var(--mono)}
 .cs-signal{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:2px}
 .cs-action{font-size:11.5px;color:var(--ink3)}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--navy);color:#fff;font-size:13px;padding:10px 18px;border-radius:var(--r);z-index:9999;transition:transform .25s;pointer-events:none;box-shadow:var(--shadow2)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+.modal-bg{display:none;position:fixed;inset:0;z-index:1000;background:rgba(27,43,75,.5);align-items:center;justify-content:center;padding:16px}
+.modal-bg.open{display:flex}
+.auth-box{background:#fff;border-radius:16px;padding:36px;width:400px;max-width:100%;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.auth-h2{font-family:var(--display);font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.auth-sub{font-size:13px;color:var(--ink3);margin-bottom:24px;line-height:1.6}
+.auth-err{background:var(--red-l);color:var(--red);border:1px solid rgba(220,38,38,.2);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:12px;display:none}
+.auth-err.show{display:block}
+.btn-google{width:100%;padding:11px;border:1.5px solid var(--rule2);border-radius:var(--r);background:#fff;color:var(--ink);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+.btn-google:hover{border-color:var(--blue);background:var(--blue-l)}
+.btn-google svg{width:18px;height:18px;flex-shrink:0}
+.auth-div{display:flex;align-items:center;gap:10px;margin:16px 0}
+.auth-div-line{flex:1;height:1px;background:var(--rule)}
+.auth-div-text{font-size:10px;color:var(--ink4)}
+.auth-input{width:100%;padding:10px 13px;border:1.5px solid var(--rule2);border-radius:var(--r);font-size:13px;color:var(--ink);background:#fff;margin-bottom:10px;outline:none;transition:border-color .15s}
+.auth-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+.btn-auth{width:100%;padding:11px;background:var(--blue);color:#fff;border-radius:var(--r);font-size:13px;font-weight:700;border:none;cursor:pointer}
+.btn-auth:hover{opacity:.9}
+.auth-switch{text-align:center;margin-top:14px;font-size:12.5px;color:var(--ink3)}
+.auth-switch a{color:var(--blue);font-weight:600;cursor:pointer}
+.input-row{display:flex;gap:12px;flex-wrap:wrap}
+.input-group{flex:1;min-width:150px}
+.logo-svg{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo-wordmark{font-family:var(--display);font-size:16px;font-weight:800;color:var(--navy)}
+.logo-wordmark .w360{color:var(--blue)}
 
-/* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media(max-width:900px){
-  .mods-grid{grid-template-columns:repeat(2,1fr)}
-  .principles{grid-template-columns:1fr 1fr}
-  .crm-panel-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:1fr}
-}
 @media(max-width:768px){
-  .lp-nav{padding:0 16px;height:56px}
-  .nav-links{display:none}
-  .nav-right{gap:6px}
-  .btn-sign{padding:6px 12px;font-size:12px}
-  .btn-start{padding:7px 14px;font-size:12px}
-  .hero{padding:80px 20px 40px}
-  .hero-h1{opacity:1!important;visibility:visible!important;position:relative;z-index:1;font-size:30px;letter-spacing:-1px}
-  .hero-sub{opacity:1!important;visibility:visible!important;position:relative;z-index:1;font-size:14px}
-  .hero-btns{opacity:1!important;visibility:visible!important;position:relative;z-index:1;flex-direction:column;align-items:stretch}
-  .btn-hero-p,.btn-hero-s{text-align:center;justify-content:center;padding:12px 20px}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .stat{padding:20px 20px}
-  .stat:nth-child(2){border-right:none}
-  .stat:nth-child(3){border-top:1px solid var(--nav-rule);border-right:1px solid var(--nav-rule)}
-  .stat:nth-child(4){border-top:1px solid var(--nav-rule)}
-  .section-divider{padding:36px 20px 0}
-  .modules-wrap{padding:24px 16px 60px}
-  .mods-grid{grid-template-columns:1fr 1fr}
-  .dark-strip{padding:48px 20px}
-  .principles{grid-template-columns:1fr}
-  .crm-sec{padding:48px 20px}
-  .pricing-sec{padding:48px 20px}
-  .footer-cta{padding:60px 20px}
-  .footer-cta h2{font-size:26px;letter-spacing:-.5px}
-  .lp-footer{padding:16px 20px}
-  .lp-footer-in{flex-direction:column;gap:8px;text-align:center}
-  /* APP MOBILE */
-  #view-app{flex-direction:column!important;position:fixed!important;top:0!important;left:0!important;width:100vw!important;height:100vh!important;max-height:100vh!important;overflow:hidden!important}
-
-  /* Sidebar = thin horizontal scrollable tab bar */
-  .sb{
-    width:100%!important;
-    min-height:48px!important;
-    max-height:48px!important;
-    flex-direction:row!important;
-    overflow-x:auto!important;
-    overflow-y:hidden!important;
-    flex-shrink:0!important;
-    align-items:center!important;
-    padding:4px 8px!important;
-    gap:4px!important;
-    border-bottom:1px solid var(--nav-rule)!important;
-    /* hide scrollbar */
-    scrollbar-width:none!important;
-    -ms-overflow-style:none!important;
-  }
+  #view-app{flex-direction:column!important}
+  .sb{width:100%!important;height:auto!important;flex-direction:row!important;overflow-x:auto!important;overflow-y:hidden!important;flex-shrink:0!important;min-height:48px!important;max-height:48px!important;padding:4px 8px!important;border-bottom:1px solid var(--nav-rule)!important;scrollbar-width:none!important}
   .sb::-webkit-scrollbar{display:none!important}
-
-  /* Hide logo and section labels */
   .sb-top{display:none!important}
+  .sb-sec{display:contents!important}
   .sb-sec-label{display:none!important}
   .sb-user{display:none!important}
-
-  /* Sections are flat row */
-  .sb-sec{
-    display:contents!important;
-  }
-
-  /* Each nav item = compact pill */
-  .sbi{
-    padding:5px 12px!important;
-    border-radius:20px!important;
-    font-size:11px!important;
-    font-weight:500!important;
-    white-space:nowrap!important;
-    flex-shrink:0!important;
-    margin-bottom:0!important;
-  }
-  .sbi.act{
-    background:rgba(37,99,235,.35)!important;
-    color:#fff!important;
-    font-weight:600!important;
-  }
+  .sbi{padding:6px 12px!important;border-radius:20px!important;font-size:11px!important;white-space:nowrap!important;flex-shrink:0!important;margin-bottom:0!important}
   .sbi.act::before{display:none!important}
   .sbi-ic{display:none!important}
   .sbi-badge{display:none!important}
-
-  /* Main content: fills ALL remaining space */
-  .app-main{
-    flex:1!important;
-    width:100%!important;
-    min-height:0!important;
-    display:flex!important;
-    flex-direction:column!important;
-    overflow:hidden!important;
-  }
-  .topbar{
-    height:44px!important;
-    padding:0 14px!important;
-    flex-shrink:0!important;
-    background:var(--bg)!important;
-    border-bottom:1px solid var(--rule)!important;
-  }
-  .app-page{
-    flex:1!important;
-    overflow-y:auto!important;
-    overflow-x:hidden!important;
-    padding:16px!important;
-    background:var(--bg2)!important;
-    -webkit-overflow-scrolling:touch!important;
-    min-height:0!important;
-  }
-
-  /* Content fixes */
-  .input-row{flex-direction:column!important}
+  .app-main{flex:1!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+  .topbar{padding:0 14px!important;height:44px!important;flex-shrink:0!important}
+  .app-page{flex:1!important;overflow-y:auto!important;padding:14px!important;-webkit-overflow-scrolling:touch!important;min-height:0!important}
   .roadmap-cols{grid-template-columns:1fr!important}
-  .crm-panel-grid{grid-template-columns:1fr!important}
   .metric-grid{grid-template-columns:repeat(2,1fr)!important}
-  .out-hdr{padding:11px 12px!important}
-  .sec-title{font-size:17px!important}
-}
-@media(max-width:480px){
-  .mods-grid{grid-template-columns:1fr}
-  .stats-inner{grid-template-columns:1fr 1fr}
-  /* Free card - stack on mobile */
-  .free-card-grid{grid-template-columns:1fr!important}
-}
-@media(max-width:640px){
-  /* Free card two columns on small screens */  
-  .free-feat-grid{grid-template-columns:1fr!important}
 }
 </style>
-<!-- LANDING -->
-<div id="view-landing" style="display:block">
-<nav class="lp-nav">
-  <div class="logo-svg" style="cursor:pointer">
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/>
-  <rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/>
-  <rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/>
-  <rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/>
-</svg>
-    <div class="logo-wordmark">Engine <span class="w360">360</span></div>
+</head>
+<body>
+<div id="toast"></div>
+
+<!-- LANDING PAGE -->
+<div id="view-landing">
+
+<!-- NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,.97);border-bottom:1px solid #E2E8F0;backdrop-filter:blur(12px)">
+  <div class="logo-svg">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/></svg>
+    <span class="logo-wordmark">Engine<span class="w360">360</span></span>
   </div>
-  <div class="nav-links hide-mobile">
-    <span class="nav-link" onclick="document.getElementById('modules-anchor').scrollIntoView({behavior:'smooth'})">Modules</span>
-    <span class="nav-link" onclick="document.getElementById('crm-anchor').scrollIntoView({behavior:'smooth'})">CRM Guide</span>
-    <span class="nav-link" onclick="document.getElementById('pricing-anchor').scrollIntoView({behavior:'smooth'})">Pricing</span>
-    <button class="btn-sign" onclick="openAuth('login')">Sign in</button>
-    <button class="btn-start" onclick="openAuth('signup')">Get started</button>
-  </div>
-  <div style="display:flex;gap:8px" class="hide-desktop">
-    <button class="btn-sign" onclick="openAuth('login')">Sign in</button>
-    <button class="btn-start" onclick="openAuth('signup')">Start free</button>
+  <div style="display:flex;gap:8px">
+    <button onclick="openAuth('login')" style="padding:7px 16px;background:transparent;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:6px;font-size:13px;font-weight:600">Sign in</button>
+    <button onclick="openAuth('signup')" style="padding:8px 18px;background:#2563EB;color:#fff;border-radius:6px;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(37,99,235,.25)">Start free</button>
   </div>
 </nav>
 
-<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 24px 60px;text-align:center;background:#ffffff">
-  <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:5px 16px 5px 10px;font-size:12px;color:#2563EB;margin-bottom:24px;font-weight:600;font-family:Inter,sans-serif">
-    <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block;flex-shrink:0"></span>
-    8 Modules · URL to Strategy · 60 Seconds
-  </div>
-  <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,7vw,64px);font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:#1B2B4B;margin-bottom:18px;max-width:700px">
-    Your complete <span style="color:#2563EB">go-to-market</span> operating system.
-  </h1>
-  <p style="font-size:15px;color:#64748B;line-height:1.7;max-width:440px;margin:0 auto 28px;font-family:Inter,sans-serif">
-    Paste your website URL. Engine 360 researches your business, builds your ICP, strategy, playbook, CRM blueprint and churn signals in 60 seconds.
-  </p>
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
-    <button onclick="openAuth('signup')" style="padding:13px 26px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 2px 12px rgba(37,99,235,.3)">Start for free →</button>
-    <button onclick="openAuth('login')" style="padding:13px 22px;background:#fff;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:7px;font-size:15px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif">Sign in</button>
-  </div>
-  <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:420px">
-    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">ICP Profiles</span>
-    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">GTM Strategy</span>
-    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Sales Playbook</span>
-    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">CRM Blueprint</span>
-    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Churn Signals</span>
-    <span style="font-size:11.5px;color:#64748B;background:#F8F9FC;padding:4px 11px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">90-Day Roadmap</span>
-  </div>
-</div>
-
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat"><div class="stat-n">8<em>x</em></div><div class="stat-label">strategy modules per run</div></div>
-    <div class="stat"><div class="stat-n">60<em>s</em></div><div class="stat-label">URL to full GTM plan</div></div>
-    <div class="stat"><div class="stat-n">3<em>+</em></div><div class="stat-label">ICP profiles ranked by fit</div></div>
-    <div class="stat"><div class="stat-n">4<em>+</em></div><div class="stat-label">CRM blueprints with cadence</div></div>
-  </div>
-</div>
-
-<div id="modules-anchor"></div>
-<div style="padding:56px 40px 0;max-width:1280px;margin:0 auto">
-  <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">What you get</div><div class="section-divider-line"></div></div>
-</div>
-
-<div class="modules-wrap">
-  <div class="mods-hdr">
-    <div class="mods-ey">Eight modules</div>
-    <div class="mods-h2">Every output a founder or sales leader actually needs.</div>
-  </div>
-  <div class="mods-grid">
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#2563EB,transparent)"></div><div class="mod-num">01</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div class="mod-title">Business Profile</div><div class="mod-desc">AI-extracted positioning, moat, market size, strengths and risks. The foundation every strategy starts with.</div><div class="mod-chips"><span class="mod-chip">Positioning</span><span class="mod-chip">Moat</span><span class="mod-chip">Risk flags</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#16A34A,transparent)"></div><div class="mod-num">02</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="mod-title">ICP Engine</div><div class="mod-desc">Three ranked ideal customer profiles with firmographics, pain points, buying triggers, disqualifiers and pitch angle per ICP.</div><div class="mod-chips"><span class="mod-chip">3 profiles</span><span class="mod-chip">Win rate</span><span class="mod-chip">Deal size</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#D97706,transparent)"></div><div class="mod-num">03</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><div class="mod-title">GTM Strategy</div><div class="mod-desc">Motion recommendation, channel priority with effort vs ROI, 90-day roadmap, competitive wedge and full battlecards.</div><div class="mod-chips"><span class="mod-chip">Motion</span><span class="mod-chip">Roadmap</span><span class="mod-chip">Battlecards</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#7C3AED,transparent)"></div><div class="mod-num">04</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div class="mod-title">Sales Playbook</div><div class="mod-desc">Real scripts for email, LinkedIn, cold call and WhatsApp. Objection matrix, discovery questions and qualification framework.</div><div class="mod-chips"><span class="mod-chip">Scripts</span><span class="mod-chip">Objections</span><span class="mod-chip">MEDDIC</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#2563EB,transparent)"></div><div class="mod-num">05</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg></div><div class="mod-title">CRM Blueprint</div><div class="mod-desc">CRM recommendation by stage and ICP. Pipeline stages with entry and exit criteria, lead scoring and automation flows.</div><div class="mod-chips"><span class="mod-chip">Pipeline</span><span class="mod-chip">Scoring</span><span class="mod-chip">Automations</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#DC2626,transparent)"></div><div class="mod-num">06</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div class="mod-title">CRM Intelligence</div><div class="mod-desc">Outreach cadence by channel, integration stack, churn signals by severity, product analytics and retention playbook.</div><div class="mod-chips"><span class="mod-chip">Cadence</span><span class="mod-chip">Churn signals</span><span class="mod-chip">Integrations</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#16A34A,transparent)"></div><div class="mod-num">07</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="mod-title">MIS and Metrics</div><div class="mod-desc">North star metric, leading and lagging indicators, funnel benchmarks, weekly review agenda and investor-ready metrics.</div><div class="mod-chips"><span class="mod-chip">KPIs</span><span class="mod-chip">Dashboards</span><span class="mod-chip">Benchmarks</span></div></div>
-    <div class="mod"><div class="mod-accent" style="background:linear-gradient(90deg,transparent,#D97706,transparent)"></div><div class="mod-num">08</div><div class="mod-icon" style="color:var(--blue)"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div class="mod-title">Execution Plan</div><div class="mod-desc">Week-by-week checklist with owners and tools. Hiring signals, full tool stack and anti-patterns to avoid at your stage.</div><div class="mod-chips"><span class="mod-chip">30-day plan</span><span class="mod-chip">Hiring</span><span class="mod-chip">Stack</span></div></div>
-  </div>
-</div>
-
-<div class="dark-strip">
-  <div class="dark-strip-inner">
-    <div class="strip-ey">How it works</div>
-    <h2 class="strip-h2">Built for operators.<br>Delivered in 60 seconds.</h2>
-    <p class="strip-sub">Every module follows frameworks that strategy operators use, adapted for founders who need to move fast and sales leaders who need to win.</p>
-    <div class="principles">
-      <div class="pr"><div class="pr-label">Framework</div><div class="pr-title">Problem first, then solution</div><div class="pr-body">Every section diagnoses the real problem before prescribing a solution. No generic advice, no filler output.</div></div>
-      <div class="pr"><div class="pr-label">Specificity</div><div class="pr-title">Named competitors. Real scripts. Actual CRM fields.</div><div class="pr-body">Not "consider cold email." Actual subject lines, openers and objection responses written for your specific ICP.</div></div>
-      <div class="pr"><div class="pr-label">Prioritisation</div><div class="pr-title">Ranked by signal strength, not listed alphabetically.</div><div class="pr-body">ICPs by win rate. Channels by effort vs ROI. Churn signals by severity. You always know where to start.</div></div>
-      <div class="pr"><div class="pr-label">CRM Intelligence</div><div class="pr-title">Cadence, integrations, churn and productivity.</div><div class="pr-body">Not just a CRM pick. A full operating layer. What to track, when to reach out, and how to spot churn 30 days early.</div></div>
-      <div class="pr"><div class="pr-label">Commercial rigour</div><div class="pr-title">Deal size, win rate, sales cycle per ICP.</div><div class="pr-body">Quantified wherever possible. Benchmarks calibrated to your stage, market and business model.</div></div>
-      <div class="pr"><div class="pr-label">Living document</div><div class="pr-title">Auto-saved. Regenerate when your business changes.</div><div class="pr-body">Update your inputs, re-run the analysis. Every module refreshes. Your GTM OS evolves as your business does.</div></div>
+<!-- HERO -->
+<div style="padding-top:60px">
+  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px 60px;background:#ffffff">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:5px 16px 5px 10px;font-size:12px;color:#2563EB;margin-bottom:28px;font-weight:600">
+      <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block"></span>
+      8 Modules · URL to Strategy · 60 Seconds
+    </div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,7vw,62px);font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:#1B2B4B;margin-bottom:20px;max-width:680px">
+      Your complete <span style="color:#2563EB">go-to-market</span> operating system.
+    </h1>
+    <p style="font-size:16px;color:#64748B;line-height:1.75;max-width:440px;margin:0 auto 32px">
+      Paste your website URL. Engine 360 researches your business and builds your full GTM strategy in 60 seconds.
+    </p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
+      <button onclick="openAuth('signup')" style="padding:14px 28px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
+      <button onclick="openAuth('login')" style="padding:14px 22px;background:#fff;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:7px;font-size:15px;font-weight:500;cursor:pointer">Sign in to your account</button>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">ICP Profiles</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">GTM Strategy</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">Sales Playbook</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">CRM Blueprint</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">Churn Signals</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">90-Day Roadmap</span>
     </div>
   </div>
 </div>
 
-<div id="crm-anchor"></div>
-<div class="crm-sec">
-  <div class="sec-ey">CRM Decision Guide</div>
-  <h2 class="sec-h2">Which CRM fits your business?</h2>
-  <p class="sec-sub">Engine 360 picks the right CRM based on your ICP, stage and team size, then designs the exact pipeline, scoring model and automations for it.</p>
-  <div class="crm-tabs" id="crm-tabs">
-    <div class="crm-tab sel" onclick="lpSelectCRM(0)"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#F97316;margin-right:6px;vertical-align:middle"></span>HubSpot</div>
-    <div class="crm-tab" onclick="lpSelectCRM(1)"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2563EB;margin-right:6px;vertical-align:middle"></span>Zoho CRM</div>
-    <div class="crm-tab" onclick="lpSelectCRM(2)"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#16A34A;margin-right:6px;vertical-align:middle"></span>Pipedrive</div>
-    <div class="crm-tab" onclick="lpSelectCRM(3)"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#374151;margin-right:6px;vertical-align:middle"></span>Notion</div>
-  </div>
-  <div id="lp-crm-d0" class="crm-panel open">
-    <div class="crm-panel-meta">Best for: B2B SaaS · Growth stage · 5 to 100 person teams</div>
-    <div class="crm-panel-grid">
-      <div><div class="crm-col-hdr">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Lead In</span><span class="pipe-arr">→</span><span class="pipe-pill">MQL</span><span class="pipe-arr">→</span><span class="pipe-pill">Discovery</span><span class="pipe-arr">→</span><span class="pipe-pill">Demo</span><span class="pipe-arr">→</span><span class="pipe-pill">Proposal</span><span class="pipe-arr">→</span><span class="pipe-pill">Won</span></div></div>
-      <div><div class="crm-col-hdr">Key Fields to Track</div><div class="crm-li">ICP fit score (1 to 10)</div><div class="crm-li">Lead source and campaign</div><div class="crm-li">Champion name and title</div><div class="crm-li">Decision maker confirmed?</div><div class="crm-li">Competitor in deal</div><div class="crm-li">Expected close date</div></div>
-      <div><div class="crm-col-hdr">Automation Flows</div><div class="crm-li">New lead: email in 2 minutes</div><div class="crm-li">No activity 3 days: nudge task</div><div class="crm-li">Demo booked: prep doc created</div><div class="crm-li">Won: CS handoff triggered</div><div class="crm-col-hdr" style="margin-top:14px">Lead Scoring</div><div class="crm-li">+30 demo requested</div><div class="crm-li">+20 email opened</div></div>
+<!-- STATS -->
+<div style="background:#1B2B4B;padding:0">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">8<em style="font-style:normal;color:#16A34A">x</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">strategy modules per run</div>
     </div>
-  </div>
-  <div id="lp-crm-d1" class="crm-panel">
-    <div class="crm-panel-meta">Best for: MFDs · Financial services · India-market businesses</div>
-    <div class="crm-panel-grid">
-      <div><div class="crm-col-hdr">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Enquiry</span><span class="pipe-arr">→</span><span class="pipe-pill">KYC Done</span><span class="pipe-arr">→</span><span class="pipe-pill">Needs Analysis</span><span class="pipe-arr">→</span><span class="pipe-pill">Proposal</span><span class="pipe-arr">→</span><span class="pipe-pill">First SIP</span><span class="pipe-arr">→</span><span class="pipe-pill">Active</span></div></div>
-      <div><div class="crm-col-hdr">Key Fields</div><div class="crm-li">ARN / AMFI license status</div><div class="crm-li">AUM band (0 to 10L, 10 to 50L)</div><div class="crm-li">Risk profile completed?</div><div class="crm-li">WhatsApp opted in?</div><div class="crm-li">Preferred contact time</div></div>
-      <div><div class="crm-col-hdr">Automations</div><div class="crm-li">New lead: WhatsApp in 60 seconds</div><div class="crm-li">Stale 5 days: RM reminder</div><div class="crm-li">SIP started: 30-day check-in</div><div class="crm-li">Anniversary: re-review trigger</div></div>
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">60<em style="font-style:normal;color:#16A34A">s</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">URL to full GTM plan</div>
     </div>
-  </div>
-  <div id="lp-crm-d2" class="crm-panel">
-    <div class="crm-panel-meta">Best for: Sales-led · SMB · Founder-run sales teams</div>
-    <div class="crm-panel-grid">
-      <div><div class="crm-col-hdr">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Contact Made</span><span class="pipe-arr">→</span><span class="pipe-pill">Qualified</span><span class="pipe-arr">→</span><span class="pipe-pill">Meeting Set</span><span class="pipe-arr">→</span><span class="pipe-pill">Proposal</span><span class="pipe-arr">→</span><span class="pipe-pill">Won</span></div></div>
-      <div><div class="crm-col-hdr">Key Fields</div><div class="crm-li">Deal value estimate</div><div class="crm-li">Expected close date</div><div class="crm-li">Products interested in</div><div class="crm-li">Last activity date</div><div class="crm-li">Lost reason (if lost)</div></div>
-      <div><div class="crm-col-hdr">Automations</div><div class="crm-li">Idle 3 days: auto task for rep</div><div class="crm-li">Stagnant deal: manager alert</div><div class="crm-li">Won: invoice trigger</div><div class="crm-li">Lost: exit survey email</div></div>
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">3<em style="font-style:normal;color:#16A34A">+</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">ICP profiles ranked by fit</div>
     </div>
-  </div>
-  <div id="lp-crm-d3" class="crm-panel">
-    <div class="crm-panel-meta">Best for: Pre-revenue · Solo founder · First 10 customers</div>
-    <div class="crm-panel-grid">
-      <div><div class="crm-col-hdr">Pipeline Stages</div><div class="pipe-flow"><span class="pipe-pill">Prospect</span><span class="pipe-arr">→</span><span class="pipe-pill">Contacted</span><span class="pipe-arr">→</span><span class="pipe-pill">Interested</span><span class="pipe-arr">→</span><span class="pipe-pill">Decided</span></div></div>
-      <div><div class="crm-col-hdr">Key Fields</div><div class="crm-li">Status and priority flag</div><div class="crm-li">Company and contact name</div><div class="crm-li">Notes from calls</div><div class="crm-li">Next action and date</div><div class="crm-li">Deal size estimate</div></div>
-      <div><div class="crm-col-hdr">When to Migrate</div><div class="crm-li">When you hit 50+ active deals</div><div class="crm-li">When you hire your first SDR</div><div class="crm-li">When email sequences are needed</div><div class="crm-li">When reporting takes over 1 hour per week</div></div>
+    <div style="padding:28px 24px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">4<em style="font-style:normal;color:#16A34A">+</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">CRM blueprints with cadence</div>
     </div>
   </div>
 </div>
 
-<div id="pricing-anchor"></div>
-<div class="pricing-sec">
-  <div class="pricing-inner">
-    <div class="sec-ey">Pricing</div>
-    <h2 class="sec-h2" style="font-size:clamp(24px,3vw,36px)">Everything free. Always.</h2>
-    <p class="sec-sub" style="max-width:560px">Engine 360 is completely free to use. All 8 modules, Zoho CRM and Google Sheets integration, strategy dashboard, and daily MIS. No credit card. No trial. Just sign up and run your first analysis.</p>
+<!-- MODULES GRID -->
+<div style="padding:64px 24px;max-width:1100px;margin:0 auto">
+  <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:monospace">What you get</div>
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;color:#1B2B4B;margin-bottom:36px;letter-spacing:-.5px">Eight modules. One operating system.</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:#E2E8F0;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
 
-    <!-- SINGLE FREE CARD - FULL WIDTH -->
-    <div style="background:var(--bg);border:2px solid var(--blue);border-radius:var(--r2);padding:32px;margin-top:32px;position:relative;box-shadow:0 0 0 4px rgba(37,99,235,.08),var(--shadow2)">
-      <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:4px 18px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--mono);white-space:nowrap">Free forever — no credit card needed</div>
-      
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start" class="free-card-grid">
-        <div>
-          <div style="font-family:var(--display);font-size:52px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-2px;margin-bottom:6px">Free</div>
-          <div style="font-size:14px;color:var(--ink3);margin-bottom:24px;line-height:1.6">Everything you need to build and run your complete go-to-market operating system.</div>
-          <button class="btn btn-blue" onclick="openAuth('signup')" style="padding:13px 28px;font-size:15px;font-weight:700;font-family:var(--display);border-radius:var(--r);box-shadow:0 4px 14px rgba(37,99,235,.3);width:100%">Start for free</button>
-          <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--ink3)">Already have an account? <a onclick="openAuth('login')" style="color:var(--blue);font-weight:600;cursor:pointer">Sign in</a></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px" class="free-feat-grid">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">All 8 strategy modules</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">ICP Engine — 3 profiles</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">GTM motion and channels</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Sales playbook and scripts</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">CRM blueprint (HubSpot/Zoho)</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">CRM Intelligence layer</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">MIS and metrics dashboard</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">100-day execution plan</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Zoho CRM integration</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Google Sheets connector</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Strategy dashboard</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">PDCA and quadrant analysis</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Hypothesis validation</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">TAM/SAM/SOM calculation</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">LinkedIn signal research</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Unlimited analyses</span>
-        </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">01</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Business Profile</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Positioning, moat, TAM/SAM/SOM, hypothesis validation, LinkedIn signals, five pillars status.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">TAM/SAM/SOM</span><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Hypothesis</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">02</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">ICP Engine</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">3 profiles scored across 5 filters (15-point scale), day-in-life, buying triggers, LinkedIn signals.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">5-Filter Score</span><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">LinkedIn</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">03</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">GTM Strategy</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Account-based, volume, or partner-led motion verdict. 90-day roadmap, PDCA cycle, battlecards.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">PDCA</span><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">90-Day Plan</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">04</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Sales Playbook</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Real scripts for email, LinkedIn, cold call, WhatsApp. 60-second lead response. MEDDIC. Objections.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F5F3FF;color:#7C3AED;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">MEDDIC</span><span style="font-size:9.5px;background:#F5F3FF;color:#7C3AED;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Scripts</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">05</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Blueprint</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">HubSpot or Zoho recommendation. Pipeline stages, lead scoring model, automation flows.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">HubSpot/Zoho</span><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Scoring</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">06</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Intelligence</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Outreach cadence day-by-day. Integration stack. Churn signals by severity. Weekly operating rhythm.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FEF2F2;color:#DC2626;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Churn Signals</span><span style="font-size:9.5px;background:#FEF2F2;color:#DC2626;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Cadence</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">07</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">MIS and Metrics</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">The 6 numbers from I Know Only Numbers. North star, daily MIS, weekly review, funnel benchmarks.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">6 Numbers</span><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Daily MIS</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">08</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">100-Day Plan</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Week-by-week checklist with owners and tools. Hiring signal checklist per role. Tool stack. PDCA matrix.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">100 Days</span><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Hiring Signals</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING - FREE -->
+<div style="padding:64px 24px;background:#F8F9FC;border-top:1px solid #E2E8F0">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:monospace">Pricing</div>
+    <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:800;color:#1B2B4B;margin-bottom:12px;letter-spacing:-.5px">Everything free. Always.</h2>
+    <p style="font-size:15px;color:#64748B;line-height:1.7;margin-bottom:36px">All 8 modules, Zoho CRM and Google Sheets integration, strategy dashboard — free forever. No credit card. No trial.</p>
+    <div style="background:#fff;border:2px solid #2563EB;border-radius:12px;padding:32px;position:relative;box-shadow:0 0 0 4px rgba(37,99,235,.08)">
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:11px;font-weight:700;padding:4px 20px;border-radius:20px;white-space:nowrap;font-family:monospace">Free forever — no credit card needed</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:52px;font-weight:800;color:#1B2B4B;line-height:1;letter-spacing:-2px;margin-bottom:20px">Free</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin-bottom:28px">
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>All 8 strategy modules</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>ICP Engine — 3 profiles</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>GTM motion and channels</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Sales playbook and scripts</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM blueprint (HubSpot/Zoho)</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM Intelligence layer</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>MIS and metrics dashboard</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>100-day execution plan</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Zoho CRM integration</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Google Sheets connector</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Strategy dashboard</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>PDCA and quadrant analysis</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Hypothesis validation</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>TAM/SAM/SOM calculation</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>LinkedIn signal research</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
       </div>
-    </div>
-
-    <!-- FEATURE CARDS SLIDER -->
-    <div style="margin-top:48px">
-      <div style="font-size:10px;font-weight:700;color:var(--ink4);letter-spacing:.14em;text-transform:uppercase;font-family:var(--mono);margin-bottom:6px">What you get inside</div>
-      <h3 style="font-family:var(--display);font-size:clamp(20px,2.5vw,28px);font-weight:800;color:var(--navy);letter-spacing:-.4px;margin-bottom:24px">8 modules. One operating system.</h3>
-
-      <!-- SLIDER CONTAINER -->
-      <div style="position:relative;overflow:hidden" id="feat-slider">
-        <div id="feat-track" style="display:flex;gap:14px;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform">
-
-          <!-- Card 1: Business Profile -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;transition:all .2s;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563EB,#3B82F6)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--blue-l);border:1px solid rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--blue);font-family:var(--mono);margin-bottom:5px">MODULE 01</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">Business Profile</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Positioning, moat, TAM/SAM/SOM calculation, vertical vs horizontal verdict, hypothesis validation, five pillars status and investor narrative.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Positioning</span>
-              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">TAM/SAM/SOM</span>
-              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Hypothesis</span>
-            </div>
-          </div>
-
-          <!-- Card 2: ICP Engine -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#16A34A,#22C55E)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--green-l);border:1px solid rgba(22,163,74,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono);margin-bottom:5px">MODULE 02</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">ICP Engine</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">3 ICP profiles scored across 5 filters (15-point scale), day-in-their-life, buying triggers, LinkedIn signals, disqualifiers and exact pitch angle per ICP.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">3 Profiles</span>
-              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">5-Filter Score</span>
-              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">LinkedIn</span>
-            </div>
-          </div>
-
-          <!-- Card 3: GTM Strategy -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D97706,#F59E0B)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--amber-l);border:1px solid rgba(217,119,6,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--amber);font-family:var(--mono);margin-bottom:5px">MODULE 03</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">GTM Strategy</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Account-based, volume, or partner-led motion verdict. Online and offline engine. 90-day roadmap, competitive battlecards with landmines, PDCA cycle.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Motion</span>
-              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Battlecards</span>
-              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">PDCA</span>
-            </div>
-          </div>
-
-          <!-- Card 4: Sales Playbook -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7C3AED,#9B72F7)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--purple-l);border:1px solid rgba(124,58,237,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--purple);font-family:var(--mono);margin-bottom:5px">MODULE 04</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">Sales Playbook</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Real scripts for email, LinkedIn, cold call, WhatsApp. 60-second lead response system. MEDDIC framework. Objection matrix with exact response and reframe.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--purple-l);color:var(--purple);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Scripts</span>
-              <span style="font-size:10px;background:var(--purple-l);color:var(--purple);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">MEDDIC</span>
-              <span style="font-size:10px;background:var(--purple-l);color:var(--purple);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Objections</span>
-            </div>
-          </div>
-
-          <!-- Card 5: CRM Blueprint -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563EB,#16A34A)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--blue-l);border:1px solid rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--blue);font-family:var(--mono);margin-bottom:5px">MODULE 05</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">CRM Blueprint</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">HubSpot or Zoho CRM recommendation by ICP and stage. Pipeline stages with entry/exit criteria. Lead scoring model. Automation flows. Similar company benchmarks.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">HubSpot/Zoho</span>
-              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Pipeline</span>
-              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Scoring</span>
-            </div>
-          </div>
-
-          <!-- Card 6: CRM Intelligence -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#DC2626,#EF4444)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--red-l);border:1px solid rgba(220,38,38,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--red);font-family:var(--mono);margin-bottom:5px">MODULE 06</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">CRM Intelligence</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Outreach cadence day-by-day. Integration stack (email, WhatsApp, calendar). Churn signals by severity with CRM field and automation. Weekly operating rhythm.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--red-l);color:var(--red);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Cadence</span>
-              <span style="font-size:10px;background:var(--red-l);color:var(--red);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Churn Signals</span>
-              <span style="font-size:10px;background:var(--red-l);color:var(--red);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">WhatsApp</span>
-            </div>
-          </div>
-
-          <!-- Card 7: MIS and Metrics -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#16A34A,#2563EB)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--green-l);border:1px solid rgba(22,163,74,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono);margin-bottom:5px">MODULE 07</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">MIS and Metrics</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">The 6 numbers from Chapter 1 of "I Know Only Numbers". North star, daily MIS, weekly review agenda, funnel benchmarks, investor metrics and red flags.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">6 Numbers</span>
-              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Daily MIS</span>
-              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Weekly Review</span>
-            </div>
-          </div>
-
-          <!-- Card 8: Execution Plan -->
-          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D97706,#16A34A)"></div>
-            <div style="width:40px;height:40px;border-radius:9px;background:var(--amber-l);border:1px solid rgba(217,119,6,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--amber);font-family:var(--mono);margin-bottom:5px">MODULE 08</div>
-            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">100-Day Execution Plan</div>
-            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Week-by-week checklist with owners, tools and outcomes. Hiring signal checklist per role. Full tool stack. Anti-patterns to avoid. Priority matrix.</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">100 Days</span>
-              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Hiring Signals</span>
-              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Tool Stack</span>
-            </div>
-          </div>
-
-        </div><!-- end track -->
-
-        <!-- Slider controls -->
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
-          <div style="display:flex;gap:8px" id="feat-dots"></div>
-          <div style="display:flex;gap:8px">
-            <button onclick="slideFeats(-1)" style="width:36px;height:36px;border:1.5px solid var(--rule2);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--rule2)'">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button onclick="slideFeats(1)" style="width:36px;height:36px;border:1.5px solid var(--rule2);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--rule2)'">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
-          </div>
-        </div>
-      </div><!-- end slider -->
+      <button onclick="openAuth('signup')" style="width:100%;padding:14px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
     </div>
   </div>
 </div>
-<div class="footer-cta">
-  <h2>Ready to build your<br>go-to-market engine?</h2>
-  <p>Paste your website URL and get your complete GTM strategy, playbook, CRM blueprint and churn signals in 60 seconds.</p>
-  <button class="btn-footer" onclick="openAuth('signup')">Start for free</button>
-</div>
-<footer class="lp-footer">
-  <div class="lp-footer-in">
-    <div class="lp-copy">2025 Engine 360. Built for founders, sales leaders and GTM builders.</div>
-    <div class="lp-flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:hello@engine360.ai">Contact</a></div>
-  </div>
-</footer>
+
+<!-- FOOTER CTA -->
+<div style="background:#1B2B4B;padding:72px 24px;text-align:center">
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,44px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:12px">Ready to build your GTM engine?</h2>
+  <p style="font-size:15px;color:rgba(255,255,255,.6);max-width:380px;margin:0 auto 28px;line-height:1.7">Paste your URL and get your complete strategy in 60 seconds.</p>
+  <button onclick="openAuth('signup')" style="padding:14px 32px;background:#16A34A;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(22,163,74,.35)">Start for free →</button>
 </div>
 
-<!-- AUTH -->
+<div style="background:rgba(0,0,0,.2);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+  <span style="font-size:11px;color:rgba(255,255,255,.3)">© 2026 Engine 360</span>
+  <div style="display:flex;gap:16px"><a href="#" style="font-size:11px;color:rgba(255,255,255,.3)">Privacy</a><a href="#" style="font-size:11px;color:rgba(255,255,255,.3)">Terms</a></div>
+</div>
+
+</div><!-- end view-landing -->
+
+<!-- AUTH MODAL -->
 <div class="modal-bg" id="auth-modal">
-  <div class="auth-box">
-    <button class="auth-close" onclick="closeAuth()">x</button>
-    <div class="auth-logo"><div class="auth-logo-mark">E</div><div class="auth-logo-name">Engine 360</div></div>
-    <h2 class="auth-h2" id="auth-h2">Create your account</h2>
-    <p class="auth-sub" id="auth-sub">Get your full GTM strategy in 60 seconds.</p>
+  <div class="auth-box" style="position:relative">
+    <button onclick="closeAuth()" style="position:absolute;top:12px;right:14px;background:none;border:none;font-size:20px;color:#64748B;cursor:pointer;line-height:1">×</button>
+    <div class="logo-svg" style="margin-bottom:20px">
+      <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/></svg>
+      <span class="logo-wordmark">Engine<span class="w360">360</span></span>
+    </div>
+    <div class="auth-h2" id="auth-title">Create your account</div>
+    <div class="auth-sub" id="auth-sub">Get your full GTM strategy in 60 seconds.</div>
     <div class="auth-err" id="auth-err"></div>
     <button class="btn-google" onclick="signInGoogle()">
-      <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       Continue with Google
     </button>
     <div class="auth-div"><div class="auth-div-line"></div><div class="auth-div-text">or</div><div class="auth-div-line"></div></div>
-    <input class="auth-input" type="email" id="auth-email" placeholder="you@company.com">
-    <input class="auth-input" type="password" id="auth-pw" placeholder="Password (8+ characters)">
-    <div id="auth-name-wrap" style="display:none"><input class="auth-input" type="text" id="auth-name" placeholder="Your full name"></div>
-    <button class="btn-auth" id="auth-submit" onclick="submitAuth()">Create account</button>
+    <input class="auth-input" type="email" id="auth-email" placeholder="Email address">
+    <input class="auth-input" type="password" id="auth-pass" placeholder="Password (min 6 characters)">
+    <button class="btn-auth" id="auth-btn" onclick="doEmail()">Create account</button>
     <div class="auth-switch" id="auth-switch">Already have an account? <a onclick="switchAuth()">Sign in</a></div>
   </div>
 </div>
@@ -960,6 +402,7 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 <div id="toast"></div>
 
 <script type="module">
+
 
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import{getAuth,GoogleAuthProvider,signInWithPopup,createUserWithEmailAndPassword,
@@ -2670,8 +2113,10 @@ Object.assign(window,{
   nav,generate,tog,copyEl,toggleCheck,exportData,lpSelectCRM
 });
 
+
 </script>
-<script>function lpSelectCRM(i){document.querySelectorAll(".crm-tab").forEach((t,j)=>t.classList.toggle("sel",i===j));[0,1,2,3].forEach(j=>{const d=document.getElementById("lp-crm-d"+j);if(d)d.classList.toggle("open",i===j);});}window.lpSelectCRM=lpSelectCRM;
+<script>
+function lpSelectCRM(i){document.querySelectorAll(".crm-tab").forEach((t,j)=>t.classList.toggle("sel",i===j));[0,1,2,3].forEach(j=>{const d=document.getElementById("lp-crm-d"+j);if(d)d.classList.toggle("open",i===j);});}window.lpSelectCRM=lpSelectCRM;
 // ── Feature card slider ────────────────────────────────────────────────────
 let _featIdx=0;
 const _featVisible=()=>window.innerWidth<640?1:window.innerWidth<900?2:3;
@@ -2736,23 +2181,7 @@ document.addEventListener('touchend',e=>{
   }
 },{passive:true});
 
-</script>
-<script>
-// Re-apply app layout on resize/orientation change
-window.addEventListener('resize',()=>{
-  const app=document.getElementById('view-app');
-  if(app&&app.style.display!=='none'&&app.style.display!==''){
-    showApp();
-  }
-});
-window.addEventListener('scroll',()=>{
-  const nav=document.querySelector('.lp-nav');
-  if(nav)nav.classList.toggle('scrolled',window.scrollY>20);
-});
-// Add cursor pointer to auth switch links
-document.addEventListener('click',function(e){
-  if(e.target.tagName==='A'&&e.target.closest('.auth-switch'))e.preventDefault();
-});
+
 </script>
 </body>
 </html>
