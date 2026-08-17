@@ -799,25 +799,52 @@ function requireData(k){
   return null;
 }
 
-function renderInput(){return`<div class="sec-hdr"><div class="sec-eyebrow">Step 1</div><div class="sec-title">Tell us about your business</div><div class="sec-sub">The more detail you give, the sharper every module becomes. Fields marked * drive the most output quality.</div></div>
-<div class="input-panel">
-<div class="input-section">Your product or service *</div>
-<div class="input-row"><div class="input-group" style="flex:2"><label class="input-label">Website URL</label><input id="in-url" type="url" placeholder="https://yourcompany.com" value="${esc(S.input.url)}"></div><div class="input-group"><label class="input-label">Stage *</label><select id="in-stage"><option value="">Select…</option>${['Pre-revenue','0→1 (first customers)','Early growth ($0–1M ARR)','Scaling ($1M–10M ARR)','Growth ($10M+ ARR)','Bootstrapped / profitable'].map(s=>`<option ${S.input.stage===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="input-group"><label class="input-label">Team size</label><select id="in-team"><option value="">Select…</option>${['Solo founder','2–5','6–15','16–50','50+'].map(s=>`<option ${S.input.team===s?'selected':''}>${s}</option>`).join('')}</select></div></div>
-<div class="input-row"><div class="input-group" style="flex:3"><label class="input-label">What does your product/service do? Name the problem, buyer, outcome. *</label><textarea id="in-desc" placeholder="e.g. We help B2B SaaS companies reduce churn by identifying at-risk accounts 30 days early using product usage signals…">${esc(S.input.desc)}</textarea></div></div>
-<div class="input-row"><div class="input-group" style="flex:2"><label class="input-label">Your #1 unfair advantage - why you, not a competitor? *</label><textarea id="in-uv" rows="2" placeholder="e.g. Only platform that predicts churn using product telemetry - no CRM data needed. Built by ex-Gainsight team.">${esc(S.input.uv)}</textarea></div><div class="input-group"><label class="input-label">Current MRR/ARR</label><input id="in-rev" placeholder="e.g. ₹12L MRR" value="${esc(S.input.revenue)}"></div></div>
-<div class="input-section">Your market</div>
-<div class="input-row"><div class="input-group" style="flex:2"><label class="input-label">Who is your best customer? (ICP hypothesis) *</label><textarea id="in-icp" rows="2" placeholder="e.g. VP Customer Success, B2B SaaS, 50–500 employees, Series A/B, using Salesforce, had churn issues last 12 months…">${esc(S.input.icp)}</textarea></div><div class="input-group"><label class="input-label">Target geographies</label><input id="in-geo" placeholder="e.g. India, US, SEA" value="${esc(S.input.geo)}"></div></div>
-<div class="input-row"><div class="input-group"><label class="input-label">Main competitors</label><input id="in-comp" placeholder="e.g. Gainsight, ChurnZero" value="${esc(S.input.competitors)}"></div><div class="input-group"><label class="input-label">Channels you currently use</label><input id="in-ch" placeholder="e.g. cold email, LinkedIn" value="${esc(S.input.channels)}"></div></div>
-</div>
-<div style="display:flex;gap:12px;align-items:center">
-<button class="btn btn-blue" onclick="generate()" style="padding:11px 26px;font-size:14px">⚡ Generate GTM OS</button>
-<span style="font-size:12px;color:var(--ink3)">All 8 modules in ~45 seconds · Auto-saved</span>
-</div>
-${S.generated?'<div style="margin-top:10px;font-size:12px;color:var(--green);font-weight:600">✓ Analysis complete - navigate modules from the sidebar</div>':''}`;}
+function renderInput(){
+  const hasSaved=S.generated;
+  return`<div class="sec-hdr">
+    <div class="sec-eyebrow">Step 1</div>
+    <div class="sec-title">What is your website URL?</div>
+    <div class="sec-sub">That is all we need to start. Engine 360 will research your business, market, competitors and ICP from the internet. You just confirm what we find.</div>
+  </div>
+  <div class="input-panel">
+    <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <label class="input-label">Your website URL</label>
+        <input id="in-url" type="url" placeholder="https://yourcompany.com" value="${esc(S.input.url)}" style="font-size:15px;padding:12px 14px">
+      </div>
+      <div style="padding-top:22px">
+        <button class="btn btn-blue" onclick="generate()" style="padding:13px 24px;font-size:14px;font-weight:700">
+          Analyse my business
+        </button>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 14px;background:var(--bg2);border-radius:var(--r);border:1px solid var(--rule)">
+      <div style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono)">No website yet?</div>
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:8px">Describe your business idea in one or two sentences and we will validate it.</div>
+      <textarea id="in-idea" placeholder="e.g. I am building a WhatsApp-first CRM for mutual fund distributors in India..." rows="2" style="margin-bottom:0">${esc(S.input.idea||'')}</textarea>
+    </div>
+  </div>
+  ${hasSaved?`<div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r2);padding:14px 18px;display:flex;align-items:center;gap:12px">
+    <div style="font-size:20px">✅</div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--green)">Analysis complete</div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:2px">Your GTM OS is ready. Navigate the modules from the sidebar.</div>
+    </div>
+    <button class="btn btn-border btn-sm" onclick="generate()" style="margin-left:auto;flex-shrink:0">Re-run</button>
+  </div>`:''}
+  <div style="margin-top:18px;padding:14px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2)">
+    <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:10px">What Engine 360 will research for you</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
+      ${['Business model and positioning','ICP across B2B, B2C, B2B2C','GTM motion: account-based, volume, or partner-led','Competitor analysis and battlecards','CRM recommendation (HubSpot or Zoho)','Outreach cadence by channel','Churn signals and retention playbook','30-day execution checklist'].map(t=>`<div style="display:flex;gap:7px;font-size:12px;color:var(--ink2)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>${t}</div>`).join('')}
+    </div>
+  </div>`;
+}
 
 function bindInput(){
-  const m={url:'url',stage:'stage',team:'team',desc:'desc',uv:'uv',rev:'revenue',icp:'icp',geo:'geo',comp:'competitors',ch:'channels'};
-  Object.entries(m).forEach(([id,key])=>{const el=document.getElementById('in-'+id);if(el)el.addEventListener('change',()=>S.input[key]=el.value);});
+  const urlEl=document.getElementById('in-url');
+  const ideaEl=document.getElementById('in-idea');
+  if(urlEl)urlEl.addEventListener('change',()=>S.input.url=urlEl.value);
+  if(ideaEl)ideaEl.addEventListener('change',()=>S.input.idea=ideaEl.value);
 }
 
 async function callAI(prompt){
@@ -830,49 +857,485 @@ function parseJ(text){
 }
 
 async function generate(){
-  const m={url:'url',stage:'stage',team:'team',desc:'desc',uv:'uv',rev:'revenue',icp:'icp',geo:'geo',comp:'competitors',ch:'channels'};
-  Object.entries(m).forEach(([id,key])=>{const el=document.getElementById('in-'+id);if(el)S.input[key]=el.value;});
-  const ctx=`BUSINESS URL: ${S.input.url}\nDESCRIPTION: ${S.input.desc}\nUNIQUE VALUE: ${S.input.uv}\nSTAGE: ${S.input.stage}\nTEAM: ${S.input.team}\nREVENUE: ${S.input.revenue}\nICP: ${S.input.icp}\nGEO: ${S.input.geo}\nCOMPETITORS: ${S.input.competitors}\nCHANNELS: ${S.input.channels}`;
+  // Get URL or idea
+  const urlEl=document.getElementById('in-url');
+  const ideaEl=document.getElementById('in-idea');
+  if(urlEl) S.input.url=urlEl.value.trim();
+  if(ideaEl) S.input.idea=ideaEl.value.trim();
+
+  if(!S.input.url && !S.input.idea){
+    alert('Please enter your website URL or describe your business idea.');
+    return;
+  }
+
   const page=document.getElementById('app-page');
-  const steps=['Understanding business model','Identifying ideal customer profiles','Building GTM strategy','Writing sales playbook','Designing CRM blueprint','Building CRM Intelligence layer','Defining metrics & MIS','Creating execution plan'];
-  let stepDone=new Array(8).fill(false);
-  const showLoad=(pct,ai)=>`<div class="gen-wrap"><div class="gen-spin"></div><div class="gen-title">Building your GTM OS…</div><div class="gen-msg">Running all 8 modules in parallel</div><div class="gen-steps">${steps.map((s,i)=>`<div class="gen-step ${i===ai?'act':''} ${stepDone[i]?'done':''}"><div style="width:16px;text-align:center">${stepDone[i]?'✓':i===ai?'→':'○'}</div>${s}</div>`).join('')}</div><div class="gen-bar"><div class="gen-fill" style="width:${pct}%"></div></div></div>`;
-  const upd=(pct,ai,...done)=>{done.forEach(d=>stepDone[d]=true);page.innerHTML=showLoad(pct,ai);};
+  const steps=[
+    'Fetching website and company info',
+    'Researching market and competitors online',
+    'Identifying ideal customer profiles',
+    'Building GTM motion and channel strategy',
+    'Writing sales playbook and scripts',
+    'Designing CRM blueprint and automations',
+    'Building CRM Intelligence layer',
+    'Defining metrics, MIS and execution plan'
+  ];
+  let done=new Array(8).fill(false);
+  const showLoad=(pct,ai)=>`<div class="gen-wrap">
+    <div class="gen-spin"></div>
+    <div class="gen-title">Researching your business...</div>
+    <div class="gen-msg" style="font-size:12px;color:var(--ink3)">Engine 360 is scanning the web so you do not have to fill any forms</div>
+    <div class="gen-steps">${steps.map((s,i)=>`<div class="gen-step ${i===ai?'act':''} ${done[i]?'done':''}">
+      <div style="width:16px;text-align:center;flex-shrink:0">${done[i]?'✓':i===ai?'→':'○'}</div>${s}
+    </div>`).join('')}</div>
+    <div class="gen-bar"><div class="gen-fill" style="width:${pct}%"></div></div>
+  </div>`;
+
   page.innerHTML=showLoad(5,0);
+
   try{
+    // Step 1: Scrape website if URL provided
+    let webContext='';
+    if(S.input.url){
+      try{
+        const scrapeR=await fetch('/scrape?url='+encodeURIComponent(S.input.url));
+        const scrapeD=await scrapeR.json();
+        if(scrapeD.scraped){
+          webContext=`WEBSITE CONTENT:\nTitle: ${scrapeD.meta?.title||''}\nURL: ${S.input.url}\nDomain: ${scrapeD.domain}\nContent: ${scrapeD.text?.slice(0,3000)||''}`;
+        }
+      }catch(e){console.warn('Scrape failed',e);}
+    }
+
+    // Build context from web scrape + idea
+    const ctx=`${webContext?webContext+'\n\n':''}${S.input.idea?'BUSINESS IDEA: '+S.input.idea:''}
+URL: ${S.input.url||'Not provided'}
+NOTE: Research this business thoroughly. Use the website content above. Infer the business model, ICP, market size, competitors and GTM motion from what you see. Do not ask for more information. Make smart inferences.`;
+
+    done[0]=true;page.innerHTML=showLoad(12,1);
+
+    // Run biz + icp first (parallel)
     const [bizR,icpR]=await Promise.all([callAI(bizP(ctx)),callAI(icpP(ctx))]);
-    upd(25,2,0,1);S.data.biz=parseJ(bizR);S.data.icp=parseJ(icpR);
+    done[1]=true;done[2]=true;page.innerHTML=showLoad(30,3);
+    S.data.biz=parseJ(bizR);S.data.icp=parseJ(icpR);
+
+    // Run gtm + playbook (parallel)
     const [gtmR,pbR]=await Promise.all([callAI(gtmP(ctx,S.data)),callAI(pbP(ctx,S.data))]);
-    upd(50,4,2,3);S.data.gtm=parseJ(gtmR);S.data.playbook=parseJ(pbR);
+    done[3]=true;done[4]=true;page.innerHTML=showLoad(55,5);
+    S.data.gtm=parseJ(gtmR);S.data.playbook=parseJ(pbR);
+
+    // Run crm + crmi parallel
     const [crmR,crmiR]=await Promise.all([callAI(crmP(ctx,S.data)),callAI(crmiP(ctx,S.data))]);
-    upd(72,6,4,5);S.data.crm=parseJ(crmR);S.data.crmi=parseJ(crmiR);
+    done[5]=true;done[6]=true;page.innerHTML=showLoad(78,7);
+    S.data.crm=parseJ(crmR);S.data.crmi=parseJ(crmiR);
+
+    // Run mis + checklist parallel
     const [misR,ckR]=await Promise.all([callAI(misP(ctx,S.data)),callAI(ckP(ctx,S.data))]);
-    upd(95,7,6);S.data.mis=parseJ(misR);S.data.checklist=parseJ(ckR);
-    stepDone[7]=true;page.innerHTML=showLoad(100,7);
+    done[7]=true;page.innerHTML=showLoad(100,7);
+    S.data.mis=parseJ(misR);S.data.checklist=parseJ(ckR);
+
     S.generated=true;
     document.getElementById('badge-input').textContent='✓';
     document.getElementById('badge-input').className='sbi-badge done';
-    await saveData();toast('GTM OS generated - explore the modules');
-    setTimeout(()=>nav('biz'),800);
-  }catch(e){page.innerHTML=`<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-title">Generation failed</div><div class="empty-sub">${e.message}</div><button class="btn btn-blue" onclick="nav('input')">← Retry</button></div>`;}
+    await saveData();
+    toast('Your GTM OS is ready');
+    setTimeout(()=>nav('biz'),700);
+  }catch(e){
+    page.innerHTML=`<div class="empty-state">
+      <div class="empty-icon">⚠️</div>
+      <div class="empty-title">Generation failed</div>
+      <div class="empty-sub">${e.message}</div>
+      <button class="btn btn-blue" onclick="nav('input')">Try again</button>
+    </div>`;
+  }
 }
 
-// ── Prompts ──────────────────────────────────────────────────────────────
-function bizP(ctx){return`BCG consultant. Return ONLY valid JSON, no markdown.\n${ctx}\n{"companyName":"","oneLiner":"1-sentence description","category":"market category","businessModel":"B2B SaaS/Services/Platform/etc","revenueModel":"subscription/usage/etc","stage":"assessment","keyProblem":"core problem in 1 sentence","solution":"solution in 2 sentences","moat":"defensible advantage","gtmReadiness":"1-10 score + reason","marketSize":"TAM estimate","topStrengths":["s1","s2","s3"],"topRisks":["r1","r2","r3"],"blindSpots":["b1","b2"],"positioningStatement":"For [ICP], [Co] is the [cat] that [benefit] unlike [alt]","investorNarrative":"3-sentence investor narrative"}`;}
+// ── Prompts (aligned to I Know Only Numbers by Naveen Balaji) ──────────────
+function bizP(ctx){return`You are a senior strategy consultant applying the frameworks from "I Know Only Numbers" by Naveen Balaji. Research this business thoroughly and return ONLY valid JSON, no markdown, no explanation.
 
-function icpP(ctx){return`B2B GTM strategist. Return ONLY valid JSON, no markdown.\n${ctx}\n{"icps":[{"rank":1,"name":"descriptive ICP label","title":"job titles","company":"company type + size","industry":"industries","geography":"location","painPoints":["p1","p2","p3"],"triggers":["buying trigger","trigger 2"],"disqualifiers":["d1","d2"],"pitchAngle":"how to pitch this ICP","channels":["best channels"],"winRate":"% with rationale","dealSize":"ACV estimate","salesCycle":"typical length","dayInLife":"1 paragraph on their day and where your product fits","objectionToExpect":"most likely first objection","tags":["tag1","tag2"]}]}`;}
+${ctx}
 
-function gtmP(ctx,d){return`McKinsey GTM expert. Return ONLY valid JSON, no markdown.\n${ctx}\nTOP ICP:${JSON.stringify(d.icp?.icps?.[0])}\n{"motion":"PLG/Sales-led/Channel/Community/Hybrid","motionReason":"2-sentence reasoning","wedge":"sharpest market entry","wedgeReason":"why win here first","pricingStrategy":"model + rationale","channels":[{"name":"","priority":1,"why":"","effort":"Low/Med/High","timeToROI":"","tactics":["t1","t2"],"icon":"emoji"}],"roadmap":{"days1_30":["a1","a2","a3","a4"],"days31_60":["a1","a2","a3","a4"],"days61_90":["a1","a2","a3","a4"]},"competitorMatrix":[{"competitor":"","theirStrength":"","yourAdvantage":"","weaknesses":"","winLine":"one-liner","landmine":"trap question to expose their weakness"}],"keyHypotheses":["h1","h2","h3"]}`;}
+TASK: Analyse this business and return:
+{
+  "companyName": "inferred company name",
+  "oneLiner": "one sentence: what they do, for whom, and what outcome they deliver",
+  "businessModel": "B2B / B2C / B2B2C",
+  "revenueModel": "SaaS subscription / transaction fee / services / marketplace / etc",
+  "stage": "pre-revenue / 0-1 / early growth $0-1M ARR / scaling $1-10M / growth $10M+",
+  "keyProblem": "the core problem they solve in one sentence",
+  "solution": "their solution in two sentences",
+  "moat": "their defensible advantage - what makes them hard to copy",
+  "verticalOrHorizontal": "vertical or horizontal and why this matters for their GTM",
+  "marketSize": "TAM estimate with reasoning - be specific",
+  "tamSamSom": {"tam": "total addressable market", "sam": "serviceable addressable market", "som": "realistically capturable in 3 years"},
+  "gtmReadiness": "1-10 score with one sentence reason",
+  "topStrengths": ["strength 1", "strength 2", "strength 3"],
+  "topRisks": ["risk 1", "risk 2", "risk 3"],
+  "positioningStatement": "For [ICP], [Company] is the [category] that [unique benefit] unlike [alternative]",
+  "investorNarrative": "three sentence narrative: problem size, solution uniqueness, traction signal"
+}`;}
 
-function pbP(ctx,d){return`Sales playbook expert. Write REAL scripts. Return ONLY valid JSON.\n${ctx}\nICP:${JSON.stringify(d.icp?.icps?.[0])}\n{"coldEmail":{"subject":"","opener":"2 sentences","pitch":"2 sentences","proof":"1 stat or social proof","cta":"clear ask","followUp1":"day 3 new angle","followUp2":"day 7 breakup email"},"linkedIn":{"connectionNote":"<200 chars","inmailSubject":"","inmail":"full message","followUp":"after acceptance","engagementPlay":"how to warm up before connecting"},"coldCall":{"opener":"first 8 words","permissionAsk":"1 sentence","pitchLine":"30-second pitch","qualifyingQuestions":["q1","q2","q3","q4"],"handleGatekeeper":"exact words","close":"booking next step"},"whatsApp":{"first":"casual first message","followUp":"day 2 follow up"},"discoveryQuestions":["dq1","dq2","dq3","dq4","dq5","dq6"],"qualificationFramework":{"mustHave":["m1","m2","m3"],"niceToHave":["n1","n2"],"dealBreakers":["db1","db2","db3"]},"objections":[{"objection":"exact words","response":"exact response","reframe":"how to reframe","category":"price/timing/competition/trust"}],"closingTechniques":["technique with example","t2","t3"]}`;}
+function icpP(ctx){return`You are an ICP specialist applying the framework from "I Know Only Numbers" by Naveen Balaji. The book defines ICP across B2B, B2C, and B2B2C and says to find the real revenue engine, not generic profiles. Return ONLY valid JSON, no markdown.
 
-function crmP(ctx,d){return`RevOps expert. Return ONLY valid JSON.\n${ctx}\nSTAGE:${d.biz?.stage} MOTION:${d.gtm?.motion}\n{"recommendation":"HubSpot/Zoho/Pipedrive/Notion/Salesforce","reason":"2 sentences why this CRM fits","tier":"Free/Starter/Pro/Enterprise","monthlyCost":"INR or USD estimate","setupTime":"realistic setup duration","pipelineStages":[{"stage":"","definition":"entry criteria","exitCriteria":"what moves it forward","conversionRate":"est %","avgTimeInStage":"days","keyActivity":"main rep action"}],"keyFields":["field - why it matters","f2","f3","f4","f5"],"leadScoring":[{"signal":"","points":10,"category":"firmographic/behavioral/intent","rationale":"why this matters"}],"automations":[{"trigger":"","action":"","tool":"CRM/Zapier/native","impact":"problem this solves"}],"dashboards":[{"name":"","audience":"","metrics":["m1","m2"],"frequency":"daily/weekly/monthly"}],"implementationPlan":["week 1","week 2","week 3","week 4"],"commonMistakes":["m1","m2","m3"],"similarCompanies":[{"company":"similar business name","crm":"what they use","whyItWorks":"2 sentences","keyLearning":"1 takeaway for the user"}]}`;}
+${ctx}
 
-function crmiP(ctx,d){return`CRM Intelligence and Revenue Operations expert. Return ONLY valid JSON.\n${ctx}\nCRM:${d.crm?.recommendation} ICP:${JSON.stringify(d.icp?.icps?.[0])} CHANNELS:${ctx.split('CHANNELS:')[1]||''}\n{"outreachCadence":[{"day":"Day 1","channel":"Cold Call/Email/WhatsApp/LinkedIn","action":"specific action","script":"what to say","goal":"what to achieve","ifNoResponse":"what happens next"}],"integrationStack":[{"category":"Email/WhatsApp/Calendar/Analytics/Enrichment/Support","tool":"specific tool","nativeOrZapier":"native/zapier/both","cost":"monthly","setup":"how to connect","whyThisOne":"why over alternatives","alternativeIf":"alternative if budget is tight"}],"productivityMetrics":[{"metric":"metric name","description":"what it measures","howToTrack":"where/how to measure","benchmark":"industry standard","redLine":"when to investigate","frequency":"daily/weekly"}],"churnSignals":[{"signal":"observable event","severity":"high/medium/low","timeToChurn":"how long before churn","action":"what to do immediately","crmField":"field to track this in CRM","automationIdea":"how to automate detection"}],"productAnalytics":{"freeTools":["tool1 with use case","t2","t3"],"paidTools":["tool with use case","t2"],"keyEvents":["product event to track","e2","e3","e4"],"powerUserSignals":["signal that a user is a power user","s2","s3"],"atRiskSignals":["signal that a user might churn","s2","s3"]},"retentionPlaybook":[{"trigger":"what happens","action":"exact response","owner":"who does this","timeline":"when","template":"message template if applicable"}],"weeklyOperatingRhythm":[{"day":"Monday/Tuesday/etc","activity":"specific activity","duration":"minutes","tool":"tool used","output":"what comes out of this"}]}`;}
+Return 3 ranked ICP profiles. For each ICP consider: who has the most pain, who can pay, who has the fastest sales cycle. Rank by commercial potential.
+{
+  "icps": [
+    {
+      "rank": 1,
+      "name": "short descriptive label e.g. Series A SaaS VP Sales",
+      "businessModel": "B2B or B2C or B2B2C",
+      "title": "exact job titles",
+      "company": "company type, size, and stage",
+      "industry": "specific industries",
+      "geography": "India / US / SEA / etc",
+      "revenue": "company revenue range",
+      "teamSize": "headcount range",
+      "painPoints": ["specific pain 1", "specific pain 2", "specific pain 3"],
+      "triggers": ["event that makes them buy NOW - e.g. just raised Series A", "trigger 2"],
+      "disqualifiers": ["walk away if this is true", "disqualifier 2"],
+      "pitchAngle": "exact opening angle for this ICP - what you lead with",
+      "dayInLife": "one paragraph on their typical day and where your product fits into it",
+      "channels": ["best channel to reach them", "channel 2"],
+      "winRate": "estimated win rate % with reasoning",
+      "dealSize": "ACV or monthly revenue estimate",
+      "salesCycle": "typical length",
+      "objectionToExpect": "the most likely first objection verbatim",
+      "tags": ["tag1", "tag2"]
+    }
+  ]
+}`;}
 
-function misP(ctx,d){return`Revenue analytics expert. Return ONLY valid JSON.\n${ctx}\nMOTION:${d.gtm?.motion} STAGE:${d.biz?.stage}\n{"northStar":{"metric":"the one number","why":"reason","currentBaseline":"where they likely are","target":"90-day ambitious target","howToMeasure":"where to track"},"leadingIndicators":[{"metric":"","description":"","frequency":"daily/weekly","benchmark":"","target":"","redLine":"when to act"}],"laggingIndicators":[{"metric":"","description":"","frequency":"monthly","benchmark":"","target":""}],"funnelBenchmarks":[{"stage":"","industryConversion":"benchmark %","yourTarget":"%","impactIfMissed":"downstream effect"}],"weeklyReview":{"duration":"30 min","agenda":["item1","item2","item3","item4"],"whoAttends":"","keyQuestion":"the one question this meeting must answer"},"monthlyReview":{"agenda":["i1","i2","i3"]},"investorMetrics":["m1 - why investors care","m2","m3","m4"],"redFlags":["warning - what to do","w2","w3"],"vanityMetrics":["metric to ignore - why","v2"]}`;}
+function gtmP(ctx,d){return`You are a GTM strategist applying the motion framework from "I Know Only Numbers" by Naveen Balaji. The book defines three GTM motions: account-based (high ACV, small universe), volume (low ACV, high volume), and partner-led (leverage distribution). Return ONLY valid JSON, no markdown.
 
-function ckP(ctx,d){return`GTM execution expert. Write SPECIFIC actions. Return ONLY valid JSON.\n${ctx}\nMOTION:${d.gtm?.motion} STAGE:${d.biz?.stage}\n{"week1":[{"task":"exact action","owner":"Founder/Sales/Marketing","tool":"specific tool","timeEstimate":"hours","outcome":"measurable result","ifStuck":"what to do if blocked"}],"week2":[{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],"week3":[{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],"week4":[{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],"hiringSignals":[{"role":"exact title","signal":"milestone that triggers hire","notBefore":"condition","firstHireProfile":"what to look for","expectedImpact":"what this unlocks"}],"toolStack":[{"category":"","tool":"","tier":"Free/Paid","cost":"monthly","priority":"Must/Nice","setupTime":""}],"antiPatterns":["mistake to avoid - context","ap2","ap3"]}`;}
+${ctx}
+TOP ICP: ${JSON.stringify(d.icp?.icps?.[0])}
+BUSINESS: ${JSON.stringify({model:d.biz?.businessModel,stage:d.biz?.stage,moat:d.biz?.moat})}
+
+{
+  "motion": "Account-based / Volume / Partner-led / Hybrid",
+  "motionReason": "two sentence reasoning aligned to their business model and ICP",
+  "wedge": "the sharpest, most specific market entry point",
+  "wedgeReason": "why win here first before expanding",
+  "pricingStrategy": "pricing model recommendation with rationale",
+  "onlineEngine": "specific online channels and tactics that work for this business",
+  "offlineEngine": "specific offline channels - events, partnerships, direct - that apply",
+  "channels": [
+    {
+      "name": "channel name",
+      "priority": 1,
+      "why": "why this channel works for this specific business",
+      "effort": "Low / Medium / High",
+      "timeToROI": "realistic timeline",
+      "tactics": ["specific tactic 1", "tactic 2"],
+      "icon": "emoji"
+    }
+  ],
+  "roadmap": {
+    "days1_30": ["specific action 1", "action 2", "action 3", "action 4"],
+    "days31_60": ["action 1", "action 2", "action 3", "action 4"],
+    "days61_90": ["action 1", "action 2", "action 3", "action 4"]
+  },
+  "competitorMatrix": [
+    {
+      "competitor": "real competitor name",
+      "theirStrength": "what they do well",
+      "yourAdvantage": "specific advantage over them",
+      "weaknesses": "their real weakness",
+      "winLine": "exact sentence to use when prospect mentions this competitor",
+      "landmine": "trap question that exposes their weakness"
+    }
+  ],
+  "partnerStrategy": "if partner-led motion applies - who are the ideal partners and why",
+  "keyHypotheses": ["hypothesis to test in 30 days", "hypothesis 2", "hypothesis 3"]
+}`;}
+
+function pbP(ctx,d){return`You are a sales playbook expert applying the frameworks from "I Know Only Numbers" by Naveen Balaji. The book says: lead response in 60 seconds, objection handling with empathy then pivot, MEDDIC qualification, multi-channel outreach. Write REAL scripts - not templates, actual words. Return ONLY valid JSON, no markdown.
+
+${ctx}
+ICP: ${JSON.stringify(d.icp?.icps?.[0])}
+
+{
+  "coldEmail": {
+    "subject": "exact subject line - no clickbait",
+    "opener": "two sentences - personalised to their pain",
+    "pitch": "two sentences - outcome not features",
+    "proof": "one stat or social proof line",
+    "cta": "one clear ask - specific time or specific action",
+    "followUp1": "day 3 - new angle, not a chase",
+    "followUp2": "day 7 - breakup email that gets responses"
+  },
+  "linkedIn": {
+    "connectionNote": "under 200 characters - no pitch",
+    "inmailSubject": "subject line",
+    "inmail": "full message under 150 words",
+    "followUp": "message after they accept connection",
+    "engagementPlay": "how to warm them up before connecting"
+  },
+  "coldCall": {
+    "opener": "first 8 words",
+    "permissionAsk": "one sentence to earn 30 seconds",
+    "pitchLine": "30 second pitch",
+    "qualifyingQuestions": ["question 1", "question 2", "question 3", "question 4"],
+    "handleGatekeeper": "exact words",
+    "close": "how to book the next step"
+  },
+  "whatsApp": {
+    "first": "first message - casual, short, specific",
+    "followUp": "day 2 follow up"
+  },
+  "leadResponse": "exact script for responding to an inbound lead within 60 seconds as per the book",
+  "discoveryQuestions": ["question 1", "question 2", "question 3", "question 4", "question 5", "question 6"],
+  "meddic": {
+    "metrics": "what metric does this solve for the buyer",
+    "economicBuyer": "who holds the budget for this",
+    "decisionCriteria": "what criteria will they use to decide",
+    "decisionProcess": "typical process to get a deal signed",
+    "identifyPain": "the pain that makes this urgent",
+    "champion": "who inside will fight for this deal"
+  },
+  "objections": [
+    {
+      "objection": "exact words the prospect uses",
+      "response": "exact response - empathy then pivot",
+      "reframe": "how to reframe the objection",
+      "category": "price / timing / competition / trust"
+    }
+  ],
+  "closingTechniques": ["technique with exact example words", "technique 2", "technique 3"]
+}`;}
+
+function crmP(ctx,d){return`You are a RevOps expert. The book "I Know Only Numbers" by Naveen Balaji has detailed CRM setup chapters for HubSpot and Zoho. Recommend the right CRM and design the full setup. Return ONLY valid JSON, no markdown.
+
+${ctx}
+STAGE: ${d.biz?.stage} MOTION: ${d.gtm?.motion} ICP: ${d.icp?.icps?.[0]?.businessModel}
+
+{
+  "recommendation": "HubSpot / Zoho / Pipedrive / Notion",
+  "reason": "two sentences - why this CRM for this exact stage and motion",
+  "tier": "Free / Starter / Pro / Enterprise",
+  "monthlyCost": "realistic monthly cost",
+  "setupTime": "realistic time to set up and go live",
+  "pipelineStages": [
+    {
+      "stage": "stage name",
+      "definition": "entry criteria - what moves a deal INTO this stage",
+      "exitCriteria": "what moves it to the NEXT stage",
+      "conversionRate": "industry benchmark %",
+      "avgTimeInStage": "average days",
+      "keyActivity": "what the rep must do in this stage"
+    }
+  ],
+  "keyFields": ["field name and why it matters", "field 2", "field 3", "field 4", "field 5"],
+  "leadScoring": [
+    {
+      "signal": "observable signal",
+      "points": 10,
+      "category": "firmographic / behavioral / intent",
+      "rationale": "why this signal matters"
+    }
+  ],
+  "automations": [
+    {
+      "trigger": "what triggers this automation",
+      "action": "what happens automatically",
+      "tool": "CRM native / Zapier / Make",
+      "impact": "problem this solves"
+    }
+  ],
+  "dashboards": [
+    {
+      "name": "dashboard name",
+      "audience": "who looks at this",
+      "metrics": ["metric 1", "metric 2"],
+      "frequency": "daily / weekly / monthly"
+    }
+  ],
+  "implementationPlan": ["week 1 actions", "week 2", "week 3", "week 4"],
+  "commonMistakes": ["mistake and how to avoid it", "mistake 2", "mistake 3"],
+  "similarCompanies": [
+    {
+      "company": "similar business type",
+      "crm": "what they use",
+      "whyItWorks": "why it works for them",
+      "keyLearning": "one takeaway"
+    }
+  ]
+}`;}
+
+function crmiP(ctx,d){return`You are a CRM Intelligence expert. Apply the outreach cadence, integration and churn frameworks from "I Know Only Numbers" by Naveen Balaji. Return ONLY valid JSON, no markdown.
+
+${ctx}
+CRM: ${d.crm?.recommendation} ICP: ${JSON.stringify(d.icp?.icps?.[0])} CHANNELS: email, WhatsApp, LinkedIn, cold call
+
+{
+  "outreachCadence": [
+    {
+      "day": "Day 1",
+      "channel": "Cold Call / Email / WhatsApp / LinkedIn",
+      "action": "specific action",
+      "script": "exact words to say or send",
+      "goal": "what you are trying to achieve",
+      "ifNoResponse": "what happens if no reply"
+    }
+  ],
+  "integrationStack": [
+    {
+      "category": "Email / WhatsApp / Calendar / Analytics / Enrichment / Support",
+      "tool": "specific tool name",
+      "nativeOrZapier": "native / zapier / both",
+      "cost": "monthly cost",
+      "setup": "how to connect in one sentence",
+      "whyThisOne": "why this over alternatives",
+      "alternativeIf": "cheaper or free alternative"
+    }
+  ],
+  "productivityMetrics": [
+    {
+      "metric": "metric name",
+      "description": "what it measures",
+      "howToTrack": "where to find this",
+      "benchmark": "industry standard",
+      "redLine": "when to investigate immediately",
+      "frequency": "daily / weekly"
+    }
+  ],
+  "churnSignals": [
+    {
+      "signal": "observable event in product or CRM",
+      "severity": "high / medium / low",
+      "timeToChurn": "how many days before likely churn",
+      "action": "exact action to take immediately",
+      "crmField": "field to track this in CRM",
+      "automationIdea": "how to automate detection"
+    }
+  ],
+  "productAnalytics": {
+    "freeTools": ["tool and use case", "tool 2"],
+    "paidTools": ["tool and use case", "tool 2"],
+    "keyEvents": ["product event to track", "event 2", "event 3"],
+    "powerUserSignals": ["signal that user is a power user", "signal 2"],
+    "atRiskSignals": ["signal user might churn", "signal 2"]
+  },
+  "retentionPlaybook": [
+    {
+      "trigger": "what happens",
+      "action": "exact response",
+      "owner": "who does this",
+      "timeline": "when to do it",
+      "template": "message template if applicable"
+    }
+  ],
+  "weeklyOperatingRhythm": [
+    {
+      "day": "Monday",
+      "activity": "specific activity",
+      "duration": "30 min",
+      "tool": "tool used",
+      "output": "what comes out of this session"
+    }
+  ]
+}`;}
+
+function misP(ctx,d){return`You are a revenue analytics expert applying the MIS and operating cadence framework from "I Know Only Numbers" by Naveen Balaji. The book says: daily MIS, weekly review, monthly board pack. Every number must be specific. Return ONLY valid JSON, no markdown.
+
+${ctx}
+MOTION: ${d.gtm?.motion} STAGE: ${d.biz?.stage}
+
+{
+  "northStar": {
+    "metric": "the one number that drives everything",
+    "why": "why this and not another metric",
+    "currentBaseline": "where they likely are now",
+    "target": "90 day ambitious but realistic target",
+    "howToMeasure": "exactly where and how to track this"
+  },
+  "leadingIndicators": [
+    {
+      "metric": "metric name",
+      "description": "what it predicts",
+      "frequency": "daily / weekly",
+      "benchmark": "industry standard",
+      "target": "what to aim for",
+      "redLine": "number that triggers immediate action"
+    }
+  ],
+  "laggingIndicators": [
+    {
+      "metric": "metric name",
+      "description": "what outcome it measures",
+      "frequency": "monthly",
+      "benchmark": "industry benchmark",
+      "target": "90 day target"
+    }
+  ],
+  "dailyMIS": {
+    "metrics": ["metric to check every day", "metric 2", "metric 3"],
+    "tool": "where to see this",
+    "reviewTime": "when to check - e.g. 9am every day"
+  },
+  "weeklyReview": {
+    "duration": "time needed",
+    "agenda": ["agenda item 1", "item 2", "item 3", "item 4"],
+    "whoAttends": "who must be in the room",
+    "keyQuestion": "the one question this meeting must answer"
+  },
+  "monthlyReview": {
+    "agenda": ["item 1", "item 2", "item 3"],
+    "boardPack": ["what goes in the monthly board or investor pack"]
+  },
+  "funnelBenchmarks": [
+    {
+      "stage": "funnel stage",
+      "industryConversion": "benchmark %",
+      "yourTarget": "target %",
+      "impactIfMissed": "downstream effect"
+    }
+  ],
+  "investorMetrics": ["metric and why investors care about it", "metric 2", "metric 3"],
+  "redFlags": ["warning signal and what to do immediately", "flag 2", "flag 3"],
+  "vanityMetrics": ["metric to stop tracking and why", "metric 2"]
+}`;}
+
+function ckP(ctx,d){return`You are a GTM execution expert applying the 100-day execution calendar framework from "I Know Only Numbers" by Naveen Balaji. Write SPECIFIC actions with named owners and tools. Return ONLY valid JSON, no markdown.
+
+${ctx}
+MOTION: ${d.gtm?.motion} STAGE: ${d.biz?.stage} CRM: ${d.crm?.recommendation}
+
+{
+  "week1": [
+    {
+      "task": "exact specific action - not vague",
+      "owner": "Founder / Sales / Marketing / Ops",
+      "tool": "specific tool to use",
+      "timeEstimate": "hours",
+      "outcome": "measurable result when done",
+      "ifStuck": "what to do if blocked"
+    }
+  ],
+  "week2": [{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],
+  "week3": [{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],
+  "week4": [{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],
+  "hiringSignals": [
+    {
+      "role": "exact title",
+      "signal": "milestone that triggers this hire",
+      "notBefore": "condition that must be true first",
+      "firstHireProfile": "what to look for",
+      "expectedImpact": "what this hire unlocks"
+    }
+  ],
+  "toolStack": [
+    {
+      "category": "category name",
+      "tool": "tool name",
+      "tier": "Free / Paid",
+      "cost": "monthly cost",
+      "priority": "Must-have / Nice-to-have",
+      "setupTime": "time to set up"
+    }
+  ],
+  "antiPatterns": ["mistake to avoid with context", "anti-pattern 2", "anti-pattern 3"]
+}`;}
 
 // ── Render: Biz ───────────────────────────────────────────────────────────
 function renderBiz(){
