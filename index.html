@@ -433,21 +433,53 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
   .lp-footer{padding:16px 20px}
   .lp-footer-in{flex-direction:column;gap:8px;text-align:center}
   /* APP MOBILE */
-  #view-app.active{flex-direction:column!important}
-  .sb{width:100%!important;height:auto!important;flex-direction:row!important;overflow-x:auto!important;overflow-y:hidden!important;flex-shrink:0!important}
-  .sb-top{display:flex;align-items:center;padding:8px 12px;border-bottom:none;border-right:1px solid var(--nav-rule);flex-shrink:0;min-width:fit-content}
-  .sb-user{margin-top:0;margin-left:8px}
-  .sb-sec{display:flex;align-items:center;gap:2px;padding:6px 8px;flex-shrink:0}
-  .sb-sec-label{display:none}
-  .sbi{padding:7px 10px;white-space:nowrap;font-size:11.5px;flex-shrink:0}
-  .sbi-ic svg{display:none}
-  .sbi-badge{display:none}
-  .app-main{flex:1;min-height:0;overflow:hidden}
-  .app-page{padding:14px;overflow-y:auto}
-  .topbar{padding:0 14px;height:46px}
-  .input-row{flex-direction:column}
-  .roadmap-cols{grid-template-columns:1fr}
-  .crm-panel-grid{grid-template-columns:1fr}
+  #view-app.active{flex-direction:column!important;height:100vh!important}
+  /* Sidebar becomes a scrollable top strip */
+  .sb{
+    width:100%!important;height:auto!important;
+    flex-direction:row!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    flex-shrink:0!important;
+    display:flex!important;
+    align-items:center!important;
+    padding:0 4px!important;
+    min-height:52px!important;
+    border-bottom:1px solid var(--nav-rule)!important;
+  }
+  /* Hide top logo block on mobile - save space */
+  .sb-top{display:none!important}
+  /* All nav sections flow inline */
+  .sb-sec{
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    gap:2px!important;
+    padding:6px 4px!important;
+    flex-shrink:0!important;
+  }
+  .sb-sec-label{display:none!important}
+  /* Each nav item is compact pill */
+  .sbi{
+    padding:6px 12px!important;
+    white-space:nowrap!important;
+    font-size:11px!important;
+    flex-shrink:0!important;
+    border-radius:20px!important;
+  }
+  .sbi.act{background:rgba(37,99,235,.3)!important}
+  /* Hide icons on mobile, show text only */
+  .sbi-ic{display:none!important}
+  .sbi-badge{display:none!important}
+  /* Active indicator different on mobile */
+  .sbi.act::before{display:none!important}
+  /* Main content fills remaining height */
+  .app-main{flex:1!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+  .topbar{padding:0 14px!important;height:44px!important;flex-shrink:0!important}
+  .app-page{flex:1!important;padding:14px!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important}
+  .input-row{flex-direction:column!important}
+  .roadmap-cols{grid-template-columns:1fr!important}
+  .crm-panel-grid{grid-template-columns:1fr!important}
+  .metric-grid{grid-template-columns:repeat(2,1fr)!important}
 }
 @media(max-width:480px){
   .mods-grid{grid-template-columns:1fr}
