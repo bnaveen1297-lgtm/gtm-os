@@ -750,12 +750,26 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
   <rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="white"/>
   <rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="rgba(255,255,255,0.4)"/>
 </svg><div class="logo-wordmark logo-wordmark-sm" style="color:white">Engine <span class="w360">360</span></div></div>
-      <div class="sb-user"><div class="sb-avatar" id="sb-av">?</div><div class="sb-uname" id="sb-nm">Loading</div><button class="sb-out" onclick="signOut()" title="Sign out">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-</button></div>
+      <div class="sb-user" style="cursor:pointer;position:relative" onclick="toggleUserMenu(this)">
+        <div class="sb-avatar" id="sb-av">?</div>
+        <div class="sb-uname" id="sb-nm">Loading</div>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div id="user-menu" style="display:none;position:absolute;left:12px;right:12px;background:#243660;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.3)">
+        <div style="padding:8px 10px;font-size:11px;color:rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:4px;font-family:var(--mono)" id="user-email-display">Signed in</div>
+        <button onclick="nav('connect');closeUserMenu()" style="width:100%;padding:8px 10px;background:none;border:none;color:rgba(255,255,255,.8);font-size:12px;font-weight:500;text-align:left;cursor:pointer;border-radius:5px;display:flex;align-items:center;gap:8px" onmouseover="this.style.background='rgba(255,255,255,.07)'" onmouseout="this.style.background='none'">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          Connect Data Sources
+        </button>
+        <button onclick="signOut();closeUserMenu()" style="width:100%;padding:8px 10px;background:none;border:none;color:#f87171;font-size:12px;font-weight:500;text-align:left;cursor:pointer;border-radius:5px;display:flex;align-items:center;gap:8px" onmouseover="this.style.background='rgba(239,68,68,.1)'" onmouseout="this.style.background='none'">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign out
+        </button>
+      </div>
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Setup</div>
       <div class="sbi act" id="nav-input" onclick="nav('input')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Business Input<span class="sbi-badge" id="badge-input">Start</span></div>
+      <div class="sbi" id="nav-connect" onclick="nav('connect')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data</div>
       <div class="sbi" id="nav-dashboard" onclick="nav('dashboard')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Strategy Dashboard</div>
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Strategy</div>
@@ -840,9 +854,27 @@ function showApp(){
 }
 function setSBUser(u){
   const n=document.getElementById('sb-nm'),a=document.getElementById('sb-av');
-  if(n) n.textContent=u.displayName||u.email?.split('@')[0]||'User';
+  const em=document.getElementById('user-email-display');
+  if(n)n.textContent=u.displayName||u.email?.split('@')[0]||'User';
+  if(em)em.textContent=u.email||'Signed in';
   if(a){if(u.photoURL){a.innerHTML=`<img src="${u.photoURL}" referrerpolicy="no-referrer">`;}else{a.textContent=(u.displayName||u.email||'U')[0].toUpperCase();}}
 }
+function toggleUserMenu(el){
+  const m=document.getElementById('user-menu');
+  if(!m)return;
+  m.style.display=m.style.display==='none'?'block':'none';
+}
+function closeUserMenu(){
+  const m=document.getElementById('user-menu');
+  if(m)m.style.display='none';
+}
+window.toggleUserMenu=toggleUserMenu;
+window.closeUserMenu=closeUserMenu;
+// Close menu when clicking outside
+document.addEventListener('click',function(e){
+  const m=document.getElementById('user-menu');
+  if(m&&!e.target.closest('.sb-user')&&!e.target.closest('#user-menu'))m.style.display='none';
+});
 
 async function loadData(uid){
   try{
@@ -921,7 +953,7 @@ function nav(page){
   const subEl=document.getElementById('app-sub');
   if(titleEl)titleEl.textContent=t;
   if(subEl)subEl.textContent=s;
-  const renders={input:renderInput,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
+  const renders={input:renderInput,connect:renderConnect,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
   if(pageEl)pageEl.innerHTML=fn?fn():'';
@@ -1591,6 +1623,306 @@ MOTION: ${d.gtm?.motion} STAGE: ${d.biz?.stage} CRM: ${d.crm?.recommendation}
   "antiPatterns": ["mistake to avoid with context", "anti-pattern 2", "anti-pattern 3"]
 }`;}
 
+
+
+// ── Render: Connect ────────────────────────────────────────────────────────
+function renderConnect(){
+  const conn=S.connections||{};
+  return`
+  <div class="sec-hdr">
+    <div class="sec-eyebrow">Connect Data Sources</div>
+    <div class="sec-title">Live data makes Engine 360 your daily OS</div>
+    <div class="sec-sub">Connect Zoho CRM or Google Sheets to get live pipeline health, MIS numbers, churn signals and weekly review data every time you open the app.</div>
+  </div>
+
+  <!-- ZOHO CRM -->
+  <div class="out-block" style="margin-bottom:14px">
+    <div style="padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px">
+      <div style="width:44px;height:44px;border-radius:10px;background:#EEF2FF;border:1px solid #C7D2FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#E00"/><text x="5" y="27" font-size="20" font-weight="800" fill="white" font-family="Arial">Z</text></svg>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Zoho CRM</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Pull live pipeline, deal stages, lead counts, conversion rates and team activity</div>
+      </div>
+      <div id="zoho-status-badge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
+    </div>
+    <div style="padding:20px 22px">
+      ${conn.zoho?`
+      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div style="font-size:12.5px;color:var(--green);font-weight:600">Zoho CRM connected — org: ${conn.zoho.org||'Your org'}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px" id="zoho-stats">
+        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif" id="z-leads">—</div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Total Leads</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif" id="z-deals">—</div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Open Deals</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif" id="z-pipeline">—</div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Pipeline Value</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-border btn-sm" onclick="syncZoho()">Sync now</button>
+        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.2)" onclick="disconnectZoho()">Disconnect</button>
+      </div>
+      `:`
+      <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:16px;margin-bottom:16px">
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">What you need from Zoho</div>
+        <div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">1.</span>Go to <strong>Zoho CRM > Setup > Developer Space > Client ID</strong></div>
+        <div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">2.</span>Create a self-client OAuth token with scope: <code style="background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:11px">ZohoCRM.modules.ALL</code></div>
+        <div style="display:flex;gap:6px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">3.</span>Paste your Access Token and Data Center below</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 120px;gap:10px;margin-bottom:12px">
+        <div>
+          <label class="input-label">Zoho Access Token</label>
+          <input type="password" id="zoho-token" placeholder="1000.xxxxxxxxxxxx..." style="font-size:12px">
+        </div>
+        <div>
+          <label class="input-label">Data Center</label>
+          <select id="zoho-dc">
+            <option value="com">Global (.com)</option>
+            <option value="in" selected>India (.in)</option>
+            <option value="eu">Europe (.eu)</option>
+            <option value="com.au">Australia</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:12px">
+        <label class="input-label">Organization ID (optional)</label>
+        <input type="text" id="zoho-org" placeholder="Your Zoho org ID" style="font-size:12px">
+      </div>
+      <button class="btn btn-blue" onclick="connectZoho()" style="font-family:'DM Sans',sans-serif">Connect Zoho CRM</button>
+      `}
+    </div>
+  </div>
+
+  <!-- GOOGLE SHEETS -->
+  <div class="out-block" style="margin-bottom:14px">
+    <div style="padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px">
+      <div style="width:44px;height:44px;border-radius:10px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="3" fill="#34A853"/><rect x="14" y="16" width="20" height="2.5" rx="1" fill="white"/><rect x="14" y="21" width="20" height="2.5" rx="1" fill="white"/><rect x="14" y="26" width="14" height="2.5" rx="1" fill="white"/><rect x="14" y="31" width="16" height="2.5" rx="1" fill="white"/></svg>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Google Sheets</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker, MIS, or pipeline sheet for daily number updates</div>
+      </div>
+      <div id="sheets-status-badge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
+    </div>
+    <div style="padding:20px 22px">
+      ${conn.sheets?`
+      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div style="font-size:12.5px;color:var(--green);font-weight:600">Google Sheets connected — ${conn.sheets.name||'Your sheet'}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px">Mapped columns</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
+          ${Object.entries(conn.sheets.mapping||{date:'A',leads:'B',revenue:'C',stage:'D'}).map(([k,v])=>`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:8px 10px;display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--ink3)">${k}</span><span style="font-weight:700;color:var(--blue);font-family:var(--mono)">Col ${v}</span></div>`).join('')}
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-border btn-sm" onclick="syncSheets()">Sync now</button>
+        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,68,.2)" onclick="disconnectSheets()">Disconnect</button>
+      </div>
+      `:`
+      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:14px;margin-bottom:16px">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">Use our template sheet</div>
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6">Copy our pre-built MIS template with all the columns Engine 360 needs — daily leads, revenue, pipeline stages, team activity.</div>
+        <a href="https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/copy" target="_blank" class="btn btn-blue btn-sm" style="text-decoration:none;display:inline-flex">Copy MIS template</a>
+      </div>
+      <div style="margin-bottom:12px">
+        <label class="input-label">Google Sheet URL</label>
+        <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="font-size:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px">Make sure the sheet is shared as "Anyone with link can view"</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+        <div>
+          <label class="input-label" style="font-size:10px">Date column</label>
+          <input type="text" id="col-date" placeholder="A" value="A" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Leads column</label>
+          <input type="text" id="col-leads" placeholder="B" value="B" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Revenue column</label>
+          <input type="text" id="col-rev" placeholder="C" value="C" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Stage column</label>
+          <input type="text" id="col-stage" placeholder="D" value="D" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Owner column</label>
+          <input type="text" id="col-owner" placeholder="E" value="E" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Status column</label>
+          <input type="text" id="col-status" placeholder="F" value="F" style="font-size:12px;text-align:center">
+        </div>
+      </div>
+      <button class="btn btn-blue" onclick="connectSheets()" style="font-family:'DM Sans',sans-serif">Connect Google Sheets</button>
+      `}
+    </div>
+  </div>
+
+  <!-- DAILY OS PREVIEW -->
+  <div style="background:var(--navy);border-radius:var(--r2);padding:20px 22px;margin-bottom:14px">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:10px">What connecting unlocks</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+      ${[
+        ['Morning MIS','Daily numbers — leads added, revenue vs target, pipeline movement'],
+        ['Weekly Review','Auto-generated agenda from your book framework with live data'],
+        ['Pipeline Health','Deals by stage, stalled deals, conversion rate per stage'],
+        ['Churn Signals','At-risk accounts flagged daily based on activity signals'],
+        ['Team Tracker','Who owns what, cadence compliance, follow-up overdue'],
+        ['Live Benchmarks','Your numbers vs book benchmarks — CAC, LTV, churn rate']
+      ].map(([t,d])=>`<div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">${t}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">${d}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// ── Connection logic ───────────────────────────────────────────────────────
+async function connectZoho(){
+  const token=document.getElementById('zoho-token')?.value?.trim();
+  const dc=document.getElementById('zoho-dc')?.value||'in';
+  const org=document.getElementById('zoho-org')?.value?.trim();
+  if(!token){toast('Enter your Zoho Access Token');return;}
+
+  const btn=event.target;btn.textContent='Connecting...';btn.disabled=true;
+
+  try{
+    // Test the connection via our proxy
+    const r=await fetch('/zoho?action=test&dc='+dc,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token,org})
+    });
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+
+    // Save connection details (token stored in Firestore for user)
+    if(!S.connections)S.connections={};
+    S.connections.zoho={token,dc,org:org||d.org||'',connected:true,name:d.org||'Zoho CRM'};
+    await saveData();
+    toast('Zoho CRM connected!');
+    nav('connect');
+  }catch(e){
+    toast('Connection failed: '+e.message);
+    btn.textContent='Connect Zoho CRM';btn.disabled=false;
+  }
+}
+
+async function connectSheets(){
+  const url=document.getElementById('sheet-url')?.value?.trim();
+  if(!url||!url.includes('spreadsheets')){toast('Enter a valid Google Sheets URL');return;}
+
+  const sheetId=url.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1];
+  if(!sheetId){toast('Could not extract sheet ID from URL');return;}
+
+  const mapping={
+    date:document.getElementById('col-date')?.value||'A',
+    leads:document.getElementById('col-leads')?.value||'B',
+    revenue:document.getElementById('col-rev')?.value||'C',
+    stage:document.getElementById('col-stage')?.value||'D',
+    owner:document.getElementById('col-owner')?.value||'E',
+    status:document.getElementById('col-status')?.value||'F',
+  };
+
+  const btn=event.target;btn.textContent='Connecting...';btn.disabled=true;
+
+  try{
+    // Try to read sheet via our proxy
+    const r=await fetch('/sheets?action=test&id='+sheetId);
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+
+    if(!S.connections)S.connections={};
+    S.connections.sheets={sheetId,url,mapping,name:d.title||'Your Sheet',connected:true};
+    await saveData();
+    toast('Google Sheets connected!');
+    nav('connect');
+  }catch(e){
+    // If proxy fails, still save the config and let user know
+    if(!S.connections)S.connections={};
+    S.connections.sheets={sheetId,url,mapping,name:'Your Sheet',connected:true};
+    await saveData();
+    toast('Sheet saved — sync will pull data');
+    nav('connect');
+    btn.textContent='Connect Google Sheets';btn.disabled=false;
+  }
+}
+
+async function syncZoho(){
+  toast('Syncing Zoho CRM...');
+  try{
+    const conn=S.connections?.zoho;
+    if(!conn){toast('Zoho not connected');return;}
+    const r=await fetch('/zoho?action=sync&dc='+conn.dc,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token:conn.token})
+    });
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    S.liveData={...S.liveData,...d};
+    await saveData();
+    // Update displayed stats
+    const leads=document.getElementById('z-leads');
+    const deals=document.getElementById('z-deals');
+    const pipe=document.getElementById('z-pipeline');
+    if(leads)leads.textContent=d.leads||'—';
+    if(deals)deals.textContent=d.deals||'—';
+    if(pipe)pipe.textContent=d.pipeline||'—';
+    toast('Zoho synced!');
+  }catch(e){toast('Sync failed: '+e.message);}
+}
+
+async function syncSheets(){
+  toast('Syncing Google Sheets...');
+  try{
+    const conn=S.connections?.sheets;
+    if(!conn){toast('Sheets not connected');return;}
+    const r=await fetch('/sheets?action=sync&id='+conn.sheetId+'&mapping='+encodeURIComponent(JSON.stringify(conn.mapping)));
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    S.liveData={...S.liveData,...d};
+    await saveData();
+    toast('Sheets synced!');
+  }catch(e){toast('Sync failed: '+e.message);}
+}
+
+async function disconnectZoho(){
+  if(!confirm('Disconnect Zoho CRM?'))return;
+  delete S.connections.zoho;
+  delete S.liveData?.zoho;
+  await saveData();
+  toast('Zoho disconnected');
+  nav('connect');
+}
+
+async function disconnectSheets(){
+  if(!confirm('Disconnect Google Sheets?'))return;
+  delete S.connections.sheets;
+  await saveData();
+  toast('Sheets disconnected');
+  nav('connect');
+}
+
+window.connectZoho=connectZoho;
+window.connectSheets=connectSheets;
+window.syncZoho=syncZoho;
+window.syncSheets=syncSheets;
+window.disconnectZoho=disconnectZoho;
+window.disconnectSheets=disconnectSheets;
 
 // ── Render: Dashboard ─────────────────────────────────────────────────────
 function renderDashboard(){
