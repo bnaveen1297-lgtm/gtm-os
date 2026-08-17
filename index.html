@@ -522,6 +522,12 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 @media(max-width:480px){
   .mods-grid{grid-template-columns:1fr}
   .stats-inner{grid-template-columns:1fr 1fr}
+  /* Free card - stack on mobile */
+  .free-card-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:640px){
+  /* Free card two columns on small screens */  
+  .free-feat-grid{grid-template-columns:1fr!important}
 }
 </style>
 <!-- LANDING -->
@@ -665,49 +671,196 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 <div class="pricing-sec">
   <div class="pricing-inner">
     <div class="sec-ey">Pricing</div>
-    <h2 class="sec-h2">Simple pricing. No surprises.</h2>
-    <p class="sec-sub">Start free. Upgrade when your team needs unlimited analyses, collaboration, or API access.</p>
-    <div class="pricing-grid">
-      <div class="plan">
-        <div class="plan-name">Starter</div>
-        <div class="plan-price">Free<span></span></div>
-        <div class="plan-desc">For solo founders exploring their first GTM motion.</div>
-        <div class="plan-rule"></div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>3 full analyses per month</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>All 8 modules included</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM Intelligence module</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>JSON export</div>
-        <button class="plan-btn plan-btn-g" onclick="openAuth('signup')">Get started free</button>
+    <h2 class="sec-h2" style="font-size:clamp(24px,3vw,36px)">Everything free. Always.</h2>
+    <p class="sec-sub" style="max-width:560px">Engine 360 is completely free to use. All 8 modules, Zoho CRM and Google Sheets integration, strategy dashboard, and daily MIS. No credit card. No trial. Just sign up and run your first analysis.</p>
+
+    <!-- SINGLE FREE CARD - FULL WIDTH -->
+    <div style="background:var(--bg);border:2px solid var(--blue);border-radius:var(--r2);padding:32px;margin-top:32px;position:relative;box-shadow:0 0 0 4px rgba(37,99,235,.08),var(--shadow2)">
+      <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:4px 18px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--mono);white-space:nowrap">Free forever — no credit card needed</div>
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start" class="free-card-grid">
+        <div>
+          <div style="font-family:var(--display);font-size:52px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-2px;margin-bottom:6px">Free</div>
+          <div style="font-size:14px;color:var(--ink3);margin-bottom:24px;line-height:1.6">Everything you need to build and run your complete go-to-market operating system.</div>
+          <button class="btn btn-blue" onclick="openAuth('signup')" style="padding:13px 28px;font-size:15px;font-weight:700;font-family:var(--display);border-radius:var(--r);box-shadow:0 4px 14px rgba(37,99,235,.3);width:100%">Start for free</button>
+          <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--ink3)">Already have an account? <a onclick="openAuth('login')" style="color:var(--blue);font-weight:600;cursor:pointer">Sign in</a></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px" class="free-feat-grid">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">All 8 strategy modules</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">ICP Engine — 3 profiles</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">GTM motion and channels</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Sales playbook and scripts</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">CRM blueprint (HubSpot/Zoho)</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">CRM Intelligence layer</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">MIS and metrics dashboard</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">100-day execution plan</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Zoho CRM integration</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Google Sheets connector</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Strategy dashboard</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">PDCA and quadrant analysis</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Hypothesis validation</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">TAM/SAM/SOM calculation</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">LinkedIn signal research</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12.5px;color:var(--navy)">Unlimited analyses</span>
+        </div>
       </div>
-      <div class="plan feat">
-        <div class="plan-badge">Most popular</div>
-        <div class="plan-name">Growth</div>
-        <div class="plan-price">₹2,499<span>/mo</span></div>
-        <div class="plan-desc">For sales leaders building repeatable GTM systems.</div>
-        <div class="plan-rule"></div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Team workspace (up to 5)</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Churn signal dashboard</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Integration setup guides</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Cadence templates export</div>
-        <button class="plan-btn plan-btn-p" onclick="openAuth('signup')">Start free trial</button>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Scale</div>
-        <div class="plan-price">₹7,999<span>/mo</span></div>
-        <div class="plan-desc">For consultants and agencies serving multiple clients.</div>
-        <div class="plan-rule"></div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Everything in Growth</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Unlimited team members</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>White-label exports</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Multi-brand workspaces</div>
-        <div class="plan-feat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>API access</div>
-        <button class="plan-btn plan-btn-g" onclick="window.location.href='mailto:hello@engine360.ai'">Talk to us</button>
-      </div>
+    </div>
+
+    <!-- FEATURE CARDS SLIDER -->
+    <div style="margin-top:48px">
+      <div style="font-size:10px;font-weight:700;color:var(--ink4);letter-spacing:.14em;text-transform:uppercase;font-family:var(--mono);margin-bottom:6px">What you get inside</div>
+      <h3 style="font-family:var(--display);font-size:clamp(20px,2.5vw,28px);font-weight:800;color:var(--navy);letter-spacing:-.4px;margin-bottom:24px">8 modules. One operating system.</h3>
+
+      <!-- SLIDER CONTAINER -->
+      <div style="position:relative;overflow:hidden" id="feat-slider">
+        <div id="feat-track" style="display:flex;gap:14px;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform">
+
+          <!-- Card 1: Business Profile -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;transition:all .2s;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563EB,#3B82F6)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--blue-l);border:1px solid rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--blue);font-family:var(--mono);margin-bottom:5px">MODULE 01</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">Business Profile</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Positioning, moat, TAM/SAM/SOM calculation, vertical vs horizontal verdict, hypothesis validation, five pillars status and investor narrative.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Positioning</span>
+              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">TAM/SAM/SOM</span>
+              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Hypothesis</span>
+            </div>
+          </div>
+
+          <!-- Card 2: ICP Engine -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#16A34A,#22C55E)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--green-l);border:1px solid rgba(22,163,74,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono);margin-bottom:5px">MODULE 02</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">ICP Engine</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">3 ICP profiles scored across 5 filters (15-point scale), day-in-their-life, buying triggers, LinkedIn signals, disqualifiers and exact pitch angle per ICP.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">3 Profiles</span>
+              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">5-Filter Score</span>
+              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">LinkedIn</span>
+            </div>
+          </div>
+
+          <!-- Card 3: GTM Strategy -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D97706,#F59E0B)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--amber-l);border:1px solid rgba(217,119,6,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--amber);font-family:var(--mono);margin-bottom:5px">MODULE 03</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">GTM Strategy</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Account-based, volume, or partner-led motion verdict. Online and offline engine. 90-day roadmap, competitive battlecards with landmines, PDCA cycle.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Motion</span>
+              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Battlecards</span>
+              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">PDCA</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Sales Playbook -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7C3AED,#9B72F7)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--purple-l);border:1px solid rgba(124,58,237,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--purple);font-family:var(--mono);margin-bottom:5px">MODULE 04</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">Sales Playbook</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Real scripts for email, LinkedIn, cold call, WhatsApp. 60-second lead response system. MEDDIC framework. Objection matrix with exact response and reframe.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--purple-l);color:var(--purple);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Scripts</span>
+              <span style="font-size:10px;background:var(--purple-l);color:var(--purple);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">MEDDIC</span>
+              <span style="font-size:10px;background:var(--purple-l);color:var(--purple);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Objections</span>
+            </div>
+          </div>
+
+          <!-- Card 5: CRM Blueprint -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563EB,#16A34A)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--blue-l);border:1px solid rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--blue);font-family:var(--mono);margin-bottom:5px">MODULE 05</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">CRM Blueprint</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">HubSpot or Zoho CRM recommendation by ICP and stage. Pipeline stages with entry/exit criteria. Lead scoring model. Automation flows. Similar company benchmarks.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">HubSpot/Zoho</span>
+              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Pipeline</span>
+              <span style="font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Scoring</span>
+            </div>
+          </div>
+
+          <!-- Card 6: CRM Intelligence -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#DC2626,#EF4444)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--red-l);border:1px solid rgba(220,38,38,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--red);font-family:var(--mono);margin-bottom:5px">MODULE 06</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">CRM Intelligence</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Outreach cadence day-by-day. Integration stack (email, WhatsApp, calendar). Churn signals by severity with CRM field and automation. Weekly operating rhythm.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--red-l);color:var(--red);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Cadence</span>
+              <span style="font-size:10px;background:var(--red-l);color:var(--red);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Churn Signals</span>
+              <span style="font-size:10px;background:var(--red-l);color:var(--red);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">WhatsApp</span>
+            </div>
+          </div>
+
+          <!-- Card 7: MIS and Metrics -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#16A34A,#2563EB)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--green-l);border:1px solid rgba(22,163,74,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono);margin-bottom:5px">MODULE 07</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">MIS and Metrics</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">The 6 numbers from Chapter 1 of "I Know Only Numbers". North star, daily MIS, weekly review agenda, funnel benchmarks, investor metrics and red flags.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">6 Numbers</span>
+              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Daily MIS</span>
+              <span style="font-size:10px;background:var(--green-l);color:var(--green);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Weekly Review</span>
+            </div>
+          </div>
+
+          <!-- Card 8: Execution Plan -->
+          <div class="feat-card" style="min-width:280px;background:var(--bg);border:1.5px solid var(--rule);border-radius:var(--r2);padding:24px;flex-shrink:0;position:relative;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D97706,#16A34A)"></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:var(--amber-l);border:1px solid rgba(217,119,6,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--amber);font-family:var(--mono);margin-bottom:5px">MODULE 08</div>
+            <div style="font-size:15px;font-weight:800;color:var(--navy);font-family:var(--display);margin-bottom:8px;letter-spacing:-.2px">100-Day Execution Plan</div>
+            <div style="font-size:12.5px;color:var(--ink3);line-height:1.65;margin-bottom:14px">Week-by-week checklist with owners, tools and outcomes. Hiring signal checklist per role. Full tool stack. Anti-patterns to avoid. Priority matrix.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">100 Days</span>
+              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Hiring Signals</span>
+              <span style="font-size:10px;background:var(--amber-l);color:var(--amber);padding:2px 8px;border-radius:3px;font-weight:700;font-family:var(--mono)">Tool Stack</span>
+            </div>
+          </div>
+
+        </div><!-- end track -->
+
+        <!-- Slider controls -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
+          <div style="display:flex;gap:8px" id="feat-dots"></div>
+          <div style="display:flex;gap:8px">
+            <button onclick="slideFeats(-1)" style="width:36px;height:36px;border:1.5px solid var(--rule2);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--rule2)'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button onclick="slideFeats(1)" style="width:36px;height:36px;border:1.5px solid var(--rule2);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--rule2)'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div><!-- end slider -->
     </div>
   </div>
 </div>
-
 <div class="footer-cta">
   <h2>Ready to build your<br>go-to-market engine?</h2>
   <p>Paste your website URL and get your complete GTM strategy, playbook, CRM blueprint and churn signals in 60 seconds.</p>
@@ -2512,7 +2665,72 @@ Object.assign(window,{
 });
 
 </script>
-<script>function lpSelectCRM(i){document.querySelectorAll(".crm-tab").forEach((t,j)=>t.classList.toggle("sel",i===j));[0,1,2,3].forEach(j=>{const d=document.getElementById("lp-crm-d"+j);if(d)d.classList.toggle("open",i===j);});}window.lpSelectCRM=lpSelectCRM;</script>
+<script>function lpSelectCRM(i){document.querySelectorAll(".crm-tab").forEach((t,j)=>t.classList.toggle("sel",i===j));[0,1,2,3].forEach(j=>{const d=document.getElementById("lp-crm-d"+j);if(d)d.classList.toggle("open",i===j);});}window.lpSelectCRM=lpSelectCRM;
+// ── Feature card slider ────────────────────────────────────────────────────
+let _featIdx=0;
+const _featVisible=()=>window.innerWidth<640?1:window.innerWidth<900?2:3;
+
+function initFeatSlider(){
+  const track=document.getElementById('feat-track');
+  const dots=document.getElementById('feat-dots');
+  if(!track||!dots)return;
+  const cards=track.children.length;
+  const vis=_featVisible();
+  const total=Math.ceil(cards/vis);
+  dots.innerHTML='';
+  for(let i=0;i<total;i++){
+    const d=document.createElement('div');
+    d.style.cssText=`width:${i===_featIdx?'20px':'6px'};height:6px;border-radius:3px;background:${i===_featIdx?'var(--blue)':'var(--rule2)'};transition:all .3s;cursor:pointer`;
+    d.onclick=()=>{_featIdx=i;updateFeatSlider();};
+    dots.appendChild(d);
+  }
+  updateFeatSlider();
+}
+
+function updateFeatSlider(){
+  const track=document.getElementById('feat-track');
+  const dots=document.getElementById('feat-dots');
+  if(!track)return;
+  const vis=_featVisible();
+  const cardW=292; // 280px + 12px gap
+  track.style.transform=`translateX(-${_featIdx*vis*cardW}px)`;
+  if(dots){
+    [...dots.children].forEach((d,i)=>{
+      d.style.width=i===_featIdx?'20px':'6px';
+      d.style.background=i===_featIdx?'var(--blue)':'var(--rule2)';
+    });
+  }
+}
+
+function slideFeats(dir){
+  const track=document.getElementById('feat-track');
+  if(!track)return;
+  const vis=_featVisible();
+  const total=Math.ceil(track.children.length/vis);
+  _featIdx=Math.max(0,Math.min(_featIdx+dir,total-1));
+  updateFeatSlider();
+}
+window.slideFeats=slideFeats;
+
+// Auto-init slider when landing is visible
+const _sliderObs=new MutationObserver(()=>{
+  if(document.getElementById('feat-track'))initFeatSlider();
+});
+_sliderObs.observe(document.body,{childList:true,subtree:true});
+setTimeout(initFeatSlider,500);
+window.addEventListener('resize',()=>{_featIdx=0;initFeatSlider();});
+
+// Touch/swipe support for slider
+let _touchX=0;
+document.addEventListener('touchstart',e=>{_touchX=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-_touchX;
+  if(Math.abs(dx)>50&&document.getElementById('feat-track')){
+    slideFeats(dx<0?1:-1);
+  }
+},{passive:true});
+
+</script>
 <script>
 // Re-apply app layout on resize/orientation change
 window.addEventListener('resize',()=>{
