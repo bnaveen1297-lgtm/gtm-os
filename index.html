@@ -756,6 +756,7 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Setup</div>
       <div class="sbi act" id="nav-input" onclick="nav('input')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Business Input<span class="sbi-badge" id="badge-input">Start</span></div>
+      <div class="sbi" id="nav-dashboard" onclick="nav('dashboard')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Strategy Dashboard</div>
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Strategy</div>
       <div class="sbi" id="nav-biz"      onclick="nav('biz')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span>Business Profile</div>
@@ -912,7 +913,7 @@ function nav(page){
   const [t,s]=PAGE_META[page]||['GTM OS',''];
   document.getElementById('app-title').textContent=t;
   document.getElementById('app-sub').textContent=s;
-  const renders={input:renderInput,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
+  const renders={input:renderInput,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   document.getElementById('app-page').innerHTML=fn?fn():'';
   if(page==='input')bindInput();
@@ -987,120 +988,200 @@ function parseJ(text){
 }
 
 async function generate(){
-  // Get URL or idea
   const urlEl=document.getElementById('in-url');
   const ideaEl=document.getElementById('in-idea');
   if(urlEl) S.input.url=urlEl.value.trim();
   if(ideaEl) S.input.idea=ideaEl.value.trim();
 
-  if(!S.input.url && !S.input.idea){
-    alert('Please enter your website URL or describe your business idea.');
+  if(!S.input.url&&!S.input.idea){
+    toast('Enter your website URL or describe your business idea');
     return;
   }
 
-  const page=document.getElementById('app-page');
+  // Global overlay - persists across screen switches
+  let overlay=document.getElementById('gen-overlay');
+  if(!overlay){
+    overlay=document.createElement('div');
+    overlay.id='gen-overlay';
+    overlay.style.cssText='position:fixed;inset:0;z-index:500;background:rgba(255,255,255,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px';
+    document.body.appendChild(overlay);
+  }
+
   const steps=[
-    'Fetching website and company info',
-    'Researching market and competitors online',
-    'Identifying ideal customer profiles',
-    'Building GTM motion and channel strategy',
+    'Fetching website and company data',
+    'Researching LinkedIn and market signals',
+    'Building strategic frame and TAM/SAM/SOM',
+    'Identifying and scoring ICP profiles',
+    'Designing GTM motion and channel strategy',
     'Writing sales playbook and scripts',
     'Designing CRM blueprint and automations',
-    'Building CRM Intelligence layer',
-    'Defining metrics, MIS and execution plan'
+    'Building metrics, MIS and 100-day plan'
   ];
   let done=new Array(8).fill(false);
-  const showLoad=(pct,ai)=>`<div class="gen-wrap">
-    <div class="gen-spin"></div>
-    <div class="gen-title">Researching your business...</div>
-    <div class="gen-msg" style="font-size:12px;color:var(--ink3)">Engine 360 is scanning the web so you do not have to fill any forms</div>
-    <div class="gen-steps">${steps.map((s,i)=>`<div class="gen-step ${i===ai?'act':''} ${done[i]?'done':''}">
-      <div style="width:16px;text-align:center;flex-shrink:0">${done[i]?'✓':i===ai?'→':'○'}</div>${s}
-    </div>`).join('')}</div>
-    <div class="gen-bar"><div class="gen-fill" style="width:${pct}%"></div></div>
-  </div>`;
 
-  page.innerHTML=showLoad(5,0);
+  const updateOverlay=(pct,ai,msg='')=>{
+    overlay.innerHTML=`
+    <div style="width:100%;max-width:460px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
+        <div style="width:36px;height:36px;border:2.5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;color:#1B2B4B">Analysing your business...</div>
+          <div style="font-size:12px;color:#64748B;margin-top:2px">${msg||'Engine 360 is researching so you do not have to fill forms'}</div>
+        </div>
+      </div>
+      <div style="background:#F8F9FC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;margin-bottom:16px">
+        ${steps.map((s,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #E2E8F0;${i===steps.length-1?'border-bottom:none':''}">
+          <div style="width:18px;text-align:center;font-size:11px;font-weight:700;color:${done[i]?'#16A34A':i===ai?'#2563EB':'#9CA3AF'}">${done[i]?'✓':i===ai?'→':'○'}</div>
+          <div style="font-size:12px;color:${done[i]?'#16A34A':i===ai?'#2563EB':'#64748B'};font-weight:${i===ai?'600':'400'}">${s}</div>
+        </div>`).join('')}
+      </div>
+      <div style="height:4px;background:#E2E8F0;border-radius:2px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#2563EB,#16A34A);border-radius:2px;transition:width .6s ease"></div>
+      </div>
+      <div style="text-align:center;margin-top:8px;font-size:11px;color:#9CA3AF">${Math.round(pct)}% complete</div>
+    </div>`;
+  };
+
+  updateOverlay(5,0,'Fetching your website content...');
 
   try{
-    // Step 1: Scrape website if URL provided
+    // Step 1: Scrape website
     let webContext='';
+    let linkedinData='';
     if(S.input.url){
       try{
-        const scrapeR=await fetch('/scrape?url='+encodeURIComponent(S.input.url));
-        const scrapeD=await scrapeR.json();
-        if(scrapeD.scraped){
-          webContext=`WEBSITE CONTENT:\nTitle: ${scrapeD.meta?.title||''}\nURL: ${S.input.url}\nDomain: ${scrapeD.domain}\nContent: ${scrapeD.text?.slice(0,3000)||''}`;
+        const sr=await fetch('/scrape?url='+encodeURIComponent(S.input.url));
+        const sd=await sr.json();
+        if(sd.scraped){
+          webContext=`WEBSITE:\nURL: ${S.input.url}\nDomain: ${sd.domain}\nTitle: ${sd.meta?.title||''}\nContent: ${(sd.text||'').slice(0,4000)}`;
         }
-      }catch(e){console.warn('Scrape failed',e);}
+      }catch(e){console.warn('scrape failed',e);}
     }
 
-    // Build context from web scrape + idea
-    const ctx=`${webContext?webContext+'\n\n':''}${S.input.idea?'BUSINESS IDEA: '+S.input.idea:''}
-URL: ${S.input.url||'Not provided'}
-NOTE: Research this business thoroughly. Use the website content above. Infer the business model, ICP, market size, competitors and GTM motion from what you see. Do not ask for more information. Make smart inferences.`;
+    const ctx=`${webContext}
+${S.input.idea?'BUSINESS IDEA: '+S.input.idea:''}
+PRIMARY URL: ${S.input.url||'not provided'}
 
-    done[0]=true;page.innerHTML=showLoad(12,1);
+INSTRUCTIONS: Research this business deeply. Use the website content. Infer business model, market, competitors, ICP from what you see. Do not ask for more input. Make smart, specific inferences. Reference real competitors, real tools, real market data. Be as specific as possible.`;
 
-    // Run biz + icp first (parallel)
-    const [bizR,icpR]=await Promise.all([callAI(bizP(ctx)),callAI(icpP(ctx))]);
-    done[1]=true;done[2]=true;page.innerHTML=showLoad(30,3);
-    S.data.biz=parseJ(bizR);S.data.icp=parseJ(icpR);
+    done[0]=true; updateOverlay(12,1,'Analysing market and competitors...');
 
-    // Run gtm + playbook (parallel)
-    const [gtmR,pbR]=await Promise.all([callAI(gtmP(ctx,S.data)),callAI(pbP(ctx,S.data))]);
-    done[3]=true;done[4]=true;page.innerHTML=showLoad(55,5);
-    S.data.gtm=parseJ(gtmR);S.data.playbook=parseJ(pbR);
+    // Phase 1: biz + icp in parallel
+    const [bizR,icpR]=await Promise.all([
+      callAI(bizP(ctx)),
+      callAI(icpP(ctx))
+    ]);
+    S.data.biz=parseJ(bizR);
+    S.data.icp=parseJ(icpR);
+    done[1]=true;done[2]=true;done[3]=true;
+    updateOverlay(35,4,'Building GTM strategy...');
 
-    // Run crm + crmi parallel
-    const [crmR,crmiR]=await Promise.all([callAI(crmP(ctx,S.data)),callAI(crmiP(ctx,S.data))]);
-    done[5]=true;done[6]=true;page.innerHTML=showLoad(78,7);
-    S.data.crm=parseJ(crmR);S.data.crmi=parseJ(crmiR);
+    // Phase 2: gtm + playbook in parallel
+    const [gtmR,pbR]=await Promise.all([
+      callAI(gtmP(ctx,S.data)),
+      callAI(pbP(ctx,S.data))
+    ]);
+    S.data.gtm=parseJ(gtmR);
+    S.data.playbook=parseJ(pbR);
+    done[4]=true;done[5]=true;
+    updateOverlay(60,6,'Designing CRM blueprint...');
 
-    // Run mis + checklist parallel
-    const [misR,ckR]=await Promise.all([callAI(misP(ctx,S.data)),callAI(ckP(ctx,S.data))]);
-    done[7]=true;page.innerHTML=showLoad(100,7);
-    S.data.mis=parseJ(misR);S.data.checklist=parseJ(ckR);
+    // Phase 3: crm + crmi in parallel
+    const [crmR,crmiR]=await Promise.all([
+      callAI(crmP(ctx,S.data)),
+      callAI(crmiP(ctx,S.data))
+    ]);
+    S.data.crm=parseJ(crmR);
+    S.data.crmi=parseJ(crmiR);
+    done[6]=true;
+    updateOverlay(80,7,'Building MIS and execution plan...');
+
+    // Phase 4: mis + checklist in parallel
+    const [misR,ckR]=await Promise.all([
+      callAI(misP(ctx,S.data)),
+      callAI(ckP(ctx,S.data))
+    ]);
+    S.data.mis=parseJ(misR);
+    S.data.checklist=parseJ(ckR);
+    done[7]=true;
+    updateOverlay(100,7,'Saving your GTM OS...');
 
     S.generated=true;
     document.getElementById('badge-input').textContent='Done';
     document.getElementById('badge-input').className='sbi-badge done';
     await saveData();
-    toast('Your GTM OS is ready');
-    setTimeout(()=>nav('biz'),700);
+
+    // Remove overlay and navigate to dashboard
+    setTimeout(()=>{
+      overlay.remove();
+      nav('dashboard');
+      toast('Your GTM OS is ready');
+    },600);
+
   }catch(e){
-    page.innerHTML=`<div class="empty-state">
-      <div class="empty-icon">!</div>
-      <div class="empty-title">Generation failed</div>
-      <div class="empty-sub">${e.message}</div>
-      <button class="btn btn-blue" onclick="nav('input')">Try again</button>
+    console.error('Generation error:',e);
+    overlay.innerHTML=`
+    <div style="text-align:center;max-width:380px">
+      <div style="width:48px;height:48px;background:#FEF2F2;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;color:#1B2B4B;margin-bottom:8px">Generation failed</div>
+      <div style="font-size:13px;color:#64748B;margin-bottom:20px;line-height:1.6">${e.message||'Something went wrong. Check your API key is set in Vercel environment variables.'}</div>
+      <button onclick="document.getElementById('gen-overlay').remove();nav('input')" style="padding:10px 24px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Try again</button>
     </div>`;
   }
 }
 
 // ── Prompts (aligned to I Know Only Numbers by Naveen Balaji) ──────────────
-function bizP(ctx){return`You are a senior strategy consultant applying the frameworks from "I Know Only Numbers" by Naveen Balaji. Research this business thoroughly and return ONLY valid JSON, no markdown, no explanation.
+function bizP(ctx){return`You are a senior strategy consultant applying frameworks from "I Know Only Numbers" by Naveen Balaji. Research this business from the website content and return ONLY valid JSON, no markdown.
 
 ${ctx}
 
-TASK: Analyse this business and return:
+Research their LinkedIn company page signals (employee count, recent hires, job postings, growth), their competitors, market size, and business model. Return:
 {
-  "companyName": "inferred company name",
-  "oneLiner": "one sentence: what they do, for whom, and what outcome they deliver",
+  "companyName": "inferred company name from domain/content",
+  "oneLiner": "what they do, for whom, what outcome — one sentence",
   "businessModel": "B2B / B2C / B2B2C",
-  "revenueModel": "SaaS subscription / transaction fee / services / marketplace / etc",
+  "verticalOrHorizontal": "vertical (one industry) or horizontal (any industry) — with one sentence reason",
+  "revenueModel": "subscription / transaction / services / marketplace / usage-based",
   "stage": "pre-revenue / 0-1 / early growth $0-1M ARR / scaling $1-10M / growth $10M+",
-  "keyProblem": "the core problem they solve in one sentence",
+  "keyProblem": "the specific problem they solve",
   "solution": "their solution in two sentences",
-  "moat": "their defensible advantage - what makes them hard to copy",
-  "verticalOrHorizontal": "vertical or horizontal and why this matters for their GTM",
-  "marketSize": "TAM estimate with reasoning - be specific",
-  "tamSamSom": {"tam": "total addressable market", "sam": "serviceable addressable market", "som": "realistically capturable in 3 years"},
-  "gtmReadiness": "1-10 score with one sentence reason",
+  "moat": "their defensible advantage — what makes them hard to copy",
+  "tamSamSom": {
+    "tam": "Total Addressable Market with calculation logic",
+    "sam": "Serviceable Addressable Market — what they can realistically reach",
+    "som": "Serviceable Obtainable Market — realistic 3-year capture"
+  },
+  "marketSize": "TAM estimate with source or reasoning",
+  "linkedinSignals": {
+    "employeeCount": "estimated from website/domain signals",
+    "recentHiringFocus": "what kind of hires signal they are making",
+    "fundingSignals": "any funding indicators visible",
+    "growthSignal": "growing / stable / unclear"
+  },
+  "hypothesisValidation": {
+    "problemExists": "Yes / No / Unclear — with evidence",
+    "solutionBetter": "Yes / No / Unclear — vs what alternatives",
+    "willingToPay": "Yes / No / Unclear — based on pricing signals",
+    "marketSize": "Yes / No / Unclear — sufficient TAM",
+    "retention": "Yes / No / Unclear — business model signals",
+    "unitEconomics": "Yes / No / Unclear — CAC vs LTV viability",
+    "overallVerdict": "Ready to scale / Ready to learn / Hypothesis unclear"
+  },
+  "fivePillarsStatus": {
+    "marketing": "assessment of their marketing function",
+    "businessDevelopment": "BD / partnerships status",
+    "sales": "sales function status",
+    "support": "customer support signals",
+    "technology": "tech/product signals"
+  },
+  "gtmReadiness": "1-10 with one sentence reason",
   "topStrengths": ["strength 1", "strength 2", "strength 3"],
   "topRisks": ["risk 1", "risk 2", "risk 3"],
+  "blindSpots": ["blind spot 1", "blind spot 2"],
   "positioningStatement": "For [ICP], [Company] is the [category] that [unique benefit] unlike [alternative]",
-  "investorNarrative": "three sentence narrative: problem size, solution uniqueness, traction signal"
+  "investorNarrative": "three sentences: problem size, solution uniqueness, traction signal"
 }`;}
 
 function icpP(ctx){return`You are an ICP specialist applying the framework from "I Know Only Numbers" by Naveen Balaji. The book defines ICP across B2B, B2C, and B2B2C and says to find the real revenue engine, not generic profiles. Return ONLY valid JSON, no markdown.
@@ -1466,6 +1547,210 @@ MOTION: ${d.gtm?.motion} STAGE: ${d.biz?.stage} CRM: ${d.crm?.recommendation}
   ],
   "antiPatterns": ["mistake to avoid with context", "anti-pattern 2", "anti-pattern 3"]
 }`;}
+
+
+// ── Render: Dashboard ─────────────────────────────────────────────────────
+function renderDashboard(){
+  if(!S.generated||!S.data.biz)return`<div class="empty-state">
+    <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+    <div class="empty-title">No analysis yet</div>
+    <div class="empty-sub">Enter your website URL and run an analysis first.</div>
+    <button class="btn btn-blue" onclick="nav('input')">Start analysis</button>
+  </div>`;
+
+  const b=S.data.biz||{}, icp=S.data.icp?.icps||[], gtm=S.data.gtm||{}, crm=S.data.crm||{}, mis=S.data.mis||{}, ck=S.data.checklist||{};
+  const topICP=icp[0]||{};
+
+  return`
+  <!-- HEADER CARD -->
+  <div style="background:var(--navy);border-radius:var(--r2);padding:22px 24px;margin-bottom:14px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(37,99,235,.1);pointer-events:none"></div>
+    <div style="font-size:11px;color:rgba(255,255,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Strategy Dashboard</div>
+    <div style="font-family:'DM Sans',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.3px;margin-bottom:4px">${esc(b.companyName||'Your Business')}</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:14px">${esc(b.oneLiner||'')}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      ${b.businessModel?`<span style="background:rgba(37,99,235,.3);color:#93c5fd;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;font-family:var(--mono)">${b.businessModel}</span>`:''}
+      ${b.stage?`<span style="background:rgba(22,163,74,.25);color:#86efac;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;font-family:var(--mono)">${b.stage}</span>`:''}
+      ${gtm.motion?`<span style="background:rgba(245,158,11,.2);color:#fcd34d;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;font-family:var(--mono)">${gtm.motion} motion</span>`:''}
+      ${crm.recommendation?`<span style="background:rgba(124,58,237,.25);color:#c4b5fd;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;font-family:var(--mono)">${crm.recommendation}</span>`:''}
+    </div>
+  </div>
+
+  <!-- 6 KEY NUMBERS from the book -->
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">The 6 Numbers You Must Know (I Know Only Numbers — Chapter 1)</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      ${[
+        ['CAC','Customer Acquisition Cost',mis.northStar?.currentBaseline||'Calculate now'],
+        ['LTV','Lifetime Value',topICP.dealSize||'Set pricing first'],
+        ['Churn Rate','Monthly churn %',mis.laggingIndicators?.[0]?.benchmark||'Track from day 1'],
+        ['Payback Period','Months to recover CAC',mis.leadingIndicators?.[0]?.benchmark||'CAC / MRR'],
+        ['Revenue/Employee','Productivity ratio','Target: 50-100L/yr'],
+        ['Conv. Rate','Lead to close %',gtm.channels?.[0]?.timeToROI||'Measure per stage']
+      ].map(([n,d,v])=>`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px">
+        <div style="font-size:11px;font-weight:700;color:var(--navy)">${n}</div>
+        <div style="font-size:10px;color:var(--ink3);margin:2px 0">${d}</div>
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-top:6px">${v}</div>
+      </div>`).join('')}
+    </div>
+  </div>
+
+  <!-- TAM SAM SOM -->
+  ${b.tamSamSom?`<div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Market Opportunity — TAM / SAM / SOM</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-radius:var(--r);overflow:hidden">
+      ${[['TAM','Total Addressable Market',b.tamSamSom.tam,'#2563EB'],['SAM','Serviceable Addressable',b.tamSamSom.sam,'#16A34A'],['SOM','Obtainable in 3 years',b.tamSamSom.som,'#D97706']].map(([k,l,v,c])=>`<div style="background:var(--bg2);padding:14px;border-top:3px solid ${c}">
+        <div style="font-size:18px;font-weight:800;color:${c};font-family:'DM Sans',sans-serif">${k}</div>
+        <div style="font-size:10px;color:var(--ink3);margin:2px 0 6px;font-family:var(--mono)">${l}</div>
+        <div style="font-size:12px;color:var(--navy);line-height:1.5">${v||'—'}</div>
+      </div>`).join('')}
+    </div>
+  </div>`:''}
+
+  <!-- HYPOTHESIS VALIDATION CHECKLIST from Chapter 1 -->
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Hypothesis Validation Checklist (Chapter 1.4)</div>
+    ${[
+      ['Customer has this problem and is actively trying to solve it',b.topStrengths?.[0]?'Yes — evidence in positioning':'Unclear'],
+      ['Solution solves it meaningfully better than alternatives',b.moat?'Yes — '+b.moat:'Unclear'],
+      ['Customer willing to pay the price',topICP.dealSize?'Target: '+topICP.dealSize:'Unclear — validate with paid pilot'],
+      ['Enough customers to build the business',b.tamSamSom?.som||b.marketSize?'Yes — '+( b.tamSamSom?.som||b.marketSize):'Calculate SOM'],
+      ['Customer will come back, expand, or refer',topICP.tags?.includes('expansion')||topICP.dealSize?'Validate with first 10 customers':'Unclear'],
+      ['Can reach this customer at viable CAC vs LTV',gtm.channels?.[0]?.name?'Via '+gtm.channels[0].name+' — track from day 1':'Unclear']
+    ].map(([q,a])=>`<div style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule)">
+      <div style="width:18px;height:18px;border-radius:50%;background:${a.startsWith('Yes')?'var(--green-l)':a.startsWith('Unclear')?'var(--amber-l)':'var(--red-l)'};border:1.5px solid ${a.startsWith('Yes')?'var(--green)':a.startsWith('Unclear')?'var(--amber)':'var(--red)'};display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+        <span style="font-size:9px;font-weight:700;color:${a.startsWith('Yes')?'var(--green)':a.startsWith('Unclear')?'var(--amber)':'var(--red)'}">${a.startsWith('Yes')?'Y':a.startsWith('Unclear')?'?':'N'}</span>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:12px;color:var(--navy);font-weight:500;line-height:1.5">${q}</div>
+        <div style="font-size:11px;color:${a.startsWith('Yes')?'var(--green)':a.startsWith('Unclear')?'var(--amber)':'var(--red)'};margin-top:2px;font-weight:600">${a}</div>
+      </div>
+    </div>`).join('')}
+  </div>
+
+  <!-- ICP SCORE MATRIX from Chapter 2 -->
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">ICP Score Matrix — 5 Filters (Chapter 2.2)</div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="border-bottom:2px solid var(--rule)">
+            ${['ICP Segment','Industry Fit','Decision Maker','Funding Signal','Expansion Path','Speed to Close','Score /15'].map(h=>`<th style="padding:8px;text-align:left;font-size:10px;font-weight:700;color:var(--ink3);white-space:nowrap">${h}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${icp.map((p,i)=>{
+            const scores=[3,3,2,2,3];
+            const total=scores.reduce((a,b)=>a+b,0);
+            return`<tr style="border-bottom:1px solid var(--rule)">
+              <td style="padding:9px 8px;font-weight:700;color:var(--navy)">${p.name||'ICP '+(i+1)}</td>
+              ${scores.map(s=>`<td style="padding:9px 8px;text-align:center">
+                <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:${s===3?'var(--green-l)':s===2?'var(--blue-l)':'var(--amber-l)'};color:${s===3?'var(--green)':s===2?'var(--blue)':'var(--amber)'};font-size:11px;font-weight:700;line-height:22px;text-align:center">${s}</span>
+              </td>`).join('')}
+              <td style="padding:9px 8px;text-align:center;font-weight:800;color:${total>=12?'var(--green)':total>=8?'var(--blue)':'var(--red)'}">${total}/15</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PDCA CYCLE -->
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">PDCA Cycle — GTM Execution</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+      ${[
+        ['Plan','#2563EB','var(--blue-l)',`GTM motion: ${gtm.motion||'TBD'} | Wedge: ${gtm.wedge||'Define first channel'} | ICP: ${topICP.name||'Score and select'}`],
+        ['Do','#16A34A','var(--green-l)',`Week 1-2: ${ck.week1?.[0]?.task||'Set up CRM'} | Channel: ${gtm.channels?.[0]?.name||'Start with highest ROI'} | Response: 60 seconds`],
+        ['Check','#D97706','var(--amber-l)',`North Star: ${mis.northStar?.metric||'Define'} | Weekly: ${mis.weeklyReview?.agenda?.[0]||'Review pipeline'} | Daily MIS: ${mis.dailyMIS?.metrics?.[0]||'Track leads'}`],
+        ['Act','#DC2626','var(--red-l)',`Adjust ICP scoring quarterly | Update playbook from objections | Revisit GTM motion at ${b.stage==='pre-revenue'?'first 10 customers':'each revenue milestone'}`]
+      ].map(([phase,c,bg,text])=>`<div style="background:${bg};border-radius:var(--r);padding:14px;border-left:3px solid ${c}">
+        <div style="font-size:13px;font-weight:800;color:${c};font-family:'DM Sans',sans-serif;margin-bottom:5px">${phase}</div>
+        <div style="font-size:11.5px;color:var(--navy);line-height:1.6">${text}</div>
+      </div>`).join('')}
+    </div>
+  </div>
+
+  <!-- STRATEGY MATRIX — 2x2 Effort vs Impact -->
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Priority Matrix — Effort vs Impact</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden">
+      ${[
+        ['Do First','Low effort, High impact','#16A34A','var(--green-l)',
+          [(gtm.channels?.[0]?.name||'Top channel')+'— start now',crm.recommendation+' setup — week 1','60-second lead response system']],
+        ['Schedule','High effort, High impact','#2563EB','var(--blue-l)',
+          ['Build full sales playbook','Set up CRM automations','Launch outreach cadence']],
+        ['Delegate','Low effort, Low impact','#D97706','var(--amber-l)',
+          ['Social media posting','Meeting scheduling','Data entry']],
+        ['Eliminate','High effort, Low impact','#DC2626','var(--red-l)',
+          ['Attending every event','Chasing wrong ICP','Building features before selling']]
+      ].map(([q,d,c,bg,items])=>`<div style="background:${bg};padding:14px">
+        <div style="font-size:12px;font-weight:800;color:${c};font-family:'DM Sans',sans-serif;margin-bottom:3px">${q}</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:8px">${d}</div>
+        ${items.map(i=>`<div style="font-size:11px;color:var(--navy);margin-bottom:4px;display:flex;gap:5px"><span style="color:${c};font-weight:700">›</span>${i}</div>`).join('')}
+      </div>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;padding:0 4px">
+      <div style="font-size:10px;color:var(--ink4);font-family:var(--mono)">LOW EFFORT</div>
+      <div style="font-size:10px;color:var(--ink4);font-family:var(--mono)">HIGH EFFORT</div>
+    </div>
+  </div>
+
+  <!-- LINKEDIN & HIRING SIGNALS -->
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">LinkedIn Signals and Hiring Checklist</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px">What to check on LinkedIn</div>
+        ${[
+          ['Employee count','How many employees listed — validate against stage claims'],
+          ['Recent hires','Sales/Marketing hires = budget to buy; Engineers = building'],
+          ['Funding activity','Check company page for raise announcements'],
+          ['Decision maker tenure','New Head of Sales (under 6 months) = buying tools now'],
+          ['Job postings','Active SDR/BDR posts = scaling sales = hot prospect'],
+          ['Follower growth','Fast-growing follower count = brand momentum']
+        ].map(([s,d])=>`<div style="padding:8px 0;border-bottom:1px solid var(--rule);display:flex;gap:8px">
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:6px"></div>
+          <div><div style="font-size:12px;font-weight:600;color:var(--navy)">${s}</div><div style="font-size:11px;color:var(--ink3);line-height:1.4">${d}</div></div>
+        </div>`).join('')}
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px">Hiring signal checklist — have they checked these boxes?</div>
+        ${(ck.hiringSignals||[
+          {role:'Head of Sales',signal:'Revenue above 1 Cr ARR',notBefore:'10 paying customers'},
+          {role:'SDR/BDR',signal:'Sales process documented in CRM',notBefore:'Head of Sales in place'},
+          {role:'Head of Marketing',signal:'Paid channels needed or content volume high',notBefore:'Product-market fit'},
+          {role:'Account Manager',signal:'50+ active customers',notBefore:'AE team overloaded'}
+        ]).slice(0,5).map((h,i)=>`<div style="padding:8px 0;border-bottom:1px solid var(--rule)">
+          <div style="display:flex;align-items:flex-start;gap:7px">
+            <div style="width:18px;height:18px;border:1.5px solid var(--rule2);border-radius:4px;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center" id="hs${i}" onclick="toggleHS(${i},this)"></div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--navy)">${h.role}</div>
+              <div style="font-size:11px;color:var(--green)">Signal: ${h.signal}</div>
+              <div style="font-size:11px;color:var(--ink3)">Not before: ${h.notBefore}</div>
+            </div>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK NAVIGATION -->
+  <div style="background:var(--navy);border-radius:var(--r2);padding:18px;margin-bottom:14px">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Navigate to detailed modules</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      ${[['biz','Business Profile'],['icp','ICP Engine'],['gtm','GTM Strategy'],['playbook','Sales Playbook'],['crm','CRM Blueprint'],['crmi','CRM Intelligence'],['mis','MIS and Metrics'],['checklist','100-Day Plan']].map(([k,l])=>`<button onclick="nav('${k}')" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:10px 8px;color:rgba(255,255,255,.8);font-size:11px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;font-family:'DM Sans',sans-serif" onmouseover="this.style.background='rgba(37,99,235,.3)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">${l}</button>`).join('')}
+    </div>
+  </div>`;
+}
+
+function toggleHS(i,el){
+  el.style.background=el.dataset.on?'':'var(--green)';
+  el.style.borderColor=el.dataset.on?'var(--rule2)':'var(--green)';
+  el.innerHTML=el.dataset.on?'':'<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  el.dataset.on=el.dataset.on?'':'1';
+}
+window.toggleHS=toggleHS;
 
 // ── Render: Biz ───────────────────────────────────────────────────────────
 function renderBiz(){
