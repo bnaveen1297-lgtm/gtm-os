@@ -1,1 +1,9 @@
-{"version":2,"rewrites":[{"source":"/ai","destination":"/api/ai"},{"source":"/scrape","destination":"/api/scrape"}]}
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/ai",     "destination": "/api/ai" },
+    { "source": "/scrape", "destination": "/api/scrape" },
+    { "source": "/zoho",   "destination": "/api/zoho" },
+    { "source": "/sheets", "destination": "/api/sheets" }
+  ]
+}
