@@ -65,7 +65,7 @@ a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:2px}
-.view{display:none}
+/* views controlled by JS */
 
 /* ── LOGO SVG ─────────────────────────────────────────────────── */
 .logo-svg{display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -433,7 +433,7 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
   .lp-footer{padding:16px 20px}
   .lp-footer-in{flex-direction:column;gap:8px;text-align:center}
   /* APP MOBILE */
-  #view-app{flex-direction:column!important}
+  #view-app{flex-direction:column!important;position:fixed!important;top:0!important;left:0!important;width:100vw!important;height:100vh!important;max-height:100vh!important;overflow:hidden!important}
 
   /* Sidebar = thin horizontal scrollable tab bar */
   .sb{
@@ -523,7 +523,7 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 }
 </style>
 <!-- LANDING -->
-<div id="view-landing" class="view active">
+<div id="view-landing" style="display:block">
 <nav class="lp-nav">
   <div class="logo-svg" style="cursor:pointer">
     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -741,7 +741,7 @@ input::placeholder,textarea::placeholder{color:var(--ink4)}
 </div>
 
 <!-- APP -->
-<div id="view-app" class="view">
+<div id="view-app" style="display:none">
   <div class="sb">
     <div class="sb-top">
       <div class="logo-svg logo-svg-sm"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -800,26 +800,42 @@ const S={input:{url:'',desc:'',uv:'',stage:'',team:'',revenue:'',icp:'',geo:'',c
 
 onAuthStateChanged(auth,async user=>{
   U=user;
-  if(user){closeAuth();showApp();setSBUser(user);await loadData(user.uid);nav('input');}
-  else{showLanding();}
+  if(user){
+    closeAuth();
+    showApp();
+    setSBUser(user);
+    await loadData(user.uid);
+    nav('input');
+  }else{
+    showLanding();
+  }
 });
 
 function showLanding(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:block!important';}
-  if(app){app.style.cssText='display:none!important';}
+  if(lp){lp.style.cssText='display:block!important;min-height:100vh;';}
+  if(app){app.style.cssText='display:none!important;';}
+  document.body.style.overflow='auto';
 }
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:none!important';}
+  if(lp){lp.style.cssText='display:none!important;';}
   if(app){
-    const isMobile=window.innerWidth<=768;
-    app.style.cssText=isMobile
-      ?'display:flex!important;flex-direction:column!important;height:100vh!important;overflow:hidden!important;'
-      :'display:flex!important;flex-direction:row!important;height:100vh!important;overflow:hidden!important;';
+    const mob=window.innerWidth<=768;
+    app.style.cssText=[
+      'display:flex!important;',
+      mob?'flex-direction:column!important;':'flex-direction:row!important;',
+      'width:100vw!important;',
+      'height:100vh!important;',
+      'max-height:100vh!important;',
+      'overflow:hidden!important;',
+      'position:fixed!important;',
+      'top:0!important;left:0!important;',
+    ].join('');
   }
+  document.body.style.overflow='hidden';
 }
 function setSBUser(u){
   const n=document.getElementById('sb-nm'),a=document.getElementById('sb-av');
@@ -882,7 +898,11 @@ async function submitAuth(){
     showErr(m[e.code]||e.message);btn.textContent=authMode==='signup'?'Create account':'Sign in';btn.disabled=false;
   }
 }
-async function signOut(){await fbOut(auth);S.data={};S.generated=false;}
+async function signOut(){
+  fbOut(auth).catch(e=>console.warn('signout',e));
+  S.data={};S.generated=false;S.input={url:'',idea:''};
+  showLanding();
+}
 
 const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Business Profile','Positioning, moat and market fit'],icp:['ICP Engine','Ideal customer profiles ranked by fit'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],mis:['MIS & Metrics','KPIs, benchmarks and review cadence'],checklist:['Execution Plan','Week-by-week action checklist']};
 
@@ -1827,11 +1847,8 @@ Object.assign(window,{
 // Re-apply app layout on resize/orientation change
 window.addEventListener('resize',()=>{
   const app=document.getElementById('view-app');
-  if(app&&app.style.display!=='none'){
-    const isMobile=window.innerWidth<=768;
-    app.style.cssText=isMobile
-      ?'display:flex!important;flex-direction:column!important;height:100vh!important;overflow:hidden!important;'
-      :'display:flex!important;flex-direction:row!important;height:100vh!important;overflow:hidden!important;';
+  if(app&&app.style.display!=='none'&&app.style.display!==''){
+    showApp();
   }
 });
 window.addEventListener('scroll',()=>{
