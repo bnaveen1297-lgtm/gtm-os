@@ -1618,9 +1618,33 @@ const app=initializeApp({apiKey:"AIzaSyCxS_yTqtgvGalHW-LD-jiT8AvI0N_5VvY",authDo
 const auth=getAuth(app),db=getFirestore(app),gp=new GoogleAuthProvider();
 
 let U=null,authMode='signup';
+
+// Show loading screen while Firebase resolves (prevents blank white flash)
+(function(){
+  const path=window.location.pathname;
+  if(path.startsWith('/dashboard')||path.startsWith('/product')||path.startsWith('/solutions')||path.startsWith('/integrations')){
+    // Show a loading state - hide landing, show spinner
+    const lp=document.getElementById('view-landing');
+    if(lp){lp.style.display='none';}
+    // Create loading screen
+    const loader=document.createElement('div');
+    loader.id='init-loader';
+    loader.style.cssText='position:fixed;inset:0;background:#1B2B4B;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px';
+    loader.innerHTML='<div style="width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#6366F1;border-radius:50%;animation:spin .8s linear infinite"></div><div style="color:rgba(255,255,255,.5);font-size:13px;font-family:Inter,sans-serif">Loading Engine360...</div>';
+    document.body.appendChild(loader);
+    // Auto-remove after 6s if Firebase never fires (fallback)
+    setTimeout(()=>{
+      const l=document.getElementById('init-loader');
+      if(l){l.remove();if(lp)lp.style.display='block';}
+    },6000);
+  }
+})();
 const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{}};
 
 onAuthStateChanged(auth,async user=>{
+  // Remove init loader
+  const loader=document.getElementById('init-loader');
+  if(loader)loader.remove();
   U=user;
   if(user){
     try{closeAuth();}catch(e){}
