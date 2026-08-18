@@ -16,7 +16,7 @@ input,textarea,select{font-family:inherit;outline:none}
 
 /* APP SHELL - only used inside the product */
 #view-landing{display:block}
-#view-app{display:none}
+#view-app{display:none;background:#1B2B4B}
 
 /* ── APP SHELL CSS ── */
 :root{
@@ -1638,7 +1638,6 @@ onAuthStateChanged(auth,async user=>{
 function showLanding(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  document.body.style.background='#fff';
   if(lp){lp.style.cssText='display:block!important;min-height:100vh;';}
   if(app){app.style.cssText='display:none!important;';}
   document.body.style.overflow='auto';
@@ -1646,7 +1645,6 @@ function showLanding(){
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  document.body.style.background='#1B2B4B';
   if(lp){lp.style.cssText='display:none!important;';}
   if(app){
     const mob=window.innerWidth<=768;
@@ -1659,6 +1657,7 @@ function showApp(){
       'overflow:hidden!important;',
       'position:fixed!important;',
       'top:0!important;left:0!important;',
+      'background:#1B2B4B!important;',
     ].join('');
   }
   document.body.style.overflow='hidden';
