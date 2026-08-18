@@ -1516,8 +1516,8 @@ window.addEventListener('popstate',function(e){
 </div>
 
 <!-- APP -->
-<div id="view-app" style="display:none">
-  <div class="sb">
+<div id="view-app" style="display:none"><div id="app-debug-bar" style="display:none;position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6366F1,#22C55E);z-index:99998"></div>
+  <div class="sb" style="background:#1B2B4B;color:#fff">
     <div class="sb-top">
       <div class="logo-svg logo-svg-sm" style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
   <path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#3B82F6" stroke-width="3.5" fill="rgba(255,255,255,0.06)"/>
@@ -1680,6 +1680,7 @@ function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
   if(lp)lp.style.display='none';
+  const dbg=document.getElementById('app-debug-bar');if(dbg)dbg.style.display='block';
   if(app){
     const mob=window.innerWidth<=768;
     app.style.display='flex';
@@ -1833,7 +1834,7 @@ function nav(page){
   const renders={input:renderInput,connect:renderConnect,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
-  if(pageEl)pageEl.innerHTML=fn?fn():'';
+  if(pageEl){pageEl.style.background='#F0F2F8';pageEl.innerHTML=fn?fn():'';}
   if(page==='input')bindInput();
 }
 
