@@ -1585,8 +1585,8 @@ window.addEventListener('popstate',function(e){
       <div class="sbi" id="nav-checklist"onclick="nav('checklist')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>Execution Plan</div>
     </div>
   </div>
-  <div class="app-main">
-    <div class="topbar" style="display:flex;align-items:center;justify-content:space-between;padding:0 14px;height:50px;border-bottom:1px solid var(--rule);background:var(--bg);flex-shrink:0">
+  <div class="app-main" style="background:#F0F2F8;flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0">
+    <div class="topbar" style="display:flex;align-items:center;justify-content:space-between;padding:0 14px;height:50px;border-bottom:1px solid #E2E8F0;background:#fff;flex-shrink:0">
       <div style="min-width:0;flex:1">
         <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif" id="app-title">Business Input</div>
         <div style="font-size:11px;color:var(--ink3)" id="app-sub">Tell us about your business</div>
@@ -1599,7 +1599,7 @@ window.addEventListener('popstate',function(e){
         </button>
       </div>
     </div>
-    <div class="app-page" id="app-page"></div>
+    <div class="app-page" id="app-page" style="flex:1;overflow-y:auto;padding:22px;background:#F0F2F8"></div>
   </div>
 </div>
 <div id="toast"></div>
