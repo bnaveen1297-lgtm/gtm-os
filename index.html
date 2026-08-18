@@ -633,7 +633,7 @@ function bindInput(){
 
 async function callAI(prompt){
   const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),55000);
+  const tid=setTimeout(()=>controller.abort(),58000);
   try{
     const r=await fetch('/ai',{
       method:'POST',
@@ -641,17 +641,21 @@ async function callAI(prompt){
       body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:1800}),
       signal:controller.signal
     });
-    clearTimeout(timeout);
+    clearTimeout(tid);
+    const txt=await r.text();
     if(!r.ok){
-      const err=await r.text();
-      throw new Error('API error '+r.status+': '+err.slice(0,200));
+      // Try parse error message
+      try{const e=JSON.parse(txt);throw new Error(e.error?.message||e.error||txt.slice(0,200));}
+      catch(pe){if(pe.message!==txt.slice(0,200))throw pe;throw new Error('API '+r.status+': '+txt.slice(0,150));}
     }
-    const d=await r.json();
-    if(d.error)throw new Error(d.error.message||JSON.stringify(d.error));
-    return d.content?.[0]?.text||'{}';
+    const d=JSON.parse(txt);
+    if(d.error)throw new Error(d.error.message||JSON.stringify(d.error).slice(0,200));
+    const text=d.content?.[0]?.text||'{}';
+    if(!text||text==='{}')throw new Error('Empty response from API. Check CLAUDE_KEY in Vercel environment variables.');
+    return text;
   }catch(e){
-    clearTimeout(timeout);
-    if(e.name==='AbortError')throw new Error('Request timed out (55s). Try again.');
+    clearTimeout(tid);
+    if(e.name==='AbortError')throw new Error('Request timed out after 58s. Try again.');
     throw e;
   }
 }
