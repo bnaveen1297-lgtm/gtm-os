@@ -168,159 +168,157 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div id="toast"></div>
 
 <!-- LANDING PAGE -->
-<div id="view-landing" style="display:block">
+<div id="view-landing">
 
 <!-- NAV -->
-<nav style="position:fixed;top:0;left:0;right:0;z-index:300;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E2E8F0">
-  <div style="display:flex;align-items:center;gap:10px">
-    <svg viewBox="0 0 40 40" fill="none" width="26" height="26"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/></svg>
-    <span style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:800;color:#1B2B4B;letter-spacing:-.3px">Engine<span style="color:#2563EB">360</span></span>
+<nav style="position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,.97);border-bottom:1px solid #E2E8F0;backdrop-filter:blur(12px)">
+  <div class="logo-svg">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/></svg>
+    <span class="logo-wordmark">Engine<span class="w360">360</span></span>
   </div>
   <div style="display:flex;gap:8px">
-    <button onclick="openAuth('login')" style="padding:7px 14px;background:transparent;border:1.5px solid #CBD5E1;border-radius:6px;font-size:13px;font-weight:600;color:#1B2B4B;cursor:pointer;font-family:Inter,sans-serif">Sign in</button>
-    <button onclick="openAuth('signup')" style="padding:7px 14px;background:#2563EB;border:none;border-radius:6px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'DM Sans',sans-serif">Start free</button>
+    <button onclick="openAuth('login')" style="padding:7px 16px;background:transparent;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:6px;font-size:13px;font-weight:600">Sign in</button>
+    <button onclick="openAuth('signup')" style="padding:8px 18px;background:#2563EB;color:#fff;border-radius:6px;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(37,99,235,.25)">Start free</button>
   </div>
 </nav>
 
-<!-- SECTION 1: HERO -->
-<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px 48px;text-align:center;background:#fff">
-  <div style="display:inline-flex;align-items:center;gap:7px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:20px;padding:4px 14px 4px 8px;font-size:12px;color:#15803D;margin-bottom:24px;font-weight:600;font-family:Inter,sans-serif">
-    <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block"></span>
-    Free forever · URL only · 60 seconds
-  </div>
-  <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(32px,8vw,68px);font-weight:800;line-height:1.04;letter-spacing:-2px;color:#1B2B4B;margin:0 0 18px;max-width:780px">
-    Your complete<br><span style="color:#2563EB">go-to-market</span><br>operating system.
-  </h1>
-  <p style="font-size:16px;color:#64748B;line-height:1.7;max-width:440px;margin:0 auto 28px;font-family:Inter,sans-serif">
-    Paste your website URL. Engine 360 researches your business and builds your full GTM strategy in under 60 seconds.
-  </p>
-  <div style="display:flex;gap:8px;width:100%;max-width:500px;margin:0 auto 12px">
-    <input id="hero-url" type="url" placeholder="https://yourcompany.com" style="flex:1;padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;color:#1B2B4B;outline:none;font-family:Inter,sans-serif;min-width:0" onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
-    <button onclick="heroStart()" style="padding:12px 20px;background:#2563EB;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;box-shadow:0 4px 12px rgba(37,99,235,.3)">Analyse →</button>
-  </div>
-  <p style="font-size:12px;color:#94A3B8;font-family:Inter,sans-serif;margin:0 0 36px">No credit card · No forms · Results in 60 seconds</p>
-  <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:480px">
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:16px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">ICP Profiles</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:16px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">GTM Strategy</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:16px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Sales Playbook</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:16px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">CRM Blueprint</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:16px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Churn Signals</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:16px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">100-Day Plan</span>
-  </div>
-</div>
-
-<!-- SECTION 2: STATS -->
-<div style="background:#1B2B4B">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
-    <div style="padding:24px 28px;border-right:1px solid rgba(255,255,255,.08)"><div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">8<span style="color:#16A34A;font-size:22px">x</span></div><div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;font-family:Inter,sans-serif">strategy modules</div></div>
-    <div style="padding:24px 28px;border-right:1px solid rgba(255,255,255,.08)"><div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">60<span style="color:#16A34A;font-size:22px">s</span></div><div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;font-family:Inter,sans-serif">URL to full GTM</div></div>
-    <div style="padding:24px 28px;border-right:1px solid rgba(255,255,255,.08)"><div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">3<span style="color:#16A34A;font-size:22px">+</span></div><div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;font-family:Inter,sans-serif">ICP profiles ranked</div></div>
-    <div style="padding:24px 28px"><div style="font-family:'DM Sans',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1">₹0</div><div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;font-family:Inter,sans-serif">free forever</div></div>
-  </div>
-</div>
-
-<!-- SECTION 3: HOW IT WORKS -->
-<div style="padding:72px 20px;background:#F8F9FC">
-  <div style="max-width:860px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:monospace;margin-bottom:8px">How it works</div>
-      <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,4vw,34px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0">Three steps. 60 seconds. Full strategy.</h2>
+<!-- HERO -->
+<div style="padding-top:60px">
+  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px 60px;background:#ffffff">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:5px 16px 5px 10px;font-size:12px;color:#2563EB;margin-bottom:28px;font-weight:600">
+      <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block"></span>
+      8 Modules · URL to Strategy · 60 Seconds
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#E2E8F0;border-radius:12px;overflow:hidden">
-      <div style="background:#fff;padding:26px 20px"><div style="width:30px;height:30px;background:#2563EB;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:13px">1</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">Paste your URL</div><div style="font-size:12.5px;color:#64748B;line-height:1.65;font-family:Inter,sans-serif">Drop your website link. No forms. No website yet? Describe your idea in one line.</div></div>
-      <div style="background:#fff;padding:26px 20px"><div style="width:30px;height:30px;background:#2563EB;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:13px">2</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">We research everything</div><div style="font-size:12.5px;color:#64748B;line-height:1.65;font-family:Inter,sans-serif">Engine 360 scrapes your site, searches Google, finds competitors and market size. You don't lift a finger.</div></div>
-      <div style="background:#fff;padding:26px 20px"><div style="width:30px;height:30px;background:#16A34A;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:13px">3</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">Get your full OS</div><div style="font-size:12.5px;color:#64748B;line-height:1.65;font-family:Inter,sans-serif">8 modules in your dashboard — specific to your business, in INR if you're India-based.</div></div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,7vw,62px);font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:#1B2B4B;margin-bottom:20px;max-width:680px">
+      Your complete <span style="color:#2563EB">go-to-market</span> operating system.
+    </h1>
+    <p style="font-size:16px;color:#64748B;line-height:1.75;max-width:440px;margin:0 auto 32px">
+      Paste your website URL. Engine 360 researches your business and builds your full GTM strategy in 60 seconds.
+    </p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
+      <button onclick="openAuth('signup')" style="padding:14px 28px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
+      <button onclick="openAuth('login')" style="padding:14px 22px;background:#fff;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:7px;font-size:15px;font-weight:500;cursor:pointer">Sign in to your account</button>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">ICP Profiles</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">GTM Strategy</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">Sales Playbook</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">CRM Blueprint</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">Churn Signals</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">90-Day Roadmap</span>
     </div>
   </div>
 </div>
 
-<!-- SECTION 4: 8 MODULES -->
-<div style="padding:72px 20px;background:#fff">
-  <div style="max-width:1060px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:44px">
-      <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:monospace;margin-bottom:8px">What you get</div>
-      <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,4vw,34px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0 0 10px">8 modules. One operating system.</h2>
-      <p style="font-size:14px;color:#64748B;font-family:Inter,sans-serif;margin:0 auto;max-width:440px;line-height:1.7">Every output uses your actual data — real competitor names, correct currency, scripts you can send today.</p>
+<!-- STATS -->
+<div style="background:#1B2B4B;padding:0">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">8<em style="font-style:normal;color:#16A34A">x</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">strategy modules per run</div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E2E8F0;border-radius:12px;overflow:hidden">
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#EFF6FF;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div style="font-size:10px;color:#2563EB;font-weight:700;font-family:monospace;margin-bottom:3px">01</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">Business Profile</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Positioning, moat, TAM/SAM/SOM, hypothesis validation</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#F0FDF4;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div style="font-size:10px;color:#16A34A;font-weight:700;font-family:monospace;margin-bottom:3px">02</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">ICP Engine</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">3 profiles ranked by fit, triggers, exact pitch angle</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#FFFBEB;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><div style="font-size:10px;color:#D97706;font-weight:700;font-family:monospace;margin-bottom:3px">03</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">GTM Strategy</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Motion, channels, PDCA cycle, battlecards, roadmap</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#F5F3FF;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div style="font-size:10px;color:#7C3AED;font-weight:700;font-family:monospace;margin-bottom:3px">04</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">Sales Playbook</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Real scripts — email, call, WhatsApp. MEDDIC. 60s response.</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#EFF6FF;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg></div><div style="font-size:10px;color:#2563EB;font-weight:700;font-family:monospace;margin-bottom:3px">05</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">CRM Blueprint</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">HubSpot or Zoho setup, pipeline stages, lead scoring</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#FEF2F2;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div style="font-size:10px;color:#DC2626;font-weight:700;font-family:monospace;margin-bottom:3px">06</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">CRM Intelligence</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Outreach cadence, integration stack, churn signals</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#F0FDF4;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div style="font-size:10px;color:#16A34A;font-weight:700;font-family:monospace;margin-bottom:3px">07</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">MIS and Metrics</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">6 key numbers, north star, daily MIS, weekly review</div></div>
-      <div style="background:#fff;padding:18px 16px"><div style="width:32px;height:32px;background:#FFFBEB;border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div style="font-size:10px;color:#D97706;font-weight:700;font-family:monospace;margin-bottom:3px">08</div><div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:4px;font-family:'DM Sans',sans-serif">100-Day Plan</div><div style="font-size:11px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Week-by-week tasks, hiring signals, tool stack</div></div>
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">60<em style="font-style:normal;color:#16A34A">s</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">URL to full GTM plan</div>
+    </div>
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">3<em style="font-style:normal;color:#16A34A">+</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">ICP profiles ranked by fit</div>
+    </div>
+    <div style="padding:28px 24px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">4<em style="font-style:normal;color:#16A34A">+</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">CRM blueprints with cadence</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 5: BUILT FOR OPERATORS -->
-<div style="padding:72px 20px;background:#1B2B4B">
-  <div style="max-width:1000px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center">
-      <div>
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:monospace;margin-bottom:10px">Why Engine 360</div>
-        <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,3.5vw,36px);font-weight:800;color:#fff;letter-spacing:-.8px;line-height:1.08;margin:0 0 14px">Built for operators.<br>Not consultants.</h2>
-        <p style="font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.75;font-family:Inter,sans-serif;margin:0 0 24px">Every output uses your actual data — real competitor names, your market in rupees or dollars, ICP profiles with real job titles. Not a PDF with your logo on it.</p>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;gap:9px;align-items:flex-start"><div style="width:17px;height:17px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">India-aware — ₹ crores, AMFI database, WhatsApp-first</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start"><div style="width:17px;height:17px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Real scripts — actual words, not [INSERT NAME] placeholders</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start"><div style="width:17px;height:17px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Based on "I Know Only Numbers" — a field-tested GTM framework</span></div>
-          <div style="display:flex;gap:9px;align-items:flex-start"><div style="width:17px;height:17px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Zoho CRM and Sheets connect for live pipeline data</span></div>
-        </div>
+<!-- MODULES GRID -->
+<div style="padding:64px 24px;max-width:1100px;margin:0 auto">
+  <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:monospace">What you get</div>
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;color:#1B2B4B;margin-bottom:36px;letter-spacing:-.5px">Eight modules. One operating system.</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:#E2E8F0;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">01</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Business Profile</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Positioning, moat, TAM/SAM/SOM, hypothesis validation, LinkedIn signals, five pillars status.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">TAM/SAM/SOM</span><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Hypothesis</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">02</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">ICP Engine</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">3 profiles scored across 5 filters (15-point scale), day-in-life, buying triggers, LinkedIn signals.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">5-Filter Score</span><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">LinkedIn</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">03</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">GTM Strategy</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Account-based, volume, or partner-led motion verdict. 90-day roadmap, PDCA cycle, battlecards.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">PDCA</span><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">90-Day Plan</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">04</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Sales Playbook</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Real scripts for email, LinkedIn, cold call, WhatsApp. 60-second lead response. MEDDIC. Objections.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F5F3FF;color:#7C3AED;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">MEDDIC</span><span style="font-size:9.5px;background:#F5F3FF;color:#7C3AED;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Scripts</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">05</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Blueprint</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">HubSpot or Zoho recommendation. Pipeline stages, lead scoring model, automation flows.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">HubSpot/Zoho</span><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Scoring</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">06</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Intelligence</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Outreach cadence day-by-day. Integration stack. Churn signals by severity. Weekly operating rhythm.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FEF2F2;color:#DC2626;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Churn Signals</span><span style="font-size:9.5px;background:#FEF2F2;color:#DC2626;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Cadence</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">07</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">MIS and Metrics</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">The 6 numbers from I Know Only Numbers. North star, daily MIS, weekly review, funnel benchmarks.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">6 Numbers</span><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Daily MIS</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">08</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">100-Day Plan</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Week-by-week checklist with owners and tools. Hiring signal checklist per role. Tool stack. PDCA matrix.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">100 Days</span><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Hiring Signals</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING - FREE -->
+<div style="padding:64px 24px;background:#F8F9FC;border-top:1px solid #E2E8F0">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:monospace">Pricing</div>
+    <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:800;color:#1B2B4B;margin-bottom:12px;letter-spacing:-.5px">Everything free. Always.</h2>
+    <p style="font-size:15px;color:#64748B;line-height:1.7;margin-bottom:36px">All 8 modules, Zoho CRM and Google Sheets integration, strategy dashboard — free forever. No credit card. No trial.</p>
+    <div style="background:#fff;border:2px solid #2563EB;border-radius:12px;padding:32px;position:relative;box-shadow:0 0 0 4px rgba(37,99,235,.08)">
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:11px;font-weight:700;padding:4px 20px;border-radius:20px;white-space:nowrap;font-family:monospace">Free forever — no credit card needed</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:52px;font-weight:800;color:#1B2B4B;line-height:1;letter-spacing:-2px;margin-bottom:20px">Free</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin-bottom:28px">
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>All 8 strategy modules</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>ICP Engine — 3 profiles</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>GTM motion and channels</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Sales playbook and scripts</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM blueprint (HubSpot/Zoho)</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM Intelligence layer</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>MIS and metrics dashboard</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>100-day execution plan</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Zoho CRM integration</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Google Sheets connector</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Strategy dashboard</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>PDCA and quadrant analysis</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Hypothesis validation</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>TAM/SAM/SOM calculation</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>LinkedIn signal research</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
       </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06)">
-          <div style="background:#1B2B4B;padding:18px 16px"><div style="font-size:10px;color:rgba(255,255,255,.25);font-family:monospace;margin-bottom:10px">OTHERS</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:12px;color:rgba(255,255,255,.35);font-family:Inter,sans-serif">Generic templates</div><div style="font-size:12px;color:rgba(255,255,255,.35);font-family:Inter,sans-serif">Fill 50+ fields</div><div style="font-size:12px;color:rgba(255,255,255,.35);font-family:Inter,sans-serif">USD-only output</div><div style="font-size:12px;color:rgba(255,255,255,.35);font-family:Inter,sans-serif">No real scripts</div><div style="font-size:12px;color:rgba(255,255,255,.35);font-family:Inter,sans-serif">No CRM setup</div><div style="font-size:12px;color:rgba(255,255,255,.35);font-family:Inter,sans-serif">No competitor data</div></div></div>
-          <div style="background:#1e3a5f;padding:18px 16px;border-left:2px solid #2563EB"><div style="font-size:10px;color:#60A5FA;font-family:monospace;margin-bottom:10px">ENGINE 360</div><div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:12px;color:rgba(255,255,255,.85);font-family:Inter,sans-serif">Specific to you</div><div style="font-size:12px;color:rgba(255,255,255,.85);font-family:Inter,sans-serif">URL only</div><div style="font-size:12px;color:rgba(255,255,255,.85);font-family:Inter,sans-serif">₹ or $ as needed</div><div style="font-size:12px;color:rgba(255,255,255,.85);font-family:Inter,sans-serif">Actual scripts</div><div style="font-size:12px;color:rgba(255,255,255,.85);font-family:Inter,sans-serif">Full CRM blueprint</div><div style="font-size:12px;color:rgba(255,255,255,.85);font-family:Inter,sans-serif">Real battlecards</div></div></div>
-        </div>
-      </div>
+      <button onclick="openAuth('signup')" style="width:100%;padding:14px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: PRICING + CTA -->
-<div style="padding:72px 20px;background:#fff">
-  <div style="max-width:620px;margin:0 auto;text-align:center">
-    <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:monospace;margin-bottom:8px">Pricing</div>
-    <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,4vw,34px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0 0 10px">Free. No catch.</h2>
-    <p style="font-size:14px;color:#64748B;font-family:Inter,sans-serif;margin:0 0 32px;line-height:1.7">All 8 modules, Zoho and Sheets integration, unlimited analyses. No credit card.</p>
-    <div style="background:#fff;border:2px solid #2563EB;border-radius:14px;padding:28px;box-shadow:0 0 0 5px rgba(37,99,235,.06);position:relative;margin-bottom:32px;text-align:left">
-      <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:11px;font-weight:700;padding:3px 16px;border-radius:20px;white-space:nowrap;font-family:monospace;letter-spacing:.06em">FREE FOREVER</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:48px;font-weight:800;color:#1B2B4B;line-height:1;letter-spacing:-2px;margin-bottom:8px">₹0</div>
-          <div style="font-size:13px;color:#64748B;font-family:Inter,sans-serif;margin-bottom:18px;line-height:1.6">Everything included. No tiers, no limits.</div>
-          <button onclick="openAuth('signup')" style="width:100%;padding:12px;background:#2563EB;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 12px rgba(37,99,235,.3)">Start for free →</button>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;color:#1B2B4B;font-family:Inter,sans-serif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All 8 strategy modules</div>
-          <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;color:#1B2B4B;font-family:Inter,sans-serif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>ICP profiles ranked by fit</div>
-          <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;color:#1B2B4B;font-family:Inter,sans-serif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Real scripts — not templates</div>
-          <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;color:#1B2B4B;font-family:Inter,sans-serif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>CRM blueprint and automations</div>
-          <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;color:#1B2B4B;font-family:Inter,sans-serif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Zoho CRM + Google Sheets</div>
-          <div style="display:flex;gap:7px;align-items:center;font-size:12.5px;color:#1B2B4B;font-family:Inter,sans-serif"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
-        </div>
-      </div>
-    </div>
-    <!-- Final CTA block -->
-    <div style="background:#1B2B4B;border-radius:14px;padding:32px 24px;text-align:center">
-      <h3 style="font-family:'DM Sans',sans-serif;font-size:clamp(20px,4vw,30px);font-weight:800;color:#fff;letter-spacing:-.5px;margin:0 0 8px">Your GTM OS is 60 seconds away.</h3>
-      <p style="font-size:13px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;margin:0 0 20px">Free forever. Specific to your business. No forms.</p>
-      <button onclick="openAuth('signup')" style="padding:13px 28px;background:#16A34A;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(22,163,74,.35)">Start for free →</button>
-    </div>
-  </div>
+<!-- FOOTER CTA -->
+<div style="background:#1B2B4B;padding:72px 24px;text-align:center">
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,44px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:12px">Ready to build your GTM engine?</h2>
+  <p style="font-size:15px;color:rgba(255,255,255,.6);max-width:380px;margin:0 auto 28px;line-height:1.7">Paste your URL and get your complete strategy in 60 seconds.</p>
+  <button onclick="openAuth('signup')" style="padding:14px 32px;background:#16A34A;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(22,163,74,.35)">Start for free →</button>
 </div>
 
-<!-- FOOTER -->
-<div style="background:#12213A;padding:18px 24px">
-  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-    <span style="font-size:12px;color:rgba(255,255,255,.2);font-family:Inter,sans-serif">© 2025 Engine 360 · Built on "I Know Only Numbers" framework</span>
-    <div style="display:flex;gap:16px"><span style="font-size:12px;color:rgba(255,255,255,.2);font-family:Inter,sans-serif;cursor:pointer">Privacy</span><span style="font-size:12px;color:rgba(255,255,255,.2);font-family:Inter,sans-serif;cursor:pointer">Terms</span></div>
-  </div>
+<div style="background:rgba(0,0,0,.2);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+  <span style="font-size:11px;color:rgba(255,255,255,.3)">© 2026 Engine 360</span>
+  <div style="display:flex;gap:16px"><a href="#" style="font-size:11px;color:rgba(255,255,255,.3)">Privacy</a><a href="#" style="font-size:11px;color:rgba(255,255,255,.3)">Terms</a></div>
 </div>
 
+</div><!-- end view-landing -->
 
 <!-- AUTH MODAL -->
 <div class="modal-bg" id="auth-modal">
@@ -423,23 +421,19 @@ const app=initializeApp({apiKey:"AIzaSyCxS_yTqtgvGalHW-LD-jiT8AvI0N_5VvY",authDo
 const auth=getAuth(app),db=getFirestore(app),gp=new GoogleAuthProvider();
 
 let U=null,authMode='signup';
-const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{},discovery:{},pulledData:{},schedule:'Weekly'};
+const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{}};
 
 onAuthStateChanged(auth,async user=>{
   U=user;
   if(user){
     try{closeAuth();}catch(e){}
-    try{showApp();}catch(e){console.error('showApp error:',e);}
+    try{showApp();}catch(e){}
     try{setSBUser(user);}catch(e){}
     let hasData=false;
     try{hasData=await loadData(user.uid);}catch(e){console.warn('loadData:',e.message);}
-    try{nav(hasData?'dashboard':'input');}catch(e){
-      console.error('nav error:',e);
-      const p=document.getElementById('app-page');
-      if(p)p.innerHTML='<div style="padding:32px;text-align:center"><button onclick="location.reload()" style="padding:10px 20px;background:#2563EB;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">Reload</button></div>';
-    }
+    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav:',e);}
   }else{
-    try{showLanding();}catch(e){location.reload();}
+    try{showLanding();}catch(e){}
   }
 });
 
@@ -453,10 +447,19 @@ function showLanding(){
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp)lp.style.display='none';
+  if(lp){lp.style.cssText='display:none!important;';}
   if(app){
     const mob=window.innerWidth<=768;
-    app.style.cssText='display:flex!important;flex-direction:'+(mob?'column':'row')+'!important;width:100vw!important;height:100vh!important;overflow:hidden!important;position:fixed!important;top:0;left:0;background:#fff';
+    app.style.cssText=[
+      'display:flex!important;',
+      mob?'flex-direction:column!important;':'flex-direction:row!important;',
+      'width:100vw!important;',
+      'height:100vh!important;',
+      'max-height:100vh!important;',
+      'overflow:hidden!important;',
+      'position:fixed!important;',
+      'top:0!important;left:0!important;',
+    ].join('');
   }
   document.body.style.overflow='hidden';
 }
@@ -514,13 +517,12 @@ function closeAuth(){const m=document.getElementById('auth-modal');if(m)m.classL
 function switchAuth(){authMode=authMode==='login'?'signup':'login';refreshAuth();}
 function refreshAuth(){
   const s=authMode==='signup';
-  const get=id=>document.getElementById(id);
-  if(get('auth-h2'))get('auth-h2').textContent=s?'Create your account':'Welcome back';
-  if(get('auth-sub'))get('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
-  if(get('auth-submit'))get('auth-submit').textContent=s?'Create account':'Sign in';
-  if(get('auth-switch'))get('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don't have an account? <a onclick=\"switchAuth()\">Sign up free</a>";
-  if(get('auth-name-wrap'))get('auth-name-wrap').style.display=s?'block':'none';
-  if(get('auth-err'))get('auth-err').classList.remove('show');
+  document.getElementById('auth-h2').textContent=s?'Create your account':'Welcome back';
+  document.getElementById('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
+  document.getElementById('auth-submit').textContent=s?'Create account':'Sign in';
+  document.getElementById('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don\'t have an account? <a onclick=\"switchAuth()\">Sign up free</a>";
+  document.getElementById('auth-name-wrap').style.display=s?'block':'none';
+  document.getElementById('auth-err').classList.remove('show');
 }
 function showErr(m){const e=document.getElementById('auth-err');e.textContent=m;e.classList.add('show');}
 async function signInGoogle(){
@@ -552,19 +554,7 @@ async function signOut(){
   showLanding();
 }
 
-const PAGE_META={
-  input:['Business Input','URL only — we research the rest'],
-  connect:['Connect Data','Zoho CRM and Google Sheets'],
-  dashboard:['Strategy Dashboard','Full strategic overview'],
-  biz:['Business Profile','Positioning, moat, TAM/SAM/SOM'],
-  icp:['ICP Engine','3 profiles scored across 5 filters'],
-  gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],
-  playbook:['Sales Playbook','Scripts, objections and qualification'],
-  crm:['CRM Blueprint','Pipeline, scoring and automations'],
-  crmi:['CRM Intelligence','Cadence, integrations and churn signals'],
-  mis:['MIS and Metrics','6 numbers, north star, daily MIS'],
-  checklist:['Execution Plan','100-day calendar and tool stack']
-};
+const PAGE_META={input:['Business Input','Tell us about your business'],connect:['Connect Data','Zoho CRM and Google Sheets'],dashboard:['Strategy Dashboard','Full strategic overview'],biz:['Business Profile','Positioning, moat, TAM/SAM/SOM'],icp:['ICP Engine','3 profiles scored across 5 filters'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations and churn signals'],mis:['MIS and Metrics','6 numbers, north star, daily MIS'],checklist:['Execution Plan','100-day calendar and tool stack']};
 
 let _generating=false;
 function nav(page){
@@ -592,19 +582,7 @@ function nav(page){
   const subEl=document.getElementById('app-sub');
   if(titleEl)titleEl.textContent=t;
   if(subEl)subEl.textContent=s;
-  const renders={
-    input:renderInput,
-    connect:renderConnect,
-    dashboard:renderDashboard,
-    biz:renderBiz,
-    icp:renderICP,
-    gtm:renderGTM,
-    playbook:renderPlaybook,
-    crm:renderCRM,
-    crmi:renderCRMI,
-    mis:renderMIS,
-    checklist:renderChecklist
-  };
+  const renders={input:renderInput,connect:renderConnect,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
   if(pageEl)pageEl.innerHTML=fn?fn():'';
@@ -663,12 +641,6 @@ function renderInput(){
   </div>`;
 }
 
-function heroStart(){
-  const url=document.getElementById('hero-url');
-  if(url&&url.value.trim())S.input.url=url.value.trim();
-  openAuth('signup');
-}
-window.heroStart=heroStart;
 function bindInput(){
   const urlEl=document.getElementById('in-url');
   const ideaEl=document.getElementById('in-idea');
@@ -728,127 +700,177 @@ async function generate(){
     return;
   }
 
-  // Resume support - if partial data exists, offer to resume
-  const hasPartial=S.data.biz&&!S.data.checklist;
-  if(hasPartial){
-    if(!confirm('Partial analysis found. Resume from where we stopped?')){
-      S.data={};S.generated=false;
-    }
-  }
-
+  // Global overlay - persists across screen switches
+  // Set generating flag
   _generating=true;
-
-  // WakeLock - keeps JS running when screen turns off on mobile
-  let _wl=null;
-  try{if(navigator.wakeLock)_wl=await navigator.wakeLock.request('screen');}catch(e){}
-
-  // Warn if user tries to leave
-  const unloadFn=e=>{e.preventDefault();e.returnValue='Analysis running';return e.returnValue;};
-  window.addEventListener('beforeunload',unloadFn);
+  // Prevent screen sleep during generation (where supported)
+  let _wakeLock=null;
+  try{if(navigator.wakeLock)_wakeLock=await navigator.wakeLock.request('screen');}catch(e){}
+  window._beforeUnload=e=>{e.preventDefault();e.returnValue='Analysis is running. Please wait.';return e.returnValue;};
+  window.addEventListener('beforeunload',window._beforeUnload);
+  // Save progress state so we can detect incomplete runs
   sessionStorage.setItem('gen_running','1');
 
-  // Create overlay on body - survives screen switches
-  let ov=document.getElementById('gen-overlay');
-  if(ov)ov.remove();
-  ov=document.createElement('div');
-  ov.id='gen-overlay';
-  ov.style.cssText='position:fixed;inset:0;z-index:10000;background:#fff;display:flex;align-items:center;justify-content:center;padding:32px;font-family:Inter,sans-serif';
-  document.body.appendChild(ov);
+  // Remove any stale overlay
+  const stale=document.getElementById('gen-overlay');
+  if(stale)stale.remove();
 
-  const steps=['Fetching website and company data','Researching market online','Building strategic frame and TAM/SAM/SOM','Identifying and scoring ICP profiles','Designing GTM motion and channels','Writing sales playbook and scripts','Designing CRM blueprint','Building metrics and 100-day plan'];
+  // Create fresh overlay attached to body (not app-page)
+  const overlay=document.createElement('div');
+  overlay.id='gen-overlay';
+  overlay.style.cssText='position:fixed;inset:0;z-index:10000;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;font-family:Inter,sans-serif';
+  document.body.appendChild(overlay);
 
-  const showOv=(pct,ai,msg)=>{
-    const o=document.getElementById('gen-overlay');
-    if(!o)return;
-    o.innerHTML='<div style="width:100%;max-width:460px"><div style="display:flex;align-items:center;gap:14px;margin-bottom:22px"><div style="width:40px;height:40px;border:3px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div><div><div style="font-family:DM Sans,sans-serif;font-size:17px;font-weight:800;color:#1B2B4B">Analysing your business...</div><div style="font-size:12px;color:#64748B;margin-top:2px">'+(msg||'Keep this tab open')+'</div></div></div><div style="background:#F8F9FC;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:14px">'+steps.map((s,i)=>{const done=i<ai;const act=i===ai;return'<div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid #E2E8F0"><div style="width:18px;text-align:center;font-size:12px;font-weight:700;color:'+(done?'#16A34A':act?'#2563EB':'#9CA3AF')+'">'+(done?'✓':act?'→':'○')+'</div><div style="font-size:12px;color:'+(done?'#16A34A':act?'#2563EB':'#64748B')+';font-weight:'+(act?'600':'400')+'">'+s+'</div></div>';}).join('')+'</div><div style="height:5px;background:#E2E8F0;border-radius:3px;overflow:hidden;margin-bottom:6px"><div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#2563EB,#16A34A);border-radius:3px;transition:width .8s ease"></div></div><div style="text-align:center;font-size:11px;color:#94A3B8">'+Math.round(pct)+'% — do not close this tab</div></div>';
+  const steps=[
+    'Fetching website and company data',
+    'Researching LinkedIn and market signals',
+    'Building strategic frame and TAM/SAM/SOM',
+    'Identifying and scoring ICP profiles',
+    'Designing GTM motion and channel strategy',
+    'Writing sales playbook and scripts',
+    'Designing CRM blueprint and automations',
+    'Building metrics, MIS and 100-day plan'
+  ];
+  let done=new Array(8).fill(false);
+
+  const updateOverlay=(pct,ai,msg='')=>{
+    overlay.innerHTML=`
+    <div style="width:100%;max-width:460px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
+        <div style="width:36px;height:36px;border:2.5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;color:#1B2B4B">Analysing your business...</div>
+          <div style="font-size:12px;color:#64748B;margin-top:2px">${msg||'Engine 360 is researching so you do not have to fill forms'}</div>
+        </div>
+      </div>
+      <div style="background:#F8F9FC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;margin-bottom:16px">
+        ${steps.map((s,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #E2E8F0;${i===steps.length-1?'border-bottom:none':''}">
+          <div style="width:18px;text-align:center;font-size:11px;font-weight:700;color:${done[i]?'#16A34A':i===ai?'#2563EB':'#9CA3AF'}">${done[i]?'✓':i===ai?'→':'○'}</div>
+          <div style="font-size:12px;color:${done[i]?'#16A34A':i===ai?'#2563EB':'#64748B'};font-weight:${i===ai?'600':'400'}">${s}</div>
+        </div>`).join('')}
+      </div>
+      <div style="height:4px;background:#E2E8F0;border-radius:2px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#2563EB,#16A34A);border-radius:2px;transition:width .6s ease"></div>
+      </div>
+      <div style="text-align:center;margin-top:8px;font-size:11px;color:#9CA3AF">${Math.round(pct)}% complete</div>
+    </div>`;
   };
 
-  const cleanup=()=>{
-    _generating=false;
-    window.removeEventListener('beforeunload',unloadFn);
-    if(_wl)try{_wl.release();}catch(e){}
-    sessionStorage.removeItem('gen_running');
-  };
-
-  showOv(5,0,'Fetching your website...');
+  updateOverlay(5,0,'Fetching your website content...');
 
   try{
-    // STEP 1: Scrape website
-    let webCtx='';
+    // Step 1: Scrape website
+    let webContext='';
+    let linkedinData='';
     if(S.input.url){
       try{
         const sr=await fetch('/scrape?url='+encodeURIComponent(S.input.url));
         const sd=await sr.json();
-        if(sd.scraped) webCtx='WEBSITE:\nURL: '+S.input.url+'\nTitle: '+(sd.meta&&sd.meta.title||'')+'\nContent: '+(sd.text||'').slice(0,4000);
-      }catch(e){console.warn('scrape',e);}
+        if(sd.scraped){
+          webContext=`WEBSITE:\nURL: ${S.input.url}\nDomain: ${sd.domain}\nTitle: ${sd.meta?.title||''}\nContent: ${(sd.text||'').slice(0,4000)}`;
+        }
+      }catch(e){console.warn('scrape failed',e);}
     }
 
-    // STEP 2: Web research - search for company context
-    let webRes='';
-    if(S.input.url){
-      try{
-        const dom=S.input.url.replace(/https?:\/\//,'').split('/')[0].split('?')[0];
-        const q=encodeURIComponent(dom+' company India startup funding competitors 2024');
-        const gr=await fetch('/scrape?url='+encodeURIComponent('https://www.google.com/search?q='+q+'&num=5'));
-        const gd=await gr.json();
-        if(gd.text) webRes='WEB RESEARCH:\n'+gd.text.slice(0,2000);
-      }catch(e){console.warn('web research',e);}
+    const ctx=`${webContext}
+${S.input.idea?'BUSINESS IDEA: '+S.input.idea:''}
+PRIMARY URL: ${S.input.url||'not provided'}
+
+INSTRUCTIONS: Research this business deeply. Use the website content. Infer business model, market, competitors, ICP from what you see. Do not ask for more input. Make smart, specific inferences. Reference real competitors, real tools, real market data. Be as specific as possible.`;
+
+    done[0]=true; updateOverlay(12,1,'Analysing market and competitors...');
+
+    // Phase 1: biz + icp in parallel
+    updateOverlay(15,1,'Researching business and ICP...');
+    const [bizR,icpR]=await Promise.all([
+      callAI(bizP(ctx)),
+      callAI(icpP(ctx))
+    ]);
+    S.data.biz=parseJ(bizR);
+    S.data.icp=parseJ(icpR);
+    if(!S.data.biz?.companyName&&!S.data.biz?.oneLiner){
+      console.warn('biz response:',bizR?.slice(0,200));
+      if(!bizR||bizR.length<10)throw new Error('API returned empty response. Check CLAUDE_KEY in Vercel → Settings → Environment Variables.');
     }
+    done[1]=true;done[2]=true;done[3]=true;
+    await saveData(); // Save after each phase - partial results persist
+    updateOverlay(35,4,'Building GTM strategy...');
 
-    const ctx=webCtx+'\n\n'+webRes+'\n'+(S.input.idea?'IDEA: '+S.input.idea:'')+'\nURL: '+(S.input.url||'not provided')+'\n\nBe specific. Use real names, correct currency (INR for India). No placeholders.';
+    // Phase 2: gtm + playbook in parallel
+    const [gtmR,pbR]=await Promise.all([
+      callAI(gtmP(ctx,S.data)),
+      callAI(pbP(ctx,S.data))
+    ]);
+    S.data.gtm=parseJ(gtmR);
+    S.data.playbook=parseJ(pbR);
+    done[4]=true;done[5]=true;
+    await saveData(); // Save phase 2
+    updateOverlay(60,6,'Designing CRM blueprint...');
 
-    showOv(12,1,'Researching market...');
+    // Phase 3: crm + crmi in parallel
+    const [crmR,crmiR]=await Promise.all([
+      callAI(crmP(ctx,S.data)),
+      callAI(crmiP(ctx,S.data))
+    ]);
+    S.data.crm=parseJ(crmR);
+    S.data.crmi=parseJ(crmiR);
+    done[6]=true;
+    await saveData(); // Save phase 3
+    updateOverlay(80,7,'Building MIS and execution plan...');
 
-    // PHASE 1: biz + icp — skip if already done (resume)
-    if(!S.data.biz||!S.data.icp){
-      const [bizR,icpR]=await Promise.all([callAI(bizP(ctx)),callAI(icpP(ctx))]);
-      S.data.biz=parseJ(bizR);
-      S.data.icp=parseJ(icpR);
-      if(!S.data.biz||Object.keys(S.data.biz).length<2){
-        throw new Error('API returned empty data. Check OPENAI_KEY or CLAUDE_KEY in Vercel Settings.');
-      }
-      await saveData();
-    }
-    showOv(35,4,'Building GTM strategy...');
+    // Phase 4: mis + checklist in parallel
+    const [misR,ckR]=await Promise.all([
+      callAI(misP(ctx,S.data)),
+      callAI(ckP(ctx,S.data))
+    ]);
+    S.data.mis=parseJ(misR);
+    S.data.checklist=parseJ(ckR);
+    done[7]=true;
+    updateOverlay(100,7,'Saving your GTM OS...');
 
-    // PHASE 2: gtm + playbook — skip if done
-    if(!S.data.gtm||!S.data.playbook){
-      const [gtmR,pbR]=await Promise.all([callAI(gtmP(ctx,S.data)),callAI(pbP(ctx,S.data))]);
-      S.data.gtm=parseJ(gtmR);
-      S.data.playbook=parseJ(pbR);
-      await saveData();
-    }
-    showOv(60,6,'Designing CRM blueprint...');
-
-    // PHASE 3: crm + crmi — skip if done
-    if(!S.data.crm||!S.data.crmi){
-      const [crmR,crmiR]=await Promise.all([callAI(crmP(ctx,S.data)),callAI(crmiP(ctx,S.data))]);
-      S.data.crm=parseJ(crmR);
-      S.data.crmi=parseJ(crmiR);
-      await saveData();
-    }
-    showOv(80,7,'Building MIS and 100-day plan...');
-
-    // PHASE 4: mis + checklist — skip if done
-    if(!S.data.mis||!S.data.checklist){
-      const [misR,ckR]=await Promise.all([callAI(misP(ctx,S.data)),callAI(ckP(ctx,S.data))]);
-      S.data.mis=parseJ(misR);
-      S.data.checklist=parseJ(ckR);
-    }
-
-    showOv(100,7,'Saving...');
     S.generated=true;
+    // Verify we have real data before marking done
+    const hasRealData = S.data.biz?.companyName || S.data.biz?.oneLiner || S.data.biz?.businessModel;
+    if(!hasRealData){
+      throw new Error('Generation completed but no data was returned. The CLAUDE_KEY may be invalid or missing in Vercel Environment Variables.');
+    }
     const badge=document.getElementById('badge-input');
     if(badge){badge.textContent='Done';badge.className='sbi-badge done';}
     await saveData();
-    cleanup();
-    setTimeout(()=>{const o=document.getElementById('gen-overlay');if(o)o.remove();nav('dashboard');toast('Your GTM OS is ready');},500);
+
+    // Done - release lock, remove overlay, go to dashboard
+    _generating=false;
+    if(_wakeLock)try{_wakeLock.release();}catch(e){}
+    if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
+    sessionStorage.removeItem('gen_running');
+    setTimeout(()=>{
+      const ov=document.getElementById('gen-overlay');
+      if(ov)ov.remove();
+      nav('dashboard');
+      toast('Your GTM OS is ready');
+    },500);
 
   }catch(e){
     console.error('Generation error:',e);
-    cleanup();
-    const o=document.getElementById('gen-overlay');
-    if(o)o.innerHTML='<div style="text-align:center;max-width:400px;padding:32px"><div style="width:52px;height:52px;background:#FEF2F2;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div style="font-family:DM Sans,sans-serif;font-size:18px;font-weight:800;color:#1B2B4B;margin-bottom:10px">Generation failed</div><div style="font-size:13px;color:#64748B;margin-bottom:16px;line-height:1.6">'+e.message+'</div><div style="font-size:12px;color:#9CA3AF;background:#F8F9FC;border-radius:6px;padding:12px;text-align:left;margin-bottom:20px;line-height:1.8"><strong style="color:#1B2B4B">Fix:</strong><br>Vercel → gtm-os → Settings → Environment Variables<br>Add OPENAI_KEY or CLAUDE_KEY → Redeploy</div><button onclick="const o=document.getElementById(\'gen-overlay\');if(o)o.remove();" style="padding:11px 28px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer">Close and retry</button></div>';
+    _generating=false;
+    if(_wakeLock)try{_wakeLock.release();}catch(e){}
+    if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
+    sessionStorage.removeItem('gen_running');
+    const errOv=document.getElementById('gen-overlay');
+    if(errOv)errOv.innerHTML=`<div style="text-align:center;max-width:400px;padding:32px">
+      <div style="width:56px;height:56px;background:#FEF2F2;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:19px;font-weight:800;color:#1B2B4B;margin-bottom:10px">Generation failed</div>
+      <div style="font-size:13px;color:#64748B;margin-bottom:8px;line-height:1.6">${e.message||'API call failed'}</div>
+      <div style="font-size:12px;color:#9CA3AF;margin-bottom:24px;padding:12px;background:#F8F9FC;border-radius:6px;text-align:left;line-height:1.8">
+        <strong style="color:#1B2B4B">Common fixes:</strong><br>
+        1. Verify CLAUDE_KEY is set in Vercel > Settings > Environment Variables<br>
+        2. Make sure the key starts with sk-ant-api...<br>
+        3. Redeploy after adding the key
+      </div>
+      <button onclick="const ov=document.getElementById('gen-overlay');if(ov)ov.remove();" style="padding:11px 28px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Close and retry</button>
+    </div>`;
   }
 }
 
