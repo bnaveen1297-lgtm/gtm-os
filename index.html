@@ -299,16 +299,111 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .pk-footer-link:hover{color:#111}
 
 /* Responsive */
+/* ── MOBILE RESPONSIVE ──────────────────────────────────── */
 @media(max-width:900px){
+  /* Nav */
+  .pk-nav{padding:0 16px}
   .pk-nav-links{display:none}
-  .pk-hero{padding:90px 20px 60px}
-  .pk-feat{grid-template-columns:1fr!important;gap:32px!important;padding:48px 0!important}
-  .pk-features,.pk-section,.pk-cta,.pk-footer{padding-left:20px!important;padding-right:20px!important}
+  .pk-nav-actions .pk-btn-ghost{display:none}
+  .pk-ham{display:flex!important}
+
+  /* Hero */
+  .pk-hero{padding:88px 20px 48px;text-align:center}
+  .pk-h1{font-size:clamp(28px,7vw,44px)!important}
+  .pk-hero-sub{font-size:15px!important}
+  .pk-hero-ctas{flex-direction:column;align-items:center;gap:10px!important}
+  .pk-hero-ctas input{width:100%!important;max-width:320px}
+  .pk-mockup{border-radius:10px}
+  .pk-mockup>div{grid-template-columns:1fr!important}
+  .pk-mockup>div>div:first-child{display:none}
+
+  /* Feature rows */
+  .pk-feat{grid-template-columns:1fr!important;gap:28px!important;padding:40px 0!important}
+  .pk-feat>div:first-child{order:1}
+  .pk-feat>div:last-child{order:2}
+  /* Reverse layout rows */
+  .pk-feat[style*="grid-template-columns:1fr 1fr"]>div:first-child{order:2}
+  .pk-feat[style*="grid-template-columns:1fr 1fr"]>div:last-child{order:1}
+
+  /* Sections */
+  .pk-features,.pk-section,.pk-cta{padding-left:16px!important;padding-right:16px!important}
+  .pk-section h2{font-size:clamp(22px,5vw,32px)!important}
+
+  /* Grids collapse */
   .pk-footer-grid{grid-template-columns:1fr 1fr!important;gap:24px!important}
+
+  /* 8 modules */
+  div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important}
+
+  /* Solutions */
+  div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+
+  /* Comparison */
+  .pk-compare-wrap{font-size:12px}
+
+  /* Product/solution pages */
+  div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  div[style*="padding:100px 40px"]{padding:80px 16px 0!important}
+  div[style*="gap:64px"]{gap:24px!important}
+
+  /* Integration cards */
+  div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important}
+
+  /* ICP scoring */
+  div[style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:1fr 1fr!important}
+
+  /* How it works 3-col */
+  div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+
+  /* CTA */
+  .pk-cta{padding:60px 16px!important}
+  .pk-cta div[style*="display:flex;gap:10px"]{flex-direction:column;align-items:center}
 }
+
 @media(max-width:560px){
   .pk-footer-grid{grid-template-columns:1fr!important}
+  .pk-footer{padding:40px 16px 24px!important}
+  .pk-h1{font-size:28px!important;letter-spacing:-1px!important}
+  .pk-hero{padding:80px 16px 40px}
+  div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  div[style*="grid-template-columns:repeat"]{grid-template-columns:1fr!important}
+
+  /* Pricing card */
+  div[style*="grid-template-columns:auto 1fr"]{grid-template-columns:1fr!important}
+
+  /* Compare table scroll */
+  .pk-compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .pk-compare-header,.pk-compare-row,.pk-compare-cell{min-width:0}
+
+  /* Buttons */
+  .pk-btn-hero-p,.pk-btn-hero-g{width:100%;text-align:center;padding:13px 20px!important}
+
+  /* FAQ */
+  .pk-faq-q{font-size:13px}
 }
+
+/* ── MOBILE NAV (hamburger) ──────────────────────────── */
+.pk-ham{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;border:none;background:none;z-index:10001}
+.pk-ham span{display:block;width:20px;height:2px;background:#111;border-radius:2px;transition:all .2s}
+.pk-ham.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.pk-ham.open span:nth-child(2){opacity:0}
+.pk-ham.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+.pk-mobile-menu{
+  display:none;position:fixed;top:57px;left:0;right:0;background:#fff;
+  border-bottom:1px solid #E5E7EB;padding:16px;z-index:9999;
+  box-shadow:0 8px 24px rgba(0,0,0,.1);flex-direction:column;gap:4px
+}
+.pk-mobile-menu.open{display:flex}
+.pk-mob-link{
+  display:block;padding:11px 14px;font-size:14px;font-weight:600;color:#374151;
+  border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;border:none;
+  background:none;text-align:left;width:100%
+}
+.pk-mob-link:active,.pk-mob-link:hover{background:#F9FAFB}
+.pk-mob-section{font-size:10px;font-weight:700;color:#9CA3AF;letter-spacing:.1em;text-transform:uppercase;padding:10px 14px 4px;font-family:Inter,sans-serif}
+.pk-mob-ctas{display:flex;gap:8px;padding:10px 4px 4px;border-top:1px solid #F3F4F6;margin-top:6px}
+.pk-mob-ctas button{flex:1;padding:11px;font-size:13.5px;font-weight:600;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif}
 </style>
 
 <!-- ══ NAV ══════════════════════════════════════════════════════════ -->
@@ -359,8 +454,32 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   <div class="pk-nav-actions">
     <button onclick="openAuth('login')" class="pk-btn-ghost">Log in</button>
     <button onclick="openAuth('signup')" class="pk-btn-primary">Get started free</button>
+    <button class="pk-ham" onclick="pkHamToggle(this)" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile menu -->
+<div class="pk-mobile-menu" id="pk-mobile-menu">
+  <div class="pk-mob-section">Product</div>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-product-crm')">CRM Intelligence</button>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-product-playbook')">Sales Playbook</button>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-product-gtm')">GTM Strategy</button>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-product-icp')">ICP Engine</button>
+  <div class="pk-mob-section">Solutions</div>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-page-solution-saas')">For B2B SaaS</button>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-page-solution-fintech')">For Fintech</button>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-page-solution-earlystage')">For Early-Stage</button>
+  <div class="pk-mob-section">More</div>
+  <button class="pk-mob-link" onclick="pkMobClose();showProductPage('lp-page-integrations')">Integrations</button>
+  <button class="pk-mob-link" onclick="pkMobClose();document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</button>
+  <button class="pk-mob-link" onclick="pkMobClose();document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</button>
+  <div class="pk-mob-ctas">
+    <button style="background:#F3F4F6;color:#111;border:1px solid #E5E7EB" onclick="pkMobClose();openAuth('login')">Log in</button>
+    <button style="background:#6366F1;color:#fff;border:none" onclick="pkMobClose();openAuth('signup')">Get started free</button>
+  </div>
+</div>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
 <div class="pk-hero">
@@ -370,8 +489,8 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   </div>
   <h1 class="pk-h1 pk-fade pk-d2">Your GTM strategy,<br>built and run by AI.</h1>
   <p class="pk-hero-sub pk-fade pk-d3">Paste your website URL. Engine 360 researches your market, reads your CRM, finds what's broken in your pipeline, and rebuilds your playbook - in 60 seconds.</p>
-  <div class="pk-hero-ctas pk-fade pk-d4">
-    <input id="hero-url" type="url" placeholder="https://yourcompany.com" style="padding:13px 16px;border:1.5px solid #D1D5DB;border-radius:8px;font-size:14px;color:#111;font-family:Inter,sans-serif;outline:none;width:280px;transition:border-color .15s" onfocus="this.style.borderColor='#6366F1'" onblur="this.style.borderColor='#D1D5DB'">
+  <div class="pk-hero-ctas pk-fade pk-d4" style="flex-wrap:wrap;max-width:640px;margin:0 auto">
+    <input id="hero-url" type="url" placeholder="https://yourcompany.com" style="padding:13px 16px;border:1.5px solid #D1D5DB;border-radius:8px;font-size:14px;color:#111;font-family:Inter,sans-serif;outline:none;width:min(280px,100%);transition:border-color .15s" onfocus="this.style.borderColor='#6366F1'" onblur="this.style.borderColor='#D1D5DB'">
     <button onclick="heroStart()" class="pk-btn-hero-p">Analyse my business →</button>
     <button onclick="openAuth('login')" class="pk-btn-hero-g">Log in</button>
   </div>
@@ -814,6 +933,19 @@ document.addEventListener('click',function(e){
   if(!e.target.closest('.pk-nav-item'))document.querySelectorAll('.pk-nav-item').forEach(i=>i.classList.remove('dd-open'));
 });
 window.pkToggleNav=pkToggleNav;
+
+function pkHamToggle(btn){
+  btn.classList.toggle('open');
+  const m=document.getElementById('pk-mobile-menu');
+  if(m)m.classList.toggle('open');
+}
+function pkMobClose(){
+  document.querySelectorAll('.pk-ham').forEach(b=>b.classList.remove('open'));
+  const m=document.getElementById('pk-mobile-menu');
+  if(m)m.classList.remove('open');
+}
+window.pkHamToggle=pkHamToggle;
+window.pkMobClose=pkMobClose;
 
 // Handle browser back/forward
 window.addEventListener('popstate',function(e){
