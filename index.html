@@ -774,7 +774,20 @@ async function signOut(){
   showLanding();
 }
 
-const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Business Profile','Positioning, moat and market fit'],icp:['ICP Engine','Ideal customer profiles ranked by fit'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],mis:['MIS & Metrics','KPIs, benchmarks and review cadence'],checklist:['Execution Plan','Week-by-week action checklist']};
+const PAGE_META={
+  input:['Business Input','URL only — we research the rest'],
+  connect:['Connect Data','Zoho CRM and Google Sheets'],
+  livedata:['Live Intelligence','Pipeline analysis, churn signals and segmentation'],
+  dashboard:['Strategy Dashboard','Full strategic overview and key decisions'],
+  biz:['Business Profile','Positioning, moat, TAM/SAM/SOM and hypothesis validation'],
+  icp:['ICP Engine','3 profiles scored across 5 filters with LinkedIn signals'],
+  gtm:['GTM Strategy','Motion, channels, PDCA cycle and 90-day roadmap'],
+  playbook:['Sales Playbook','Real scripts, objections, MEDDIC and 60-second response'],
+  crm:['CRM Blueprint','Pipeline, scoring and automations'],
+  crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],
+  mis:['MIS and Metrics','6 numbers, north star, daily and weekly MIS'],
+  checklist:['Execution Plan','100-day calendar, hiring signals and tool stack']
+};
 
 let _generating=false;
 function nav(page){
@@ -802,10 +815,30 @@ function nav(page){
   const subEl=document.getElementById('app-sub');
   if(titleEl)titleEl.textContent=t;
   if(subEl)subEl.textContent=s;
-  const renders={input:renderInput,connect:renderConnect,livedata:renderLiveIntel,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
+  const renders={
+    input:renderInput,
+    connect:renderConnect,
+    livedata:renderLiveIntel,
+    dashboard:renderDashboard,
+    biz:renderBiz,
+    icp:renderICP,
+    gtm:renderGTM,
+    playbook:renderPlaybook,
+    crm:renderCRM,
+    crmi:renderCRMI,
+    mis:renderMIS,
+    checklist:renderChecklist
+  };
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
-  if(pageEl)pageEl.innerHTML=fn?fn():'';
+  if(pageEl){
+    try{
+      pageEl.innerHTML=fn?fn():'<div class="empty-state"><div class="empty-title">Page not found</div></div>';
+    }catch(err){
+      console.error('Render error on page',page,err);
+      pageEl.innerHTML='<div class="empty-state"><div class="empty-title">Error loading page</div><div class="empty-sub">'+err.message+'</div><button class="btn btn-blue" onclick="nav(\'input\')">Go to input</button></div>';
+    }
+  }
   if(page==='input')bindInput();
 }
 
