@@ -774,20 +774,7 @@ async function signOut(){
   showLanding();
 }
 
-const PAGE_META={
-  input:['Business Input','URL only — we research the rest'],
-  connect:['Connect Data','Zoho CRM and Google Sheets'],
-  livedata:['Live Intelligence','Pipeline analysis, churn signals and segmentation'],
-  dashboard:['Strategy Dashboard','Full strategic overview and key decisions'],
-  biz:['Business Profile','Positioning, moat, TAM/SAM/SOM and hypothesis validation'],
-  icp:['ICP Engine','3 profiles scored across 5 filters with LinkedIn signals'],
-  gtm:['GTM Strategy','Motion, channels, PDCA cycle and 90-day roadmap'],
-  playbook:['Sales Playbook','Real scripts, objections, MEDDIC and 60-second response'],
-  crm:['CRM Blueprint','Pipeline, scoring and automations'],
-  crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],
-  mis:['MIS and Metrics','6 numbers, north star, daily and weekly MIS'],
-  checklist:['Execution Plan','100-day calendar, hiring signals and tool stack']
-};
+const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Business Profile','Positioning, moat and market fit'],icp:['ICP Engine','Ideal customer profiles ranked by fit'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],mis:['MIS & Metrics','KPIs, benchmarks and review cadence'],checklist:['Execution Plan','Week-by-week action checklist']};
 
 let _generating=false;
 function nav(page){
@@ -815,30 +802,10 @@ function nav(page){
   const subEl=document.getElementById('app-sub');
   if(titleEl)titleEl.textContent=t;
   if(subEl)subEl.textContent=s;
-  const renders={
-    input:renderInput,
-    connect:renderConnect,
-    livedata:renderLiveIntel,
-    dashboard:renderDashboard,
-    biz:renderBiz,
-    icp:renderICP,
-    gtm:renderGTM,
-    playbook:renderPlaybook,
-    crm:renderCRM,
-    crmi:renderCRMI,
-    mis:renderMIS,
-    checklist:renderChecklist
-  };
+  const renders={input:renderInput,connect:renderConnect,livedata:renderLiveIntel,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
-  if(pageEl){
-    try{
-      pageEl.innerHTML=fn?fn():'<div class="empty-state"><div class="empty-title">Page not found</div></div>';
-    }catch(err){
-      console.error('Render error on page',page,err);
-      pageEl.innerHTML='<div class="empty-state"><div class="empty-title">Error loading page</div><div class="empty-sub">'+err.message+'</div><button class="btn btn-blue" onclick="nav(\'input\')">Go to input</button></div>';
-    }
-  }
+  if(pageEl)pageEl.innerHTML=fn?fn():'';
   if(page==='input')bindInput();
 }
 
@@ -1585,302 +1552,376 @@ RULES:
   "quickWins": ["action that can show results in first 7 days", "quick win 2", "quick win 3"]
 }`;}
 
-// ── Render: Connect ────────────────────────────────────────────────────────
+// ── Render: Connect ─────────────────────────────────────────────────────
 function renderConnect(){
-  const conn=S.connections||{};
+  const conn = S.connections||{};
+  const disc = S.discovery||{};
   return`
   <div class="sec-hdr">
     <div class="sec-eyebrow">Connect Data Sources</div>
-    <div class="sec-title">Live data makes Engine 360 your daily OS</div>
-    <div class="sec-sub">Connect Zoho CRM or Google Sheets to get live pipeline health, MIS numbers, churn signals and weekly review data every time you open the app.</div>
+    <div class="sec-title">Pull your real data</div>
+    <div class="sec-sub">Connect Zoho CRM to discover your entire database. We'll show you sample data first, get your approval, then pull everything and run AI analysis across your pipeline, churn, and team productivity.</div>
   </div>
 
-  <!-- ZOHO CRM -->
+  <!-- ZOHO CONNECTION -->
   <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px">
-      <div style="width:44px;height:44px;border-radius:10px;background:#EEF2FF;border:1px solid #C7D2FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#E00"/><text x="5" y="27" font-size="20" font-weight="800" fill="white" font-family="Arial">Z</text></svg>
-      </div>
+    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
+      <div style="width:42px;height:42px;border-radius:10px;background:#FEF2F2;border:1.5px solid #FECACA;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#EF4444;font-family:'DM Sans',sans-serif;flex-shrink:0">Z</div>
       <div style="flex:1">
         <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Zoho CRM</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Pull live pipeline, deal stages, lead counts, conversion rates and team activity</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Discover all modules, pull full database, run AI analysis</div>
       </div>
-      <div id="zoho-status-badge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
+      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
     </div>
-    <div style="padding:20px 22px">
-      ${conn.zoho?`
-      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div style="font-size:12.5px;color:var(--green);font-weight:600">Zoho CRM connected — org: ${conn.zoho.org||'Your org'}</div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px" id="zoho-stats">
-        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
-          <div style="font-size:22px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif" id="z-leads">—</div>
-          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Total Leads</div>
-        </div>
-        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
-          <div style="font-size:22px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif" id="z-deals">—</div>
-          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Open Deals</div>
-        </div>
-        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
-          <div style="font-size:22px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif" id="z-pipeline">—</div>
-          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Pipeline Value</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-border btn-sm" onclick="syncZoho()">Sync now</button>
-        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.2)" onclick="disconnectZoho()">Disconnect</button>
-      </div>
-      `:`
-      <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:16px;margin-bottom:16px">
-        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">What you need from Zoho</div>
-        <div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">1.</span>Go to <strong>Zoho CRM > Setup > Developer Space > Client ID</strong></div>
-        <div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">2.</span>Create a self-client OAuth token with scope: <code style="background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:11px">ZohoCRM.modules.ALL</code></div>
-        <div style="display:flex;gap:6px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">3.</span>Paste your Access Token and Data Center below</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 120px;gap:10px;margin-bottom:12px">
-        <div>
-          <label class="input-label">Zoho Access Token</label>
-          <input type="password" id="zoho-token" placeholder="1000.xxxxxxxxxxxx..." style="font-size:12px">
-        </div>
-        <div>
-          <label class="input-label">Data Center</label>
-          <select id="zoho-dc">
-            <option value="com">Global (.com)</option>
-            <option value="in" selected>India (.in)</option>
-            <option value="eu">Europe (.eu)</option>
-            <option value="com.au">Australia</option>
-          </select>
-        </div>
-      </div>
-      <div style="margin-bottom:12px">
-        <label class="input-label">Organization ID (optional)</label>
-        <input type="text" id="zoho-org" placeholder="Your Zoho org ID" style="font-size:12px">
-      </div>
-      <button class="btn btn-blue" onclick="connectZoho()" style="font-family:'DM Sans',sans-serif">Connect Zoho CRM</button>
-      `}
+    <div style="padding:18px 20px">
+      ${conn.zoho ? renderZohoConnected(conn.zoho, disc) : renderZohoSetup()}
     </div>
   </div>
 
   <!-- GOOGLE SHEETS -->
   <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px">
-      <div style="width:44px;height:44px;border-radius:10px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="3" fill="#34A853"/><rect x="14" y="16" width="20" height="2.5" rx="1" fill="white"/><rect x="14" y="21" width="20" height="2.5" rx="1" fill="white"/><rect x="14" y="26" width="14" height="2.5" rx="1" fill="white"/><rect x="14" y="31" width="16" height="2.5" rx="1" fill="white"/></svg>
+    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
+      <div style="width:42px;height:42px;border-radius:10px;background:#F0FDF4;border:1.5px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect x="6" y="3" width="28" height="34" rx="3" fill="#34A853"/><rect x="12" y="13" width="16" height="2" rx="1" fill="white"/><rect x="12" y="17" width="16" height="2" rx="1" fill="white"/><rect x="12" y="21" width="11" height="2" rx="1" fill="white"/><rect x="12" y="25" width="13" height="2" rx="1" fill="white"/></svg>
       </div>
       <div style="flex:1">
         <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Google Sheets</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker, MIS, or pipeline sheet for daily number updates</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker or MIS sheet</div>
       </div>
-      <div id="sheets-status-badge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
+      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
     </div>
-    <div style="padding:20px 22px">
-      ${conn.sheets?`
-      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div style="font-size:12.5px;color:var(--green);font-weight:600">Google Sheets connected — ${conn.sheets.name||'Your sheet'}</div>
-      </div>
-      <div style="margin-bottom:14px">
-        <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px">Mapped columns</div>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
-          ${Object.entries(conn.sheets.mapping||{date:'A',leads:'B',revenue:'C',stage:'D'}).map(([k,v])=>`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:8px 10px;display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--ink3)">${k}</span><span style="font-weight:700;color:var(--blue);font-family:var(--mono)">Col ${v}</span></div>`).join('')}
-        </div>
+    <div style="padding:18px 20px">
+      ${conn.sheets ? `
+      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-size:12.5px;color:var(--green);font-weight:600">${conn.sheets.name||'Sheet'} connected</span>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-border btn-sm" onclick="syncSheets()">Sync now</button>
-        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,68,.2)" onclick="disconnectSheets()">Disconnect</button>
+        <button class="btn btn-border btn-sm" onclick="syncAndAnalyse('sheets')">Sync now</button>
+        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.15)" onclick="disconnectSource('sheets')">Disconnect</button>
+      </div>` : `
+      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.15);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12.5px;color:var(--navy);line-height:1.6">
+        Share your Google Sheet (Anyone with link can view) and paste the URL below.
       </div>
-      `:`
-      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:14px;margin-bottom:16px">
-        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">Use our template sheet</div>
-        <div style="font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6">Copy our pre-built MIS template with all the columns Engine 360 needs — daily leads, revenue, pipeline stages, team activity.</div>
-        <a href="https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/copy" target="_blank" class="btn btn-blue btn-sm" style="text-decoration:none;display:inline-flex">Copy MIS template</a>
-      </div>
-      <div style="margin-bottom:12px">
-        <label class="input-label">Google Sheet URL</label>
-        <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="font-size:12px">
-        <div style="font-size:11px;color:var(--ink3);margin-top:4px">Make sure the sheet is shared as "Anyone with link can view"</div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
-        <div>
-          <label class="input-label" style="font-size:10px">Date column</label>
-          <input type="text" id="col-date" placeholder="A" value="A" style="font-size:12px;text-align:center">
-        </div>
-        <div>
-          <label class="input-label" style="font-size:10px">Leads column</label>
-          <input type="text" id="col-leads" placeholder="B" value="B" style="font-size:12px;text-align:center">
-        </div>
-        <div>
-          <label class="input-label" style="font-size:10px">Revenue column</label>
-          <input type="text" id="col-rev" placeholder="C" value="C" style="font-size:12px;text-align:center">
-        </div>
-        <div>
-          <label class="input-label" style="font-size:10px">Stage column</label>
-          <input type="text" id="col-stage" placeholder="D" value="D" style="font-size:12px;text-align:center">
-        </div>
-        <div>
-          <label class="input-label" style="font-size:10px">Owner column</label>
-          <input type="text" id="col-owner" placeholder="E" value="E" style="font-size:12px;text-align:center">
-        </div>
-        <div>
-          <label class="input-label" style="font-size:10px">Status column</label>
-          <input type="text" id="col-status" placeholder="F" value="F" style="font-size:12px;text-align:center">
-        </div>
-      </div>
-      <button class="btn btn-blue" onclick="connectSheets()" style="font-family:'DM Sans',sans-serif">Connect Google Sheets</button>
-      `}
+      <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="margin-bottom:10px;font-size:12px">
+      <button class="btn btn-blue" onclick="connectSheets()">Connect Sheets</button>`}
     </div>
   </div>
 
-  <!-- DAILY OS PREVIEW -->
-  <div style="background:var(--navy);border-radius:var(--r2);padding:20px 22px;margin-bottom:14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:10px">What connecting unlocks</div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-      ${[
-        ['Morning MIS','Daily numbers — leads added, revenue vs target, pipeline movement'],
-        ['Weekly Review','Auto-generated agenda from your book framework with live data'],
-        ['Pipeline Health','Deals by stage, stalled deals, conversion rate per stage'],
-        ['Churn Signals','At-risk accounts flagged daily based on activity signals'],
-        ['Team Tracker','Who owns what, cadence compliance, follow-up overdue'],
-        ['Live Benchmarks','Your numbers vs book benchmarks — CAC, LTV, churn rate']
-      ].map(([t,d])=>`<div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">${t}</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">${d}</div>
-      </div>`).join('')}
+  <!-- SCHEDULED SYNC -->
+  <div class="out-block" style="margin-bottom:14px">
+    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
+      <div class="out-icon" style="color:var(--amber)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Scheduled Sync</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Auto-pull data and refresh insights on a schedule</div>
+      </div>
+    </div>
+    <div style="padding:18px 20px">
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">How often should Engine 360 pull fresh data from your connected sources?</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        ${['Daily','Weekly','Monthly'].map(freq=>`<button onclick="setSchedule('${freq}')" style="padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;border:1.5px solid ${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--rule2)'};background:${(S.schedule||'Weekly')===freq?'var(--blue-l)':'var(--bg)'};color:${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--ink2)'}">${freq}</button>`).join('')}
+      </div>
+      <div style="font-size:12px;color:var(--ink3)">Next sync: <strong style="color:var(--navy)">${getNextSync()}</strong></div>
     </div>
   </div>`;
 }
 
+function renderZohoSetup(){
+  return`
+  <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:14px;margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">How to get your Zoho Access Token</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">1.</span>Go to <strong>accounts.zoho.in/developerconsole</strong></div>
+      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">2.</span>Click <strong>Self Client → Generate Code</strong></div>
+      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">3.</span>Scope: <code style="background:var(--bg3);padding:1px 6px;border-radius:3px;font-size:11px">ZohoCRM.modules.ALL,ZohoCRM.settings.ALL</code></div>
+      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">4.</span>Duration: <strong>10 minutes</strong> → Copy the token</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 100px;gap:8px;margin-bottom:10px">
+    <div>
+      <label class="input-label">Access Token</label>
+      <input type="password" id="zoho-token" placeholder="1000.xxxxxxxxxx..." style="font-size:12px">
+    </div>
+    <div>
+      <label class="input-label">Data Center</label>
+      <select id="zoho-dc" style="font-size:12px">
+        <option value="in" selected>India (.in)</option>
+        <option value="com">Global (.com)</option>
+        <option value="eu">EU (.eu)</option>
+        <option value="com.au">AU</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-blue" onclick="connectZoho()">Connect and discover database</button>`;
+}
+
+function renderZohoConnected(zoho, disc){
+  const modules = disc.modules||[];
+  const hasModules = modules.length > 0;
+  const totalRecords = modules.reduce((s,m)=>s+(m.totalRecords||0),0);
+
+  return`
+  <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:16px">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span style="font-size:12.5px;color:var(--green);font-weight:600">${zoho.org||'Zoho CRM'} connected · ${zoho.dc||'in'} datacenter</span>
+    <button class="btn btn-sm" style="margin-left:auto;background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.15)" onclick="disconnectSource('zoho')">Disconnect</button>
+  </div>
+
+  ${hasModules ? `
+  <!-- DATABASE DISCOVERY RESULTS -->
+  <div style="margin-bottom:14px">
+    <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin-bottom:10px">Database discovered — ${modules.filter(m=>m.hasRecords).length} modules with ${totalRecords.toLocaleString()} total records</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      ${modules.filter(m=>m.hasRecords).map(m=>`
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r)">
+        <div style="flex:1">
+          <div style="font-size:12.5px;font-weight:600;color:var(--navy)">${m.pluralLabel||m.name}</div>
+          <div style="font-size:11px;color:var(--ink3)">${(m.totalRecords||0).toLocaleString()} records</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-border btn-sm" onclick="viewSample('${m.apiName}','${m.pluralLabel||m.name}')">See sample</button>
+          <button class="btn btn-sm" style="background:var(--blue-l);color:var(--blue);border:1px solid rgba(37,99,235,.2)" onclick="pullModule('${m.apiName}','${m.pluralLabel||m.name}',${m.totalRecords||0})">Pull all</button>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-blue" onclick="pullAllModules()">Pull all data and run AI analysis</button>
+    <button class="btn btn-border btn-sm" onclick="discoverDatabase()">Re-discover</button>
+  </div>
+  ` : `
+  <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn btn-blue" onclick="discoverDatabase()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Discover my database
+    </button>
+  </div>`}
+
+  <!-- SAMPLE DATA VIEWER -->
+  <div id="sample-viewer" style="display:none;margin-top:16px"></div>
+
+  <!-- PULL PROGRESS -->
+  <div id="pull-progress" style="display:none;margin-top:16px"></div>`;
+}
+
+function getNextSync(){
+  const schedule = S.schedule||'Weekly';
+  const now = new Date();
+  if(schedule==='Daily') { now.setDate(now.getDate()+1); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
+  if(schedule==='Weekly') { now.setDate(now.getDate()+7); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
+  now.setMonth(now.getMonth()+1); return now.toLocaleDateString('en-IN',{month:'long',day:'numeric'})+' at 9am';
+}
+window.getNextSync=getNextSync;
+
 // ── Connection logic ───────────────────────────────────────────────────────
+
 async function connectZoho(){
   const token=document.getElementById('zoho-token')?.value?.trim();
   const dc=document.getElementById('zoho-dc')?.value||'in';
-  const org=document.getElementById('zoho-org')?.value?.trim();
   if(!token){toast('Enter your Zoho Access Token');return;}
-
   const btn=event.target;btn.textContent='Connecting...';btn.disabled=true;
-
   try{
-    // Test the connection via our proxy
-    const r=await fetch('/zoho?action=test&dc='+dc,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({token,org})
-    });
+    const r=await fetch('/zoho?action=test&dc='+dc,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    if(!S.connections)S.connections={};
+    S.connections.zoho={token,dc,org:d.org||'Zoho CRM',connected:true};
+    await saveData();
+    toast('Connected! Discovering your database...');
+    nav('connect');
+    setTimeout(discoverDatabase,500);
+  }catch(e){
+    toast('Failed: '+e.message);
+    btn.textContent='Connect and discover database';
+    btn.disabled=false;
+  }
+}
+
+async function discoverDatabase(){
+  const conn=S.connections?.zoho;
+  if(!conn){toast('Connect Zoho first');return;}
+  toast('Discovering your database...');
+  try{
+    const r=await fetch('/zoho?action=discover&dc='+conn.dc,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:conn.token})});
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    if(!S.discovery)S.discovery={};
+    S.discovery.modules=d.modules;
+    S.discovery.discoveredAt=new Date().toISOString();
+    await saveData();
+    toast(`Found ${d.modules.filter(m=>m.hasRecords).length} modules`);
+    nav('connect');
+  }catch(e){toast('Discovery failed: '+e.message);}
+}
+
+async function viewSample(apiName, label){
+  const conn=S.connections?.zoho;
+  if(!conn)return;
+  const el=document.getElementById('sample-viewer');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML=`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:16px">
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:'DM Sans',sans-serif">Loading sample from ${label}...</div>
+    <div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:12px"><div style="width:14px;height:14px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Fetching 10 records...</div>
+  </div>`;
+  try{
+    const r=await fetch('/zoho?action=sample&dc='+conn.dc+'&module='+apiName+'&count=10',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:conn.token})});
     const d=await r.json();
     if(d.error)throw new Error(d.error);
 
-    // Save connection details (token stored in Firestore for user)
-    if(!S.connections)S.connections={};
-    S.connections.zoho={token,dc,org:org||d.org||'',connected:true,name:d.org||'Zoho CRM'};
-    await saveData();
-    toast('Zoho CRM connected!');
-    nav('connect');
-  }catch(e){
-    toast('Connection failed: '+e.message);
-    btn.textContent='Connect Zoho CRM';btn.disabled=false;
+    const fieldMap=d.fieldMap||{};
+    const records=d.records||[];
+
+    // Show sample records in a table
+    const allKeys=records.length?Object.keys(records[0]).filter(k=>k!=='id'&&records[0][k]!==null&&records[0][k]!==undefined).slice(0,6):[];
+
+    el.innerHTML=`<div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Sample: ${label}</div>
+          <div style="font-size:11px;color:var(--ink3);margin-top:2px">Showing ${records.length} of ${(d.totalRecords||0).toLocaleString()} total records</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="font-size:11px;font-weight:700;color:var(--amber);background:var(--amber-l);padding:3px 10px;border-radius:3px;font-family:var(--mono)">SAMPLE ONLY</div>
+          <button class="btn btn-blue btn-sm" onclick="pullModule('${apiName}','${label}',${d.totalRecords||0})">Pull all ${(d.totalRecords||0).toLocaleString()} records →</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:11.5px">
+          <thead><tr style="background:var(--bg2)">${allKeys.map(k=>`<th style="padding:8px 10px;text-align:left;font-weight:700;color:var(--ink3);border-bottom:1px solid var(--rule);white-space:nowrap">${fieldMap[k]||k}</th>`).join('')}</tr></thead>
+          <tbody>${records.map((rec,i)=>`<tr style="border-bottom:1px solid var(--rule);${i%2?'background:var(--bg2)':''}">${allKeys.map(k=>`<td style="padding:7px 10px;color:var(--navy);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${typeof rec[k]==='object'?rec[k]?.name||JSON.stringify(rec[k]):rec[k]||'—'}</td>`).join('')}</tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:12px 16px;background:var(--amber-l);border-top:1px solid var(--rule);display:flex;align-items:center;gap:10px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span style="font-size:12px;color:#92400E">This is sample data only. Engine 360 has not read your full database yet. Tap "Pull all" to give permission and run full analysis.</span>
+      </div>
+    </div>`;
+  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px;padding:12px">Failed to load sample: ${e.message}</div>`;}
+}
+
+async function pullModule(apiName, label, totalCount){
+  const conn=S.connections?.zoho;
+  if(!conn)return;
+
+  // Ask for permission
+  if(!confirm(`Pull all ${totalCount.toLocaleString()} records from ${label}?\n\nEngine 360 will read this data to run AI analysis. It will be stored in your account only.`))return;
+
+  const progressEl=document.getElementById('pull-progress');
+  if(progressEl){
+    progressEl.style.display='block';
+    progressEl.innerHTML=`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div>
+        <div style="font-size:13px;font-weight:600;color:var(--navy)">Pulling ${label} (up to 500 records)...</div>
+      </div>
+      <div style="height:4px;background:var(--rule);border-radius:2px;overflow:hidden"><div style="width:60%;height:100%;background:var(--blue);border-radius:2px;animation:pulse 1.5s infinite"></div></div>
+    </div>`;
   }
+
+  try{
+    const r=await fetch('/zoho?action=pullall&dc='+conn.dc+'&module='+apiName+'&max=500',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:conn.token})});
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+
+    // Store pulled data
+    if(!S.pulledData)S.pulledData={};
+    S.pulledData[apiName]={
+      label,
+      records:d.records||[],
+      analytics:d.analytics||{},
+      totalPulled:d.totalPulled||0,
+      pulledAt:new Date().toISOString()
+    };
+    await saveData();
+    toast(`Pulled ${d.totalPulled} ${label} records`);
+
+    if(progressEl){
+      progressEl.innerHTML=`<div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r2);padding:16px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ ${d.totalPulled} ${label} records pulled</div>
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">Data stored in your Engine 360 account. Ready for AI analysis.</div>
+        <button class="btn btn-blue btn-sm" onclick="nav('livedata')">Run AI analysis →</button>
+      </div>`;
+    }
+  }catch(e){
+    if(progressEl)progressEl.innerHTML=`<div style="color:var(--red);font-size:13px;padding:12px">Pull failed: ${e.message}</div>`;
+    toast('Pull failed: '+e.message);
+  }
+}
+
+async function pullAllModules(){
+  const modules=(S.discovery?.modules||[]).filter(m=>m.hasRecords);
+  if(!modules.length){toast('No modules found. Run discovery first.');return;}
+
+  if(!confirm(`Pull data from all ${modules.length} modules?\n\nThis will read your full Zoho database and run AI analysis. ${modules.reduce((s,m)=>s+(m.totalRecords||0),0).toLocaleString()} total records will be pulled (up to 500 per module).`))return;
+
+  toast('Starting full database pull...');
+  for(const mod of modules){
+    await pullModule(mod.apiName, mod.pluralLabel||mod.name, mod.totalRecords||0);
+  }
+  toast('All data pulled. Running AI analysis...');
+  setTimeout(()=>nav('livedata'),500);
+}
+
+async function setSchedule(freq){
+  S.schedule=freq;
+  await saveData();
+  toast('Sync schedule set to '+freq);
+  nav('connect');
 }
 
 async function connectSheets(){
   const url=document.getElementById('sheet-url')?.value?.trim();
   if(!url||!url.includes('spreadsheets')){toast('Enter a valid Google Sheets URL');return;}
-
   const sheetId=url.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1];
-  if(!sheetId){toast('Could not extract sheet ID from URL');return;}
-
-  const mapping={
-    date:document.getElementById('col-date')?.value||'A',
-    leads:document.getElementById('col-leads')?.value||'B',
-    revenue:document.getElementById('col-rev')?.value||'C',
-    stage:document.getElementById('col-stage')?.value||'D',
-    owner:document.getElementById('col-owner')?.value||'E',
-    status:document.getElementById('col-status')?.value||'F',
-  };
-
+  if(!sheetId){toast('Could not find sheet ID in URL');return;}
   const btn=event.target;btn.textContent='Connecting...';btn.disabled=true;
-
   try{
-    // Try to read sheet via our proxy
     const r=await fetch('/sheets?action=test&id='+sheetId);
     const d=await r.json();
-    if(d.error)throw new Error(d.error);
-
     if(!S.connections)S.connections={};
-    S.connections.sheets={sheetId,url,mapping,name:d.title||'Your Sheet',connected:true};
+    S.connections.sheets={sheetId,url,name:d.title||'Your Sheet',mapping:{date:'A',leads:'B',revenue:'C',stage:'D',owner:'E',status:'F'},connected:true};
     await saveData();
     toast('Google Sheets connected!');
     nav('connect');
   }catch(e){
-    // If proxy fails, still save the config and let user know
     if(!S.connections)S.connections={};
-    S.connections.sheets={sheetId,url,mapping,name:'Your Sheet',connected:true};
+    S.connections.sheets={sheetId,url,name:'Your Sheet',mapping:{date:'A',leads:'B',revenue:'C',stage:'D',owner:'E',status:'F'},connected:true};
     await saveData();
-    toast('Sheet saved — sync will pull data');
+    toast('Sheet saved');
     nav('connect');
-    btn.textContent='Connect Google Sheets';btn.disabled=false;
+    btn.textContent='Connect Sheets';btn.disabled=false;
   }
 }
 
-async function syncZoho(){
-  toast('Syncing Zoho CRM...');
-  try{
-    const conn=S.connections?.zoho;
-    if(!conn){toast('Zoho not connected');return;}
-    const r=await fetch('/zoho?action=sync&dc='+conn.dc,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({token:conn.token})
-    });
-    const d=await r.json();
-    if(d.error)throw new Error(d.error);
-    S.liveData={...S.liveData,...d};
-    await saveData();
-    // Update displayed stats
-    const leads=document.getElementById('z-leads');
-    const deals=document.getElementById('z-deals');
-    const pipe=document.getElementById('z-pipeline');
-    if(leads)leads.textContent=d.leads||'—';
-    if(deals)deals.textContent=d.deals||'—';
-    if(pipe)pipe.textContent=d.pipeline||'—';
-    toast('Zoho synced!');
-  }catch(e){toast('Sync failed: '+e.message);}
-}
-
-async function syncSheets(){
-  toast('Syncing Google Sheets...');
-  try{
-    const conn=S.connections?.sheets;
-    if(!conn){toast('Sheets not connected');return;}
-    const r=await fetch('/sheets?action=sync&id='+conn.sheetId+'&mapping='+encodeURIComponent(JSON.stringify(conn.mapping)));
-    const d=await r.json();
-    if(d.error)throw new Error(d.error);
-    S.liveData={...S.liveData,...d};
-    await saveData();
-    toast('Sheets synced!');
-  }catch(e){toast('Sync failed: '+e.message);}
-}
-
-async function disconnectZoho(){
-  if(!confirm('Disconnect Zoho CRM?'))return;
-  delete S.connections.zoho;
-  delete S.liveData?.zoho;
+async function disconnectSource(source){
+  if(!confirm('Disconnect '+source+'?'))return;
+  if(source==='zoho'){delete S.connections.zoho;delete S.discovery;delete S.pulledData;}
+  if(source==='sheets'){delete S.connections.sheets;}
   await saveData();
-  toast('Zoho disconnected');
+  toast('Disconnected');
   nav('connect');
 }
 
-async function disconnectSheets(){
-  if(!confirm('Disconnect Google Sheets?'))return;
-  delete S.connections.sheets;
-  await saveData();
-  toast('Sheets disconnected');
-  nav('connect');
+async function syncAndAnalyse(source){
+  if(source==='zoho'){await discoverDatabase();}
+  else{toast('Syncing sheets...');nav('livedata');}
 }
 
 window.connectZoho=connectZoho;
 window.connectSheets=connectSheets;
-window.syncZoho=syncZoho;
-window.syncSheets=syncSheets;
+window.discoverDatabase=discoverDatabase;
+window.viewSample=viewSample;
+window.pullModule=pullModule;
+window.pullAllModules=pullAllModules;
+window.setSchedule=setSchedule;
+window.disconnectSource=disconnectSource;
+window.syncAndAnalyse=syncAndAnalyse;
+w.syncSheets=syncSheets;
 window.disconnectZoho=disconnectZoho;
 window.disconnectSheets=disconnectSheets;
 
@@ -2038,178 +2079,6 @@ function renderLiveIntel(){
 }
 
 // ── Live Intelligence Functions ─────────────────────────────────────────────
-async function syncAndAnalyse(source){
-  toast('Syncing '+source+'...');
-  try{
-    let d;
-    if(source==='zoho'&&S.connections?.zoho){
-      const r=await fetch('/zoho?action=sync&dc='+(S.connections.zoho.dc||'in'),{
-        method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({token:S.connections.zoho.token})
-      });
-      d=await r.json();
-      if(d.error)throw new Error(d.error);
-      S.liveData.zoho=d;
-    }else if(source==='sheets'&&S.connections?.sheets){
-      const r=await fetch('/sheets?action=sync&id='+S.connections.sheets.sheetId+'&mapping='+encodeURIComponent(JSON.stringify(S.connections.sheets.mapping||{})));
-      d=await r.json();
-      if(d.error)throw new Error(d.error);
-      S.liveData.sheets=d;
-    }
-    await saveData();
-    toast('Synced! Running analysis...');
-    nav('livedata');
-    // Auto-run all analyses
-    setTimeout(()=>{runChurnAnalysis();runProductivityAnalysis();runSegmentAnalysis();},500);
-  }catch(e){toast('Sync failed: '+e.message);}
-}
-
-async function runChurnAnalysis(){
-  const live=S.liveData?.zoho||S.liveData?.sheets||{};
-  const el=document.getElementById('churn-result');
-  if(!el)return;
-  el.style.display='block';
-  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:13px"><div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Analysing churn signals...</div>';
-
-  try{
-    const prompt=`You are a revenue analyst. Analyse this pipeline data and identify churn signals, at-risk deals, and what actions to take immediately.
-
-PIPELINE DATA: ${JSON.stringify(live)}
-ICP: ${JSON.stringify(S.data?.icp?.icps?.[0]||{})}
-CRM FRAMEWORK: ${JSON.stringify(S.data?.crm||{})}
-
-Return ONLY valid JSON:
-{
-  "riskLevel": "High / Medium / Low",
-  "summary": "one sentence on overall pipeline health",
-  "atRiskDeals": [{"signal": "specific signal", "action": "immediate action", "urgency": "Today / This week"}],
-  "churnSignals": [{"signal": "observable signal", "severity": "Critical / High / Medium", "recommendation": "what to do"}],
-  "immediateActions": ["specific action 1", "action 2", "action 3"],
-  "healthScore": "1-10 score with reason"
-}`;
-    const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:800})});
-    const data=await r.json();
-    const text=data.content?.[0]?.text||'{}';
-    const analysis=parseJ(text);
-
-    const riskColor=analysis.riskLevel==='High'?'var(--red)':analysis.riskLevel==='Medium'?'var(--amber)':'var(--green)';
-    el.innerHTML=`
-    <div style="background:var(--bg2);border-radius:var(--r);padding:12px;margin-bottom:12px;display:flex;align-items:center;gap:10px">
-      <div style="font-size:11px;font-weight:700;color:${riskColor};background:${riskColor}22;padding:3px 10px;border-radius:3px;font-family:var(--mono)">${analysis.riskLevel||'Unknown'} RISK</div>
-      <div style="font-size:13px;color:var(--navy)">${analysis.summary||'Analysis complete'}</div>
-      <div style="margin-left:auto;font-size:18px;font-weight:800;color:${riskColor};font-family:'DM Sans',sans-serif">${analysis.healthScore||'?'}/10</div>
-    </div>
-    ${(analysis.immediateActions||[]).length?`<div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--mono)">Do today</div>
-    ${analysis.immediateActions.map(a=>`<div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:12.5px;color:var(--navy)"><span style="color:var(--red);font-weight:700;flex-shrink:0">!</span>${a}</div>`).join('')}`:''}
-    ${(analysis.churnSignals||[]).length?`<div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin:12px 0 8px;font-family:var(--mono)">Signals detected</div>
-    ${analysis.churnSignals.map(s=>`<div style="padding:10px;background:${s.severity==='Critical'?'var(--red-m)':s.severity==='High'?'var(--amber-m)':'var(--bg2)'};border-radius:var(--r);margin-bottom:6px">
-      <div style="font-size:11px;font-weight:700;color:${s.severity==='Critical'?'var(--red)':'var(--amber)'};margin-bottom:3px">${s.severity}</div>
-      <div style="font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:3px">${s.signal}</div>
-      <div style="font-size:12px;color:var(--ink3)">${s.recommendation}</div>
-    </div>`).join('')}`:''}`;
-  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px">Analysis failed: ${e.message}</div>`;}
-}
-
-async function runProductivityAnalysis(){
-  const live=S.liveData?.zoho||S.liveData?.sheets||{};
-  const el=document.getElementById('productivity-result');
-  if(!el)return;
-  el.style.display='block';
-  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:13px"><div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Analysing productivity...</div>';
-
-  try{
-    const prompt=`Analyse this pipeline data and identify productivity signals, what's working, what's stalled, and rep performance.
-
-PIPELINE DATA: ${JSON.stringify(live)}
-MIS FRAMEWORK: ${JSON.stringify(S.data?.mis||{})}
-
-Return ONLY valid JSON:
-{
-  "summary": "one sentence on team productivity",
-  "whatIsWorking": ["specific thing working well with evidence"],
-  "whatIsStalled": ["specific thing not working with evidence"],
-  "bottleneck": "the single biggest bottleneck right now",
-  "recommendations": [{"action": "specific action", "expectedImpact": "what it will achieve", "effort": "Low / Medium / High"}],
-  "weeklyFocus": "the one thing the team should focus on this week"
-}`;
-    const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:700})});
-    const data=await r.json();
-    const analysis=parseJ(data.content?.[0]?.text||'{}');
-
-    el.innerHTML=`
-    <div style="background:var(--green-l);border-radius:var(--r);padding:12px;margin-bottom:12px;border-left:3px solid var(--green)">
-      <div style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono);margin-bottom:4px">THIS WEEK'S FOCUS</div>
-      <div style="font-size:13px;font-weight:600;color:var(--navy)">${analysis.weeklyFocus||'Review and update'}</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--mono)">Working ✓</div>
-        ${(analysis.whatIsWorking||[]).map(w=>`<div style="font-size:12px;color:var(--navy);padding:5px 0;border-bottom:1px solid var(--rule)">${w}</div>`).join('')}
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--mono)">Stalled ✗</div>
-        ${(analysis.whatIsStalled||[]).map(w=>`<div style="font-size:12px;color:var(--navy);padding:5px 0;border-bottom:1px solid var(--rule)">${w}</div>`).join('')}
-      </div>
-    </div>
-    ${(analysis.recommendations||[]).map(r=>`<div style="padding:10px;background:var(--bg2);border-radius:var(--r);margin-bottom:6px;display:flex;gap:10px;align-items:flex-start">
-      <div style="background:${r.effort==='Low'?'var(--green-l)':r.effort==='High'?'var(--red-m)':'var(--amber-l)'};color:${r.effort==='Low'?'var(--green)':r.effort==='High'?'var(--red)':'var(--amber)'};font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;font-family:var(--mono);white-space:nowrap;margin-top:2px">${r.effort}</div>
-      <div><div style="font-size:12.5px;font-weight:600;color:var(--navy)">${r.action}</div><div style="font-size:11.5px;color:var(--ink3);margin-top:2px">${r.expectedImpact}</div></div>
-    </div>`).join('')}`;
-  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px">Analysis failed: ${e.message}</div>`;}
-}
-
-async function runSegmentAnalysis(){
-  const live=S.liveData?.zoho||S.liveData?.sheets||{};
-  const el=document.getElementById('segment-result');
-  if(!el)return;
-  el.style.display='block';
-  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:13px"><div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Segmenting deals...</div>';
-
-  try{
-    const prompt=`Segment this pipeline against the ICP framework. Identify which deals are good fit vs wrong ICP.
-
-PIPELINE DATA: ${JSON.stringify(live)}
-ICP PROFILES: ${JSON.stringify(S.data?.icp?.icps||[])}
-
-Return ONLY valid JSON:
-{
-  "icpMatchRate": "% of deals that match ICP",
-  "topSegment": "best performing segment",
-  "worstSegment": "worst performing segment with highest drop-off",
-  "segments": [{"name": "segment name", "dealCount": 5, "fitScore": "High/Medium/Low", "recommendation": "what to do with this segment", "action": "specific next action"}],
-  "pruningRecommendation": "which deals to stop chasing and why",
-  "doubleDownOn": "where to focus more effort and why"
-}`;
-    const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:700})});
-    const data=await r.json();
-    const analysis=parseJ(data.content?.[0]?.text||'{}');
-
-    el.innerHTML=`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-      <div style="background:var(--blue-l);border-radius:var(--r);padding:12px;text-align:center">
-        <div style="font-size:24px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif">${analysis.icpMatchRate||'?'}</div>
-        <div style="font-size:11px;color:var(--blue);margin-top:3px">ICP match rate</div>
-      </div>
-      <div style="background:var(--green-l);border-radius:var(--r);padding:12px">
-        <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:4px">Double down on</div>
-        <div style="font-size:12px;color:var(--navy)">${analysis.doubleDownOn||'See segments below'}</div>
-      </div>
-    </div>
-    ${(analysis.segments||[]).map(s=>`<div style="padding:12px;background:var(--bg2);border-radius:var(--r);margin-bottom:8px;border-left:3px solid ${s.fitScore==='High'?'var(--green)':s.fitScore==='Medium'?'var(--amber)':'var(--red)'}">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        <div style="font-size:13px;font-weight:700;color:var(--navy)">${s.name}</div>
-        <div style="font-size:10px;font-weight:700;background:${s.fitScore==='High'?'var(--green-l)':s.fitScore==='Medium'?'var(--amber-l)':'var(--red-m)'};color:${s.fitScore==='High'?'var(--green)':s.fitScore==='Medium'?'var(--amber)':'var(--red)'};padding:2px 8px;border-radius:3px;font-family:var(--mono)">${s.fitScore} FIT</div>
-        <div style="font-size:11px;color:var(--ink3);margin-left:auto">${s.dealCount} deals</div>
-      </div>
-      <div style="font-size:12px;color:var(--ink3);margin-bottom:5px">${s.recommendation}</div>
-      <div style="font-size:12px;font-weight:600;color:var(--blue)">→ ${s.action}</div>
-    </div>`).join('')}
-    <div style="padding:12px;background:var(--red-m);border-radius:var(--r);border-left:3px solid var(--red)">
-      <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:4px">Stop chasing</div>
-      <div style="font-size:12.5px;color:var(--navy)">${analysis.pruningRecommendation||'—'}</div>
-    </div>`;
-  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px">Analysis failed: ${e.message}</div>`;}
-}
 
 window.syncAndAnalyse=syncAndAnalyse;
 window.runChurnAnalysis=runChurnAnalysis;
