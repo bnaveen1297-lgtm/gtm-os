@@ -628,12 +628,8 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 
 <script type="module">
 // Global error boundary - shows errors on screen instead of blank
-window.onerror=function(msg,src,line,col,err){
-  document.body.innerHTML='<div style="padding:32px;font-family:Inter,sans-serif;max-width:600px;margin:0 auto"><div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:20px;margin-top:60px"><div style="font-size:16px;font-weight:700;color:#DC2626;margin-bottom:8px">App Error (line '+line+')</div><div style="font-size:13px;color:#7F1D1D;word-break:break-all">'+msg+'</div><div style="font-size:11px;color:#9CA3AF;margin-top:8px">'+src+'</div><button onclick="location.reload()" style="margin-top:16px;padding:8px 16px;background:#2563EB;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px">Reload</button></div></div>';
-  return false;
-};
 window.addEventListener('unhandledrejection',function(e){
-  window.onerror('Unhandled Promise: '+(e.reason?.message||e.reason||'unknown'),'promise',0,0,e.reason);
+  console.error('Unhandled promise:',e.reason);
 });
 
 
@@ -660,7 +656,7 @@ onAuthStateChanged(auth,async user=>{
     const hasData=await loadData(user.uid);
     // If previous session had data, go straight to dashboard
     // Otherwise go to input
-    nav(hasData?'dashboard':'input');
+    try{nav(hasData?'dashboard':'input');}catch(navErr){console.error('nav error:',navErr);}
   }else{
     showLanding();
   }
@@ -744,8 +740,8 @@ async function saveData(){
   catch(e){console.warn('Save',e);}
 }
 
-function openAuth(mode){authMode=mode||'signup';document.getElementById('auth-modal').classList.add('open');refreshAuth();}
-function closeAuth(){document.getElementById('auth-modal').classList.remove('open');}
+function openAuth(mode){authMode=mode||'signup';const m=document.getElementById('auth-modal');if(m)m.classList.add('open');refreshAuth();}
+function closeAuth(){const m=document.getElementById('auth-modal');if(m)m.classList.remove('open');}
 function switchAuth(){authMode=authMode==='login'?'signup':'login';refreshAuth();}
 function refreshAuth(){
   const s=authMode==='signup';
