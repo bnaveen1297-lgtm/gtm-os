@@ -1586,10 +1586,10 @@ window.addEventListener('popstate',function(e){
     </div>
   </div>
   <div class="app-main" style="background:#F0F2F8;flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0">
-    <div class="topbar" style="display:flex;align-items:center;justify-content:space-between;padding:0 14px;height:50px;border-bottom:1px solid #E2E8F0;background:#fff;flex-shrink:0">
+    <div class="topbar" style="display:flex;align-items:center;justify-content:space-between;padding:0 14px;height:50px;border-bottom:1px solid #1B2B4B;background:#243660;flex-shrink:0;color:#fff">
       <div style="min-width:0;flex:1">
-        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif" id="app-title">Business Input</div>
-        <div style="font-size:11px;color:var(--ink3)" id="app-sub">Tell us about your business</div>
+        <div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif" id="app-title">Business Input</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6)" id="app-sub">Tell us about your business</div>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
         <button class="btn btn-blue btn-sm" onclick="nav('input')">+ New</button>
@@ -1834,7 +1834,7 @@ function nav(page){
   const renders={input:renderInput,connect:renderConnect,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
-  if(pageEl){pageEl.style.background='#F0F2F8';pageEl.innerHTML=fn?fn():'';}
+  if(pageEl){pageEl.style.cssText='flex:1;overflow-y:auto;padding:22px;background:#F0F2F8';pageEl.innerHTML=fn?fn():'';}
   if(page==='input')bindInput();
 }
 
