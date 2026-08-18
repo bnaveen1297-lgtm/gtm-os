@@ -1641,15 +1641,22 @@ onAuthStateChanged(auth,async user=>{
   if(loader)loader.remove();
   U=user;
   if(user){
+    // Show app immediately - don't wait for data
+    showApp();
+    setSBUser(user);
+    // Show loading state in content area immediately
+    const pg=document.getElementById('app-page');
+    if(pg)pg.innerHTML='<div style="padding:40px;text-align:center;color:#64748B;font-family:Inter,sans-serif"><div style="width:28px;height:28px;border:2.5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px"></div>Loading your data...</div>';
+    // Close auth modal if open
     try{closeAuth();}catch(e){}
-    try{showApp();}catch(e){}
-    try{setSBUser(user);}catch(e){}
+    // Load data from Firestore
     let hasData=false;
     try{hasData=await loadData(user.uid);}catch(e){console.warn('loadData:',e.message);}
-    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav:',e);}
+    // Navigate to correct page
+    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav error:',e);}
     try{updateCRMSidebar();}catch(e){}
   }else{
-    try{showLanding();}catch(e){}
+    showLanding();
   }
 });
 
@@ -1672,30 +1679,19 @@ function showLanding(){
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:none!important;';}
+  if(lp)lp.style.display='none';
   if(app){
     const mob=window.innerWidth<=768;
-    app.style.cssText=[
-      'display:flex!important;',
-      mob?'flex-direction:column!important;':'flex-direction:row!important;',
-      'width:100vw!important;',
-      'height:100vh!important;',
-      'max-height:100vh!important;',
-      'overflow:hidden!important;',
-      'position:fixed!important;',
-      'top:0!important;left:0!important;',
-      'background:#1B2B4B!important;',
-      'z-index:500!important;',
-    ].join('');
-    // Explicitly style children to ensure they're visible
-    const sb=app.querySelector('.sb');
-    const main=app.querySelector('.app-main');
-    if(sb&&!mob){
-      sb.style.cssText='width:200px!important;flex-shrink:0!important;background:#1B2B4B!important;display:flex!important;flex-direction:column!important;overflow-y:auto!important;height:100vh!important;';
-    }
-    if(main){
-      main.style.cssText='flex:1!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;min-width:0!important;background:#F0F2F8!important;';
-    }
+    app.style.display='flex';
+    app.style.flexDirection=mob?'column':'row';
+    app.style.width='100vw';
+    app.style.height='100vh';
+    app.style.overflow='hidden';
+    app.style.position='fixed';
+    app.style.top='0';
+    app.style.left='0';
+    app.style.background='#1B2B4B';
+    app.style.zIndex='500';
   }
   document.body.style.overflow='hidden';
 }
