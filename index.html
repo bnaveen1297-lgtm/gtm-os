@@ -168,7 +168,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div id="toast"></div>
 
 <!-- LANDING PAGE -->
-<div id="view-landing">
+<div id="view-landing" style="display:block">
 
 <!-- NAV -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:300;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E2E8F0">
@@ -668,6 +668,12 @@ function renderInput(){
   </div>`;
 }
 
+function heroStart(){
+  const url=document.getElementById('hero-url');
+  if(url&&url.value.trim())S.input.url=url.value.trim();
+  openAuth('signup');
+}
+window.heroStart=heroStart;
 function bindInput(){
   const urlEl=document.getElementById('in-url');
   const ideaEl=document.getElementById('in-idea');
