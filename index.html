@@ -559,13 +559,25 @@ const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Bu
 
 let _generating=false;
 function nav(page){
-  // Block navigation during generation - overlay handles UI
-  if(_generating){
-    toast('Analysis in progress — please wait');
-    return;
-  }
+  // If generating, just update the active nav highlight but DON'T re-render page
+  // The overlay is on document.body so it stays regardless
   document.querySelectorAll('.sbi').forEach(e=>e.classList.remove('act'));
   const el=document.getElementById('nav-'+page);if(el)el.classList.add('act');
+  
+  if(_generating){
+    // Just update the tab highlight, keep overlay visible
+    const ov=document.getElementById('gen-overlay');
+    if(!ov){
+      // Overlay got lost - recreate it
+      const newOv=document.createElement('div');
+      newOv.id='gen-overlay';
+      newOv.style.cssText='position:fixed;inset:0;z-index:10000;background:#fff;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif';
+      newOv.innerHTML='<div style="text-align:center"><div style="width:36px;height:36px;border:3px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px"></div><div style="font-size:15px;font-weight:700;color:#1B2B4B;font-family:DM Sans,sans-serif">Analysis in progress...</div><div style="font-size:12px;color:#64748B;margin-top:6px">Please wait, do not close this tab</div></div>';
+      document.body.appendChild(newOv);
+    }
+    return;
+  }
+
   const [t,s]=PAGE_META[page]||['Engine 360',''];
   const titleEl=document.getElementById('app-title');
   const subEl=document.getElementById('app-sub');
@@ -682,8 +694,10 @@ async function generate(){
   }
 
   // Global overlay - persists across screen switches
-  // Set generating flag
+  // Set generating flag - block page unload
   _generating=true;
+  window._beforeUnload=e=>{e.preventDefault();e.returnValue='Analysis is running. Are you sure you want to leave?';return e.returnValue;};
+  window.addEventListener('beforeunload',window._beforeUnload);
 
   // Remove any stale overlay
   const stale=document.getElementById('gen-overlay');
@@ -801,6 +815,7 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
 
     // Done - release lock, remove overlay, go to dashboard
     _generating=false;
+    if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
     setTimeout(()=>{
       const ov=document.getElementById('gen-overlay');
       if(ov)ov.remove();
@@ -811,6 +826,7 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
   }catch(e){
     console.error('Generation error:',e);
     _generating=false;
+    if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
     const errOv=document.getElementById('gen-overlay');
     if(errOv)errOv.innerHTML=`<div style="text-align:center;max-width:400px;padding:32px">
       <div style="width:56px;height:56px;background:#FEF2F2;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
