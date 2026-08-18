@@ -49,11 +49,11 @@ input,textarea,select{font-family:inherit;outline:none}
 .sbi-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:rgba(37,99,235,.35);color:#fff;font-family:var(--mono)}
 .sbi-badge.done{background:rgba(22,163,74,.35);color:#86efac}
 .app-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
-.topbar{height:52px;border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 22px;gap:12px;background:var(--bg);flex-shrink:0}
+.topbar{height:52px;border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 22px;gap:12px;background:#fff;flex-shrink:0;box-shadow:0 1px 0 #E2E8F0}
 .topbar-title{font-size:14px;font-weight:700;color:var(--navy);font-family:var(--display)}
 .topbar-sub{font-size:11.5px;color:var(--ink3)}
 .topbar-right{margin-left:auto;display:flex;gap:8px}
-.app-page{flex:1;overflow-y:auto;padding:22px;background:var(--bg2)}
+.app-page{flex:1;overflow-y:auto;padding:22px;background:#F0F2F8}
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--r);font-size:12.5px;font-weight:600;cursor:pointer;transition:opacity .15s}
 .btn-blue{background:var(--blue);color:#fff;border:none}.btn-blue:hover{opacity:.9}
 .btn-green{background:var(--green);color:#fff;border:none}.btn-green:hover{opacity:.9}
@@ -1638,6 +1638,7 @@ onAuthStateChanged(auth,async user=>{
 function showLanding(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
+  document.body.style.background='#fff';
   if(lp){lp.style.cssText='display:block!important;min-height:100vh;';}
   if(app){app.style.cssText='display:none!important;';}
   document.body.style.overflow='auto';
@@ -1645,6 +1646,7 @@ function showLanding(){
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
+  document.body.style.background='#1B2B4B';
   if(lp){lp.style.cssText='display:none!important;';}
   if(app){
     const mob=window.innerWidth<=768;
