@@ -1678,7 +1678,10 @@ function showLanding(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
   if(lp){
-    lp.style.cssText='display:block!important;min-height:100vh;';
+    lp.style.cssText='display:block!important;min-height:100vh;visibility:visible!important;';
+    // Restore landing nav
+    const pkNav=document.querySelector('.pk-nav');
+    if(pkNav)pkNav.style.cssText='';
     // Restore all landing section children (product pages stay hidden)
     Array.from(lp.children).forEach(el=>{
       if(!el.id||(!el.id.startsWith('lp-product')&&!el.id.startsWith('lp-page-'))){
@@ -1693,7 +1696,7 @@ function showLanding(){
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:none!important;';}
+  if(lp){lp.style.cssText='display:none!important;visibility:hidden!important;';}
   if(app){
     const mob=window.innerWidth<=768;
     app.style.cssText=[
@@ -1705,9 +1708,16 @@ function showApp(){
       'overflow:hidden!important;',
       'position:fixed!important;',
       'top:0!important;left:0!important;',
+      'z-index:10000!important;',
+      'background:#1B2B4B!important;',
     ].join('');
   }
   document.body.style.overflow='hidden';
+  // Hide the fixed landing nav so it doesn't overlay the app
+  const pkNav=document.querySelector('.pk-nav');
+  if(pkNav)pkNav.style.cssText='display:none!important;';
+  const mobMenu=document.getElementById('pk-mobile-menu');
+  if(mobMenu)mobMenu.style.display='none';
 }
 function setSBUser(u){
   const n=document.getElementById('sb-nm'),a=document.getElementById('sb-av');
