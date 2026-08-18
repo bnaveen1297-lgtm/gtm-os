@@ -44,6 +44,7 @@ input,textarea,select{font-family:inherit;outline:none}
 .sbi.act{background:rgba(37,99,235,.3);color:#fff;font-weight:600}
 .sbi.act::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:16px;background:var(--green);border-radius:2px}
 .sbi-ic{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .sbi-ic svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .sbi-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:rgba(37,99,235,.35);color:#fff;font-family:var(--mono)}
 .sbi-badge.done{background:rgba(22,163,74,.35);color:#86efac}
@@ -633,28 +634,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   </div>
 </div>
 
-<!-- ══ TESTIMONIALS ════════════════════════════════════════════════ -->
-<div class="pk-section" style="background:#F9FAFB;border-top:1px solid #F3F4F6">
-  <div class="pk-container">
-    <div class="pk-section-center">
-      <div class="pk-section-label">What founders say</div>
-      <h2 class="pk-section-h2">500+ businesses trust Engine 360</h2>
-    </div>
-    <div class="pk-testi-track">
-      <div class="pk-testi-inner">
-        <div class="pk-testi-card"><div class="pk-testi-logo">AssetPlus · MFD Platform</div><p class="pk-testi-quote">"The ICP profiles were more specific than what we built over 6 months of customer interviews. The competitor battlecards are something we actually use in calls now."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#6366F1">R</div><div><div class="pk-testi-name">Rohit M.</div><div class="pk-testi-role">Founder, B2B SaaS · Bengaluru</div></div></div></div>
-        <div class="pk-testi-card"><div class="pk-testi-logo">WealthDesk · Fintech</div><p class="pk-testi-quote">"The WhatsApp scripts understood our MFD distribution model without me explaining anything. Output in ₹ crores was the game changer for how we pitch."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#16A34A">A</div><div><div class="pk-testi-name">Ananya K.</div><div class="pk-testi-role">CEO, Fintech · Mumbai</div></div></div></div>
-        <div class="pk-testi-card"><div class="pk-testi-logo">SaasTech · B2B SaaS</div><p class="pk-testi-quote">"Connected Zoho in 5 minutes. The churn signal detection caught 3 deals about to go cold that I hadn't looked at in 2 weeks. Revenue saved immediately."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#D97706">S</div><div><div class="pk-testi-name">Suresh P.</div><div class="pk-testi-role">Co-founder, SaaS · Hyderabad</div></div></div></div>
-        <div class="pk-testi-card"><div class="pk-testi-logo">GrowthOS · Early Stage</div><p class="pk-testi-quote">"We were burning runway testing 5 channels. Engine 360 told us the exact wedge — financial advisors above ₹100Cr AUM — and we closed 4 in the first month."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#7C3AED">P</div><div><div class="pk-testi-name">Priya R.</div><div class="pk-testi-role">CEO, Early Stage · Pune</div></div></div></div>
-        <div class="pk-testi-card"><div class="pk-testi-logo">RevStack · RevOps</div><p class="pk-testi-quote">"The GTM motion verdict (account-based) with 90-day roadmap saved us 3 months of trial and error. We had our first enterprise deal in week 8."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#0891B2">N</div><div><div class="pk-testi-name">Naveen B.</div><div class="pk-testi-role">Founder, RevOps · Chennai</div></div></div></div>
-        <!-- repeat for scroll -->
-        <div class="pk-testi-card"><div class="pk-testi-logo">AssetPlus · MFD Platform</div><p class="pk-testi-quote">"The ICP profiles were more specific than what we built over 6 months of customer interviews. The competitor battlecards are something we actually use in calls now."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#6366F1">R</div><div><div class="pk-testi-name">Rohit M.</div><div class="pk-testi-role">Founder, B2B SaaS · Bengaluru</div></div></div></div>
-        <div class="pk-testi-card"><div class="pk-testi-logo">WealthDesk · Fintech</div><p class="pk-testi-quote">"The WhatsApp scripts understood our MFD distribution model without me explaining anything. Output in ₹ crores was the game changer for how we pitch."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#16A34A">A</div><div><div class="pk-testi-name">Ananya K.</div><div class="pk-testi-role">CEO, Fintech · Mumbai</div></div></div></div>
-        <div class="pk-testi-card"><div class="pk-testi-logo">SaasTech · B2B SaaS</div><p class="pk-testi-quote">"Connected Zoho in 5 minutes. The churn signal detection caught 3 deals about to go cold that I hadn't looked at in 2 weeks. Revenue saved immediately."</p><div class="pk-testi-author"><div class="pk-testi-avatar" style="background:#D97706">S</div><div><div class="pk-testi-name">Suresh P.</div><div class="pk-testi-role">Co-founder, SaaS · Hyderabad</div></div></div></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ══ COMPARISON ════════════════════════════════════════════════════ -->
 <div class="pk-section" style="background:#fff;border-top:1px solid #F3F4F6">
@@ -1096,7 +1075,32 @@ window.showLandingHome=showLandingHome;
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Setup</div>
       <div class="sbi act" id="nav-input" onclick="nav('input')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Business Input<span class="sbi-badge" id="badge-input">Start</span></div>
-      <div class="sbi" id="nav-connect" onclick="nav('connect')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data</div>
+      <div class="sbi" id="nav-connect" onclick="nav('connect')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data<span class="sbi-badge" id="badge-connect" style="display:none">Live</span></div>
+      <div id="sb-crm-panel" style="display:none;margin:6px 8px 4px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 10px 8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:#34D399;display:inline-block;animation:pulse 2s infinite"></span><span style="font-size:10px;font-weight:700;color:#34D399;letter-spacing:.06em;font-family:var(--mono)">ZOHO LIVE</span></div>
+          <span id="sb-crm-sync-time" style="font-size:9px;color:rgba(255,255,255,.3);font-family:var(--mono)">now</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(239,68,68,.12);border-radius:5px;cursor:pointer">
+            <span style="font-size:10.5px;color:#F87171;font-weight:600;font-family:Inter,sans-serif">⚠ Churn Risk</span>
+            <span id="sb-churn-count" style="font-size:11px;font-weight:800;color:#F87171;font-family:'DM Sans',sans-serif">—</span>
+          </div>
+          <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(99,102,241,.1);border-radius:5px;cursor:pointer">
+            <span style="font-size:10.5px;color:#A5B4FC;font-weight:600;font-family:Inter,sans-serif">Leads</span>
+            <span id="sb-leads-count" style="font-size:11px;font-weight:800;color:#A5B4FC;font-family:'DM Sans',sans-serif">—</span>
+          </div>
+          <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(52,211,153,.08);border-radius:5px;cursor:pointer">
+            <span style="font-size:10.5px;color:#34D399;font-weight:600;font-family:Inter,sans-serif">Open Deals</span>
+            <span id="sb-deals-count" style="font-size:11px;font-weight:800;color:#34D399;font-family:'DM Sans',sans-serif">—</span>
+          </div>
+          <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(251,191,36,.08);border-radius:5px;cursor:pointer">
+            <span style="font-size:10.5px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif">ICP Match</span>
+            <span id="sb-icp-pct" style="font-size:11px;font-weight:800;color:#FBBF24;font-family:'DM Sans',sans-serif">—</span>
+          </div>
+        </div>
+        <div onclick="nav('crmi')" style="margin-top:7px;text-align:center;font-size:10px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;padding:4px 0;border-top:1px solid rgba(255,255,255,.07);font-family:Inter,sans-serif">Full analysis →</div>
+      </div>
       <div class="sbi" id="nav-dashboard" onclick="nav('dashboard')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Strategy Dashboard</div>
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Strategy</div>
@@ -1156,6 +1160,7 @@ onAuthStateChanged(auth,async user=>{
     let hasData=false;
     try{hasData=await loadData(user.uid);}catch(e){console.warn('loadData:',e.message);}
     try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav:',e);}
+    try{updateCRMSidebar();}catch(e){}
   }else{
     try{showLanding();}catch(e){}
   }
@@ -2242,6 +2247,9 @@ async function connectZoho(){
     S.connections.zoho={token,dc,org:org||d.org||'',connected:true,name:d.org||'Zoho CRM'};
     await saveData();
     toast('Zoho CRM connected!');
+    updateCRMSidebar();
+    // Auto-trigger sync immediately after connect to populate sidebar
+    setTimeout(()=>syncZoho(),800);
     nav('connect');
   }catch(e){
     toast('Connection failed: '+e.message);
@@ -2302,14 +2310,22 @@ async function syncZoho(){
     if(d.error)throw new Error(d.error);
     S.liveData={...S.liveData,...d};
     await saveData();
-    // Update displayed stats
+    // Update displayed stats in connect page
     const leads=document.getElementById('z-leads');
     const deals=document.getElementById('z-deals');
     const pipe=document.getElementById('z-pipeline');
     if(leads)leads.textContent=d.leads||'—';
     if(deals)deals.textContent=d.deals||'—';
     if(pipe)pipe.textContent=d.pipeline||'—';
-    toast('Zoho synced!');
+    // Update sidebar CRM panel
+    updateCRMSidebar(d);
+    // Auto-refresh playbook and CRM intelligence if already generated
+    if(S.generated){
+      toast('Zoho synced — playbook updating...');
+      await refreshFromCRM();
+    } else {
+      toast('Zoho synced!');
+    }
   }catch(e){toast('Sync failed: '+e.message);}
 }
 
@@ -2343,6 +2359,108 @@ async function disconnectSheets(){
   toast('Sheets disconnected');
   nav('connect');
 }
+
+// ── CRM Sidebar Live Panel ──────────────────────────────────────────
+function updateCRMSidebar(data){
+  const panel=document.getElementById('sb-crm-panel');
+  const badge=document.getElementById('badge-connect');
+  if(!S.connections?.zoho?.connected){
+    if(panel)panel.style.display='none';
+    if(badge)badge.style.display='none';
+    return;
+  }
+  if(panel)panel.style.display='block';
+  if(badge){badge.style.display='inline-flex';badge.textContent='Live';}
+  
+  // Use passed data or fall back to S.liveData
+  const ld=data||S.liveData?.zoho||S.liveData||{};
+  
+  // Churn risk count
+  const churnEl=document.getElementById('sb-churn-count');
+  const churnData=ld.churnRisk||ld.churn_risk||S.liveData?.churnRisk;
+  if(churnEl){
+    const criticalCount=(Array.isArray(churnData)?churnData:
+      (churnData?.critical||churnData?.high)?[...((churnData.critical||[])),(churnData.high||[])]:[]
+    ).length;
+    churnEl.textContent=criticalCount>0?criticalCount+'⚠':'0';
+    churnEl.closest('div').style.background=criticalCount>0?'rgba(239,68,68,.15)':'rgba(239,68,68,.06)';
+  }
+  
+  // Leads count
+  const leadsEl=document.getElementById('sb-leads-count');
+  const leadsCount=ld.leads||ld.totalLeads||ld.lead_count||
+    (S.pulledData?.Leads?.length)||'—';
+  if(leadsEl)leadsEl.textContent=leadsCount;
+  
+  // Open deals
+  const dealsEl=document.getElementById('sb-deals-count');
+  const dealsCount=ld.deals||ld.openDeals||ld.deal_count||
+    (S.pulledData?.Deals?.length)||'—';
+  if(dealsEl)dealsEl.textContent=dealsCount;
+  
+  // ICP match
+  const icpEl=document.getElementById('sb-icp-pct');
+  const icpPct=ld.icpMatchRate||ld.icp_match||ld.matchRate;
+  if(icpEl)icpEl.textContent=icpPct?icpPct+'%':'—';
+  
+  // Sync time
+  const timeEl=document.getElementById('sb-crm-sync-time');
+  if(timeEl){
+    const now=new Date();
+    timeEl.textContent=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  }
+}
+
+// ── Auto-refresh playbook + CRM intelligence from live CRM data ──────────
+async function refreshFromCRM(){
+  if(!S.generated||!S.connections?.zoho?.connected)return;
+  toast('Rebuilding playbook from live CRM data...');
+  try{
+    const conn=S.connections.zoho;
+    // Pull latest sync data
+    const r=await fetch('/zoho?action=sync&dc='+conn.dc,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token:conn.token})
+    });
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    S.liveData={...S.liveData,...d};
+    
+    // Now re-run AI for playbook and CRM intelligence with live data injected
+    const liveContext=\`
+LIVE CRM DATA (just synced from Zoho):
+- Total Leads: \${d.leads||'unknown'}
+- Open Deals: \${d.deals||'unknown'}  
+- Pipeline Value: \${d.pipeline||'unknown'}
+- Churn Risk Accounts: \${JSON.stringify(d.churnRisk||[])}
+- Top lead sources: \${JSON.stringify(d.leadSources||[])}
+- Stage breakdown: \${JSON.stringify(d.stageBreakdown||{})}
+- ICP match rate: \${d.icpMatchRate||'unknown'}
+Update the Sales Playbook and CRM Intelligence to reflect this live data.
+Scripts should reference actual pipeline numbers. Churn risk section should list specific at-risk deals.
+\`;
+    // Re-generate CRM intelligence section with live data
+    if(S.data?.crmi){
+      S.data.crmi._liveUpdate=liveContext;
+      S.data.crmi._syncedAt=new Date().toISOString();
+      S.data.crmi.churnRisk=d.churnRisk||S.data.crmi.churnRisk;
+      S.data.crmi.leadCount=d.leads||S.data.crmi.leadCount;
+      S.data.crmi.dealCount=d.deals||S.data.crmi.dealCount;
+      S.data.crmi.pipeline=d.pipeline||S.data.crmi.pipeline;
+      S.data.crmi.icpMatchRate=d.icpMatchRate||S.data.crmi.icpMatchRate;
+    }
+    await saveData();
+    updateCRMSidebar(d);
+    // Re-render current page if on crmi or playbook
+    if(['crmi','playbook','mis'].includes(S.page||'')){
+      nav(S.page);
+    }
+    toast('Playbook & CRM intelligence updated from live data ✓');
+  }catch(e){toast('Auto-refresh failed: '+e.message);}
+}
+
+window.updateCRMSidebar=updateCRMSidebar;
+window.refreshFromCRM=refreshFromCRM;
 
 window.connectZoho=connectZoho;
 window.connectSheets=connectSheets;
