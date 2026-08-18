@@ -1677,7 +1677,16 @@ onAuthStateChanged(auth,async user=>{
 function showLanding(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:block!important;min-height:100vh;';}
+  if(lp){
+    lp.style.cssText='display:block!important;min-height:100vh;';
+    // Restore all landing section children (product pages stay hidden)
+    Array.from(lp.children).forEach(el=>{
+      if(!el.id||(!el.id.startsWith('lp-product')&&!el.id.startsWith('lp-page-'))){
+        if(el.style.display==='none')el.style.display='';
+      }
+    });
+    document.querySelectorAll('[id^="lp-product"],[id^="lp-page-"]').forEach(el=>el.style.display='none');
+  }
   if(app){app.style.cssText='display:none!important;';}
   document.body.style.overflow='auto';
 }
