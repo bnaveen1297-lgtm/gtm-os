@@ -453,19 +453,10 @@ function showLanding(){
 function showApp(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:none!important;';}
+  if(lp)lp.style.display='none';
   if(app){
     const mob=window.innerWidth<=768;
-    app.style.cssText=[
-      'display:flex!important;',
-      mob?'flex-direction:column!important;':'flex-direction:row!important;',
-      'width:100vw!important;',
-      'height:100vh!important;',
-      'max-height:100vh!important;',
-      'overflow:hidden!important;',
-      'position:fixed!important;',
-      'top:0!important;left:0!important;',
-    ].join('');
+    app.style.cssText='display:flex!important;flex-direction:'+(mob?'column':'row')+'!important;width:100vw!important;height:100vh!important;overflow:hidden!important;position:fixed!important;top:0;left:0;background:#fff';
   }
   document.body.style.overflow='hidden';
 }
