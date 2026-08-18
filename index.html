@@ -1759,7 +1759,7 @@ function refreshAuth(){
   if(h)h.textContent=s?'Create your account':'Welcome back';
   if(sub)sub.textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
   if(btn)btn.textContent=s?'Create account':'Sign in';
-  if(sw)sw.innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don't have an account? <a onclick="switchAuth()">Sign up free</a>";
+  if(sw)sw.innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don\'t have an account? <a onclick=\'switchAuth()\'>Sign up free</a>";
   if(nw)nw.style.display=s?'block':'none';
   if(err)err.classList.remove('show');
 }
