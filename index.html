@@ -527,7 +527,7 @@ function refreshAuth(){
   if(get('auth-h2'))get('auth-h2').textContent=s?'Create your account':'Welcome back';
   if(get('auth-sub'))get('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
   if(get('auth-submit'))get('auth-submit').textContent=s?'Create account':'Sign in';
-  if(get('auth-switch'))get('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don't have an account? <a onclick="switchAuth()">Sign up free</a>";
+  if(get('auth-switch'))get('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don't have an account? <a onclick=\"switchAuth()\">Sign up free</a>";
   if(get('auth-name-wrap'))get('auth-name-wrap').style.display=s?'block':'none';
   if(get('auth-err'))get('auth-err').classList.remove('show');
 }
