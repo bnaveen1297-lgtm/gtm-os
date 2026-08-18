@@ -339,15 +339,15 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <svg class="lp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="lp-dropdown" style="min-width:260px">
-        <div class="lp-dd-item" onclick="openAuth('signup')">
+        <div class="lp-dd-item" onclick="document.getElementById('lp-solution-saas').scrollIntoView({behavior:'smooth'})">
           <div class="lp-dd-icon" style="background:rgba(99,102,241,.15)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
           <div><div class="lp-dd-title">For B2B SaaS</div><div class="lp-dd-sub">Account-based GTM, MEDDIC, enterprise plays</div></div>
         </div>
-        <div class="lp-dd-item" onclick="openAuth('signup')">
+        <div class="lp-dd-item" onclick="document.getElementById('lp-solution-fintech').scrollIntoView({behavior:'smooth'})">
           <div class="lp-dd-icon" style="background:rgba(52,211,153,.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div><div class="lp-dd-title">For Fintech / BFSI</div><div class="lp-dd-sub">India compliance, MFD/RIA distribution plays</div></div>
         </div>
-        <div class="lp-dd-item" onclick="openAuth('signup')">
+        <div class="lp-dd-item" onclick="document.getElementById('lp-solution-earlystage').scrollIntoView({behavior:'smooth'})">
           <div class="lp-dd-icon" style="background:rgba(251,191,36,.08)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div><div class="lp-dd-title">For Early-Stage</div><div class="lp-dd-sub">0→1 GTM, hypothesis validation, first 10 customers</div></div>
         </div>
@@ -441,6 +441,226 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 </div>
 
 <!-- ══ PRICING ════════════════════════════════════════════════════════ -->
+
+<!-- ══ TESTIMONIALS ═══════════════════════════════════════════════════ -->
+<div class="lp-section" style="background:#080B14;border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lp-container">
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="lp-section-label">Early feedback</div>
+      <h2 class="lp-section-h2" style="max-width:500px;margin:0 auto">What founders are saying</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="lp-testi">
+        <div class="lp-testi-stars">★★★★★</div>
+        <p class="lp-testi-q">"The ICP profiles were more specific than what we built over 6 months. The competitor battlecards are something we actually use in calls now."</p>
+        <div class="lp-testi-author">
+          <div class="lp-testi-avatar" style="background:#6366F1">R</div>
+          <div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Rohit M.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Founder, B2B SaaS · Bengaluru</div></div>
+        </div>
+      </div>
+      <div class="lp-testi">
+        <div class="lp-testi-stars">★★★★★</div>
+        <p class="lp-testi-q">"The WhatsApp scripts understood our MFD distribution model without me explaining it. Output in ₹ crores was the game changer for our team."</p>
+        <div class="lp-testi-author">
+          <div class="lp-testi-avatar" style="background:#16A34A">A</div>
+          <div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Ananya K.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">CEO, Fintech · Mumbai</div></div>
+        </div>
+      </div>
+      <div class="lp-testi">
+        <div class="lp-testi-stars">★★★★★</div>
+        <p class="lp-testi-q">"Connected Zoho in 5 minutes. The churn signal detection caught 3 deals about to go cold that I hadn't looked at in 2 weeks."</p>
+        <div class="lp-testi-author">
+          <div class="lp-testi-avatar" style="background:#D97706">S</div>
+          <div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Suresh P.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Co-founder, SaaS · Hyderabad</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INTEGRATIONS PAGE ════════════════════════════════════════════════ -->
+<div id="lp-integrations" class="lp-section" style="background:#0D1117;border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lp-container">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="lp-section-label">Integrations</div>
+      <h2 class="lp-section-h2">Connects with everything you use</h2>
+      <p class="lp-section-sub" style="margin:0 auto;max-width:460px">Engine 360 plugs into your existing stack. Pull live data from your CRM, sync with your sheets, and push insights to your team channels.</p>
+    </div>
+    <!-- CRM Integrations -->
+    <div style="margin-bottom:48px">
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px">CRM Systems</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#E74C3C;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">Z</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Zoho CRM</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Full discover, sample & pull all</div><div style="font-size:10px;color:#34D399;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">✓ Available now</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#FF7A59;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">H</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">HubSpot</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Contacts, deals, pipeline</div><div style="font-size:10px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">⟳ Coming soon</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#1DBFC1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">F</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Freshsales</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Leads, contacts, activities</div><div style="font-size:10px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">⟳ Coming soon</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#BD4F00;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">P</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Pipedrive</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Deals, stages, activities</div><div style="font-size:10px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">⟳ Coming soon</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Productivity -->
+    <div style="margin-bottom:48px">
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px">Data & Productivity</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#34A853;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">G</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Google Sheets</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Connect your MIS or sales tracker</div><div style="font-size:10px;color:#34D399;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">✓ Available now</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#EA4335;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">M</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Gmail</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Email thread analysis</div><div style="font-size:10px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">⟳ Coming soon</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#4A154B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">#</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Slack</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Push alerts and insights</div><div style="font-size:10px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">⟳ Coming soon</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#25D366;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0">✆</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">WhatsApp</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">60s lead response scripts</div><div style="font-size:10px;color:#34D399;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">✓ Scripts built-in</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Professional Networks -->
+    <div>
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px">Professional Networks</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px">
+          <div style="width:44px;height:44px;background:#0A66C2;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;flex-shrink:0">in</div>
+          <div><div style="font-size:14px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">LinkedIn</div><div style="font-size:11.5px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-top:2px">Outreach scripts and templates</div><div style="font-size:10px;color:#34D399;font-weight:600;font-family:Inter,sans-serif;margin-top:4px">✓ Scripts built-in</div></div>
+        </div>
+        <div class="lp-card" style="display:flex;align-items:center;gap:14px;border:1px dashed rgba(255,255,255,.1);background:transparent">
+          <div style="width:44px;height:44px;background:rgba(255,255,255,.06);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">+</div>
+          <div><div style="font-size:13px;font-weight:600;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif">Request an integration</div><div style="font-size:11px;color:rgba(255,255,255,.25);font-family:Inter,sans-serif;margin-top:2px">Let us know what you need</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SOLUTIONS: B2B SaaS ════════════════════════════════════════════ -->
+<div id="lp-solution-saas" class="lp-section" style="background:#080B14;border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lp-container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:16px">FOR B2B SAAS</div>
+        <h2 class="lp-section-h2">Win enterprise deals with account-based GTM</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;font-family:Inter,sans-serif;margin:0 0 24px">Engine 360 builds your account-based GTM motion from your URL — MEDDIC qualification, multi-stakeholder scripts, enterprise objection handling, and a 90-day land-and-expand plan.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">MEDDIC qualification framework with real questions</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Multi-stakeholder outreach — champion, economic buyer, IT</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">HubSpot or Zoho CRM blueprint for SaaS pipeline</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">CAC, LTV, MRR churn metrics in ₹ or $</span></div>
+        </div>
+        <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:12px 24px;font-size:13px">Build my SaaS GTM →</button>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:24px">
+        <div style="font-size:11px;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em">Sample output — B2B SaaS</div>
+        <div style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);border-radius:8px;padding:14px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:6px">GTM MOTION</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.8);font-family:Inter,sans-serif">Account-based · Target CTO + VP Sales at Series B+ startups · 60-90 day sales cycle</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:14px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;margin-bottom:6px">EMAIL SUBJECT</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">How [Company] reduced onboarding time 40% — relevant for your Series B growth</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:14px">
+          <div style="font-size:10px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;margin-bottom:6px">ICP TRIGGER</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Just hired Head of Sales OR raised Series A/B in last 90 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SOLUTIONS: Fintech / BFSI ══════════════════════════════════════ -->
+<div id="lp-solution-fintech" class="lp-section" style="background:#0D1117;border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lp-container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:24px;order:1">
+        <div style="font-size:11px;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em">Sample output — Fintech / BFSI</div>
+        <div style="background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:8px;padding:14px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;margin-bottom:6px">ICP — RANK 1</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">MFD / RIA managing ₹200Cr+ AUM · 300+ clients · Uses Excel · Based in Tier 1 city</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:14px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:6px">WHATSAPP OPENER</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Hi Ramesh, saw you're managing 400+ clients. Most MFDs at your scale lose ₹2-3L/yr in missed SIP renewals. Built something to fix it — 2 min?</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:14px">
+          <div style="font-size:10px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;margin-bottom:6px">MARKET SIZE</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">TAM: ₹54L Cr AUM · SAM: 1.4L+ MFDs in India · SOM: 2,000 MFDs above ₹100Cr AUM</div>
+        </div>
+      </div>
+      <div style="order:2">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:#34D399;font-family:Inter,sans-serif;margin-bottom:16px">FOR FINTECH / BFSI</div>
+        <h2 class="lp-section-h2">India-native GTM for financial services</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;font-family:Inter,sans-serif;margin:0 0 24px">Engine 360 understands the MFD distribution model, AMFI regulations, and India-specific financial services sales motions. All outputs in ₹ crores with WhatsApp-first scripts.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">MFD, RIA, CA firm, NBFC distribution plays</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">TAM/SAM/SOM in ₹ crores from AMFI, SEBI data</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">WhatsApp voice note and message scripts</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Zoho CRM setup for financial advisor tracking</span></div>
+        </div>
+        <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:12px 24px;font-size:13px">Build my Fintech GTM →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SOLUTIONS: Early Stage ══════════════════════════════════════════ -->
+<div id="lp-solution-earlystage" class="lp-section" style="background:#080B14;border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lp-container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:#FBBF24;font-family:Inter,sans-serif;margin-bottom:16px">FOR EARLY-STAGE (0→1)</div>
+        <h2 class="lp-section-h2">Find your first 10 customers fast</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;font-family:Inter,sans-serif;margin:0 0 24px">Engine 360 validates your hypothesis, identifies your highest-fit ICP, and builds the exact scripts to get your first 10 paying customers — before you burn runway on the wrong channels.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">6-check hypothesis validation from website data</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Wedge strategy — which market to enter first</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Free or low-cost CRM setup for lean teams</span></div>
+          <div style="display:flex;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.65);font-family:Inter,sans-serif">Anti-patterns to avoid in first 90 days</span></div>
+        </div>
+        <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:12px 24px;font-size:13px">Validate my hypothesis →</button>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:24px">
+        <div style="font-size:11px;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em">Hypothesis validation output</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.15);border-radius:8px">
+            <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Customer has this problem</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">YES ✓</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.15);border-radius:8px">
+            <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Solution better than alternatives</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">YES ✓</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15);border-radius:8px">
+            <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Customer willing to pay</div>
+            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">VALIDATE</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.15);border-radius:8px">
+            <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Enough customers to build business</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">YES ✓</div>
+          </div>
+          <div style="padding:12px;background:rgba(99,102,241,.08);border-radius:8px;margin-top:4px">
+            <div style="font-size:11px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:4px">VERDICT</div>
+            <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Ready to learn — validate pricing with 3 pilot customers before scaling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="lp-pricing" class="lp-section" style="background:#0D1117;border-top:1px solid rgba(255,255,255,.06)">
   <div class="lp-container" style="max-width:700px">
     <div style="text-align:center;margin-bottom:48px">
