@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Engine 360 — Go-To-Market Operating System</title>
+<title>Engine 360 - Go-To-Market Operating System</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z' stroke='%232563EB' stroke-width='3.5' fill='white'/%3E%3Crect x='11' y='13' width='14' height='3.5' rx='1.75' fill='%232563EB'/%3E%3Crect x='11' y='18.25' width='14' height='3.5' rx='1.75' fill='%231B2B4B'/%3E%3Crect x='11' y='23.5' width='10' height='3.5' rx='1.75' fill='%239CA3AF'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@700;800&display=swap" rel="stylesheet">
@@ -190,9 +190,11 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .pk-nav-link{padding:6px 14px;font-size:13.5px;font-weight:500;color:#374151;cursor:pointer;border-radius:6px;transition:background .15s,color .15s;white-space:nowrap;display:flex;align-items:center;gap:4px;user-select:none;font-family:Inter,sans-serif}
 .pk-nav-link:hover{background:#F3F4F6;color:#111}
 .pk-chevron{width:14px;height:14px;transition:transform .2s;opacity:.5}
-.pk-dropdown{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:6px;min-width:240px;box-shadow:0 10px 40px rgba(0,0,0,.1);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .15s,transform .15s;z-index:100}
+.pk-dropdown{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:6px;min-width:240px;box-shadow:0 10px 40px rgba(0,0,0,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .15s,transform .15s;z-index:9999}
 .pk-nav-item:hover .pk-dropdown{opacity:1;pointer-events:auto;transform:translateY(0)}
 .pk-nav-item:hover .pk-chevron{transform:rotate(180deg)}
+.pk-nav-item.dd-open .pk-dropdown{opacity:1;pointer-events:auto;transform:translateY(0)}
+.pk-nav-item.dd-open .pk-chevron{transform:rotate(180deg)}
 .pk-dd-item{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:8px;cursor:pointer;transition:background .12s}
 .pk-dd-item:hover{background:#F9FAFB}
 .pk-dd-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
@@ -321,7 +323,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   <div class="pk-nav-links">
     <!-- Product dropdown -->
     <div class="pk-nav-item" style="position:relative">
-      <div class="pk-nav-link">Product <svg class="pk-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="pk-nav-link" onclick="pkToggleNav(this.parentElement,event)">Product <svg class="pk-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
       <div class="pk-dropdown">
         <div class="pk-dd-item" onclick="showProductPage('lp-product-crm')"><div class="pk-dd-icon" style="background:#EEF2FF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><div class="pk-dd-title">CRM Intelligence</div><div class="pk-dd-sub">Connect Zoho, detect churn, analyse pipeline</div></div></div>
         <div class="pk-dd-item" onclick="showProductPage('lp-product-playbook')"><div class="pk-dd-icon" style="background:#F0FDF4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div><div class="pk-dd-title">Sales Playbook</div><div class="pk-dd-sub">Real scripts rebuilt from your CRM data</div></div></div>
@@ -334,7 +336,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 
     <!-- Solutions dropdown -->
     <div class="pk-nav-item" style="position:relative">
-      <div class="pk-nav-link">Solutions <svg class="pk-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="pk-nav-link" onclick="pkToggleNav(this.parentElement,event)">Solutions <svg class="pk-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
       <div class="pk-dropdown">
         <div class="pk-dd-item" onclick="document.getElementById('lp-solution-saas').scrollIntoView({behavior:'smooth'})"><div class="pk-dd-icon" style="background:#EEF2FF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div><div class="pk-dd-title">For B2B SaaS</div><div class="pk-dd-sub">MEDDIC, ABM, enterprise plays</div></div></div>
         <div class="pk-dd-item" onclick="document.getElementById('lp-solution-fintech').scrollIntoView({behavior:'smooth'})"><div class="pk-dd-icon" style="background:#F0FDF4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div><div class="pk-dd-title">For Fintech / BFSI</div><div class="pk-dd-sub">MFD/RIA plays, ₹ crore outputs</div></div></div>
@@ -366,10 +368,10 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div class="pk-hero">
   <div class="pk-hero-tag pk-fade pk-d1">
     <span style="width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block"></span>
-    RevOps Managing Agent · Built for India 🇮🇳
+    RevOps Managing Agent · Built in India for the world 🌍
   </div>
   <h1 class="pk-h1 pk-fade pk-d2">Your GTM strategy,<br>built and run by AI.</h1>
-  <p class="pk-hero-sub pk-fade pk-d3">Paste your website URL. Engine 360 researches your market, reads your CRM, finds what's broken in your pipeline, and rebuilds your playbook — in 60 seconds.</p>
+  <p class="pk-hero-sub pk-fade pk-d3">Paste your website URL. Engine 360 researches your market, reads your CRM, finds what's broken in your pipeline, and rebuilds your playbook - in 60 seconds.</p>
   <div class="pk-hero-ctas pk-fade pk-d4">
     <input id="hero-url" type="url" placeholder="https://yourcompany.com" style="padding:13px 16px;border:1.5px solid #D1D5DB;border-radius:8px;font-size:14px;color:#111;font-family:Inter,sans-serif;outline:none;width:280px;transition:border-color .15s" onfocus="this.style.borderColor='#6366F1'" onblur="this.style.borderColor='#D1D5DB'">
     <button onclick="heroStart()" class="pk-btn-hero-p">Analyse my business →</button>
@@ -418,7 +420,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 
 <!-- ══ LOGO TICKER ════════════════════════════════════════════════════ -->
 <div class="pk-ticker-section">
-  <div class="pk-ticker-label">Powering GTM for 500+ founders across India</div>
+  <div class="pk-ticker-label">Powering GTM for 500+ founders worldwide</div>
   <div class="pk-ticker-wrap">
     <div class="pk-ticker-inner">
       <div class="pk-ticker-logo"><span class="pk-ticker-name" style="color:#E74C3C">Zoho</span></div>
@@ -462,11 +464,11 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <h2 class="pk-feat-h2">Connect your CRM. Agent reads every deal.</h2>
         <p class="pk-feat-sub">Engine 360 discovers every module in your Zoho CRM, shows you a sample first, gets your approval, then pulls the full database and runs deep AI analysis across churn, pipeline health and ICP fit.</p>
         <ul class="pk-feat-bullets">
-          <li>Churn signals by severity — Critical, High, Medium — with a save script for each</li>
+          <li>Churn signals by severity - Critical, High, Medium - with a save script for each</li>
           <li>Pipeline stage analysis: where deals are stalling and exactly why</li>
           <li>ICP match rate: which deals to pursue, which to drop</li>
           <li>Rep productivity gaps: who's owning what, where activity has dropped</li>
-          <li>Daily / weekly / monthly auto-sync — always current</li>
+          <li>Daily / weekly / monthly auto-sync - always current</li>
         </ul>
         <a class="pk-feat-link" onclick="openAuth('signup')">Connect Zoho now →</a>
       </div>
@@ -476,7 +478,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
           <div style="padding:11px 13px;background:#FEF2F2;border:1px solid #FECACA;border-radius:7px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;font-weight:700;color:#DC2626;font-family:'DM Sans',sans-serif">3 deals at churn risk</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:1px">No activity in 18+ days · Demo stage</div></div><span style="font-size:10px;font-weight:700;color:#DC2626;background:#FEE2E2;padding:2px 7px;border-radius:3px;font-family:Inter,sans-serif">CRITICAL</span></div>
           <div style="padding:11px 13px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:7px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;font-weight:700;color:#D97706;font-family:'DM Sans',sans-serif">Pipeline stalled at Proposal</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:1px">7 deals · avg 24 days · ₹34L at risk</div></div><span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 7px;border-radius:3px;font-family:Inter,sans-serif">HIGH</span></div>
           <div style="padding:11px 13px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:7px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;font-weight:700;color:#16A34A;font-family:'DM Sans',sans-serif">ICP match rate: 67%</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:1px">12 of 18 deals fit your best ICP profile</div></div><span style="font-size:10px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 7px;border-radius:3px;font-family:Inter,sans-serif">GOOD</span></div>
-          <div style="padding:11px 13px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:7px"><div style="font-size:12px;font-weight:700;color:#4338CA;font-family:'DM Sans',sans-serif">Rep productivity gap detected</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:1px">Rahul: 8 deals · Priya: 2 deals — same territory</div></div>
+          <div style="padding:11px 13px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:7px"><div style="font-size:12px;font-weight:700;color:#4338CA;font-family:'DM Sans',sans-serif">Rep productivity gap detected</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:1px">Rahul: 8 deals · Priya: 2 deals - same territory</div></div>
         </div>
       </div>
     </div>
@@ -487,7 +489,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <div class="pk-screen-bar"><div style="width:8px;height:8px;border-radius:50%;background:#FF5F57"></div><div style="width:8px;height:8px;border-radius:50%;background:#FFBD2E;margin-left:5px"></div><div style="width:8px;height:8px;border-radius:50%;background:#28CA41;margin-left:5px"></div><span style="font-size:11px;color:#9CA3AF;margin-left:10px;font-family:Inter,sans-serif">Sales Playbook · Agent-built</span></div>
         <div class="pk-screen-content" style="display:flex;flex-direction:column;gap:10px">
           <div style="background:#F9FAFB;border-radius:7px;padding:12px"><div style="font-size:10px;font-weight:700;color:#6366F1;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:6px">COLD EMAIL · SUBJECT</div><div style="font-size:13px;color:#111;font-family:Inter,sans-serif;line-height:1.55">How AssetPlus helped 3 MFDs above ₹200Cr AUM reduce client servicing time by 60%</div></div>
-          <div style="background:#F9FAFB;border-radius:7px;padding:12px"><div style="font-size:10px;font-weight:700;color:#16A34A;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:6px">WHATSAPP OPENER</div><div style="font-size:13px;color:#111;font-family:Inter,sans-serif;line-height:1.55">Hi Ramesh, saw you're managing 400+ clients. Most MFDs at your scale lose ₹2-3L/yr in missed SIP renewals. Built something to fix it — 2 min?</div></div>
+          <div style="background:#F9FAFB;border-radius:7px;padding:12px"><div style="font-size:10px;font-weight:700;color:#16A34A;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:6px">WHATSAPP OPENER</div><div style="font-size:13px;color:#111;font-family:Inter,sans-serif;line-height:1.55">Hi Ramesh, saw you're managing 400+ clients. Most MFDs at your scale lose ₹2-3L/yr in missed SIP renewals. Built something to fix it - 2 min?</div></div>
           <div style="background:#F9FAFB;border-radius:7px;padding:12px"><div style="font-size:10px;font-weight:700;color:#D97706;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:6px">OBJECTION REFRAME</div><div style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;line-height:1.55">"Already using Excel" → "73% of our customers came from Excel. The issue isn't the tool, it's the time. Can I show you 20 min vs 3 hours?"</div></div>
         </div>
       </div>
@@ -496,11 +498,11 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <h2 class="pk-feat-h2">Real scripts. Not templates. Never [PROSPECT_NAME].</h2>
         <p class="pk-feat-sub">Every cold email, WhatsApp message, call script and objection response is rewritten using your market data, your ICP language, and your actual competitors. Actual words your team can send today.</p>
         <ul class="pk-feat-bullets">
-          <li>Cold email sequence — subject, body, 3 follow-ups on different angles</li>
+          <li>Cold email sequence - subject, body, 3 follow-ups on different angles</li>
           <li>WhatsApp opener, follow-up, and voice note script</li>
-          <li>Cold call framework — opener, permission ask, 4 discovery questions</li>
+          <li>Cold call framework - opener, permission ask, 4 discovery questions</li>
           <li>LinkedIn connection note, InMail and after-connect message</li>
-          <li>Objection handling — exact words with empathy + reframe + next step</li>
+          <li>Objection handling - exact words with empathy + reframe + next step</li>
           <li>60-second inbound lead response script</li>
         </ul>
         <a class="pk-feat-link" onclick="openAuth('signup')">Build my playbook →</a>
@@ -514,11 +516,11 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <h2 class="pk-feat-h2">Your go-to-market motion, researched and built in 60 seconds.</h2>
         <p class="pk-feat-sub">Engine 360 searches Google for real market data, picks the right GTM motion for your stage, builds competitor battlecards with actual win lines, and creates a 90-day execution plan.</p>
         <ul class="pk-feat-bullets">
-          <li>GTM motion verdict — Account-based, Volume, Partner-led, or Hybrid</li>
-          <li>Competitor battlecards — their weakness, your win line, landmine question</li>
-          <li>90-day roadmap — Days 1-30, 31-60, 61-90 with specific tools and actions</li>
+          <li>GTM motion verdict - Account-based, Volume, Partner-led, or Hybrid</li>
+          <li>Competitor battlecards - their weakness, your win line, landmine question</li>
+          <li>90-day roadmap - Days 1-30, 31-60, 61-90 with specific tools and actions</li>
           <li>PDCA execution cycle with weekly checkpoints</li>
-          <li>Wedge strategy — exactly which segment to enter first and why</li>
+          <li>Wedge strategy - exactly which segment to enter first and why</li>
         </ul>
         <a class="pk-feat-link" onclick="showProductPage('lp-product-gtm')">See GTM strategy details →</a>
       </div>
@@ -529,9 +531,9 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
             <div style="padding:11px 13px;background:#F9FAFB;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><div style="width:26px;height:26px;background:#E5E7EB;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif">W</div><span style="font-size:12.5px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif">vs Wealthbox</span></div><span style="font-size:10px;font-weight:700;color:#6366F1;background:#EEF2FF;padding:2px 7px;border-radius:3px;font-family:Inter,sans-serif">B2B SaaS</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #E5E7EB">
               <div style="padding:10px 12px;border-right:1px solid #E5E7EB"><div style="font-size:9px;font-weight:700;color:#DC2626;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:Inter,sans-serif">⚠ Their Strength</div><div style="font-size:11.5px;color:#374151;font-family:Inter,sans-serif;line-height:1.5">Established US brand, deep advisor integrations</div></div>
-              <div style="padding:10px 12px"><div style="font-size:9px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:Inter,sans-serif">✓ Your Advantage</div><div style="font-size:11.5px;color:#374151;font-family:Inter,sans-serif;line-height:1.5">India-native, ₹ crore reporting, MFD-specific workflows</div></div>
+              <div style="padding:10px 12px"><div style="font-size:9px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:Inter,sans-serif">✓ Your Advantage</div><div style="font-size:11.5px;color:#374151;font-family:Inter,sans-serif;line-height:1.5">Built in India for the world, ₹ crore reporting, MFD-specific workflows</div></div>
             </div>
-            <div style="padding:10px 12px;background:#EFF6FF;border-bottom:1px solid #E5E7EB"><div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:Inter,sans-serif">💬 Win Line</div><div style="font-size:12px;color:#1D4ED8;font-family:Inter,sans-serif;font-style:italic;line-height:1.5">"Wealthbox is built for US RIAs — we're built for Indian MFDs. Different regulatory context, different workflows entirely."</div></div>
+            <div style="padding:10px 12px;background:#EFF6FF;border-bottom:1px solid #E5E7EB"><div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:Inter,sans-serif">💬 Win Line</div><div style="font-size:12px;color:#1D4ED8;font-family:Inter,sans-serif;font-style:italic;line-height:1.5">"Wealthbox is built for US RIAs - we're built for Indian MFDs. Different regulatory context, different workflows entirely."</div></div>
             <div style="padding:10px 12px;background:#FFFBEB"><div style="font-size:9px;font-weight:700;color:#D97706;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:Inter,sans-serif">💣 Landmine Question</div><div style="font-size:12px;color:#92400E;font-family:Inter,sans-serif;font-style:italic;line-height:1.5">"Does it show your AUM in ₹ crores or USD? Do they handle AMFI categorisation?"</div></div>
           </div>
         </div>
@@ -550,19 +552,19 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
             <div style="background:#F9FAFB;border-radius:6px;padding:9px"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:3px">Trigger</div><div style="font-size:12px;font-weight:600;color:#111;font-family:'DM Sans',sans-serif">Just hired Head of Sales</div></div>
             <div style="background:#F9FAFB;border-radius:6px;padding:9px"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:3px">Deal size</div><div style="font-size:12px;font-weight:600;color:#111;font-family:'DM Sans',sans-serif">₹8–25L / year</div></div>
           </div>
-          <div style="background:#F0FDF4;border-radius:6px;padding:10px;margin-top:8px"><div style="font-size:9px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:4px">First 10 words to say</div><div style="font-size:12.5px;color:#111;font-family:Inter,sans-serif;font-style:italic">"Saw you just scaled the team — how are you tracking pipeline?"</div></div>
+          <div style="background:#F0FDF4;border-radius:6px;padding:10px;margin-top:8px"><div style="font-size:9px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:4px">First 10 words to say</div><div style="font-size:12.5px;color:#111;font-family:Inter,sans-serif;font-style:italic">"Saw you just scaled the team - how are you tracking pipeline?"</div></div>
         </div>
       </div>
       <div>
         <div class="pk-feat-pill">ICP ENGINE</div>
         <h2 class="pk-feat-h2">Know exactly who to sell to and what to say first.</h2>
-        <p class="pk-feat-sub">Engine 360 builds 3 ICP profiles ranked by commercial fit — with real job titles, buying triggers, day-in-life context, disqualifiers, and the exact first sentence to open with.</p>
+        <p class="pk-feat-sub">Engine 360 builds 3 ICP profiles ranked by commercial fit - with real job titles, buying triggers, day-in-life context, disqualifiers, and the exact first sentence to open with.</p>
         <ul class="pk-feat-bullets">
-          <li>3 ranked profiles — Primary, Secondary, Expansion — each scored out of 100</li>
+          <li>3 ranked profiles - Primary, Secondary, Expansion - each scored out of 100</li>
           <li>5-filter scoring: Firmographic, Pain urgency, Budget signal, Decision access, Timing</li>
-          <li>Day-in-life mapping — where your product fits their actual workflow</li>
-          <li>Buying triggers — specific events that make them buy NOW</li>
-          <li>First 10 words — exact opening line for each ICP</li>
+          <li>Day-in-life mapping - where your product fits their actual workflow</li>
+          <li>Buying triggers - specific events that make them buy NOW</li>
+          <li>First 10 words - exact opening line for each ICP</li>
         </ul>
         <a class="pk-feat-link" onclick="showProductPage('lp-product-icp')">See ICP Engine details →</a>
       </div>
@@ -577,7 +579,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div class="pk-section-center">
       <div class="pk-section-label">Full platform</div>
       <h2 class="pk-section-h2">8 modules. One complete revenue OS.</h2>
-      <p class="pk-section-sub">Every output uses your real data — actual competitor names, correct currency, scripts you can send today.</p>
+      <p class="pk-section-sub">Every output uses your real data - actual competitor names, correct currency, scripts you can send today.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
       <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;transition:box-shadow .15s" onmouseenter="this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseleave="this.style.boxShadow='none'"><div style="font-size:10px;font-weight:700;color:#6366F1;letter-spacing:.1em;font-family:Inter,sans-serif;margin-bottom:7px">01 · BUSINESS PROFILE</div><div style="font-size:13px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Positioning & Moat</div><div style="font-size:12px;color:#6B7280;line-height:1.6;font-family:Inter,sans-serif">TAM/SAM/SOM in ₹, hypothesis validation, 5 pillars</div></div>
@@ -613,10 +615,10 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <div id="lp-solution-fintech" style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
         <div style="font-size:11px;font-weight:700;color:#16A34A;background:#F0FDF4;display:inline-block;padding:3px 9px;border-radius:3px;font-family:Inter,sans-serif;margin-bottom:14px">FINTECH / BFSI</div>
         <h3 style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:#111;margin:0 0 10px">GTM built for financial services complexity</h3>
-        <p style="font-size:13px;color:#4B5563;font-family:Inter,sans-serif;line-height:1.7;margin:0 0 16px">Selling into banks, insurance, lending, wealth or payments is different. Longer cycles, more stakeholders, compliance gates. Engine 360 builds your GTM around these realities — not a generic SaaS playbook.</p>
+        <p style="font-size:13px;color:#4B5563;font-family:Inter,sans-serif;line-height:1.7;margin:0 0 16px">Selling into banks, insurance, lending, wealth or payments is different. Longer cycles, more stakeholders, compliance gates. Engine 360 builds your GTM around these realities - not a generic SaaS playbook.</p>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px">
-          <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Multi-stakeholder scripts — CTO, CRO, compliance</li>
-          <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Longer deal cycles — 6–18 month pipeline management</li>
+          <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Multi-stakeholder scripts - CTO, CRO, compliance</li>
+          <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Longer deal cycles - 6–18 month pipeline management</li>
           <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>ICP profiles across banks, NBFCs, insurers, wealth firms</li>
         </ul>
       </div>
@@ -626,7 +628,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <p style="font-size:13px;color:#4B5563;font-family:Inter,sans-serif;line-height:1.7;margin:0 0 16px">Hypothesis validation, wedge strategy, and exact scripts to win first customers before burning runway on wrong channels.</p>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px">
           <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>6-check hypothesis validation</li>
-          <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Wedge — which segment first</li>
+          <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Wedge - which segment first</li>
           <li style="font-size:12.5px;color:#374151;font-family:Inter,sans-serif;display:flex;gap:7px;align-items:flex-start"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Anti-patterns to avoid in 90 days</li>
         </ul>
       </div>
@@ -649,7 +651,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       </div>
       <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Generic templates</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Specific to your business</div></div>
       <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Fill 50+ fields manually</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>URL only, done in 60 seconds</div></div>
-      <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>USD-only, no India context</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>₹ crores, India-native</div></div>
+      <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>USD-only, no India context</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>₹ crores, Built in India for the world</div></div>
       <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>No real scripts to send</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Actual scripts to send today</div></div>
       <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>No CRM intelligence</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Live Zoho CRM analysis</div></div>
       <div class="pk-compare-row"><div class="pk-compare-cell"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Paid subscription required</div><div class="pk-compare-cell pk-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Free forever, no credit card</div></div>
@@ -666,19 +668,19 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <p class="pk-section-sub">All 8 modules, Zoho integration, Google Sheets, unlimited analyses. No card, no trial, no limits.</p>
     </div>
     <div style="background:#fff;border:1.5px solid #E5E7EB;border-radius:16px;padding:36px;box-shadow:0 4px 20px rgba(0,0,0,.06);position:relative;margin-bottom:0">
-      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:12px;font-weight:600;padding:4px 20px;border-radius:20px;white-space:nowrap;font-family:Inter,sans-serif">FREE FOREVER — NO CREDIT CARD</div>
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:12px;font-weight:600;padding:4px 20px;border-radius:20px;white-space:nowrap;font-family:Inter,sans-serif">FREE FOREVER - NO CREDIT CARD</div>
       <div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:52px;font-weight:800;color:#111;line-height:1;letter-spacing:-2px;margin-bottom:4px">₹0</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:52px;font-weight:800;color:#111;line-height:1;letter-spacing:-2px;margin-bottom:4px">$0</div>
           <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif;margin-bottom:20px">per month</div>
           <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:11px 22px;font-size:13.5px">Get started free →</button>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All 8 strategy modules</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>CRM intelligence — Zoho connect</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>CRM intelligence - Zoho connect</div>
           <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Real scripts from your data</div>
           <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Sheets connector</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>India-native (₹ crores)</div>
+          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Works in ₹ and $ - your currency</div>
           <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#374151;font-family:Inter,sans-serif"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
         </div>
       </div>
@@ -694,11 +696,11 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <h2 class="pk-section-h2">Frequently asked questions</h2>
     </div>
     <div class="pk-faq">
-      <div class="pk-faq-item open" onclick="pkToggleFaq(this)"><div class="pk-faq-q">Do I need to fill in any forms or questionnaires?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">No. All you need is your website URL. Engine 360 researches your business from your site and Google — you review and confirm. If you don't have a website yet, describe your idea in one line.</div></div>
-      <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">Is it really free? What's the catch?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Truly free. All 8 modules, unlimited analyses, Zoho and Google Sheets integration. Engine 360 is built on "I Know Only Numbers" — the goal is to get this framework into the hands of every Indian founder and sales leader.</div></div>
+      <div class="pk-faq-item open" onclick="pkToggleFaq(this)"><div class="pk-faq-q">Do I need to fill in any forms or questionnaires?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">No. All you need is your website URL. Engine 360 researches your business from your site and Google - you review and confirm. If you don't have a website yet, describe your idea in one line.</div></div>
+      <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">Is it really free? What's the catch?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Truly free. All 8 modules, unlimited analyses, Zoho and Google Sheets integration. Engine 360 is built on "I Know Only Numbers" - the goal is to get this framework into the hands of every Indian founder and sales leader.</div></div>
       <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">How does the Zoho CRM integration work?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Generate an access token from accounts.zoho.in (takes 2 minutes), paste it in Connect Data. Engine 360 discovers all your modules, shows you a 10-record sample first, then pulls the full database only after your explicit approval.</div></div>
-      <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">Will it work for my Indian B2B business?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Yes — Engine 360 is built specifically for India. All outputs are in ₹ crores and lakhs, ICP profiles reference India-specific roles (MFD, CA firms, SaaS heads), scripts default to WhatsApp-first outreach.</div></div>
-      <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">How long does it take to generate the strategy?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Usually 45–90 seconds. Engine 360 runs 8 AI calls in parallel. Keep the tab open during generation — it saves after each phase so if you switch apps, it resumes where it stopped.</div></div>
+      <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">Will it work for my Indian B2B business?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Yes - Engine 360 is built for ambitious businesses globally. All outputs are in ₹ crores and lakhs, ICP profiles reference India-specific roles (MFD, CA firms, SaaS heads), scripts default to WhatsApp-first outreach.</div></div>
+      <div class="pk-faq-item" onclick="pkToggleFaq(this)"><div class="pk-faq-q">How long does it take to generate the strategy?<div class="pk-faq-icon">+</div></div><div class="pk-faq-a">Usually 45–90 seconds. Engine 360 runs 8 AI calls in parallel. Keep the tab open during generation - it saves after each phase so if you switch apps, it resumes where it stopped.</div></div>
     </div>
   </div>
 </div>
@@ -723,7 +725,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
         <svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg>
         <span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span>
       </div>
-      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 14px">Your RevOps Managing Agent. Built for India on "I Know Only Numbers" by Naveen Balaji. 🇮🇳</p>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 14px">Your RevOps Managing Agent. Built in India for the world on "I Know Only Numbers" by Naveen Balaji. 🇮🇳</p>
       <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card required</div>
     </div>
     <div>
@@ -752,7 +754,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   </div>
   <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
     <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div>
-    <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Made with ♥ in India 🇮🇳</div>
+    <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Built in India for the world 🌍</div>
   </div>
 </div>
 
@@ -772,7 +774,6 @@ window.heroStart=heroStart;
 
 function showProductPage(id){
   const landing=document.getElementById('view-landing');
-  // Hide all direct children except product pages
   Array.from(landing.children).forEach(el=>{
     if(!el.id||(!el.id.startsWith('lp-product')&&!el.id.startsWith('lp-page-'))){
       el.style.display='none';
@@ -781,15 +782,57 @@ function showProductPage(id){
   document.querySelectorAll('[id^="lp-product"],[id^="lp-page-"]').forEach(el=>el.style.display='none');
   const t=document.getElementById(id);
   if(t){t.style.display='block';window.scrollTo({top:0,behavior:'smooth'});}
+  // Update URL
+  const urlMap={
+    'lp-product-crm':'/product/crm-intelligence',
+    'lp-product-playbook':'/product/sales-playbook',
+    'lp-product-gtm':'/product/gtm-strategy',
+    'lp-product-icp':'/product/icp-engine',
+    'lp-page-integrations':'/integrations',
+    'lp-solution-saas':'/solutions/b2b-saas',
+    'lp-solution-fintech':'/solutions/fintech',
+    'lp-solution-earlystage':'/solutions/early-stage',
+  };
+  try{if(urlMap[id])history.pushState({id},'',urlMap[id]);}catch(e){}
 }
 function showLandingHome(){
   const landing=document.getElementById('view-landing');
   Array.from(landing.children).forEach(el=>{el.style.display='';});
   document.querySelectorAll('[id^="lp-product"],[id^="lp-page-"]').forEach(el=>el.style.display='none');
   window.scrollTo({top:0,behavior:'smooth'});
+  try{history.pushState({},'','/');}catch(e){}
 }
 window.showProductPage=showProductPage;
 window.showLandingHome=showLandingHome;
+
+// Nav dropdown click toggle
+function pkToggleNav(item, e){
+  e.stopPropagation();
+  const isOpen=item.classList.contains('dd-open');
+  document.querySelectorAll('.pk-nav-item').forEach(i=>i.classList.remove('dd-open'));
+  if(!isOpen)item.classList.add('dd-open');
+}
+document.addEventListener('click',function(){
+  document.querySelectorAll('.pk-nav-item').forEach(i=>i.classList.remove('dd-open'));
+});
+window.pkToggleNav=pkToggleNav;
+
+// Handle browser back/forward
+window.addEventListener('popstate',function(e){
+  const path=window.location.pathname;
+  if(path==='/'||path===''){
+    showLandingHome();
+  } else if(path.startsWith('/dashboard/')){
+    const page=path.replace('/dashboard/','').replace(/-/g,'') ;
+    // Map URL slugs back to page keys
+    const revMap={'businessprofile':'biz','icpengine':'icp','gtmstrategy':'gtm',
+      'salesplaybook':'playbook','crmblueprint':'crm','crmintelligence':'crmi',
+      'mismetrics':'mis','executionplan':'checklist','input':'input',
+      'connect':'connect','dashboard':'dashboard'};
+    nav(revMap[page]||'dashboard');
+  }
+});
+
 </script>
 
 <!-- ══ PRODUCT PAGE: CRM Intelligence ═══════════════════════════════ -->
@@ -811,7 +854,7 @@ window.showLandingHome=showLandingHome;
       <div class="lp-card">
         <div style="font-size:28px;margin-bottom:12px">🔍</div>
         <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">1. Discover</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Engine 360 calls Zoho's API to map every module — Leads, Deals, Contacts, Activities, and any custom modules you've created with your own field names.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Engine 360 calls Zoho's API to map every module - Leads, Deals, Contacts, Activities, and any custom modules you've created with your own field names.</div>
       </div>
       <div class="lp-card">
         <div style="font-size:28px;margin-bottom:12px">📋</div>
@@ -821,18 +864,18 @@ window.showLandingHome=showLandingHome;
       <div class="lp-card">
         <div style="font-size:28px;margin-bottom:12px">🤖</div>
         <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">3. AI analysis</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">After your approval, pulls all records and runs churn detection, ICP scoring, productivity analysis, and deal segmentation — with specific actions for your team.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">After your approval, pulls all records and runs churn detection, ICP scoring, productivity analysis, and deal segmentation - with specific actions for your team.</div>
       </div>
     </div>
     <!-- What you get -->
     <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px">What the agent finds</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#F87171;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Churn signals by severity</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Critical / High / Medium — with save script for each</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#F87171;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Churn signals by severity</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Critical / High / Medium - with save script for each</div></div></div>
       <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#FBBF24;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Pipeline stage breakdown</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Where deals are stalling and why</div></div></div>
       <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#34D399;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">ICP match rate</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Which deals fit, which to drop, where to double down</div></div></div>
       <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#818CF8;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Rep productivity gaps</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Who's owning what, where activity has dropped</div></div></div>
       <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#38BDF8;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Lead source analysis</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Which channels are producing the best deals</div></div></div>
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#C084FC;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Auto-sync schedule</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Daily / weekly / monthly refresh — always current</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#C084FC;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Auto-sync schedule</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Daily / weekly / monthly refresh - always current</div></div></div>
     </div>
   </div>
 </div>
@@ -845,15 +888,15 @@ window.showLandingHome=showLandingHome;
     </button>
     <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#34D399;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · SALES PLAYBOOK</div>
     <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Real scripts.<br>Not templates.</h1>
-    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Every cold email, WhatsApp message, call script and objection response is written specifically for your business — using your competitors, your ICP's language, and your market context. Actual words you can send today.</p>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Every cold email, WhatsApp message, call script and objection response is written specifically for your business - using your competitors, your ICP's language, and your market context. Actual words you can send today.</p>
     <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my playbook →</button>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px">
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">EMAIL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Cold email sequences</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Subject, body, 3 follow-ups — each a different angle</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">EMAIL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Cold email sequences</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Subject, body, 3 follow-ups - each a different angle</div></div>
       <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#25D366;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">WHATSAPP</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">WhatsApp openers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">First message, follow-up, and voice note script</div></div>
       <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">COLD CALL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Call framework</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Opener, permission ask, elevator pitch, 4 discovery questions</div></div>
       <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#0A66C2;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">LINKEDIN</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">LinkedIn outreach</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Connection note, InMail, after-connect message</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">OBJECTIONS</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Objection handling</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words to say — empathy + reframe + next step</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#F87171;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">60s RESPONSE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Inbound lead script</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Call a lead within 60 seconds of form fill — exact script</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">OBJECTIONS</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Objection handling</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words to say - empathy + reframe + next step</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#F87171;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">60s RESPONSE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Inbound lead script</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Call a lead within 60 seconds of form fill - exact script</div></div>
     </div>
   </div>
 </div>
@@ -869,12 +912,12 @@ window.showLandingHome=showLandingHome;
     <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 researches your market on Google, picks the right GTM motion for your stage, builds competitor battlecards with real win lines, and creates a 90-day execution roadmap.</p>
     <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my GTM strategy →</button>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">GTM Motion verdict</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Account-based, Volume, Partner-led, or Hybrid — picked based on your ICP, deal size, and stage</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">GTM Motion verdict</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Account-based, Volume, Partner-led, or Hybrid - picked based on your ICP, deal size, and stage</div></div>
       <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Competitor battlecards</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Real competitor names, their weakness, your win line, and a landmine question to expose them</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">90-day roadmap</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Days 1-30, 31-60, 61-90 — specific actions with named tools, not generic milestones</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">90-day roadmap</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Days 1-30, 31-60, 61-90 - specific actions with named tools, not generic milestones</div></div>
       <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">PDCA cycle</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Plan → Do → Check → Act framework with specific checkpoints for your business</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Channel strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Online and offline engine — specific platforms, content types, and weekly time investment</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Wedge strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Which exact market segment to enter first before expanding — and why</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Channel strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Online and offline engine - specific platforms, content types, and weekly time investment</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Wedge strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Which exact market segment to enter first before expanding - and why</div></div>
     </div>
   </div>
 </div>
@@ -887,18 +930,18 @@ window.showLandingHome=showLandingHome;
     </button>
     <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#C084FC;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · ICP ENGINE</div>
     <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Know exactly<br>who to sell to.</h1>
-    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 builds 3 ICP profiles ranked by commercial potential — with real job titles, buying triggers, day-in-life context, disqualifiers, and the exact first 10 words to say to each one.</p>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 builds 3 ICP profiles ranked by commercial potential - with real job titles, buying triggers, day-in-life context, disqualifiers, and the exact first 10 words to say to each one.</p>
     <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my ICP profiles →</button>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px">
       <div class="lp-card" style="border-color:rgba(192,132,252,.3)"><div style="font-size:10px;font-weight:700;color:#C084FC;font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #1 · HIGHEST FIT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Primary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Real job title, company type, revenue range, geography, team size, buying triggers, disqualifiers, deal size, sales cycle</div></div>
       <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #2 · GOOD FIT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Secondary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Adjacent segment with slightly different triggers and pitch angle</div></div>
-      <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #3 · EXPLORE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Tertiary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Future expansion opportunity — worth monitoring, not primary focus yet</div></div>
+      <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #3 · EXPLORE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Tertiary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Future expansion opportunity - worth monitoring, not primary focus yet</div></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
       <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">5-filter scoring</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Firmographic, Pain urgency, Budget signal, Decision maker access, Timing trigger</div></div>
       <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Day-in-life mapping</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">What their actual workday looks like and where your product fits naturally</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Buying triggers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Specific events that make them buy NOW — not general interest signals</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">First objection</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words they'll say first — and how to reframe it</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Buying triggers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Specific events that make them buy NOW - not general interest signals</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">First objection</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words they'll say first - and how to reframe it</div></div>
     </div>
   </div>
 </div>
@@ -993,7 +1036,7 @@ window.showLandingHome=showLandingHome;
             <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ BUILT-IN</div>
           </div>
           <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">WhatsApp</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Scripts for opener, follow-up, and voice note — ready to copy</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Scripts for opener, follow-up, and voice note - ready to copy</div>
           <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Get scripts →</button>
         </div>
       </div>
@@ -1084,19 +1127,19 @@ window.showLandingHome=showLandingHome;
         <div style="display:flex;flex-direction:column;gap:4px">
           <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(239,68,68,.12);border-radius:5px;cursor:pointer">
             <span style="font-size:10.5px;color:#F87171;font-weight:600;font-family:Inter,sans-serif">⚠ Churn Risk</span>
-            <span id="sb-churn-count" style="font-size:11px;font-weight:800;color:#F87171;font-family:'DM Sans',sans-serif">—</span>
+            <span id="sb-churn-count" style="font-size:11px;font-weight:800;color:#F87171;font-family:'DM Sans',sans-serif">-</span>
           </div>
           <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(99,102,241,.1);border-radius:5px;cursor:pointer">
             <span style="font-size:10.5px;color:#A5B4FC;font-weight:600;font-family:Inter,sans-serif">Leads</span>
-            <span id="sb-leads-count" style="font-size:11px;font-weight:800;color:#A5B4FC;font-family:'DM Sans',sans-serif">—</span>
+            <span id="sb-leads-count" style="font-size:11px;font-weight:800;color:#A5B4FC;font-family:'DM Sans',sans-serif">-</span>
           </div>
           <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(52,211,153,.08);border-radius:5px;cursor:pointer">
             <span style="font-size:10.5px;color:#34D399;font-weight:600;font-family:Inter,sans-serif">Open Deals</span>
-            <span id="sb-deals-count" style="font-size:11px;font-weight:800;color:#34D399;font-family:'DM Sans',sans-serif">—</span>
+            <span id="sb-deals-count" style="font-size:11px;font-weight:800;color:#34D399;font-family:'DM Sans',sans-serif">-</span>
           </div>
           <div onclick="nav('crmi')" style="display:flex;align-items:center;justify-content:space-between;padding:5px 7px;background:rgba(251,191,36,.08);border-radius:5px;cursor:pointer">
             <span style="font-size:10.5px;color:#FBBF24;font-weight:600;font-family:Inter,sans-serif">ICP Match</span>
-            <span id="sb-icp-pct" style="font-size:11px;font-weight:800;color:#FBBF24;font-family:'DM Sans',sans-serif">—</span>
+            <span id="sb-icp-pct" style="font-size:11px;font-weight:800;color:#FBBF24;font-family:'DM Sans',sans-serif">-</span>
           </div>
         </div>
         <div onclick="nav('crmi')" style="margin-top:7px;text-align:center;font-size:10px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;padding:4px 0;border-top:1px solid rgba(255,255,255,.07);font-family:Inter,sans-serif">Full analysis →</div>
@@ -1287,6 +1330,15 @@ const PAGE_META={input:['Business Input','Tell us about your business'],connect:
 
 let _generating=false;
 function nav(page){
+  // Update browser URL
+  try{
+    const urlMap={input:'/dashboard/input',connect:'/dashboard/connect',dashboard:'/dashboard',
+      biz:'/dashboard/business-profile',icp:'/dashboard/icp-engine',gtm:'/dashboard/gtm-strategy',
+      playbook:'/dashboard/sales-playbook',crm:'/dashboard/crm-blueprint',
+      crmi:'/dashboard/crm-intelligence',mis:'/dashboard/mis-metrics',checklist:'/dashboard/execution-plan'};
+    if(urlMap[page])history.pushState({page},'',urlMap[page]);
+  }catch(e){}
+  S.page=page;
   // If generating, just update the active nav highlight but DON'T re-render page
   // The overlay is on document.body so it stays regardless
   document.querySelectorAll('.sbi').forEach(e=>e.classList.remove('act'));
@@ -1623,17 +1675,17 @@ Return this exact JSON:
   "companyName": "actual company name from website",
   "oneLiner": "exactly what they do, for whom, and what outcome in one sentence",
   "businessModel": "B2B or B2C or B2B2C",
-  "verticalOrHorizontal": "vertical (serving one specific industry) or horizontal (any industry) — explain why",
+  "verticalOrHorizontal": "vertical (serving one specific industry) or horizontal (any industry) - explain why",
   "revenueModel": "subscription / transaction fee / services / marketplace / usage-based",
   "currency": "INR or USD",
   "stage": "pre-revenue / 0-1 / early growth (0-1Cr ARR) / scaling (1-10Cr ARR) / growth (10Cr+ ARR)",
-  "keyProblem": "specific problem they solve — be concrete",
-  "solution": "their solution in 2 sentences — what makes it different",
-  "moat": "their defensible advantage — what makes them hard to copy",
+  "keyProblem": "specific problem they solve - be concrete",
+  "solution": "their solution in 2 sentences - what makes it different",
+  "moat": "their defensible advantage - what makes them hard to copy",
   "tamSamSom": {
-    "tam": "total market with actual number e.g. ₹45,000 crore or $2.3B — explain calculation",
-    "sam": "serviceable market they can realistically reach — with number",
-    "som": "what they can capture in 3 years — with number"
+    "tam": "total market with actual number e.g. ₹45,000 crore or $2.3B - explain calculation",
+    "sam": "serviceable market they can realistically reach - with number",
+    "som": "what they can capture in 3 years - with number"
   },
   "marketSize": "one line market size summary with actual number",
   "linkedinSignals": {
@@ -1643,12 +1695,12 @@ Return this exact JSON:
     "growthSignal": "growing / stable / unclear"
   },
   "hypothesisValidation": {
-    "problemExists": "Yes/No/Unclear — specific evidence from website",
-    "solutionBetter": "Yes/No/Unclear — vs which specific alternatives",
-    "willingToPay": "Yes/No/Unclear — pricing signals or customer evidence",
-    "marketSizeAdequate": "Yes/No/Unclear — based on TAM vs team ambition",
-    "retention": "Yes/No/Unclear — business model retention signals",
-    "unitEconomics": "Yes/No/Unclear — CAC vs LTV viability based on model",
+    "problemExists": "Yes/No/Unclear - specific evidence from website",
+    "solutionBetter": "Yes/No/Unclear - vs which specific alternatives",
+    "willingToPay": "Yes/No/Unclear - pricing signals or customer evidence",
+    "marketSizeAdequate": "Yes/No/Unclear - based on TAM vs team ambition",
+    "retention": "Yes/No/Unclear - business model retention signals",
+    "unitEconomics": "Yes/No/Unclear - CAC vs LTV viability based on model",
     "overallVerdict": "Ready to scale / Ready to learn / Hypothesis unclear"
   },
   "fivePillarsStatus": {
@@ -1675,7 +1727,7 @@ RULES:
 - If Indian business: reference India-specific roles (e.g. "Head of Distribution", "MFD", "CA firm partner")
 - Triggers must be SPECIFIC events (e.g. "just crossed 500 crore AUM", "hired first sales person")
 - Deal size in correct currency (₹ for India, $ for US/global)
-- Pain points must be SPECIFIC to their industry — not generic
+- Pain points must be SPECIFIC to their industry - not generic
 
 {
   "icps": [
@@ -1690,9 +1742,9 @@ RULES:
       "companyRevenue": "revenue range in correct currency",
       "teamSize": "headcount range",
       "painPoints": ["very specific pain 1", "specific pain 2", "specific pain 3"],
-      "triggers": ["specific event that makes them buy NOW", "trigger 2 — be very specific"],
+      "triggers": ["specific event that makes them buy NOW", "trigger 2 - be very specific"],
       "disqualifiers": ["walk away condition 1", "condition 2"],
-      "pitchAngle": "exact opening line for first outreach — first 10 words",
+      "pitchAngle": "exact opening line for first outreach - first 10 words",
       "dayInLife": "one paragraph describing their actual day and where this product fits",
       "bestChannels": ["channel 1 with why", "channel 2"],
       "winRate": "estimated win % with one reason",
@@ -1722,8 +1774,8 @@ RULES:
   "wedge": "the single most specific market entry point",
   "wedgeReason": "why win here first before expanding",
   "pricingStrategy": "specific pricing recommendation with rationale and actual numbers in correct currency",
-  "onlineEngine": "specific online channels — which platforms, what content, why for this specific business",
-  "offlineEngine": "specific offline — which events, associations, direct visits for this business",
+  "onlineEngine": "specific online channels - which platforms, what content, why for this specific business",
+  "offlineEngine": "specific offline - which events, associations, direct visits for this business",
   "channels": [
     {
       "name": "specific channel name",
@@ -1736,7 +1788,7 @@ RULES:
     }
   ],
   "roadmap": {
-    "days1_30": ["specific action with tool — e.g. Set up HubSpot, import 500 MFD contacts from AMFI database", "action 2", "action 3", "action 4"],
+    "days1_30": ["specific action with tool - e.g. Set up HubSpot, import 500 MFD contacts from AMFI database", "action 2", "action 3", "action 4"],
     "days31_60": ["specific action 1", "action 2", "action 3", "action 4"],
     "days61_90": ["specific action 1", "action 2", "action 3", "action 4"]
   },
@@ -1745,7 +1797,7 @@ RULES:
       "competitor": "real competitor name",
       "theirStrength": "what they actually do well",
       "yourAdvantage": "specific advantage with evidence",
-      "weaknesses": "their real weakness — be specific",
+      "weaknesses": "their real weakness - be specific",
       "winLine": "exact sentence to say when prospect mentions them",
       "landmine": "trap question that exposes their weakness"
     }
@@ -1755,15 +1807,15 @@ RULES:
   "hypothesesToTest": ["specific hypothesis to validate in 30 days", "hypothesis 2"]
 }`;}
 
-function pbP(ctx,d){return `You are a sales playbook writer. Write REAL scripts — actual words, not templates. Return ONLY valid JSON.
+function pbP(ctx,d){return `You are a sales playbook writer. Write REAL scripts - actual words, not templates. Return ONLY valid JSON.
 
 ${ctx}
 ICP: ${JSON.stringify(d.icp?.icps?.[0])}
 COMPANY: ${d.biz?.companyName} | MOTION: ${d.gtm?.motion}
 
 RULES:
-- Write ACTUAL words — not [INSERT NAME] placeholders
-- Cold email subject lines must NOT use clickbait — specific and relevant
+- Write ACTUAL words - not [INSERT NAME] placeholders
+- Cold email subject lines must NOT use clickbait - specific and relevant
 - Scripts must reference the specific ICP pain (e.g. "managing 300+ client portfolios")
 - 60-second lead response means: call within 60 seconds of form fill, WhatsApp within 30 seconds
 - Objections must use exact words the ICP would say in their language
@@ -1771,48 +1823,48 @@ RULES:
 
 {
   "coldEmail": {
-    "subject": "specific subject line — no clickbait, reference their situation",
-    "body": "full email — opener that shows research, 2-line pitch, one proof point, specific CTA",
-    "followUp1": "day 3 — different angle, not a chase",
-    "followUp2": "day 7 — breakup email that usually gets responses",
-    "followUp3": "day 14 — final value add email"
+    "subject": "specific subject line - no clickbait, reference their situation",
+    "body": "full email - opener that shows research, 2-line pitch, one proof point, specific CTA",
+    "followUp1": "day 3 - different angle, not a chase",
+    "followUp2": "day 7 - breakup email that usually gets responses",
+    "followUp3": "day 14 - final value add email"
   },
   "linkedInOutreach": {
-    "connectionNote": "under 200 chars — no pitch, shows you did research",
+    "connectionNote": "under 200 chars - no pitch, shows you did research",
     "inmailSubject": "specific subject",
     "inmailBody": "full message under 150 words",
-    "afterConnect": "first message after they accept — leads with value",
-    "engagementPlay": "how to warm them up before connecting — specific posts to comment on"
+    "afterConnect": "first message after they accept - leads with value",
+    "engagementPlay": "how to warm them up before connecting - specific posts to comment on"
   },
   "coldCall": {
-    "opener": "exact first sentence — include their name and reference point",
+    "opener": "exact first sentence - include their name and reference point",
     "permissionAsk": "one sentence to earn 2 minutes",
     "elevator": "30-second pitch using their language",
     "questions": ["specific qualifying question 1", "question 2", "question 3", "question 4"],
     "gatekeeperScript": "exact words for receptionist/PA",
-    "voicemailScript": "what to say on voicemail — under 20 seconds"
+    "voicemailScript": "what to say on voicemail - under 20 seconds"
   },
   "whatsApp": {
-    "firstMessage": "first WhatsApp — casual, specific, under 50 words",
+    "firstMessage": "first WhatsApp - casual, specific, under 50 words",
     "followUp": "day 2 follow up message",
-    "voiceNoteScript": "what to say in a voice note — under 30 seconds"
+    "voiceNoteScript": "what to say in a voice note - under 30 seconds"
   },
-  "leadResponseScript": "exact script for calling an inbound lead within 60 seconds — include what to say if they don't pick up",
+  "leadResponseScript": "exact script for calling an inbound lead within 60 seconds - include what to say if they don't pick up",
   "discoveryQuestions": [
     {"question": "specific question", "whatYouLearn": "what this tells you", "goodAnswer": "answer that qualifies them", "badAnswer": "answer that disqualifies"}
   ],
   "meddic": {
-    "metrics": "what business metric does this solve — with specific numbers",
+    "metrics": "what business metric does this solve - with specific numbers",
     "economicBuyer": "exact title of person who signs off",
     "decisionCriteria": "what 3 things will they evaluate",
     "decisionProcess": "typical steps to get a PO raised",
     "identifyPain": "the specific pain that makes this urgent",
-    "champion": "who inside will fight for this — their motivation"
+    "champion": "who inside will fight for this - their motivation"
   },
   "objections": [
     {
       "objection": "exact words prospect says",
-      "response": "exact response — empathy then specific reframe",
+      "response": "exact response - empathy then specific reframe",
       "followUp": "follow up question to move forward",
       "category": "price / timing / competition / trust / priority"
     }
@@ -1827,15 +1879,15 @@ ${ctx}
 STAGE: ${d.biz?.stage} | MOTION: ${d.gtm?.motion} | ICP: ${d.icp?.icps?.[0]?.businessModel} | CURRENCY: ${d.biz?.currency||'INR'}
 
 RULES:
-- Recommend the RIGHT CRM for their stage and budget — not always HubSpot
+- Recommend the RIGHT CRM for their stage and budget - not always HubSpot
 - Pipeline stages must match their ACTUAL sales process
-- Lead scoring signals must be observable in CRM — not theoretical
+- Lead scoring signals must be observable in CRM - not theoretical
 - All amounts in correct currency (₹ for Indian businesses)
 - Automations must reference specific triggers in the recommended CRM
 
 {
   "recommendation": "HubSpot / Zoho CRM / Pipedrive / Freshsales / Notion",
-  "reason": "specific reason for this CRM — their stage, budget, and team size",
+  "reason": "specific reason for this CRM - their stage, budget, and team size",
   "tier": "Free / Starter / Professional / Enterprise",
   "monthlyCost": "actual cost in correct currency per month",
   "setupTime": "realistic time to go live",
@@ -1851,7 +1903,7 @@ RULES:
       "lossRisk": "most common reason deals die here"
     }
   ],
-  "customFields": ["field name — why it matters", "field 2", "field 3", "field 4", "field 5"],
+  "customFields": ["field name - why it matters", "field 2", "field 3", "field 4", "field 5"],
   "leadScoring": [
     {
       "signal": "specific observable signal",
@@ -1894,7 +1946,7 @@ CRM: ${d.crm?.recommendation} | ICP: ${JSON.stringify(d.icp?.icps?.[0]?.jobTitle
       "channel": "Call / WhatsApp / Email / LinkedIn",
       "timing": "specific time e.g. 10am",
       "action": "specific action",
-      "exactScript": "exact words to say or send — not a template",
+      "exactScript": "exact words to say or send - not a template",
       "ifNoResponse": "what happens next"
     }
   ],
@@ -1919,7 +1971,7 @@ CRM: ${d.crm?.recommendation} | ICP: ${JSON.stringify(d.icp?.icps?.[0]?.jobTitle
     }
   ],
   "productAnalytics": {
-    "freeTools": ["tool — specific use case"],
+    "freeTools": ["tool - specific use case"],
     "keyEventsToTrack": ["event with why it matters"],
     "powerUserSignals": ["specific signal user is engaged"],
     "atRiskSignals": ["specific signal of churn risk"]
@@ -1966,7 +2018,7 @@ RULES:
     "cac": "how to calculate CAC for this business with formula",
     "ltv": "how to calculate LTV with formula and currency",
     "churnRate": "monthly churn benchmark for this category",
-    "paybackPeriod": "months to recover CAC — target for this stage",
+    "paybackPeriod": "months to recover CAC - target for this stage",
     "revenuePerEmployee": "target in correct currency",
     "conversionRate": "lead to close % benchmark for this motion"
   },
@@ -2002,7 +2054,7 @@ RULES:
     "output": "decision or action that must come out"
   },
   "monthlyBoardPack": ["metric with context", "metric 2", "metric 3", "metric 4", "metric 5"],
-  "vanityMetrics": ["metric to stop tracking — why it misleads", "metric 2"],
+  "vanityMetrics": ["metric to stop tracking - why it misleads", "metric 2"],
   "investorMetrics": ["metric with why investors care", "metric 2", "metric 3"]
 }`;}
 
@@ -2037,7 +2089,7 @@ RULES:
       "role": "exact job title",
       "hiringTrigger": "specific revenue or customer milestone in correct currency",
       "notBefore": "condition that must be true first",
-      "firstHireProfile": "what to look for — specific skills",
+      "firstHireProfile": "what to look for - specific skills",
       "expectedImpact": "what this hire unlocks in 90 days"
     }
   ],
@@ -2083,19 +2135,19 @@ function renderConnect(){
       ${conn.zoho?`
       <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div style="font-size:12.5px;color:var(--green);font-weight:600">Zoho CRM connected — org: ${conn.zoho.org||'Your org'}</div>
+        <div style="font-size:12.5px;color:var(--green);font-weight:600">Zoho CRM connected - org: ${conn.zoho.org||'Your org'}</div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px" id="zoho-stats">
         <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
-          <div style="font-size:22px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif" id="z-leads">—</div>
+          <div style="font-size:22px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif" id="z-leads">-</div>
           <div style="font-size:10px;color:var(--ink3);margin-top:2px">Total Leads</div>
         </div>
         <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
-          <div style="font-size:22px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif" id="z-deals">—</div>
+          <div style="font-size:22px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif" id="z-deals">-</div>
           <div style="font-size:10px;color:var(--ink3);margin-top:2px">Open Deals</div>
         </div>
         <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
-          <div style="font-size:22px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif" id="z-pipeline">—</div>
+          <div style="font-size:22px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif" id="z-pipeline">-</div>
           <div style="font-size:10px;color:var(--ink3);margin-top:2px">Pipeline Value</div>
         </div>
       </div>
@@ -2150,7 +2202,7 @@ function renderConnect(){
       ${conn.sheets?`
       <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div style="font-size:12.5px;color:var(--green);font-weight:600">Google Sheets connected — ${conn.sheets.name||'Your sheet'}</div>
+        <div style="font-size:12.5px;color:var(--green);font-weight:600">Google Sheets connected - ${conn.sheets.name||'Your sheet'}</div>
       </div>
       <div style="margin-bottom:14px">
         <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px">Mapped columns</div>
@@ -2165,7 +2217,7 @@ function renderConnect(){
       `:`
       <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:14px;margin-bottom:16px">
         <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">Use our template sheet</div>
-        <div style="font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6">Copy our pre-built MIS template with all the columns Engine 360 needs — daily leads, revenue, pipeline stages, team activity.</div>
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6">Copy our pre-built MIS template with all the columns Engine 360 needs - daily leads, revenue, pipeline stages, team activity.</div>
         <a href="https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/copy" target="_blank" class="btn btn-blue btn-sm" style="text-decoration:none;display:inline-flex">Copy MIS template</a>
       </div>
       <div style="margin-bottom:12px">
@@ -2209,12 +2261,12 @@ function renderConnect(){
     <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:10px">What connecting unlocks</div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
       ${[
-        ['Morning MIS','Daily numbers — leads added, revenue vs target, pipeline movement'],
+        ['Morning MIS','Daily numbers - leads added, revenue vs target, pipeline movement'],
         ['Weekly Review','Auto-generated agenda from your book framework with live data'],
         ['Pipeline Health','Deals by stage, stalled deals, conversion rate per stage'],
         ['Churn Signals','At-risk accounts flagged daily based on activity signals'],
         ['Team Tracker','Who owns what, cadence compliance, follow-up overdue'],
-        ['Live Benchmarks','Your numbers vs book benchmarks — CAC, LTV, churn rate']
+        ['Live Benchmarks','Your numbers vs book benchmarks - CAC, LTV, churn rate']
       ].map(([t,d])=>`<div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:12px">
         <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">${t}</div>
         <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">${d}</div>
@@ -2291,7 +2343,7 @@ async function connectSheets(){
     if(!S.connections)S.connections={};
     S.connections.sheets={sheetId,url,mapping,name:'Your Sheet',connected:true};
     await saveData();
-    toast('Sheet saved — sync will pull data');
+    toast('Sheet saved - sync will pull data');
     nav('connect');
     btn.textContent='Connect Google Sheets';btn.disabled=false;
   }
@@ -2314,14 +2366,14 @@ async function syncZoho(){
     const leads=document.getElementById('z-leads');
     const deals=document.getElementById('z-deals');
     const pipe=document.getElementById('z-pipeline');
-    if(leads)leads.textContent=d.leads||'—';
-    if(deals)deals.textContent=d.deals||'—';
-    if(pipe)pipe.textContent=d.pipeline||'—';
+    if(leads)leads.textContent=d.leads||'-';
+    if(deals)deals.textContent=d.deals||'-';
+    if(pipe)pipe.textContent=d.pipeline||'-';
     // Update sidebar CRM panel
     updateCRMSidebar(d);
     // Auto-refresh playbook and CRM intelligence if already generated
     if(S.generated){
-      toast('Zoho synced — playbook updating...');
+      toast('Zoho synced - playbook updating...');
       await refreshFromCRM();
     } else {
       toast('Zoho synced!');
@@ -2389,19 +2441,19 @@ function updateCRMSidebar(data){
   // Leads count
   const leadsEl=document.getElementById('sb-leads-count');
   const leadsCount=ld.leads||ld.totalLeads||ld.lead_count||
-    (S.pulledData?.Leads?.length)||'—';
+    (S.pulledData?.Leads?.length)||'-';
   if(leadsEl)leadsEl.textContent=leadsCount;
   
   // Open deals
   const dealsEl=document.getElementById('sb-deals-count');
   const dealsCount=ld.deals||ld.openDeals||ld.deal_count||
-    (S.pulledData?.Deals?.length)||'—';
+    (S.pulledData?.Deals?.length)||'-';
   if(dealsEl)dealsEl.textContent=dealsCount;
   
   // ICP match
   const icpEl=document.getElementById('sb-icp-pct');
   const icpPct=ld.icpMatchRate||ld.icp_match||ld.matchRate;
-  if(icpEl)icpEl.textContent=icpPct?icpPct+'%':'—';
+  if(icpEl)icpEl.textContent=icpPct?icpPct+'%':'-';
   
   // Sync time
   const timeEl=document.getElementById('sb-crm-sync-time');
@@ -2493,7 +2545,7 @@ function renderDashboard(){
 
   <!-- 6 KEY NUMBERS from the book -->
   <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">The 6 Numbers You Must Know (I Know Only Numbers — Chapter 1)</div>
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">The 6 Numbers You Must Know (I Know Only Numbers - Chapter 1)</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
       ${[
         ['CAC','Customer Acquisition Cost',mis.northStar?.currentBaseline||'Calculate now'],
@@ -2512,12 +2564,12 @@ function renderDashboard(){
 
   <!-- TAM SAM SOM -->
   ${b.tamSamSom?`<div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Market Opportunity — TAM / SAM / SOM</div>
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Market Opportunity - TAM / SAM / SOM</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-radius:var(--r);overflow:hidden">
       ${[['TAM','Total Addressable Market',b.tamSamSom.tam,'#2563EB'],['SAM','Serviceable Addressable',b.tamSamSom.sam,'#16A34A'],['SOM','Obtainable in 3 years',b.tamSamSom.som,'#D97706']].map(([k,l,v,c])=>`<div style="background:var(--bg2);padding:14px;border-top:3px solid ${c}">
         <div style="font-size:18px;font-weight:800;color:${c};font-family:'DM Sans',sans-serif">${k}</div>
         <div style="font-size:10px;color:var(--ink3);margin:2px 0 6px;font-family:var(--mono)">${l}</div>
-        <div style="font-size:12px;color:var(--navy);line-height:1.5">${v||'—'}</div>
+        <div style="font-size:12px;color:var(--navy);line-height:1.5">${v||'-'}</div>
       </div>`).join('')}
     </div>
   </div>`:''}
@@ -2526,12 +2578,12 @@ function renderDashboard(){
   <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
     <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Hypothesis Validation Checklist (Chapter 1.4)</div>
     ${[
-      ['Customer has this problem and is actively trying to solve it',b.topStrengths?.[0]?'Yes — evidence in positioning':'Unclear'],
-      ['Solution solves it meaningfully better than alternatives',b.moat?'Yes — '+b.moat:'Unclear'],
-      ['Customer willing to pay the price',topICP.dealSize?'Target: '+topICP.dealSize:'Unclear — validate with paid pilot'],
-      ['Enough customers to build the business',b.tamSamSom?.som||b.marketSize?'Yes — '+( b.tamSamSom?.som||b.marketSize):'Calculate SOM'],
+      ['Customer has this problem and is actively trying to solve it',b.topStrengths?.[0]?'Yes - evidence in positioning':'Unclear'],
+      ['Solution solves it meaningfully better than alternatives',b.moat?'Yes - '+b.moat:'Unclear'],
+      ['Customer willing to pay the price',topICP.dealSize?'Target: '+topICP.dealSize:'Unclear - validate with paid pilot'],
+      ['Enough customers to build the business',b.tamSamSom?.som||b.marketSize?'Yes - '+( b.tamSamSom?.som||b.marketSize):'Calculate SOM'],
       ['Customer will come back, expand, or refer',topICP.tags?.includes('expansion')||topICP.dealSize?'Validate with first 10 customers':'Unclear'],
-      ['Can reach this customer at viable CAC vs LTV',gtm.channels?.[0]?.name?'Via '+gtm.channels[0].name+' — track from day 1':'Unclear']
+      ['Can reach this customer at viable CAC vs LTV',gtm.channels?.[0]?.name?'Via '+gtm.channels[0].name+' - track from day 1':'Unclear']
     ].map(([q,a])=>`<div style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule)">
       <div style="width:18px;height:18px;border-radius:50%;background:${a.startsWith('Yes')?'var(--green-l)':a.startsWith('Unclear')?'var(--amber-l)':'var(--red-l)'};border:1.5px solid ${a.startsWith('Yes')?'var(--green)':a.startsWith('Unclear')?'var(--amber)':'var(--red)'};display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
         <span style="font-size:9px;font-weight:700;color:${a.startsWith('Yes')?'var(--green)':a.startsWith('Unclear')?'var(--amber)':'var(--red)'}">${a.startsWith('Yes')?'Y':a.startsWith('Unclear')?'?':'N'}</span>
@@ -2545,7 +2597,7 @@ function renderDashboard(){
 
   <!-- ICP SCORE MATRIX from Chapter 2 -->
   <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">ICP Score Matrix — 5 Filters (Chapter 2.2)</div>
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">ICP Score Matrix - 5 Filters (Chapter 2.2)</div>
     <div style="overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:12px">
         <thead>
@@ -2572,7 +2624,7 @@ function renderDashboard(){
 
   <!-- PDCA CYCLE -->
   <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">PDCA Cycle — GTM Execution</div>
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">PDCA Cycle - GTM Execution</div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
       ${[
         ['Plan','#2563EB','var(--blue-l)',`GTM motion: ${gtm.motion||'TBD'} | Wedge: ${gtm.wedge||'Define first channel'} | ICP: ${topICP.name||'Score and select'}`],
@@ -2586,13 +2638,13 @@ function renderDashboard(){
     </div>
   </div>
 
-  <!-- STRATEGY MATRIX — 2x2 Effort vs Impact -->
+  <!-- STRATEGY MATRIX - 2x2 Effort vs Impact -->
   <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Priority Matrix — Effort vs Impact</div>
+    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:14px">Priority Matrix - Effort vs Impact</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden">
       ${[
         ['Do First','Low effort, High impact','#16A34A','var(--green-l)',
-          [(gtm.channels?.[0]?.name||'Top channel')+'— start now',crm.recommendation+' setup — week 1','60-second lead response system']],
+          [(gtm.channels?.[0]?.name||'Top channel')+'- start now',crm.recommendation+' setup - week 1','60-second lead response system']],
         ['Schedule','High effort, High impact','#2563EB','var(--blue-l)',
           ['Build full sales playbook','Set up CRM automations','Launch outreach cadence']],
         ['Delegate','Low effort, Low impact','#D97706','var(--amber-l)',
@@ -2618,7 +2670,7 @@ function renderDashboard(){
       <div>
         <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px">What to check on LinkedIn</div>
         ${[
-          ['Employee count','How many employees listed — validate against stage claims'],
+          ['Employee count','How many employees listed - validate against stage claims'],
           ['Recent hires','Sales/Marketing hires = budget to buy; Engineers = building'],
           ['Funding activity','Check company page for raise announcements'],
           ['Decision maker tenure','New Head of Sales (under 6 months) = buying tools now'],
@@ -2630,7 +2682,7 @@ function renderDashboard(){
         </div>`).join('')}
       </div>
       <div>
-        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px">Hiring signal checklist — have they checked these boxes?</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px">Hiring signal checklist - have they checked these boxes?</div>
         ${(ck.hiringSignals||[
           {role:'Head of Sales',signal:'Revenue above 1 Cr ARR',notBefore:'10 paying customers'},
           {role:'SDR/BDR',signal:'Sales process documented in CRM',notBefore:'Head of Sales in place'},
@@ -2727,7 +2779,7 @@ function renderGTM(){
 <!-- Quick Start -->
 <div id="gtm-quick">
   <div style="background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(99,102,241,.06));border:1px solid rgba(37,99,235,.2);border-radius:var(--r2);padding:20px;margin-bottom:16px">
-    <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;font-family:var(--mono)">⚡ Quick Start — Do these 5 things this week</div>
+    <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;font-family:var(--mono)">⚡ Quick Start - Do these 5 things this week</div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">1</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">GTM Motion: ${d.motion||'Account-based'}</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${d.motionReason||d.wedgeReason||'Start with your highest-fit ICP segment first'}</div></div></div>
       <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">2</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">Wedge: ${d.wedge||'Define your entry point'}</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${d.wedgeReason||'Win here first before expanding'}</div></div></div>
