@@ -182,6 +182,9 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
 
 /* ── Nav ── */
+/* Landing page: override app body background */
+#view-landing{background:#080B14;color:#fff}
+#view-landing .lp-section{position:relative}
 .lp-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;padding:0 32px;background:rgba(8,11,20,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07)}
 .lp-nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;cursor:pointer}
 .lp-nav-links{display:flex;align-items:center;gap:4px;position:absolute;left:50%;transform:translateX(-50%)}
@@ -313,15 +316,15 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
           <div class="lp-dd-icon" style="background:rgba(99,102,241,.15)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <div><div class="lp-dd-title">CRM Intelligence</div><div class="lp-dd-sub">Connect Zoho, detect churn, analyse pipeline</div></div>
         </div>
-        <div class="lp-dd-item" onclick="openAuth('signup')">
+        <div class="lp-dd-item" onclick="showProductPage('lp-product-playbook')">
           <div class="lp-dd-icon" style="background:rgba(52,211,153,.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
           <div><div class="lp-dd-title">Sales Playbook</div><div class="lp-dd-sub">Real scripts rebuilt from your CRM data</div></div>
         </div>
-        <div class="lp-dd-item" onclick="openAuth('signup')">
+        <div class="lp-dd-item" onclick="showProductPage('lp-product-gtm')">
           <div class="lp-dd-icon" style="background:rgba(251,191,36,.08)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
           <div><div class="lp-dd-title">GTM Strategy</div><div class="lp-dd-sub">Motion, channels, battlecards, 90-day plan</div></div>
         </div>
-        <div class="lp-dd-item" onclick="openAuth('signup')">
+        <div class="lp-dd-item" onclick="showProductPage('lp-product-icp')">
           <div class="lp-dd-icon" style="background:rgba(192,132,252,.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
           <div><div class="lp-dd-title">ICP Engine</div><div class="lp-dd-sub">3 profiles ranked by fit with scoring</div></div>
         </div>
@@ -416,24 +419,28 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div style="background:#0A0E1A;padding:18px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)">
   <div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.2);text-align:center;font-family:Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px">Connects with your stack</div>
   <div class="lp-ticker-wrap"><div class="lp-ticker-inner">
-    <div class="lp-ticker-item"><img src="https://www.zohowebstatic.com/sites/zweb/images/zoho_general_pages/zoho-logo-web.png" alt="Zoho CRM" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg" alt="Google Sheets" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <div class="lp-ticker-item"><img src="https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png" alt="HubSpot" style="height:28px;width:28px;border-radius:6px"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:26px;width:26px"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="height:26px;width:26px;border-radius:4px"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail" style="height:22px;width:auto"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg" alt="Slack" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <div class="lp-ticker-item"><img src="https://pipedrive.com/images/pipedrive-logo-dark.svg" alt="Pipedrive" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <!-- repeat -->
-    <div class="lp-ticker-item"><img src="https://www.zohowebstatic.com/sites/zweb/images/zoho_general_pages/zoho-logo-web.png" alt="Zoho CRM" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg" alt="Google Sheets" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <div class="lp-ticker-item"><img src="https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png" alt="HubSpot" style="height:28px;width:28px;border-radius:6px"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:26px;width:26px"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="height:26px;width:26px;border-radius:4px"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail" style="height:22px;width:auto"></div>
-    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg" alt="Slack" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-    <div class="lp-ticker-item"><img src="https://pipedrive.com/images/pipedrive-logo-dark.svg" alt="Pipedrive" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
-  </div></div></div></div>
+    <div class="lp-ticker-item"><svg width="60" height="20" viewBox="0 0 60 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Zoho</text></svg></div>
+    <div class="lp-ticker-item"><svg width="110" height="20" viewBox="0 0 110 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Google Sheets</text></svg></div>
+    <div class="lp-ticker-item"><svg width="75" height="20" viewBox="0 0 75 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#FF7A59">HubSpot</text></svg></div>
+    <div class="lp-ticker-item"><svg width="90" height="20" viewBox="0 0 90 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#25D366">WhatsApp</text></svg></div>
+    <div class="lp-ticker-item"><svg width="80" height="20" viewBox="0 0 80 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#0A66C2">LinkedIn</text></svg></div>
+    <div class="lp-ticker-item"><svg width="50" height="20" viewBox="0 0 50 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#EA4335">Gmail</text></svg></div>
+    <div class="lp-ticker-item"><svg width="50" height="20" viewBox="0 0 50 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#4A154B">Slack</text></svg></div>
+    <div class="lp-ticker-item"><svg width="85" height="20" viewBox="0 0 85 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Freshsales</text></svg></div>
+    <div class="lp-ticker-item"><svg width="80" height="20" viewBox="0 0 80 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#BD4F00">Pipedrive</text></svg></div>
+    <div class="lp-ticker-item"><svg width="90" height="20" viewBox="0 0 90 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Salesforce</text></svg></div>
+    <!-- duplicate for loop -->
+    <div class="lp-ticker-item"><svg width="60" height="20" viewBox="0 0 60 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Zoho</text></svg></div>
+    <div class="lp-ticker-item"><svg width="110" height="20" viewBox="0 0 110 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Google Sheets</text></svg></div>
+    <div class="lp-ticker-item"><svg width="75" height="20" viewBox="0 0 75 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#FF7A59">HubSpot</text></svg></div>
+    <div class="lp-ticker-item"><svg width="90" height="20" viewBox="0 0 90 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#25D366">WhatsApp</text></svg></div>
+    <div class="lp-ticker-item"><svg width="80" height="20" viewBox="0 0 80 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#0A66C2">LinkedIn</text></svg></div>
+    <div class="lp-ticker-item"><svg width="50" height="20" viewBox="0 0 50 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#EA4335">Gmail</text></svg></div>
+    <div class="lp-ticker-item"><svg width="50" height="20" viewBox="0 0 50 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#4A154B">Slack</text></svg></div>
+    <div class="lp-ticker-item"><svg width="85" height="20" viewBox="0 0 85 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Freshsales</text></svg></div>
+    <div class="lp-ticker-item"><svg width="80" height="20" viewBox="0 0 80 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="#BD4F00">Pipedrive</text></svg></div>
+    <div class="lp-ticker-item"><svg width="90" height="20" viewBox="0 0 90 20"><text y="15" font-family="Arial" font-size="14" font-weight="700" fill="rgba(255,255,255,.6)">Salesforce</text></svg></div>
+  </div></div></div>
       <div class="lp-testi"><div class="lp-testi-stars">★★★★★</div><p class="lp-testi-q">"The WhatsApp scripts understood our MFD distribution model without me explaining it. Output in ₹ crores was a game changer for us."</p><div class="lp-testi-author"><div class="lp-testi-avatar" style="background:#16A34A">A</div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Ananya K.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">CEO, Fintech · Mumbai</div></div></div></div>
       <div class="lp-testi"><div class="lp-testi-stars">★★★★★</div><p class="lp-testi-q">"Connected Zoho in 5 minutes. The churn signal detection caught 3 deals about to go cold that I hadn't looked at in 2 weeks."</p><div class="lp-testi-author"><div class="lp-testi-avatar" style="background:#D97706">S</div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Suresh P.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Co-founder, SaaS · Hyderabad</div></div></div></div>
     </div>
@@ -449,8 +456,8 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <div class="lp-section-label">Early feedback</div>
       <h2 class="lp-section-h2" style="max-width:500px;margin:0 auto">What founders are saying</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <div class="lp-testi">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;background:transparent">
+      <div class="lp-testi" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px">
         <div class="lp-testi-stars">★★★★★</div>
         <p class="lp-testi-q">"The ICP profiles were more specific than what we built over 6 months. The competitor battlecards are something we actually use in calls now."</p>
         <div class="lp-testi-author">
@@ -798,7 +805,259 @@ function heroStart(){
 }
 window.heroStart=heroStart;
 window.toggleFaq=toggleFaq;
+
+function showProductPage(pageId){
+  // Hide home content
+  const home=document.querySelectorAll('#view-landing > *:not([id^="lp-product"]):not([id^="lp-page"]):not(style)');
+  home.forEach(el=>{if(el.id!==pageId)el.style.display='none';});
+  // Hide all product pages
+  document.querySelectorAll('[id^="lp-product"],[id^="lp-page-"]').forEach(el=>el.style.display='none');
+  // Show target
+  const target=document.getElementById(pageId);
+  if(target){target.style.display='block';window.scrollTo({top:0,behavior:'smooth'});}
+}
+function showLandingHome(){
+  // Show all home elements
+  const home=document.querySelectorAll('#view-landing > *:not([id^="lp-product"]):not([id^="lp-page"])');
+  home.forEach(el=>{el.style.display='';});
+  // Hide product pages
+  document.querySelectorAll('[id^="lp-product"],[id^="lp-page-"]').forEach(el=>el.style.display='none');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.showProductPage=showProductPage;
+window.showLandingHome=showLandingHome;
 </script>
+
+
+<!-- ══ PRODUCT PAGE: CRM Intelligence ═══════════════════════════════ -->
+<div id="lp-product-crm" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
+  <div style="max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </button>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · CRM INTELLIGENCE</div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Connect your CRM.<br>Agent does the rest.</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 discovers every module in your Zoho CRM, shows you a sample first, gets your permission, then pulls the full database and runs deep AI analysis across churn, pipeline health, ICP fit, and team productivity.</p>
+    <div style="display:flex;gap:12px;margin-bottom:72px;flex-wrap:wrap">
+      <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px">Connect Zoho now →</button>
+      <button onclick="showLandingHome()" class="lp-btn-ghost" style="padding:13px 22px;font-size:14px">See all features</button>
+    </div>
+    <!-- How it works -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px">
+      <div class="lp-card">
+        <div style="font-size:28px;margin-bottom:12px">🔍</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">1. Discover</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Engine 360 calls Zoho's API to map every module — Leads, Deals, Contacts, Activities, and any custom modules you've created with your own field names.</div>
+      </div>
+      <div class="lp-card">
+        <div style="font-size:28px;margin-bottom:12px">📋</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">2. Sample first</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Shows you 10 real records from each module in a table with your actual field names. You approve before we pull anything more.</div>
+      </div>
+      <div class="lp-card">
+        <div style="font-size:28px;margin-bottom:12px">🤖</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">3. AI analysis</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">After your approval, pulls all records and runs churn detection, ICP scoring, productivity analysis, and deal segmentation — with specific actions for your team.</div>
+      </div>
+    </div>
+    <!-- What you get -->
+    <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px">What the agent finds</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#F87171;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Churn signals by severity</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Critical / High / Medium — with save script for each</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#FBBF24;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Pipeline stage breakdown</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Where deals are stalling and why</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#34D399;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">ICP match rate</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Which deals fit, which to drop, where to double down</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#818CF8;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Rep productivity gaps</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Who's owning what, where activity has dropped</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#38BDF8;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Lead source analysis</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Which channels are producing the best deals</div></div></div>
+      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#C084FC;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Auto-sync schedule</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Daily / weekly / monthly refresh — always current</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCT PAGE: Sales Playbook ══════════════════════════════════ -->
+<div id="lp-product-playbook" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
+  <div style="max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
+    </button>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#34D399;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · SALES PLAYBOOK</div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Real scripts.<br>Not templates.</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Every cold email, WhatsApp message, call script and objection response is written specifically for your business — using your competitors, your ICP's language, and your market context. Actual words you can send today.</p>
+    <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my playbook →</button>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px">
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">EMAIL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Cold email sequences</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Subject, body, 3 follow-ups — each a different angle</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#25D366;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">WHATSAPP</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">WhatsApp openers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">First message, follow-up, and voice note script</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">COLD CALL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Call framework</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Opener, permission ask, elevator pitch, 4 discovery questions</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#0A66C2;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">LINKEDIN</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">LinkedIn outreach</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Connection note, InMail, after-connect message</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">OBJECTIONS</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Objection handling</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words to say — empathy + reframe + next step</div></div>
+      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#F87171;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">60s RESPONSE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Inbound lead script</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Call a lead within 60 seconds of form fill — exact script</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCT PAGE: GTM Strategy ════════════════════════════════════ -->
+<div id="lp-product-gtm" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
+  <div style="max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
+    </button>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#FBBF24;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · GTM STRATEGY</div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Your GTM motion,<br>researched and built.</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 researches your market on Google, picks the right GTM motion for your stage, builds competitor battlecards with real win lines, and creates a 90-day execution roadmap.</p>
+    <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my GTM strategy →</button>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">GTM Motion verdict</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Account-based, Volume, Partner-led, or Hybrid — picked based on your ICP, deal size, and stage</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Competitor battlecards</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Real competitor names, their weakness, your win line, and a landmine question to expose them</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">90-day roadmap</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Days 1-30, 31-60, 61-90 — specific actions with named tools, not generic milestones</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">PDCA cycle</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Plan → Do → Check → Act framework with specific checkpoints for your business</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Channel strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Online and offline engine — specific platforms, content types, and weekly time investment</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Wedge strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Which exact market segment to enter first before expanding — and why</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCT PAGE: ICP Engine ══════════════════════════════════════ -->
+<div id="lp-product-icp" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
+  <div style="max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
+    </button>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#C084FC;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · ICP ENGINE</div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Know exactly<br>who to sell to.</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 builds 3 ICP profiles ranked by commercial potential — with real job titles, buying triggers, day-in-life context, disqualifiers, and the exact first 10 words to say to each one.</p>
+    <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my ICP profiles →</button>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px">
+      <div class="lp-card" style="border-color:rgba(192,132,252,.3)"><div style="font-size:10px;font-weight:700;color:#C084FC;font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #1 · HIGHEST FIT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Primary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Real job title, company type, revenue range, geography, team size, buying triggers, disqualifiers, deal size, sales cycle</div></div>
+      <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #2 · GOOD FIT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Secondary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Adjacent segment with slightly different triggers and pitch angle</div></div>
+      <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #3 · EXPLORE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Tertiary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Future expansion opportunity — worth monitoring, not primary focus yet</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">5-filter scoring</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Firmographic, Pain urgency, Budget signal, Decision maker access, Timing trigger</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Day-in-life mapping</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">What their actual workday looks like and where your product fits naturally</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Buying triggers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Specific events that make them buy NOW — not general interest signals</div></div>
+      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">First objection</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words they'll say first — and how to reframe it</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INTEGRATIONS FULL PAGE ═════════════════════════════════════════ -->
+<div id="lp-page-integrations" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
+  <div style="max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
+    </button>
+    <div class="lp-section-label" style="margin-bottom:12px">Integrations</div>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 16px">Connects with everything<br>you already use.</h1>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;max-width:520px;font-family:Inter,sans-serif;margin:0 0 60px">Engine 360 plugs into your existing stack. No migration, no switching tools. Pull live data from your CRM, sync with your sheets, and push insights where your team works.</p>
+    
+    <!-- CRM -->
+    <div style="margin-bottom:52px">
+      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)">CRM Platforms</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#E74C3C;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">Z</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ LIVE</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Zoho CRM</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Discover all modules, sample 10 records, pull full database, daily sync</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Connect now →</button>
+        </div>
+        <div class="lp-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#FF7A59;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">H</div>
+            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">HubSpot</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Contacts, deals, pipeline, sequences, properties</div>
+          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        </div>
+        <div class="lp-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#1DBFC1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">F</div>
+            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Freshsales</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Leads, contacts, deals, activities, sequences</div>
+          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        </div>
+        <div class="lp-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#BD4F00;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">P</div>
+            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Pipedrive</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Deals, pipeline stages, activities, insights</div>
+          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productivity -->
+    <div style="margin-bottom:52px">
+      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)">Data & Productivity</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#34A853;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">G</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ LIVE</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Google Sheets</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Connect your sales tracker, MIS sheet, or any spreadsheet</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Connect now →</button>
+        </div>
+        <div class="lp-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#EA4335;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">M</div>
+            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Gmail</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Email thread analysis, reply rate tracking</div>
+          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        </div>
+        <div class="lp-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#4A154B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">#</div>
+            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Slack</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Push churn alerts and weekly MIS to your team channel</div>
+          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        </div>
+        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#25D366;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff">✆</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ BUILT-IN</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">WhatsApp</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Scripts for opener, follow-up, and voice note — ready to copy</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Get scripts →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pro Networks -->
+    <div>
+      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)">Professional Networks</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="width:44px;height:44px;background:#0A66C2;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">in</div>
+            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ BUILT-IN</div>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">LinkedIn</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Connection note, InMail, and after-connect message scripts</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Get scripts →</button>
+        </div>
+        <div class="lp-card" style="border:1px dashed rgba(255,255,255,.12);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:140px">
+          <div style="font-size:28px;margin-bottom:8px;color:rgba(255,255,255,.2)">+</div>
+          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,.35);font-family:'DM Sans',sans-serif;margin-bottom:4px">Request an integration</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.2);font-family:Inter,sans-serif">Tell us what you need</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- AUTH MODAL -->
 <div class="modal-bg" id="auth-modal">
