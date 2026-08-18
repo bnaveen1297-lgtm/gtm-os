@@ -432,7 +432,7 @@ onAuthStateChanged(auth,async user=>{
     const hasData=await loadData(user.uid);
     // If previous session had data, go straight to dashboard
     // Otherwise go to input
-    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav error',e);try{nav('input');}catch(e2){}}
+    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav',e);try{nav('input');}catch(e2){}}
   }else{
     showLanding();
   }
@@ -725,177 +725,127 @@ async function generate(){
     return;
   }
 
-  // Global overlay - persists across screen switches
-  // Set generating flag
+  // Resume support - if partial data exists, offer to resume
+  const hasPartial=S.data.biz&&!S.data.checklist;
+  if(hasPartial){
+    if(!confirm('Partial analysis found. Resume from where we stopped?')){
+      S.data={};S.generated=false;
+    }
+  }
+
   _generating=true;
-  // Prevent screen sleep during generation (where supported)
-  let _wakeLock=null;
-  try{if(navigator.wakeLock)_wakeLock=await navigator.wakeLock.request('screen');}catch(e){}
-  window._beforeUnload=e=>{e.preventDefault();e.returnValue='Analysis is running. Please wait.';return e.returnValue;};
-  window.addEventListener('beforeunload',window._beforeUnload);
-  // Save progress state so we can detect incomplete runs
+
+  // WakeLock - keeps JS running when screen turns off on mobile
+  let _wl=null;
+  try{if(navigator.wakeLock)_wl=await navigator.wakeLock.request('screen');}catch(e){}
+
+  // Warn if user tries to leave
+  const unloadFn=e=>{e.preventDefault();e.returnValue='Analysis running';return e.returnValue;};
+  window.addEventListener('beforeunload',unloadFn);
   sessionStorage.setItem('gen_running','1');
 
-  // Remove any stale overlay
-  const stale=document.getElementById('gen-overlay');
-  if(stale)stale.remove();
+  // Create overlay on body - survives screen switches
+  let ov=document.getElementById('gen-overlay');
+  if(ov)ov.remove();
+  ov=document.createElement('div');
+  ov.id='gen-overlay';
+  ov.style.cssText='position:fixed;inset:0;z-index:10000;background:#fff;display:flex;align-items:center;justify-content:center;padding:32px;font-family:Inter,sans-serif';
+  document.body.appendChild(ov);
 
-  // Create fresh overlay attached to body (not app-page)
-  const overlay=document.createElement('div');
-  overlay.id='gen-overlay';
-  overlay.style.cssText='position:fixed;inset:0;z-index:10000;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;font-family:Inter,sans-serif';
-  document.body.appendChild(overlay);
+  const steps=['Fetching website and company data','Researching market online','Building strategic frame and TAM/SAM/SOM','Identifying and scoring ICP profiles','Designing GTM motion and channels','Writing sales playbook and scripts','Designing CRM blueprint','Building metrics and 100-day plan'];
 
-  const steps=[
-    'Fetching website and company data',
-    'Researching LinkedIn and market signals',
-    'Building strategic frame and TAM/SAM/SOM',
-    'Identifying and scoring ICP profiles',
-    'Designing GTM motion and channel strategy',
-    'Writing sales playbook and scripts',
-    'Designing CRM blueprint and automations',
-    'Building metrics, MIS and 100-day plan'
-  ];
-  let done=new Array(8).fill(false);
-
-  const updateOverlay=(pct,ai,msg='')=>{
-    overlay.innerHTML=`
-    <div style="width:100%;max-width:460px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
-        <div style="width:36px;height:36px;border:2.5px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;color:#1B2B4B">Analysing your business...</div>
-          <div style="font-size:12px;color:#64748B;margin-top:2px">${msg||'Engine 360 is researching so you do not have to fill forms'}</div>
-        </div>
-      </div>
-      <div style="background:#F8F9FC;border:1px solid #E2E8F0;border-radius:10px;padding:16px;margin-bottom:16px">
-        ${steps.map((s,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #E2E8F0;${i===steps.length-1?'border-bottom:none':''}">
-          <div style="width:18px;text-align:center;font-size:11px;font-weight:700;color:${done[i]?'#16A34A':i===ai?'#2563EB':'#9CA3AF'}">${done[i]?'✓':i===ai?'→':'○'}</div>
-          <div style="font-size:12px;color:${done[i]?'#16A34A':i===ai?'#2563EB':'#64748B'};font-weight:${i===ai?'600':'400'}">${s}</div>
-        </div>`).join('')}
-      </div>
-      <div style="height:4px;background:#E2E8F0;border-radius:2px;overflow:hidden">
-        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#2563EB,#16A34A);border-radius:2px;transition:width .6s ease"></div>
-      </div>
-      <div style="text-align:center;margin-top:8px;font-size:11px;color:#9CA3AF">${Math.round(pct)}% complete</div>
-    </div>`;
+  const showOv=(pct,ai,msg)=>{
+    const o=document.getElementById('gen-overlay');
+    if(!o)return;
+    o.innerHTML='<div style="width:100%;max-width:460px"><div style="display:flex;align-items:center;gap:14px;margin-bottom:22px"><div style="width:40px;height:40px;border:3px solid #E2E8F0;border-top-color:#2563EB;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div><div><div style="font-family:DM Sans,sans-serif;font-size:17px;font-weight:800;color:#1B2B4B">Analysing your business...</div><div style="font-size:12px;color:#64748B;margin-top:2px">'+(msg||'Keep this tab open')+'</div></div></div><div style="background:#F8F9FC;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:14px">'+steps.map((s,i)=>{const done=i<ai;const act=i===ai;return'<div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid #E2E8F0"><div style="width:18px;text-align:center;font-size:12px;font-weight:700;color:'+(done?'#16A34A':act?'#2563EB':'#9CA3AF')+'">'+(done?'✓':act?'→':'○')+'</div><div style="font-size:12px;color:'+(done?'#16A34A':act?'#2563EB':'#64748B')+';font-weight:'+(act?'600':'400')+'">'+s+'</div></div>';}).join('')+'</div><div style="height:5px;background:#E2E8F0;border-radius:3px;overflow:hidden;margin-bottom:6px"><div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#2563EB,#16A34A);border-radius:3px;transition:width .8s ease"></div></div><div style="text-align:center;font-size:11px;color:#94A3B8">'+Math.round(pct)+'% — do not close this tab</div></div>';
   };
 
-  updateOverlay(5,0,'Fetching your website content...');
+  const cleanup=()=>{
+    _generating=false;
+    window.removeEventListener('beforeunload',unloadFn);
+    if(_wl)try{_wl.release();}catch(e){}
+    sessionStorage.removeItem('gen_running');
+  };
+
+  showOv(5,0,'Fetching your website...');
 
   try{
-    // Step 1: Scrape website
-    let webContext='';
-    let linkedinData='';
+    // STEP 1: Scrape website
+    let webCtx='';
     if(S.input.url){
       try{
         const sr=await fetch('/scrape?url='+encodeURIComponent(S.input.url));
         const sd=await sr.json();
-        if(sd.scraped){
-          webContext=`WEBSITE:\nURL: ${S.input.url}\nDomain: ${sd.domain}\nTitle: ${sd.meta?.title||''}\nContent: ${(sd.text||'').slice(0,4000)}`;
-        }
-      }catch(e){console.warn('scrape failed',e);}
+        if(sd.scraped) webCtx='WEBSITE:\nURL: '+S.input.url+'\nTitle: '+(sd.meta&&sd.meta.title||'')+'\nContent: '+(sd.text||'').slice(0,4000);
+      }catch(e){console.warn('scrape',e);}
     }
 
-    const ctx=`${webContext}
-${S.input.idea?'BUSINESS IDEA: '+S.input.idea:''}
-PRIMARY URL: ${S.input.url||'not provided'}
-
-INSTRUCTIONS: Research this business deeply. Use the website content. Infer business model, market, competitors, ICP from what you see. Do not ask for more input. Make smart, specific inferences. Reference real competitors, real tools, real market data. Be as specific as possible.`;
-
-    done[0]=true; updateOverlay(12,1,'Analysing market and competitors...');
-
-    // Phase 1: biz + icp in parallel
-    updateOverlay(15,1,'Researching business and ICP...');
-    const [bizR,icpR]=await Promise.all([
-      callAI(bizP(ctx)),
-      callAI(icpP(ctx))
-    ]);
-    S.data.biz=parseJ(bizR);
-    S.data.icp=parseJ(icpR);
-    if(!S.data.biz?.companyName&&!S.data.biz?.oneLiner){
-      console.warn('biz response:',bizR?.slice(0,200));
-      if(!bizR||bizR.length<10)throw new Error('API returned empty response. Check CLAUDE_KEY in Vercel → Settings → Environment Variables.');
+    // STEP 2: Web research - search for company context
+    let webRes='';
+    if(S.input.url){
+      try{
+        const dom=S.input.url.replace(/https?:\/\//,'').split('/')[0].split('?')[0];
+        const q=encodeURIComponent(dom+' company India startup funding competitors 2024');
+        const gr=await fetch('/scrape?url='+encodeURIComponent('https://www.google.com/search?q='+q+'&num=5'));
+        const gd=await gr.json();
+        if(gd.text) webRes='WEB RESEARCH:\n'+gd.text.slice(0,2000);
+      }catch(e){console.warn('web research',e);}
     }
-    done[1]=true;done[2]=true;done[3]=true;
-    await saveData(); // Save after each phase - partial results persist
-    updateOverlay(35,4,'Building GTM strategy...');
 
-    // Phase 2: gtm + playbook in parallel
-    const [gtmR,pbR]=await Promise.all([
-      callAI(gtmP(ctx,S.data)),
-      callAI(pbP(ctx,S.data))
-    ]);
-    S.data.gtm=parseJ(gtmR);
-    S.data.playbook=parseJ(pbR);
-    done[4]=true;done[5]=true;
-    await saveData(); // Save phase 2
-    updateOverlay(60,6,'Designing CRM blueprint...');
+    const ctx=webCtx+'\n\n'+webRes+'\n'+(S.input.idea?'IDEA: '+S.input.idea:'')+'\nURL: '+(S.input.url||'not provided')+'\n\nBe specific. Use real names, correct currency (INR for India). No placeholders.';
 
-    // Phase 3: crm + crmi in parallel
-    const [crmR,crmiR]=await Promise.all([
-      callAI(crmP(ctx,S.data)),
-      callAI(crmiP(ctx,S.data))
-    ]);
-    S.data.crm=parseJ(crmR);
-    S.data.crmi=parseJ(crmiR);
-    done[6]=true;
-    await saveData(); // Save phase 3
-    updateOverlay(80,7,'Building MIS and execution plan...');
+    showOv(12,1,'Researching market...');
 
-    // Phase 4: mis + checklist in parallel
-    const [misR,ckR]=await Promise.all([
-      callAI(misP(ctx,S.data)),
-      callAI(ckP(ctx,S.data))
-    ]);
-    S.data.mis=parseJ(misR);
-    S.data.checklist=parseJ(ckR);
-    done[7]=true;
-    updateOverlay(100,7,'Saving your GTM OS...');
+    // PHASE 1: biz + icp — skip if already done (resume)
+    if(!S.data.biz||!S.data.icp){
+      const [bizR,icpR]=await Promise.all([callAI(bizP(ctx)),callAI(icpP(ctx))]);
+      S.data.biz=parseJ(bizR);
+      S.data.icp=parseJ(icpR);
+      if(!S.data.biz||Object.keys(S.data.biz).length<2){
+        throw new Error('API returned empty data. Check OPENAI_KEY or CLAUDE_KEY in Vercel Settings.');
+      }
+      await saveData();
+    }
+    showOv(35,4,'Building GTM strategy...');
 
+    // PHASE 2: gtm + playbook — skip if done
+    if(!S.data.gtm||!S.data.playbook){
+      const [gtmR,pbR]=await Promise.all([callAI(gtmP(ctx,S.data)),callAI(pbP(ctx,S.data))]);
+      S.data.gtm=parseJ(gtmR);
+      S.data.playbook=parseJ(pbR);
+      await saveData();
+    }
+    showOv(60,6,'Designing CRM blueprint...');
+
+    // PHASE 3: crm + crmi — skip if done
+    if(!S.data.crm||!S.data.crmi){
+      const [crmR,crmiR]=await Promise.all([callAI(crmP(ctx,S.data)),callAI(crmiP(ctx,S.data))]);
+      S.data.crm=parseJ(crmR);
+      S.data.crmi=parseJ(crmiR);
+      await saveData();
+    }
+    showOv(80,7,'Building MIS and 100-day plan...');
+
+    // PHASE 4: mis + checklist — skip if done
+    if(!S.data.mis||!S.data.checklist){
+      const [misR,ckR]=await Promise.all([callAI(misP(ctx,S.data)),callAI(ckP(ctx,S.data))]);
+      S.data.mis=parseJ(misR);
+      S.data.checklist=parseJ(ckR);
+    }
+
+    showOv(100,7,'Saving...');
     S.generated=true;
-    // Verify we have real data before marking done
-    const hasRealData = S.data.biz?.companyName || S.data.biz?.oneLiner || S.data.biz?.businessModel;
-    if(!hasRealData){
-      throw new Error('Generation completed but no data was returned. The CLAUDE_KEY may be invalid or missing in Vercel Environment Variables.');
-    }
     const badge=document.getElementById('badge-input');
     if(badge){badge.textContent='Done';badge.className='sbi-badge done';}
     await saveData();
-
-    // Done - release lock, remove overlay, go to dashboard
-    _generating=false;
-    if(_wakeLock)try{_wakeLock.release();}catch(e){}
-    if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
-    sessionStorage.removeItem('gen_running');
-    setTimeout(()=>{
-      const ov=document.getElementById('gen-overlay');
-      if(ov)ov.remove();
-      nav('dashboard');
-      toast('Your GTM OS is ready');
-    },500);
+    cleanup();
+    setTimeout(()=>{const o=document.getElementById('gen-overlay');if(o)o.remove();nav('dashboard');toast('Your GTM OS is ready');},500);
 
   }catch(e){
     console.error('Generation error:',e);
-    _generating=false;
-    if(_wakeLock)try{_wakeLock.release();}catch(e){}
-    if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
-    sessionStorage.removeItem('gen_running');
-    const errOv=document.getElementById('gen-overlay');
-    if(errOv)errOv.innerHTML=`<div style="text-align:center;max-width:400px;padding:32px">
-      <div style="width:56px;height:56px;background:#FEF2F2;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      </div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:19px;font-weight:800;color:#1B2B4B;margin-bottom:10px">Generation failed</div>
-      <div style="font-size:13px;color:#64748B;margin-bottom:8px;line-height:1.6">${e.message||'API call failed'}</div>
-      <div style="font-size:12px;color:#9CA3AF;margin-bottom:24px;padding:12px;background:#F8F9FC;border-radius:6px;text-align:left;line-height:1.8">
-        <strong style="color:#1B2B4B">Common fixes:</strong><br>
-        1. Verify CLAUDE_KEY is set in Vercel > Settings > Environment Variables<br>
-        2. Make sure the key starts with sk-ant-api...<br>
-        3. Redeploy after adding the key
-      </div>
-      <button onclick="const ov=document.getElementById('gen-overlay');if(ov)ov.remove();" style="padding:11px 28px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Close and retry</button>
-    </div>`;
+    cleanup();
+    const o=document.getElementById('gen-overlay');
+    if(o)o.innerHTML='<div style="text-align:center;max-width:400px;padding:32px"><div style="width:52px;height:52px;background:#FEF2F2;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div style="font-family:DM Sans,sans-serif;font-size:18px;font-weight:800;color:#1B2B4B;margin-bottom:10px">Generation failed</div><div style="font-size:13px;color:#64748B;margin-bottom:16px;line-height:1.6">'+e.message+'</div><div style="font-size:12px;color:#9CA3AF;background:#F8F9FC;border-radius:6px;padding:12px;text-align:left;margin-bottom:20px;line-height:1.8"><strong style="color:#1B2B4B">Fix:</strong><br>Vercel → gtm-os → Settings → Environment Variables<br>Add OPENAI_KEY or CLAUDE_KEY → Redeploy</div><button onclick="const o=document.getElementById(\'gen-overlay\');if(o)o.remove();" style="padding:11px 28px;background:#2563EB;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer">Close and retry</button></div>';
   }
 }
 
