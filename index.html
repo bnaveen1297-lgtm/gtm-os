@@ -702,10 +702,15 @@ async function generate(){
   }
 
   // Global overlay - persists across screen switches
-  // Set generating flag - block page unload
+  // Set generating flag
   _generating=true;
-  window._beforeUnload=e=>{e.preventDefault();e.returnValue='Analysis is running. Are you sure you want to leave?';return e.returnValue;};
+  // Prevent screen sleep during generation (where supported)
+  let _wakeLock=null;
+  try{if(navigator.wakeLock)_wakeLock=await navigator.wakeLock.request('screen');}catch(e){}
+  window._beforeUnload=e=>{e.preventDefault();e.returnValue='Analysis is running. Please wait.';return e.returnValue;};
   window.addEventListener('beforeunload',window._beforeUnload);
+  // Save progress state so we can detect incomplete runs
+  sessionStorage.setItem('gen_running','1');
 
   // Remove any stale overlay
   const stale=document.getElementById('gen-overlay');
@@ -789,6 +794,7 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
       if(!bizR||bizR.length<10)throw new Error('API returned empty response. Check CLAUDE_KEY in Vercel → Settings → Environment Variables.');
     }
     done[1]=true;done[2]=true;done[3]=true;
+    await saveData(); // Save after each phase - partial results persist
     updateOverlay(35,4,'Building GTM strategy...');
 
     // Phase 2: gtm + playbook in parallel
@@ -799,6 +805,7 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
     S.data.gtm=parseJ(gtmR);
     S.data.playbook=parseJ(pbR);
     done[4]=true;done[5]=true;
+    await saveData(); // Save phase 2
     updateOverlay(60,6,'Designing CRM blueprint...');
 
     // Phase 3: crm + crmi in parallel
@@ -809,6 +816,7 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
     S.data.crm=parseJ(crmR);
     S.data.crmi=parseJ(crmiR);
     done[6]=true;
+    await saveData(); // Save phase 3
     updateOverlay(80,7,'Building MIS and execution plan...');
 
     // Phase 4: mis + checklist in parallel
@@ -833,7 +841,9 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
 
     // Done - release lock, remove overlay, go to dashboard
     _generating=false;
+    if(_wakeLock)try{_wakeLock.release();}catch(e){}
     if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
+    sessionStorage.removeItem('gen_running');
     setTimeout(()=>{
       const ov=document.getElementById('gen-overlay');
       if(ov)ov.remove();
@@ -844,7 +854,9 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
   }catch(e){
     console.error('Generation error:',e);
     _generating=false;
+    if(_wakeLock)try{_wakeLock.release();}catch(e){}
     if(window._beforeUnload)window.removeEventListener('beforeunload',window._beforeUnload);
+    sessionStorage.removeItem('gen_running');
     const errOv=document.getElementById('gen-overlay');
     if(errOv)errOv.innerHTML=`<div style="text-align:center;max-width:400px;padding:32px">
       <div style="width:56px;height:56px;background:#FEF2F2;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
@@ -863,423 +875,457 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
   }
 }
 
-// ── Prompts (aligned to I Know Only Numbers by Naveen Balaji) ──────────────
-function bizP(ctx){return`You are a senior strategy consultant applying frameworks from "I Know Only Numbers" by Naveen Balaji. Research this business from the website content and return ONLY valid JSON, no markdown.
+// ── Prompts ─────────────────────────────────────────────────────────────────
+
+function bizP(ctx){return `You are a senior GTM analyst. Research this business from the website content below and return ONLY valid JSON with no markdown.
 
 ${ctx}
 
-Research their LinkedIn company page signals (employee count, recent hires, job postings, growth), their competitors, market size, and business model. Return:
+CRITICAL RULES:
+- Detect currency: if Indian business use INR (₹ crores/lakhs), if US/global use USD
+- Be SPECIFIC - use actual company name, real competitors, real market numbers
+- TAM/SAM/SOM must have actual numbers (e.g. "₹45,000 crore" or "$2.3B") not vague descriptions
+- Stage must reflect actual company signals from website
+- Do NOT use placeholder text like "Company Name" or vague estimates
+
+Return this exact JSON:
 {
-  "companyName": "inferred company name from domain/content",
-  "oneLiner": "what they do, for whom, what outcome — one sentence",
-  "businessModel": "B2B / B2C / B2B2C",
-  "verticalOrHorizontal": "vertical (one industry) or horizontal (any industry) — with one sentence reason",
-  "revenueModel": "subscription / transaction / services / marketplace / usage-based",
-  "stage": "pre-revenue / 0-1 / early growth $0-1M ARR / scaling $1-10M / growth $10M+",
-  "keyProblem": "the specific problem they solve",
-  "solution": "their solution in two sentences",
+  "companyName": "actual company name from website",
+  "oneLiner": "exactly what they do, for whom, and what outcome in one sentence",
+  "businessModel": "B2B or B2C or B2B2C",
+  "verticalOrHorizontal": "vertical (serving one specific industry) or horizontal (any industry) — explain why",
+  "revenueModel": "subscription / transaction fee / services / marketplace / usage-based",
+  "currency": "INR or USD",
+  "stage": "pre-revenue / 0-1 / early growth (0-1Cr ARR) / scaling (1-10Cr ARR) / growth (10Cr+ ARR)",
+  "keyProblem": "specific problem they solve — be concrete",
+  "solution": "their solution in 2 sentences — what makes it different",
   "moat": "their defensible advantage — what makes them hard to copy",
   "tamSamSom": {
-    "tam": "Total Addressable Market with calculation logic",
-    "sam": "Serviceable Addressable Market — what they can realistically reach",
-    "som": "Serviceable Obtainable Market — realistic 3-year capture"
+    "tam": "total market with actual number e.g. ₹45,000 crore or $2.3B — explain calculation",
+    "sam": "serviceable market they can realistically reach — with number",
+    "som": "what they can capture in 3 years — with number"
   },
-  "marketSize": "TAM estimate with source or reasoning",
+  "marketSize": "one line market size summary with actual number",
   "linkedinSignals": {
-    "employeeCount": "estimated from website/domain signals",
-    "recentHiringFocus": "what kind of hires signal they are making",
-    "fundingSignals": "any funding indicators visible",
+    "employeeCount": "estimated team size based on website/signals",
+    "recentHiringFocus": "what roles signal they are hiring for",
+    "fundingSignals": "any funding indicators",
     "growthSignal": "growing / stable / unclear"
   },
   "hypothesisValidation": {
-    "problemExists": "Yes / No / Unclear — with evidence",
-    "solutionBetter": "Yes / No / Unclear — vs what alternatives",
-    "willingToPay": "Yes / No / Unclear — based on pricing signals",
-    "marketSize": "Yes / No / Unclear — sufficient TAM",
-    "retention": "Yes / No / Unclear — business model signals",
-    "unitEconomics": "Yes / No / Unclear — CAC vs LTV viability",
+    "problemExists": "Yes/No/Unclear — specific evidence from website",
+    "solutionBetter": "Yes/No/Unclear — vs which specific alternatives",
+    "willingToPay": "Yes/No/Unclear — pricing signals or customer evidence",
+    "marketSizeAdequate": "Yes/No/Unclear — based on TAM vs team ambition",
+    "retention": "Yes/No/Unclear — business model retention signals",
+    "unitEconomics": "Yes/No/Unclear — CAC vs LTV viability based on model",
     "overallVerdict": "Ready to scale / Ready to learn / Hypothesis unclear"
   },
   "fivePillarsStatus": {
-    "marketing": "assessment of their marketing function",
-    "businessDevelopment": "BD / partnerships status",
-    "sales": "sales function status",
-    "support": "customer support signals",
-    "technology": "tech/product signals"
+    "marketing": "current state of their marketing",
+    "businessDevelopment": "BD and partnerships",
+    "sales": "sales function",
+    "support": "customer success",
+    "technology": "product and tech"
   },
-  "gtmReadiness": "1-10 with one sentence reason",
-  "topStrengths": ["strength 1", "strength 2", "strength 3"],
-  "topRisks": ["risk 1", "risk 2", "risk 3"],
-  "blindSpots": ["blind spot 1", "blind spot 2"],
-  "positioningStatement": "For [ICP], [Company] is the [category] that [unique benefit] unlike [alternative]",
-  "investorNarrative": "three sentences: problem size, solution uniqueness, traction signal"
+  "gtmReadiness": "score 1-10 with one specific reason",
+  "topStrengths": ["specific strength 1", "specific strength 2", "specific strength 3"],
+  "topRisks": ["specific risk 1", "specific risk 2", "specific risk 3"],
+  "blindSpots": ["blind spot with explanation", "blind spot 2"],
+  "positioningStatement": "For [specific ICP], [Company] is the [category] that [unique benefit] unlike [specific alternative]",
+  "investorNarrative": "Three sentences: size of problem with number, why this solution wins, traction signal or why now"
 }`;}
 
-function icpP(ctx){return`You are an ICP specialist applying the framework from "I Know Only Numbers" by Naveen Balaji. The book defines ICP across B2B, B2C, and B2B2C and says to find the real revenue engine, not generic profiles. Return ONLY valid JSON, no markdown.
+function icpP(ctx){return `You are an ICP specialist. Research this business and define 3 real ICP profiles ranked by commercial potential. Return ONLY valid JSON.
 
 ${ctx}
 
-Return 3 ranked ICP profiles. For each ICP consider: who has the most pain, who can pay, who has the fastest sales cycle. Rank by commercial potential.
+RULES:
+- Use real job titles, real company types, real geographies
+- If Indian business: reference India-specific roles (e.g. "Head of Distribution", "MFD", "CA firm partner")
+- Triggers must be SPECIFIC events (e.g. "just crossed 500 crore AUM", "hired first sales person")
+- Deal size in correct currency (₹ for India, $ for US/global)
+- Pain points must be SPECIFIC to their industry — not generic
+
 {
   "icps": [
     {
       "rank": 1,
-      "name": "short descriptive label e.g. Series A SaaS VP Sales",
+      "name": "short descriptive label",
       "businessModel": "B2B or B2C or B2B2C",
-      "title": "exact job titles",
-      "company": "company type, size, and stage",
+      "jobTitle": "exact titles comma separated",
+      "companyType": "specific company type and size",
       "industry": "specific industries",
-      "geography": "India / US / SEA / etc",
-      "revenue": "company revenue range",
+      "geography": "specific cities/states/countries",
+      "companyRevenue": "revenue range in correct currency",
       "teamSize": "headcount range",
-      "painPoints": ["specific pain 1", "specific pain 2", "specific pain 3"],
-      "triggers": ["event that makes them buy NOW - e.g. just raised Series A", "trigger 2"],
-      "disqualifiers": ["walk away if this is true", "disqualifier 2"],
-      "pitchAngle": "exact opening angle for this ICP - what you lead with",
-      "dayInLife": "one paragraph on their typical day and where your product fits into it",
-      "channels": ["best channel to reach them", "channel 2"],
-      "winRate": "estimated win rate % with reasoning",
-      "dealSize": "ACV or monthly revenue estimate",
-      "salesCycle": "typical length",
-      "objectionToExpect": "the most likely first objection verbatim",
-      "tags": ["tag1", "tag2"]
+      "painPoints": ["very specific pain 1", "specific pain 2", "specific pain 3"],
+      "triggers": ["specific event that makes them buy NOW", "trigger 2 — be very specific"],
+      "disqualifiers": ["walk away condition 1", "condition 2"],
+      "pitchAngle": "exact opening line for first outreach — first 10 words",
+      "dayInLife": "one paragraph describing their actual day and where this product fits",
+      "bestChannels": ["channel 1 with why", "channel 2"],
+      "winRate": "estimated win % with one reason",
+      "dealSize": "monthly or annual value in correct currency",
+      "salesCycle": "realistic timeline in days or weeks",
+      "firstObjection": "exact words they will say first",
+      "expansionPath": "how this customer grows over time"
     }
   ]
 }`;}
 
-function gtmP(ctx,d){return`You are a GTM strategist applying the motion framework from "I Know Only Numbers" by Naveen Balaji. The book defines three GTM motions: account-based (high ACV, small universe), volume (low ACV, high volume), and partner-led (leverage distribution). Return ONLY valid JSON, no markdown.
+function gtmP(ctx,d){return `You are a GTM strategist. Design a specific GTM strategy for this business. Return ONLY valid JSON.
 
 ${ctx}
+BUSINESS: ${JSON.stringify({model:d.biz?.businessModel,stage:d.biz?.stage,moat:d.biz?.moat,currency:d.biz?.currency})}
 TOP ICP: ${JSON.stringify(d.icp?.icps?.[0])}
-BUSINESS: ${JSON.stringify({model:d.biz?.businessModel,stage:d.biz?.stage,moat:d.biz?.moat})}
+
+RULES:
+- Motion must match the ICP: high ACV + small universe = account-based, low ACV + volume = volume-led
+- Channel tactics must be SPECIFIC to this business (e.g. "WhatsApp broadcast to MFD associations" not "social media")
+- 90-day roadmap must have SPECIFIC actions with named tools
+- Competitor names must be REAL competitors they actually face
 
 {
   "motion": "Account-based / Volume / Partner-led / Hybrid",
-  "motionReason": "two sentence reasoning aligned to their business model and ICP",
-  "wedge": "the sharpest, most specific market entry point",
+  "motionReason": "two specific sentences why this motion fits this business",
+  "wedge": "the single most specific market entry point",
   "wedgeReason": "why win here first before expanding",
-  "pricingStrategy": "pricing model recommendation with rationale",
-  "onlineEngine": "specific online channels and tactics that work for this business",
-  "offlineEngine": "specific offline channels - events, partnerships, direct - that apply",
+  "pricingStrategy": "specific pricing recommendation with rationale and actual numbers in correct currency",
+  "onlineEngine": "specific online channels — which platforms, what content, why for this specific business",
+  "offlineEngine": "specific offline — which events, associations, direct visits for this business",
   "channels": [
     {
-      "name": "channel name",
+      "name": "specific channel name",
       "priority": 1,
-      "why": "why this channel works for this specific business",
+      "why": "specific reason this channel works for THIS business",
       "effort": "Low / Medium / High",
-      "timeToROI": "realistic timeline",
-      "tactics": ["specific tactic 1", "tactic 2"],
-      "icon": "emoji"
+      "timeToFirstResult": "realistic timeline",
+      "specificTactics": ["very specific tactic 1", "specific tactic 2"],
+      "weeklyTimeInvestment": "hours per week"
     }
   ],
   "roadmap": {
-    "days1_30": ["specific action 1", "action 2", "action 3", "action 4"],
-    "days31_60": ["action 1", "action 2", "action 3", "action 4"],
-    "days61_90": ["action 1", "action 2", "action 3", "action 4"]
+    "days1_30": ["specific action with tool — e.g. Set up HubSpot, import 500 MFD contacts from AMFI database", "action 2", "action 3", "action 4"],
+    "days31_60": ["specific action 1", "action 2", "action 3", "action 4"],
+    "days61_90": ["specific action 1", "action 2", "action 3", "action 4"]
   },
   "competitorMatrix": [
     {
       "competitor": "real competitor name",
-      "theirStrength": "what they do well",
-      "yourAdvantage": "specific advantage over them",
-      "weaknesses": "their real weakness",
-      "winLine": "exact sentence to use when prospect mentions this competitor",
+      "theirStrength": "what they actually do well",
+      "yourAdvantage": "specific advantage with evidence",
+      "weaknesses": "their real weakness — be specific",
+      "winLine": "exact sentence to say when prospect mentions them",
       "landmine": "trap question that exposes their weakness"
     }
   ],
-  "partnerStrategy": "if partner-led motion applies - who are the ideal partners and why",
-  "keyHypotheses": ["hypothesis to test in 30 days", "hypothesis 2", "hypothesis 3"]
+  "keyMetrics": ["metric to track in month 1", "metric 2", "metric 3"],
+  "partnerStrategy": "specific partners to approach and why",
+  "hypothesesToTest": ["specific hypothesis to validate in 30 days", "hypothesis 2"]
 }`;}
 
-function pbP(ctx,d){return`You are a sales playbook expert applying the frameworks from "I Know Only Numbers" by Naveen Balaji. The book says: lead response in 60 seconds, objection handling with empathy then pivot, MEDDIC qualification, multi-channel outreach. Write REAL scripts - not templates, actual words. Return ONLY valid JSON, no markdown.
+function pbP(ctx,d){return `You are a sales playbook writer. Write REAL scripts — actual words, not templates. Return ONLY valid JSON.
 
 ${ctx}
 ICP: ${JSON.stringify(d.icp?.icps?.[0])}
+COMPANY: ${d.biz?.companyName} | MOTION: ${d.gtm?.motion}
+
+RULES:
+- Write ACTUAL words — not [INSERT NAME] placeholders
+- Cold email subject lines must NOT use clickbait — specific and relevant
+- Scripts must reference the specific ICP pain (e.g. "managing 300+ client portfolios")
+- 60-second lead response means: call within 60 seconds of form fill, WhatsApp within 30 seconds
+- Objections must use exact words the ICP would say in their language
+- If Indian B2B: include WhatsApp as primary channel
 
 {
   "coldEmail": {
-    "subject": "exact subject line - no clickbait",
-    "opener": "two sentences - personalised to their pain",
-    "pitch": "two sentences - outcome not features",
-    "proof": "one stat or social proof line",
-    "cta": "one clear ask - specific time or specific action",
-    "followUp1": "day 3 - new angle, not a chase",
-    "followUp2": "day 7 - breakup email that gets responses"
+    "subject": "specific subject line — no clickbait, reference their situation",
+    "body": "full email — opener that shows research, 2-line pitch, one proof point, specific CTA",
+    "followUp1": "day 3 — different angle, not a chase",
+    "followUp2": "day 7 — breakup email that usually gets responses",
+    "followUp3": "day 14 — final value add email"
   },
-  "linkedIn": {
-    "connectionNote": "under 200 characters - no pitch",
-    "inmailSubject": "subject line",
-    "inmail": "full message under 150 words",
-    "followUp": "message after they accept connection",
-    "engagementPlay": "how to warm them up before connecting"
+  "linkedInOutreach": {
+    "connectionNote": "under 200 chars — no pitch, shows you did research",
+    "inmailSubject": "specific subject",
+    "inmailBody": "full message under 150 words",
+    "afterConnect": "first message after they accept — leads with value",
+    "engagementPlay": "how to warm them up before connecting — specific posts to comment on"
   },
   "coldCall": {
-    "opener": "first 8 words",
-    "permissionAsk": "one sentence to earn 30 seconds",
-    "pitchLine": "30 second pitch",
-    "qualifyingQuestions": ["question 1", "question 2", "question 3", "question 4"],
-    "handleGatekeeper": "exact words",
-    "close": "how to book the next step"
+    "opener": "exact first sentence — include their name and reference point",
+    "permissionAsk": "one sentence to earn 2 minutes",
+    "elevator": "30-second pitch using their language",
+    "questions": ["specific qualifying question 1", "question 2", "question 3", "question 4"],
+    "gatekeeperScript": "exact words for receptionist/PA",
+    "voicemailScript": "what to say on voicemail — under 20 seconds"
   },
   "whatsApp": {
-    "first": "first message - casual, short, specific",
-    "followUp": "day 2 follow up"
+    "firstMessage": "first WhatsApp — casual, specific, under 50 words",
+    "followUp": "day 2 follow up message",
+    "voiceNoteScript": "what to say in a voice note — under 30 seconds"
   },
-  "leadResponse": "exact script for responding to an inbound lead within 60 seconds as per the book",
-  "discoveryQuestions": ["question 1", "question 2", "question 3", "question 4", "question 5", "question 6"],
+  "leadResponseScript": "exact script for calling an inbound lead within 60 seconds — include what to say if they don't pick up",
+  "discoveryQuestions": [
+    {"question": "specific question", "whatYouLearn": "what this tells you", "goodAnswer": "answer that qualifies them", "badAnswer": "answer that disqualifies"}
+  ],
   "meddic": {
-    "metrics": "what metric does this solve for the buyer",
-    "economicBuyer": "who holds the budget for this",
-    "decisionCriteria": "what criteria will they use to decide",
-    "decisionProcess": "typical process to get a deal signed",
-    "identifyPain": "the pain that makes this urgent",
-    "champion": "who inside will fight for this deal"
+    "metrics": "what business metric does this solve — with specific numbers",
+    "economicBuyer": "exact title of person who signs off",
+    "decisionCriteria": "what 3 things will they evaluate",
+    "decisionProcess": "typical steps to get a PO raised",
+    "identifyPain": "the specific pain that makes this urgent",
+    "champion": "who inside will fight for this — their motivation"
   },
   "objections": [
     {
-      "objection": "exact words the prospect uses",
-      "response": "exact response - empathy then pivot",
-      "reframe": "how to reframe the objection",
-      "category": "price / timing / competition / trust"
+      "objection": "exact words prospect says",
+      "response": "exact response — empathy then specific reframe",
+      "followUp": "follow up question to move forward",
+      "category": "price / timing / competition / trust / priority"
     }
   ],
-  "closingTechniques": ["technique with exact example words", "technique 2", "technique 3"]
+  "closingTechniques": ["specific technique with exact words", "technique 2", "technique 3"],
+  "proposalStructure": ["section 1 of proposal", "section 2", "section 3", "section 4", "section 5"]
 }`;}
 
-function crmP(ctx,d){return`You are a RevOps expert. The book "I Know Only Numbers" by Naveen Balaji has detailed CRM setup chapters for HubSpot and Zoho. Recommend the right CRM and design the full setup. Return ONLY valid JSON, no markdown.
+function crmP(ctx,d){return `You are a CRM implementation expert. Design a complete CRM setup. Return ONLY valid JSON.
 
 ${ctx}
-STAGE: ${d.biz?.stage} MOTION: ${d.gtm?.motion} ICP: ${d.icp?.icps?.[0]?.businessModel}
+STAGE: ${d.biz?.stage} | MOTION: ${d.gtm?.motion} | ICP: ${d.icp?.icps?.[0]?.businessModel} | CURRENCY: ${d.biz?.currency||'INR'}
+
+RULES:
+- Recommend the RIGHT CRM for their stage and budget — not always HubSpot
+- Pipeline stages must match their ACTUAL sales process
+- Lead scoring signals must be observable in CRM — not theoretical
+- All amounts in correct currency (₹ for Indian businesses)
+- Automations must reference specific triggers in the recommended CRM
 
 {
-  "recommendation": "HubSpot / Zoho / Pipedrive / Notion",
-  "reason": "two sentences - why this CRM for this exact stage and motion",
-  "tier": "Free / Starter / Pro / Enterprise",
-  "monthlyCost": "realistic monthly cost",
-  "setupTime": "realistic time to set up and go live",
+  "recommendation": "HubSpot / Zoho CRM / Pipedrive / Freshsales / Notion",
+  "reason": "specific reason for this CRM — their stage, budget, and team size",
+  "tier": "Free / Starter / Professional / Enterprise",
+  "monthlyCost": "actual cost in correct currency per month",
+  "setupTime": "realistic time to go live",
+  "alternativeCRM": "second choice CRM and why",
   "pipelineStages": [
     {
       "stage": "stage name",
-      "definition": "entry criteria - what moves a deal INTO this stage",
-      "exitCriteria": "what moves it to the NEXT stage",
-      "conversionRate": "industry benchmark %",
-      "avgTimeInStage": "average days",
-      "keyActivity": "what the rep must do in this stage"
+      "entryTrigger": "what moves a deal INTO this stage",
+      "exitTrigger": "what moves it out",
+      "conversionRate": "realistic benchmark %",
+      "avgDaysInStage": "average days",
+      "repActivity": "what the rep must do here",
+      "lossRisk": "most common reason deals die here"
     }
   ],
-  "keyFields": ["field name and why it matters", "field 2", "field 3", "field 4", "field 5"],
+  "customFields": ["field name — why it matters", "field 2", "field 3", "field 4", "field 5"],
   "leadScoring": [
     {
-      "signal": "observable signal",
+      "signal": "specific observable signal",
       "points": 10,
       "category": "firmographic / behavioral / intent",
-      "rationale": "why this signal matters"
+      "howToTrack": "where to find this in CRM"
     }
   ],
   "automations": [
     {
-      "trigger": "what triggers this automation",
-      "action": "what happens automatically",
-      "tool": "CRM native / Zapier / Make",
-      "impact": "problem this solves"
+      "trigger": "specific trigger event",
+      "action": "exact automated action",
+      "tool": "CRM native / Zapier / Make.com",
+      "timing": "when it fires",
+      "businessImpact": "why this automation matters"
     }
   ],
   "dashboards": [
     {
       "name": "dashboard name",
-      "audience": "who looks at this",
-      "metrics": ["metric 1", "metric 2"],
-      "frequency": "daily / weekly / monthly"
+      "audience": "who uses it",
+      "metrics": ["specific metric 1", "metric 2"],
+      "reviewCadence": "daily / weekly / monthly"
     }
   ],
-  "implementationPlan": ["week 1 actions", "week 2", "week 3", "week 4"],
-  "commonMistakes": ["mistake and how to avoid it", "mistake 2", "mistake 3"],
-  "similarCompanies": [
-    {
-      "company": "similar business type",
-      "crm": "what they use",
-      "whyItWorks": "why it works for them",
-      "keyLearning": "one takeaway"
-    }
-  ]
+  "week1Setup": ["day 1 action", "day 2", "day 3", "day 4", "day 5"],
+  "commonMistakes": ["mistake with how to avoid it", "mistake 2", "mistake 3"],
+  "integrations": ["tool to connect and why", "integration 2", "integration 3"]
 }`;}
 
-function crmiP(ctx,d){return`You are a CRM Intelligence expert. Apply the outreach cadence, integration and churn frameworks from "I Know Only Numbers" by Naveen Balaji. Return ONLY valid JSON, no markdown.
+function crmiP(ctx,d){return `You are a CRM Intelligence expert. Design outreach cadence, integrations, and churn detection. Return ONLY valid JSON.
 
 ${ctx}
-CRM: ${d.crm?.recommendation} ICP: ${JSON.stringify(d.icp?.icps?.[0])} CHANNELS: email, WhatsApp, LinkedIn, cold call
+CRM: ${d.crm?.recommendation} | ICP: ${JSON.stringify(d.icp?.icps?.[0]?.jobTitle)} | CHANNELS: email, WhatsApp, LinkedIn, call
 
 {
   "outreachCadence": [
     {
       "day": "Day 1",
-      "channel": "Cold Call / Email / WhatsApp / LinkedIn",
+      "channel": "Call / WhatsApp / Email / LinkedIn",
+      "timing": "specific time e.g. 10am",
       "action": "specific action",
-      "script": "exact words to say or send",
-      "goal": "what you are trying to achieve",
-      "ifNoResponse": "what happens if no reply"
+      "exactScript": "exact words to say or send — not a template",
+      "ifNoResponse": "what happens next"
     }
   ],
   "integrationStack": [
     {
-      "category": "Email / WhatsApp / Calendar / Analytics / Enrichment / Support",
+      "category": "Email / WhatsApp / Calendar / Analytics / Enrichment",
       "tool": "specific tool name",
-      "nativeOrZapier": "native / zapier / both",
-      "cost": "monthly cost",
-      "setup": "how to connect in one sentence",
-      "whyThisOne": "why this over alternatives",
-      "alternativeIf": "cheaper or free alternative"
-    }
-  ],
-  "productivityMetrics": [
-    {
-      "metric": "metric name",
-      "description": "what it measures",
-      "howToTrack": "where to find this",
-      "benchmark": "industry standard",
-      "redLine": "when to investigate immediately",
-      "frequency": "daily / weekly"
+      "howToConnect": "one sentence setup",
+      "monthlyCost": "cost in correct currency",
+      "whyThisOne": "specific reason over alternatives",
+      "freeTier": "free alternative if available"
     }
   ],
   "churnSignals": [
     {
-      "signal": "observable event in product or CRM",
-      "severity": "high / medium / low",
-      "timeToChurn": "how many days before likely churn",
-      "action": "exact action to take immediately",
-      "crmField": "field to track this in CRM",
-      "automationIdea": "how to automate detection"
+      "signal": "specific observable event",
+      "severity": "Critical / High / Medium / Low",
+      "daysToChurn": "estimated days before they leave",
+      "immediateAction": "exact action to take today",
+      "saveScript": "what to say in the save conversation",
+      "crmField": "field to track this"
     }
   ],
   "productAnalytics": {
-    "freeTools": ["tool and use case", "tool 2"],
-    "paidTools": ["tool and use case", "tool 2"],
-    "keyEvents": ["product event to track", "event 2", "event 3"],
-    "powerUserSignals": ["signal that user is a power user", "signal 2"],
-    "atRiskSignals": ["signal user might churn", "signal 2"]
+    "freeTools": ["tool — specific use case"],
+    "keyEventsToTrack": ["event with why it matters"],
+    "powerUserSignals": ["specific signal user is engaged"],
+    "atRiskSignals": ["specific signal of churn risk"]
   },
-  "retentionPlaybook": [
-    {
-      "trigger": "what happens",
-      "action": "exact response",
-      "owner": "who does this",
-      "timeline": "when to do it",
-      "template": "message template if applicable"
-    }
-  ],
-  "weeklyOperatingRhythm": [
+  "weeklyRhythm": [
     {
       "day": "Monday",
       "activity": "specific activity",
       "duration": "30 min",
-      "tool": "tool used",
-      "output": "what comes out of this session"
+      "tool": "specific tool",
+      "output": "what comes out of this"
+    }
+  ],
+  "retentionPlaybook": [
+    {
+      "scenario": "specific scenario",
+      "action": "exact response",
+      "owner": "who does this",
+      "script": "message template"
     }
   ]
 }`;}
 
-function misP(ctx,d){return`You are a revenue analytics expert applying the MIS and operating cadence framework from "I Know Only Numbers" by Naveen Balaji. The book says: daily MIS, weekly review, monthly board pack. Every number must be specific. Return ONLY valid JSON, no markdown.
+function misP(ctx,d){return `You are a revenue analytics expert. Define the metrics and MIS framework. Return ONLY valid JSON.
 
 ${ctx}
-MOTION: ${d.gtm?.motion} STAGE: ${d.biz?.stage}
+MOTION: ${d.gtm?.motion} | STAGE: ${d.biz?.stage} | CURRENCY: ${d.biz?.currency||'INR'}
+
+RULES:
+- All revenue numbers in correct currency
+- North star must be THE ONE metric that drives everything else
+- Daily MIS must be checkable in under 5 minutes
+- Benchmarks must be India-specific if Indian business (e.g. India B2B SaaS benchmarks)
 
 {
   "northStar": {
-    "metric": "the one number that drives everything",
-    "why": "why this and not another metric",
+    "metric": "the one number",
+    "why": "why this and not another",
     "currentBaseline": "where they likely are now",
-    "target": "90 day ambitious but realistic target",
-    "howToMeasure": "exactly where and how to track this"
+    "target90Days": "ambitious but realistic 90-day target in correct currency/units",
+    "howToMeasure": "exactly where to find this number"
+  },
+  "sixNumbers": {
+    "cac": "how to calculate CAC for this business with formula",
+    "ltv": "how to calculate LTV with formula and currency",
+    "churnRate": "monthly churn benchmark for this category",
+    "paybackPeriod": "months to recover CAC — target for this stage",
+    "revenuePerEmployee": "target in correct currency",
+    "conversionRate": "lead to close % benchmark for this motion"
   },
   "leadingIndicators": [
     {
       "metric": "metric name",
-      "description": "what it predicts",
+      "whyLeading": "what this predicts",
       "frequency": "daily / weekly",
       "benchmark": "industry standard",
-      "target": "what to aim for",
       "redLine": "number that triggers immediate action"
     }
   ],
   "laggingIndicators": [
     {
       "metric": "metric name",
-      "description": "what outcome it measures",
       "frequency": "monthly",
-      "benchmark": "industry benchmark",
-      "target": "90 day target"
+      "benchmark": "standard",
+      "target90Days": "target"
     }
   ],
   "dailyMIS": {
-    "metrics": ["metric to check every day", "metric 2", "metric 3"],
+    "timeRequired": "5 minutes",
+    "checkAt": "9am every morning",
+    "metrics": ["metric to check", "metric 2", "metric 3"],
     "tool": "where to see this",
-    "reviewTime": "when to check - e.g. 9am every day"
+    "redFlags": ["flag that requires immediate action today"]
   },
   "weeklyReview": {
-    "duration": "time needed",
-    "agenda": ["agenda item 1", "item 2", "item 3", "item 4"],
-    "whoAttends": "who must be in the room",
-    "keyQuestion": "the one question this meeting must answer"
+    "duration": "45 minutes",
+    "bestDay": "Monday or Friday",
+    "agenda": ["agenda item with time allocation", "item 2", "item 3", "item 4"],
+    "keyQuestion": "the one question this meeting must answer",
+    "output": "decision or action that must come out"
   },
-  "monthlyReview": {
-    "agenda": ["item 1", "item 2", "item 3"],
-    "boardPack": ["what goes in the monthly board or investor pack"]
-  },
-  "funnelBenchmarks": [
-    {
-      "stage": "funnel stage",
-      "industryConversion": "benchmark %",
-      "yourTarget": "target %",
-      "impactIfMissed": "downstream effect"
-    }
-  ],
-  "investorMetrics": ["metric and why investors care about it", "metric 2", "metric 3"],
-  "redFlags": ["warning signal and what to do immediately", "flag 2", "flag 3"],
-  "vanityMetrics": ["metric to stop tracking and why", "metric 2"]
+  "monthlyBoardPack": ["metric with context", "metric 2", "metric 3", "metric 4", "metric 5"],
+  "vanityMetrics": ["metric to stop tracking — why it misleads", "metric 2"],
+  "investorMetrics": ["metric with why investors care", "metric 2", "metric 3"]
 }`;}
 
-function ckP(ctx,d){return`You are a GTM execution expert applying the 100-day execution calendar framework from "I Know Only Numbers" by Naveen Balaji. Write SPECIFIC actions with named owners and tools. Return ONLY valid JSON, no markdown.
+function ckP(ctx,d){return `You are a GTM execution expert. Write a specific 100-day plan. Return ONLY valid JSON.
 
 ${ctx}
-MOTION: ${d.gtm?.motion} STAGE: ${d.biz?.stage} CRM: ${d.crm?.recommendation}
+MOTION: ${d.gtm?.motion} | STAGE: ${d.biz?.stage} | CRM: ${d.crm?.recommendation} | CURRENCY: ${d.biz?.currency||'INR'}
+
+RULES:
+- Every task must have a named owner (Founder / Sales / Marketing / Product)
+- Every task must reference a specific tool
+- Outcomes must be measurable
+- Hiring signals must be specific revenue or customer milestones in correct currency
 
 {
   "week1": [
-    {
-      "task": "exact specific action - not vague",
-      "owner": "Founder / Sales / Marketing / Ops",
-      "tool": "specific tool to use",
-      "timeEstimate": "hours",
-      "outcome": "measurable result when done",
-      "ifStuck": "what to do if blocked"
-    }
+    {"task": "specific task with tool", "owner": "Founder", "tool": "specific tool", "hours": "2", "outcome": "measurable result", "priority": "Must do"}
   ],
-  "week2": [{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],
-  "week3": [{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],
-  "week4": [{"task":"","owner":"","tool":"","timeEstimate":"","outcome":"","ifStuck":""}],
+  "week2": [
+    {"task": "specific task", "owner": "Founder", "tool": "specific tool", "hours": "3", "outcome": "measurable result", "priority": "Must do"}
+  ],
+  "week3": [
+    {"task": "specific task", "owner": "Founder", "tool": "specific tool", "hours": "2", "outcome": "measurable result", "priority": "Should do"}
+  ],
+  "week4": [
+    {"task": "specific task", "owner": "Founder", "tool": "specific tool", "hours": "4", "outcome": "measurable result", "priority": "Must do"}
+  ],
+  "days30to60": ["specific milestone or focus area"],
+  "days60to90": ["specific milestone or focus area"],
   "hiringSignals": [
     {
-      "role": "exact title",
-      "signal": "milestone that triggers this hire",
+      "role": "exact job title",
+      "hiringTrigger": "specific revenue or customer milestone in correct currency",
       "notBefore": "condition that must be true first",
-      "firstHireProfile": "what to look for",
-      "expectedImpact": "what this hire unlocks"
+      "firstHireProfile": "what to look for — specific skills",
+      "expectedImpact": "what this hire unlocks in 90 days"
     }
   ],
   "toolStack": [
     {
-      "category": "category name",
-      "tool": "tool name",
+      "category": "category",
+      "tool": "specific tool",
       "tier": "Free / Paid",
-      "cost": "monthly cost",
+      "monthlyCost": "cost in correct currency",
       "priority": "Must-have / Nice-to-have",
-      "setupTime": "time to set up"
+      "alternativeFree": "free alternative"
     }
   ],
-  "antiPatterns": ["mistake to avoid with context", "anti-pattern 2", "anti-pattern 3"]
+  "antiPatterns": [
+    {"mistake": "specific mistake this type of business makes", "whyItHappens": "root cause", "howToAvoid": "specific prevention"}
+  ],
+  "quickWins": ["action that can show results in first 7 days", "quick win 2", "quick win 3"]
 }`;}
-
-
 
 // ── Render: Connect ────────────────────────────────────────────────────────
 function renderConnect(){
