@@ -191,8 +191,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .pk-nav-link:hover{background:#F3F4F6;color:#111}
 .pk-chevron{width:14px;height:14px;transition:transform .2s;opacity:.5}
 .pk-dropdown{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:6px;min-width:240px;box-shadow:0 10px 40px rgba(0,0,0,.12);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .15s,transform .15s;z-index:9999}
-.pk-nav-item:hover .pk-dropdown{opacity:1;pointer-events:auto;transform:translateY(0)}
-.pk-nav-item:hover .pk-chevron{transform:rotate(180deg)}
 .pk-nav-item.dd-open .pk-dropdown{opacity:1;pointer-events:auto;transform:translateY(0)}
 .pk-nav-item.dd-open .pk-chevron{transform:rotate(180deg)}
 .pk-dd-item{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:8px;cursor:pointer;transition:background .12s}
@@ -338,9 +336,9 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div class="pk-nav-item" style="position:relative">
       <div class="pk-nav-link" onclick="pkToggleNav(this.parentElement,event)">Solutions <svg class="pk-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
       <div class="pk-dropdown">
-        <div class="pk-dd-item" onclick="document.getElementById('lp-solution-saas').scrollIntoView({behavior:'smooth'})"><div class="pk-dd-icon" style="background:#EEF2FF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div><div class="pk-dd-title">For B2B SaaS</div><div class="pk-dd-sub">MEDDIC, ABM, enterprise plays</div></div></div>
-        <div class="pk-dd-item" onclick="document.getElementById('lp-solution-fintech').scrollIntoView({behavior:'smooth'})"><div class="pk-dd-icon" style="background:#F0FDF4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div><div class="pk-dd-title">For Fintech / BFSI</div><div class="pk-dd-sub">MFD/RIA plays, ₹ crore outputs</div></div></div>
-        <div class="pk-dd-item" onclick="document.getElementById('lp-solution-earlystage').scrollIntoView({behavior:'smooth'})"><div class="pk-dd-icon" style="background:#FFFBEB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div><div class="pk-dd-title">For Early-Stage</div><div class="pk-dd-sub">0→1 GTM, first 10 customers</div></div></div>
+        <div class="pk-dd-item" onclick="pkToggleNav(this.closest('.pk-nav-item'));showProductPage('lp-page-solution-saas')"><div class="pk-dd-icon" style="background:#EEF2FF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div><div class="pk-dd-title">For B2B SaaS</div><div class="pk-dd-sub">MEDDIC, ABM, enterprise plays</div></div></div>
+        <div class="pk-dd-item" onclick="pkToggleNav(this.closest('.pk-nav-item'));showProductPage('lp-page-solution-fintech')"><div class="pk-dd-icon" style="background:#F0FDF4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div><div class="pk-dd-title">For Fintech / BFSI</div><div class="pk-dd-sub">MFD/RIA plays, ₹ crore outputs</div></div></div>
+        <div class="pk-dd-item" onclick="pkToggleNav(this.closest('.pk-nav-item'));showProductPage('lp-page-solution-earlystage')"><div class="pk-dd-icon" style="background:#FFFBEB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div><div class="pk-dd-title">For Early-Stage</div><div class="pk-dd-sub">0→1 GTM, first 10 customers</div></div></div>
       </div>
     </div>
 
@@ -788,7 +786,7 @@ function showProductPage(id){
     'lp-product-playbook':'/product/sales-playbook',
     'lp-product-gtm':'/product/gtm-strategy',
     'lp-product-icp':'/product/icp-engine',
-    'lp-page-integrations':'/integrations',
+    'lp-page-integrations':'/integrations','lp-page-solution-saas':'/solutions/b2b-saas','lp-page-solution-fintech':'/solutions/fintech','lp-page-solution-earlystage':'/solutions/early-stage',
     'lp-solution-saas':'/solutions/b2b-saas',
     'lp-solution-fintech':'/solutions/fintech',
     'lp-solution-earlystage':'/solutions/early-stage',
@@ -806,14 +804,14 @@ window.showProductPage=showProductPage;
 window.showLandingHome=showLandingHome;
 
 // Nav dropdown click toggle
-function pkToggleNav(item, e){
-  e.stopPropagation();
+function pkToggleNav(item,e){
+  if(e){e.stopPropagation();e.preventDefault();}
   const isOpen=item.classList.contains('dd-open');
   document.querySelectorAll('.pk-nav-item').forEach(i=>i.classList.remove('dd-open'));
   if(!isOpen)item.classList.add('dd-open');
 }
-document.addEventListener('click',function(){
-  document.querySelectorAll('.pk-nav-item').forEach(i=>i.classList.remove('dd-open'));
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.pk-nav-item'))document.querySelectorAll('.pk-nav-item').forEach(i=>i.classList.remove('dd-open'));
 });
 window.pkToggleNav=pkToggleNav;
 
@@ -922,6 +920,20 @@ window.addEventListener('popstate',function(e){
       </div>
     </div>
   </div>
+
+<div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
 </div>
 
 <!-- ══ PRODUCT PAGE: Sales Playbook ══════════════════════════════════ -->
@@ -973,6 +985,20 @@ window.addEventListener('popstate',function(e){
       </div>
     </div>
   </div>
+
+<div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
 </div>
 
 <!-- ══ PRODUCT PAGE: GTM Strategy ════════════════════════════════════ -->
@@ -1023,6 +1049,20 @@ window.addEventListener('popstate',function(e){
       </div>
     </div>
   </div>
+
+<div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
 </div>
 
 <!-- ══ PRODUCT PAGE: ICP Engine ══════════════════════════════════════ -->
@@ -1071,6 +1111,20 @@ window.addEventListener('popstate',function(e){
       </div>
     </div>
   </div>
+
+<div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
 </div>
 
 <!-- ══ INTEGRATIONS FULL PAGE ═════════════════════════════════════════ -->
@@ -1162,8 +1216,149 @@ window.addEventListener('popstate',function(e){
       </div>
     </div>
   </div>
+
+<div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
 </div>
 
+
+<!-- ══ SOLUTION PAGE: B2B SaaS ═══════════════════════════════════ -->
+<div id="lp-page-solution-saas" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 0;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:72px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#4338CA;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">FOR B2B SAAS</div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">Account-based GTM with MEDDIC, built for your stage.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 24px">Multi-stakeholder buying, longer cycles, and champions who disappear. Engine 360 builds your GTM motion, qualification framework, and scripts around how B2B SaaS actually gets sold.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>MEDDIC qualification with real discovery questions</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Scripts for champion, economic buyer, and IT gatekeeper</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>CRM blueprint for SaaS pipeline stages and lead scoring</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>CAC, LTV, MRR churn metrics in your currency</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>90-day land and expand roadmap with named tools and weekly actions</li>
+        </ul>
+        <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Build my B2B SaaS GTM</button>
+      </div>
+      <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
+        <div style="font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:.1em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:16px">Sample output</div>
+        <div style="background:#EEF2FF;border:1px solid #C7D2FE;border-radius:8px;padding:14px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:#4338CA;font-family:Inter,sans-serif;margin-bottom:5px">GTM MOTION</div><div style="font-size:13px;color:#111;font-family:Inter,sans-serif">Account-based - Target VP Sales at Series B+ SaaS - 60 to 90 day sales cycle</div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:#6366F1;font-family:Inter,sans-serif;margin-bottom:5px">EMAIL SUBJECT</div><div style="font-size:13px;color:#374151;font-family:Inter,sans-serif">How [Company] reduced onboarding time 40% - relevant for your Series B scale</div></div>
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:14px"><div style="font-size:10px;font-weight:700;color:#16A34A;font-family:Inter,sans-serif;margin-bottom:5px">MEDDIC - ECONOMIC BUYER</div><div style="font-size:13px;color:#374151;font-family:Inter,sans-serif">"Who else will need to approve this? What does their evaluation process look like?"</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
+</div>
+
+<!-- ══ SOLUTION PAGE: Fintech / BFSI ════════════════════════════════ -->
+<div id="lp-page-solution-fintech" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 0;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:72px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#16A34A;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">FOR FINTECH / BFSI</div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">GTM built for financial services complexity.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 24px">Longer cycles, more stakeholders, compliance gates. Engine 360 builds your GTM motion around these realities - not a generic SaaS playbook.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>ICP profiles across banks, NBFCs, insurers, wealth firms, payments</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Multi-stakeholder scripts - CTO, CRO, Head of Risk, Compliance</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>6 to 18 month deal cycle pipeline and cadence design</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Compliance-aware GTM - what to say, what to avoid</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Regulatory trigger monitoring - timing outreach around policy changes</li>
+        </ul>
+        <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Build my Fintech GTM</button>
+      </div>
+      <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
+        <div style="font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:.1em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:16px">Sample output</div>
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:14px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:#16A34A;font-family:Inter,sans-serif;margin-bottom:5px">ICP RANK 1</div><div style="font-size:13px;color:#111;font-family:Inter,sans-serif">Head of Digital at mid-size bank - owns vendor selection - approved 2+ fintech pilots this year</div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:#6366F1;font-family:Inter,sans-serif;margin-bottom:5px">EMAIL SUBJECT</div><div style="font-size:13px;color:#374151;font-family:Inter,sans-serif">How [Competitor] is already running this at two major banks - what it means for your roadmap</div></div>
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:14px"><div style="font-size:10px;font-weight:700;color:#D97706;font-family:Inter,sans-serif;margin-bottom:5px">BUYING TRIGGER</div><div style="font-size:13px;color:#374151;font-family:Inter,sans-serif">Regulatory circular in last 90 days - New digital head just joined - Q4 budget cycle opening</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
+</div>
+
+<!-- ══ SOLUTION PAGE: Early Stage ════════════════════════════════════ -->
+<div id="lp-page-solution-earlystage" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 0;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:72px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#D97706;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">FOR EARLY STAGE (0 TO 1)</div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">Find your first 10 customers before burning runway.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 24px">Most early-stage founders test 5 channels at once and get traction in none. Engine 360 validates your hypothesis, identifies your highest-fit segment, and gives you the exact scripts to win your first customers.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>6-check hypothesis validation from your website and market data</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Wedge strategy - which segment to enter first and why</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Free CRM setup for lean teams with no admin overhead</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>Anti-patterns - what founders at your stage waste budget on</li>
+          <li style="display:flex;gap:9px;font-size:14px;color:#374151;font-family:Inter,sans-serif"><span style="color:#16A34A;font-weight:700;flex-shrink:0">✓</span>First 10 customers playbook - exact outreach sequence and scripts</li>
+        </ul>
+        <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Validate my hypothesis</button>
+      </div>
+      <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
+        <div style="font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:.1em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:16px">Hypothesis validation</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px"><span style="font-size:13px;color:#374151;font-family:Inter,sans-serif">Customer has this problem</span><span style="font-size:11px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 9px;border-radius:3px;font-family:Inter,sans-serif">YES</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px"><span style="font-size:13px;color:#374151;font-family:Inter,sans-serif">Solution better than alternatives</span><span style="font-size:11px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 9px;border-radius:3px;font-family:Inter,sans-serif">YES</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px"><span style="font-size:13px;color:#374151;font-family:Inter,sans-serif">Customer willing to pay</span><span style="font-size:11px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 9px;border-radius:3px;font-family:Inter,sans-serif">VALIDATE</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px"><span style="font-size:13px;color:#374151;font-family:Inter,sans-serif">Market large enough to build on</span><span style="font-size:11px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 9px;border-radius:3px;font-family:Inter,sans-serif">YES</span></div>
+          <div style="padding:12px 13px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:8px;margin-top:2px"><div style="font-size:10px;font-weight:700;color:#4338CA;font-family:Inter,sans-serif;margin-bottom:4px">VERDICT</div><div style="font-size:13px;color:#374151;font-family:Inter,sans-serif">Ready to learn - validate pricing with 3 pilot customers before scaling</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pk-footer">
+  <div class="pk-footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><svg viewBox="0 0 40 40" fill="none" width="22" height="22"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#6366F1" stroke-width="2.8" fill="rgba(99,102,241,.08)"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#6366F1"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#111"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#D1D5DB"/></svg><span style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:800;color:#111">Engine<span style="color:#6366F1">360</span></span></div>
+      <p style="font-size:13px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.7;max-width:240px;margin:0 0 10px">Your RevOps Managing Agent. AI-powered GTM strategy in 60 seconds.</p>
+      <div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Free forever · No credit card</div>
+    </div>
+    <div><div class="pk-footer-col-title">Product</div><a class="pk-footer-link" onclick="showProductPage('lp-product-crm')">CRM Intelligence</a><a class="pk-footer-link" onclick="showProductPage('lp-product-playbook')">Sales Playbook</a><a class="pk-footer-link" onclick="showProductPage('lp-product-gtm')">GTM Strategy</a><a class="pk-footer-link" onclick="showProductPage('lp-product-icp')">ICP Engine</a><a class="pk-footer-link" onclick="openAuth('signup')">100-Day Plan</a></div>
+    <div><div class="pk-footer-col-title">Solutions</div><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-saas')">For B2B SaaS</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-fintech')">For Fintech</a><a class="pk-footer-link" onclick="showProductPage('lp-page-solution-earlystage')">For Early-Stage</a><a class="pk-footer-link" onclick="showProductPage('lp-page-integrations')">Integrations</a></div>
+    <div><div class="pk-footer-col-title">Company</div><a class="pk-footer-link" onclick="document.getElementById('lp-pricing')?.scrollIntoView({behavior:'smooth'})">Pricing</a><a class="pk-footer-link" onclick="document.getElementById('lp-faq')?.scrollIntoView({behavior:'smooth'})">FAQ</a><a class="pk-footer-link">Privacy Policy</a><a class="pk-footer-link">Terms of Service</a></div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;border-top:1px solid #F3F4F6;padding-top:20px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">© 2025 Engine 360. All rights reserved.</div></div>
+</div>
+</div>
 
 <!-- AUTH MODAL -->
 <div class="modal-bg" id="auth-modal">
