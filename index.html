@@ -233,7 +233,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 .lp-ticker-wrap{overflow:hidden;width:100%}
 .lp-ticker-inner{display:flex;gap:56px;width:max-content;animation:ticker 30s linear infinite}
 .lp-ticker-inner:hover{animation-play-state:paused}
-.lp-ticker-item{display:flex;align-items:center;gap:8px;opacity:.4;transition:opacity .2s;white-space:nowrap;font-size:14px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif}
+.lp-ticker-item{display:flex;align-items:center;gap:8px;opacity:.5;transition:opacity .2s;white-space:nowrap}
 .lp-ticker-item:hover{opacity:.8}
 
 /* ── Feature rows ── */
@@ -416,209 +416,24 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div style="background:#0A0E1A;padding:18px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)">
   <div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.2);text-align:center;font-family:Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px">Connects with your stack</div>
   <div class="lp-ticker-wrap"><div class="lp-ticker-inner">
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#E74C3C;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">Z</span><span style="color:rgba(255,255,255,.7);font-weight:600">Zoho CRM</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#34A853;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">G</span><span style="color:rgba(255,255,255,.7);font-weight:600">Google Sheets</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#FF7A59;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">H</span><span style="color:rgba(255,255,255,.7);font-weight:600">HubSpot</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#25D366;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">W</span><span style="color:rgba(255,255,255,.7);font-weight:600">WhatsApp</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#0A66C2;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">in</span><span style="color:rgba(255,255,255,.7);font-weight:600">LinkedIn</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:linear-gradient(135deg,#EA4335,#FBBC05,#34A853,#4285F4);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">M</span><span style="color:rgba(255,255,255,.7);font-weight:600">Gmail</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#1DBFC1;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">F</span><span style="color:rgba(255,255,255,.7);font-weight:600">Freshsales</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#4A154B;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">#</span><span style="color:rgba(255,255,255,.7);font-weight:600">Slack</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#BD4F00;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">P</span><span style="color:rgba(255,255,255,.7);font-weight:600">Pipedrive</span></span></div>
+    <div class="lp-ticker-item"><img src="https://www.zohowebstatic.com/sites/zweb/images/zoho_general_pages/zoho-logo-web.png" alt="Zoho CRM" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg" alt="Google Sheets" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+    <div class="lp-ticker-item"><img src="https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png" alt="HubSpot" style="height:28px;width:28px;border-radius:6px"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:26px;width:26px"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="height:26px;width:26px;border-radius:4px"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail" style="height:22px;width:auto"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg" alt="Slack" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+    <div class="lp-ticker-item"><img src="https://pipedrive.com/images/pipedrive-logo-dark.svg" alt="Pipedrive" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
     <!-- repeat -->
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#E74C3C;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">Z</span><span style="color:rgba(255,255,255,.7);font-weight:600">Zoho CRM</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#34A853;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">G</span><span style="color:rgba(255,255,255,.7);font-weight:600">Google Sheets</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#FF7A59;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">H</span><span style="color:rgba(255,255,255,.7);font-weight:600">HubSpot</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#25D366;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">W</span><span style="color:rgba(255,255,255,.7);font-weight:600">WhatsApp</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#0A66C2;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">in</span><span style="color:rgba(255,255,255,.7);font-weight:600">LinkedIn</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:linear-gradient(135deg,#EA4335,#FBBC05,#34A853,#4285F4);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">M</span><span style="color:rgba(255,255,255,.7);font-weight:600">Gmail</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#1DBFC1;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">F</span><span style="color:rgba(255,255,255,.7);font-weight:600">Freshsales</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#4A154B;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">#</span><span style="color:rgba(255,255,255,.7);font-weight:600">Slack</span></span></div>
-    <div class="lp-ticker-item"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:20px;height:20px;background:#BD4F00;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff">P</span><span style="color:rgba(255,255,255,.7);font-weight:600">Pipedrive</span></span></div>
-  </div></div>
-</div>
-
-<!-- ══ AGENT CAPABILITIES ══════════════════════════════════════════════ -->
-<div class="lp-section" style="background:#080B14">
-  <div class="lp-container">
-    <div style="text-align:center;margin-bottom:56px">
-      <div class="lp-section-label">What the agent does</div>
-      <h2 class="lp-section-h2" style="max-width:600px;margin:0 auto 14px">One agent. Your entire revenue operation.</h2>
-      <p class="lp-section-sub" style="margin:0 auto">Engine 360 reads your CRM, finds what's killing deals, and rebuilds your entire playbook around what actually works.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="agents-g">
-      <div class="lp-card"><div class="lp-card-icon" style="background:rgba(99,102,241,.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Intelligence</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;font-family:Inter,sans-serif">Discovers all Zoho modules, pulls every deal, detects churn signals by severity, maps pipeline gaps.</div></div>
-      <div class="lp-card"><div class="lp-card-icon" style="background:rgba(52,211,153,.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif">Playbook Rebuild</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;font-family:Inter,sans-serif">Rewrites your email, call, WhatsApp scripts based on real pipeline findings — not templates.</div></div>
-      <div class="lp-card"><div class="lp-card-icon" style="background:rgba(192,132,252,.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif">ICP Scoring</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;font-family:Inter,sans-serif">Scores every deal against your ICP. Tells you which to pursue, which to drop, where to double down.</div></div>
-      <div class="lp-card"><div class="lp-card-icon" style="background:rgba(251,191,36,.08)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif">GTM Strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;font-family:Inter,sans-serif">Researches your market on Google, picks the right motion, builds battlecards with real competitor data.</div></div>
-      <div class="lp-card"><div class="lp-card-icon" style="background:rgba(239,68,68,.08)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg></div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif">Churn Detection</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;font-family:Inter,sans-serif">Reads CRM activity signals, identifies at-risk accounts, gives your team a specific save script.</div></div>
-      <div class="lp-card"><div class="lp-card-icon" style="background:rgba(14,165,233,.08)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif">MIS and Metrics</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;font-family:Inter,sans-serif">Tracks your 6 key numbers from live CRM data. Daily MIS, weekly review, board pack — automated.</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ HOW IT WORKS ════════════════════════════════════════════════════ -->
-<div class="lp-section" style="background:#0D1117;border-top:1px solid rgba(255,255,255,.06)">
-  <div class="lp-container">
-    <div style="text-align:center;margin-bottom:64px">
-      <div class="lp-section-label">How it works</div>
-      <h2 class="lp-section-h2">From URL to RevOps OS in 60 seconds.</h2>
-    </div>
-
-    <!-- Step 1 -->
-    <div class="lp-feat-row">
-      <div>
-        <div style="display:inline-block;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;letter-spacing:.08em;margin-bottom:16px">STEP 01</div>
-        <h3 style="font-family:'DM Sans',sans-serif;font-size:clamp(20px,2.5vw,32px);font-weight:800;color:#fff;letter-spacing:-.5px;margin:0 0 12px">Paste your URL. Agent researches everything.</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;font-family:Inter,sans-serif;margin:0 0 20px">No forms. Engine 360 scrapes your website, searches Google for market signals, finds real competitors and maps your ICP — all in under 10 seconds.</p>
-        <div style="display:flex;flex-direction:column;gap:9px">
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">Website scraping + Google market research</span></div>
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">Real competitor identification and battlecards</span></div>
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">TAM/SAM/SOM with actual ₹ crore numbers</span></div>
-        </div>
-      </div>
-      <div class="lp-feat-terminal">
-        <div class="lp-feat-terminal-bar">
-          <div class="lp-feat-terminal-dot" style="background:#FF5F57"></div>
-          <div class="lp-feat-terminal-dot" style="background:#FFBD2E"></div>
-          <div class="lp-feat-terminal-dot" style="background:#28CA41"></div>
-          <span style="font-size:11px;color:rgba(255,255,255,.25);margin-left:8px;font-family:Inter,sans-serif">Engine360 Agent</span>
-        </div>
-        <div style="color:#34D399;margin-bottom:5px">$ analysing assetplus.in...</div>
-        <div style="color:rgba(255,255,255,.35);margin-bottom:5px">→ Scraped 12 pages, 4,200 words</div>
-        <div style="color:#818CF8;margin-bottom:5px">→ Google: "AssetPlus MFD India competitors 2024"</div>
-        <div style="color:rgba(255,255,255,.35);margin-bottom:5px">→ Competitors found: Wealthbox, Wealthy, Fisdom</div>
-        <div style="color:#818CF8;margin-bottom:5px">→ Market: ₹54L Cr AUM, 1.4L+ MFDs in India</div>
-        <div style="color:rgba(255,255,255,.35);margin-bottom:5px">→ Stage detected: Early growth (0–1Cr ARR)</div>
-        <div style="color:#34D399;margin-bottom:5px">→ Building 8 strategy modules...</div>
-        <div style="color:rgba(255,255,255,.2)">████████████░░░ 78%</div>
-      </div>
-    </div>
-
-    <!-- Step 2 -->
-    <div class="lp-feat-row">
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:22px;order:1">
-        <div style="font-size:11px;color:rgba(255,255,255,.28);font-family:Inter,sans-serif;margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#34D399;display:inline-block"></span>Live CRM Intelligence</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="padding:12px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);border-radius:8px;display:flex;justify-content:space-between;align-items:flex-start">
-            <div><div style="font-size:12px;font-weight:700;color:#F87171;font-family:'DM Sans',sans-serif;margin-bottom:2px">3 deals at churn risk</div><div style="font-size:11px;color:rgba(255,255,255,.38);font-family:Inter,sans-serif">No activity 18+ days · Demo stage</div></div>
-            <div style="font-size:10px;font-weight:700;color:#F87171;background:rgba(239,68,68,.15);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif;white-space:nowrap">CRITICAL</div>
-          </div>
-          <div style="padding:12px;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15);border-radius:8px;display:flex;justify-content:space-between;align-items:flex-start">
-            <div><div style="font-size:12px;font-weight:700;color:#FBBF24;font-family:'DM Sans',sans-serif;margin-bottom:2px">Pipeline stalled at Proposal</div><div style="font-size:11px;color:rgba(255,255,255,.38);font-family:Inter,sans-serif">7 deals · avg 24 days · ₹34L at risk</div></div>
-            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.12);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif;white-space:nowrap">HIGH</div>
-          </div>
-          <div style="padding:12px;background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.14);border-radius:8px;display:flex;justify-content:space-between;align-items:flex-start">
-            <div><div style="font-size:12px;font-weight:700;color:#34D399;font-family:'DM Sans',sans-serif;margin-bottom:2px">ICP match rate: 67%</div><div style="font-size:11px;color:rgba(255,255,255,.38);font-family:Inter,sans-serif">12 of 18 deals fit your best ICP profile</div></div>
-            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif;white-space:nowrap">GOOD</div>
-          </div>
-          <div style="padding:12px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.14);border-radius:8px">
-            <div style="font-size:12px;font-weight:700;color:#818CF8;font-family:'DM Sans',sans-serif;margin-bottom:2px">Rep productivity gap detected</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.38);font-family:Inter,sans-serif">Rahul: 8 deals · Priya: 2 deals — same territory</div>
-          </div>
-        </div>
-      </div>
-      <div style="order:2">
-        <div style="display:inline-block;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.18);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;letter-spacing:.08em;margin-bottom:16px">STEP 02</div>
-        <h3 style="font-family:'DM Sans',sans-serif;font-size:clamp(20px,2.5vw,32px);font-weight:800;color:#fff;letter-spacing:-.5px;margin:0 0 12px">Connect Zoho. Agent reads your entire CRM.</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;font-family:Inter,sans-serif;margin:0 0 20px">Paste your access token. Engine 360 discovers every module, shows you a sample first, gets your permission, then pulls the full database and runs deep analysis.</p>
-        <div style="display:flex;flex-direction:column;gap:9px">
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">10-record sample first, full pull after approval</span></div>
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">Churn signals by severity — Critical, High, Medium</span></div>
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">Daily / weekly / monthly auto-sync</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 3 -->
-    <div class="lp-feat-row">
-      <div>
-        <div style="display:inline-block;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.18);border-radius:6px;padding:3px 12px;font-size:11px;font-weight:700;color:#C084FC;font-family:Inter,sans-serif;letter-spacing:.08em;margin-bottom:16px">STEP 03</div>
-        <h3 style="font-family:'DM Sans',sans-serif;font-size:clamp(20px,2.5vw,32px);font-weight:800;color:#fff;letter-spacing:-.5px;margin:0 0 12px">Agent rebuilds playbook from real findings.</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;font-family:Inter,sans-serif;margin:0 0 20px">Every email, WhatsApp message, call script and objection response is rewritten based on what your pipeline data reveals. Actual words. Not [PROSPECT_NAME] placeholders.</p>
-        <div style="display:flex;flex-direction:column;gap:9px">
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">Cold email, WhatsApp, call, LinkedIn scripts</span></div>
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">Objections rewritten from real CRM deal notes</span></div>
-          <div style="display:flex;gap:8px;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:rgba(255,255,255,.6);font-family:Inter,sans-serif">MEDDIC framework + 60-second lead response</span></div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px">
-          <div style="font-size:10px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:8px;letter-spacing:.1em">COLD EMAIL · SUBJECT LINE</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.8);font-family:Inter,sans-serif;line-height:1.6">How AssetPlus helped 3 MFDs above ₹200Cr AUM reduce client servicing time by 60%</div>
-        </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px">
-          <div style="font-size:10px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;margin-bottom:8px;letter-spacing:.1em">WHATSAPP OPENER</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.8);font-family:Inter,sans-serif;line-height:1.6">Hi Ramesh, saw you're managing 400+ clients. Most MFDs at your scale are losing ₹2-3L/yr in missed SIP renewals. Built something to fix it — 2 min?</div>
-        </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px">
-          <div style="font-size:10px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;margin-bottom:8px;letter-spacing:.1em">OBJECTION REFRAME</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.8);font-family:Inter,sans-serif;line-height:1.6">"Already using Excel" → "Completely understand — 73% of our customers came from Excel. The issue usually isn't the tool, it's the time spent on it. Can I show you what 20 minutes looks like vs 3 hours?"</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ 8 MODULES ════════════════════════════════════════════════════════ -->
-<div class="lp-section" style="background:#080B14;border-top:1px solid rgba(255,255,255,.06)">
-  <div class="lp-container">
-    <div style="text-align:center;margin-bottom:52px">
-      <div class="lp-section-label">Full OS</div>
-      <h2 class="lp-section-h2">8 modules. Everything your revenue team needs.</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px" class="modules-g">
-      <div class="lp-card"><div style="font-size:10px;color:#6366F1;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">01 · BUSINESS PROFILE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Positioning & Moat</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">TAM/SAM/SOM in ₹, hypothesis validation, 5 pillars status</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#34D399;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">02 · ICP ENGINE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">3 Profiles Ranked</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">5-filter scoring, buying triggers, day-in-life, pitch angle</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#FBBF24;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">03 · GTM STRATEGY</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Motion & Channels</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">PDCA cycle, 90-day roadmap, competitor battlecards</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#C084FC;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">04 · SALES PLAYBOOK</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Real Scripts</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">Email, call, WhatsApp, LinkedIn · MEDDIC · 60s response</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#38BDF8;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">05 · CRM BLUEPRINT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Full CRM Setup</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">HubSpot or Zoho, pipeline stages, lead scoring, automations</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#F87171;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">06 · CRM INTELLIGENCE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Live Analysis</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">Outreach cadence, churn signals, integration stack, sync schedule</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#34D399;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">07 · MIS & METRICS</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">6 Key Numbers</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">North star, CAC, LTV, daily MIS, weekly review, board pack</div></div>
-      <div class="lp-card"><div style="font-size:10px;color:#FBBF24;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">08 · 100-DAY PLAN</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Execution Calendar</div><div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.6;font-family:Inter,sans-serif">Week-by-week tasks, hiring signals, tool stack, anti-patterns</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ COMPARISON ════════════════════════════════════════════════════════ -->
-<div class="lp-section" style="background:#0D1117;border-top:1px solid rgba(255,255,255,.06)">
-  <div class="lp-container" style="max-width:900px">
-    <div style="text-align:center;margin-bottom:52px">
-      <div class="lp-section-label">Why Engine 360</div>
-      <h2 class="lp-section-h2" style="max-width:500px;margin:0 auto">Built for operators. Not consultants.</h2>
-    </div>
-    <div class="lp-compare" style="max-width:700px;margin:0 auto">
-      <div class="lp-compare-col">
-        <div style="font-size:11px;color:rgba(255,255,255,.3);font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">Generic GTM tools</div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Generic templates</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Fill 50+ fields manually</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:rgba(255,255,255,.4);font-family:Inter,sans-serif">USD-only, no India context</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:rgba(255,255,255,.4);font-family:Inter,sans-serif">No real scripts to send</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:rgba(255,255,255,.4);font-family:Inter,sans-serif">No CRM intelligence</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Paid subscriptions</span></div>
-      </div>
-      <div class="lp-compare-col right">
-        <div style="font-size:11px;color:#818CF8;font-weight:700;font-family:Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">Engine 360</div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="color:rgba(255,255,255,.8);font-family:Inter,sans-serif">Specific to your business</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="color:rgba(255,255,255,.8);font-family:Inter,sans-serif">URL only, 60 seconds</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="color:rgba(255,255,255,.8);font-family:Inter,sans-serif">₹ crores, India-native</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="color:rgba(255,255,255,.8);font-family:Inter,sans-serif">Actual scripts to send today</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="color:rgba(255,255,255,.8);font-family:Inter,sans-serif">Live Zoho CRM analysis</span></div>
-        <div class="lp-compare-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span style="color:rgba(255,255,255,.8);font-family:Inter,sans-serif">Free forever</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ TESTIMONIALS ════════════════════════════════════════════════════ -->
-<div class="lp-section" style="background:#080B14;border-top:1px solid rgba(255,255,255,.06)">
-  <div class="lp-container">
-    <div style="text-align:center;margin-bottom:52px">
-      <div class="lp-section-label">Early feedback</div>
-      <h2 class="lp-section-h2" style="max-width:500px;margin:0 auto">What founders are saying</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="testi-g">
-      <div class="lp-testi"><div class="lp-testi-stars">★★★★★</div><p class="lp-testi-q">"The ICP profiles were more specific than what we built over 6 months. Competitor battlecards are something we actually use in calls now."</p><div class="lp-testi-author"><div class="lp-testi-avatar" style="background:#6366F1">R</div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Rohit M.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Founder, B2B SaaS · Bengaluru</div></div></div></div>
+    <div class="lp-ticker-item"><img src="https://www.zohowebstatic.com/sites/zweb/images/zoho_general_pages/zoho-logo-web.png" alt="Zoho CRM" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg" alt="Google Sheets" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+    <div class="lp-ticker-item"><img src="https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png" alt="HubSpot" style="height:28px;width:28px;border-radius:6px"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height:26px;width:26px"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="height:26px;width:26px;border-radius:4px"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Gmail" style="height:22px;width:auto"></div>
+    <div class="lp-ticker-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg" alt="Slack" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+    <div class="lp-ticker-item"><img src="https://pipedrive.com/images/pipedrive-logo-dark.svg" alt="Pipedrive" style="height:28px;width:auto;filter:brightness(0) invert(.7);transition:filter .2s" onmouseenter="this.style.filter='brightness(0) invert(1)'" onmouseleave="this.style.filter='brightness(0) invert(.7)'"></div>
+  </div></div></div></div>
       <div class="lp-testi"><div class="lp-testi-stars">★★★★★</div><p class="lp-testi-q">"The WhatsApp scripts understood our MFD distribution model without me explaining it. Output in ₹ crores was a game changer for us."</p><div class="lp-testi-author"><div class="lp-testi-avatar" style="background:#16A34A">A</div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Ananya K.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">CEO, Fintech · Mumbai</div></div></div></div>
       <div class="lp-testi"><div class="lp-testi-stars">★★★★★</div><p class="lp-testi-q">"Connected Zoho in 5 minutes. The churn signal detection caught 3 deals about to go cold that I hadn't looked at in 2 weeks."</p><div class="lp-testi-author"><div class="lp-testi-avatar" style="background:#D97706">S</div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">Suresh P.</div><div style="font-size:11px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif">Co-founder, SaaS · Hyderabad</div></div></div></div>
     </div>
