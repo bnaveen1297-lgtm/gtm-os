@@ -678,8 +678,16 @@ async function callAI(prompt){
   }
 }
 function parseJ(text){
-  try{return JSON.parse(text.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim());}
-  catch(e){const m=text.match(/\{[\s\S]*\}|\[[\s\S]*\]/);if(m)try{return JSON.parse(m[0]);}catch(e2){}return{raw:text};}
+  if(!text||text==='{}'||text.trim()==='')return {};
+  try{
+    const cleaned=text.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+    return JSON.parse(cleaned);
+  }catch(e){
+    const m=text.match(/\{[\s\S]*\}/);
+    if(m)try{return JSON.parse(m[0]);}catch(e2){}
+    console.warn('parseJ failed:',text.slice(0,100));
+    return {};
+  }
 }
 
 async function generate(){
@@ -769,12 +777,17 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
     done[0]=true; updateOverlay(12,1,'Analysing market and competitors...');
 
     // Phase 1: biz + icp in parallel
+    updateOverlay(15,1,'Researching business and ICP...');
     const [bizR,icpR]=await Promise.all([
       callAI(bizP(ctx)),
       callAI(icpP(ctx))
     ]);
     S.data.biz=parseJ(bizR);
     S.data.icp=parseJ(icpR);
+    if(!S.data.biz?.companyName&&!S.data.biz?.oneLiner){
+      console.warn('biz response:',bizR?.slice(0,200));
+      if(!bizR||bizR.length<10)throw new Error('API returned empty response. Check CLAUDE_KEY in Vercel → Settings → Environment Variables.');
+    }
     done[1]=true;done[2]=true;done[3]=true;
     updateOverlay(35,4,'Building GTM strategy...');
 
@@ -809,8 +822,13 @@ INSTRUCTIONS: Research this business deeply. Use the website content. Infer busi
     updateOverlay(100,7,'Saving your GTM OS...');
 
     S.generated=true;
-    document.getElementById('badge-input').textContent='Done';
-    document.getElementById('badge-input').className='sbi-badge done';
+    // Verify we have real data before marking done
+    const hasRealData = S.data.biz?.companyName || S.data.biz?.oneLiner || S.data.biz?.businessModel;
+    if(!hasRealData){
+      throw new Error('Generation completed but no data was returned. The CLAUDE_KEY may be invalid or missing in Vercel Environment Variables.');
+    }
+    const badge=document.getElementById('badge-input');
+    if(badge){badge.textContent='Done';badge.className='sbi-badge done';}
     await saveData();
 
     // Done - release lock, remove overlay, go to dashboard
@@ -1886,7 +1904,7 @@ ${(d.objections||[]).map(o=>`<div style="margin-bottom:12px;background:var(--bg3
 // ── Render: CRM Blueprint ─────────────────────────────────────────────────
 function renderCRM(){
   const err=requireData('crm');if(err)return err;const d=S.data.crm;
-  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 05</div><div class="sec-title">CRM Blueprint</div><div class="sec-sub">${d.recommendation} recommended · ${d.monthlyCost}/mo · Setup: ${d.setupTime||'1–2 weeks'}</div></div>
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 05</div><div class="sec-title">CRM Blueprint</div><div class="sec-sub">${d.recommendation||'CRM'} recommended · ${d.monthlyCost||'Free tier available'} · Setup: ${d.setupTime||'1–2 weeks'}</div></div>
 ${outBlock('crm1','<svg style="width:15px;height:15px;stroke:#2563EB;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>','#EFF6FF','CRM Recommendation','Why this CRM fits your exact situation',()=>`
 <div style="display:flex;align-items:center;gap:18px;padding:18px;background:var(--blue-l);border-radius:var(--r2);margin-bottom:14px">
 <div style="font-size:44px;font-weight:900;color:var(--blue);font-family:var(--serif);line-height:1">${d.recommendation}</div>
