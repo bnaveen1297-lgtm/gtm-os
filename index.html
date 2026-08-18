@@ -1510,7 +1510,7 @@ window.addEventListener('popstate',function(e){
     <div class="auth-div"><div class="auth-div-line"></div><div class="auth-div-text">or</div><div class="auth-div-line"></div></div>
     <input class="auth-input" type="email" id="auth-email" placeholder="Email address">
     <input class="auth-input" type="password" id="auth-pass" placeholder="Password (min 6 characters)">
-    <button class="btn-auth" id="auth-btn" onclick="doEmail()">Create account</button>
+    <button class="btn-auth" id="auth-btn" onclick="submitAuth()">Create account</button>
     <div class="auth-switch" id="auth-switch">Already have an account? <a onclick="switchAuth()">Sign in</a></div>
   </div>
 </div>
@@ -1619,24 +1619,18 @@ const auth=getAuth(app),db=getFirestore(app),gp=new GoogleAuthProvider();
 
 let U=null,authMode='signup';
 
-// Show loading screen while Firebase resolves (prevents blank white flash)
+// Show loading screen while Firebase resolves
 (function(){
   const path=window.location.pathname;
   if(path.startsWith('/dashboard')||path.startsWith('/product')||path.startsWith('/solutions')||path.startsWith('/integrations')){
-    // Show a loading state - hide landing, show spinner
-    const lp=document.getElementById('view-landing');
-    if(lp){lp.style.display='none';}
-    // Create loading screen
+    // DON'T hide view-landing children — just overlay a loader on top
     const loader=document.createElement('div');
     loader.id='init-loader';
     loader.style.cssText='position:fixed;inset:0;background:#1B2B4B;display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px';
     loader.innerHTML='<div style="width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#6366F1;border-radius:50%;animation:spin .8s linear infinite"></div><div style="color:rgba(255,255,255,.5);font-size:13px;font-family:Inter,sans-serif">Loading Engine360...</div>';
     document.body.appendChild(loader);
-    // Auto-remove after 6s if Firebase never fires (fallback)
-    setTimeout(()=>{
-      const l=document.getElementById('init-loader');
-      if(l){l.remove();if(lp)lp.style.display='block';}
-    },6000);
+    // Auto-remove after 8s fallback — show landing underneath
+    setTimeout(()=>{const l=document.getElementById('init-loader');if(l)l.remove();},8000);
   }
 })();
 const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{}};
@@ -1662,7 +1656,16 @@ onAuthStateChanged(auth,async user=>{
 function showLanding(){
   const lp=document.getElementById('view-landing');
   const app=document.getElementById('view-app');
-  if(lp){lp.style.cssText='display:block!important;min-height:100vh;';}
+  if(lp){
+    lp.style.cssText='display:block!important;min-height:100vh;';
+    // Restore all direct children visibility (in case they were hidden)
+    Array.from(lp.children).forEach(el=>{
+      if(!el.id||(!el.id.startsWith('lp-product')&&!el.id.startsWith('lp-page-'))){
+        el.style.display='';
+      }
+    });
+    document.querySelectorAll('[id^="lp-product"],[id^="lp-page-"]').forEach(el=>el.style.display='none');
+  }
   if(app){app.style.cssText='display:none!important;';}
   document.body.style.overflow='auto';
 }
@@ -2977,6 +2980,7 @@ async function refreshFromCRM(){
 window.updateCRMSidebar=updateCRMSidebar;
 window.refreshFromCRM=refreshFromCRM;
 
+window.submitAuth=submitAuth;
 window.connectZoho=connectZoho;
 window.connectSheets=connectSheets;
 window.syncZoho=syncZoho;
