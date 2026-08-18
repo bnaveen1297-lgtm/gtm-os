@@ -1682,7 +1682,17 @@ function showApp(){
       'position:fixed!important;',
       'top:0!important;left:0!important;',
       'background:#1B2B4B!important;',
+      'z-index:500!important;',
     ].join('');
+    // Explicitly style children to ensure they're visible
+    const sb=app.querySelector('.sb');
+    const main=app.querySelector('.app-main');
+    if(sb&&!mob){
+      sb.style.cssText='width:200px!important;flex-shrink:0!important;background:#1B2B4B!important;display:flex!important;flex-direction:column!important;overflow-y:auto!important;height:100vh!important;';
+    }
+    if(main){
+      main.style.cssText='flex:1!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;min-width:0!important;background:#F0F2F8!important;';
+    }
   }
   document.body.style.overflow='hidden';
 }
@@ -1740,12 +1750,18 @@ function closeAuth(){const m=document.getElementById('auth-modal');if(m)m.classL
 function switchAuth(){authMode=authMode==='login'?'signup':'login';refreshAuth();}
 function refreshAuth(){
   const s=authMode==='signup';
-  document.getElementById('auth-h2').textContent=s?'Create your account':'Welcome back';
-  document.getElementById('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
-  document.getElementById('auth-submit').textContent=s?'Create account':'Sign in';
-  document.getElementById('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don\'t have an account? <a onclick=\"switchAuth()\">Sign up free</a>";
-  document.getElementById('auth-name-wrap').style.display=s?'block':'none';
-  document.getElementById('auth-err').classList.remove('show');
+  const h=document.getElementById('auth-title')||document.getElementById('auth-h2');
+  const sub=document.getElementById('auth-sub');
+  const btn=document.getElementById('auth-btn')||document.getElementById('auth-submit');
+  const sw=document.getElementById('auth-switch');
+  const nw=document.getElementById('auth-name-wrap');
+  const err=document.getElementById('auth-err');
+  if(h)h.textContent=s?'Create your account':'Welcome back';
+  if(sub)sub.textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
+  if(btn)btn.textContent=s?'Create account':'Sign in';
+  if(sw)sw.innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don't have an account? <a onclick="switchAuth()">Sign up free</a>";
+  if(nw)nw.style.display=s?'block':'none';
+  if(err)err.classList.remove('show');
 }
 function showErr(m){const e=document.getElementById('auth-err');e.textContent=m;e.classList.add('show');}
 async function signInGoogle(){
@@ -1756,10 +1772,11 @@ async function signInGoogle(){
 }
 async function submitAuth(){
   const email=document.getElementById('auth-email').value.trim();
-  const pw=document.getElementById('auth-pw').value;
-  const name=document.getElementById('auth-name')?.value.trim();
+  const pw=document.getElementById('auth-pass')?.value||document.getElementById('auth-pw')?.value||'';
+  const name=document.getElementById('auth-name')?.value?.trim()||'';
   if(!email||!pw){showErr('Email and password required');return;}
-  const btn=document.getElementById('auth-submit');btn.textContent='…';btn.disabled=true;
+  const btn=document.getElementById('auth-btn')||document.getElementById('auth-submit');
+  if(btn){btn.textContent='…';btn.disabled=true;}
   try{
     if(authMode==='signup'){
       const c=await createUserWithEmailAndPassword(auth,email,pw);
