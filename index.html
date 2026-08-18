@@ -428,15 +428,18 @@ const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{}
 onAuthStateChanged(auth,async user=>{
   U=user;
   if(user){
-    closeAuth();
-    showApp();
-    setSBUser(user);
-    const hasData=await loadData(user.uid);
-    // If previous session had data, go straight to dashboard
-    // Otherwise go to input
-    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav',e);try{nav('input');}catch(e2){}}
+    try{closeAuth();}catch(e){}
+    try{showApp();}catch(e){console.error('showApp error:',e);}
+    try{setSBUser(user);}catch(e){}
+    let hasData=false;
+    try{hasData=await loadData(user.uid);}catch(e){console.warn('loadData:',e.message);}
+    try{nav(hasData?'dashboard':'input');}catch(e){
+      console.error('nav error:',e);
+      const p=document.getElementById('app-page');
+      if(p)p.innerHTML='<div style="padding:32px;text-align:center"><div style="font-size:15px;font-weight:700;color:#1B2B4B;margin-bottom:10px">Ready</div><button onclick="nav('input')" style="padding:10px 20px;background:#2563EB;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">Go to input</button></div>';
+    }
   }else{
-    showLanding();
+    try{showLanding();}catch(e){location.reload();}
   }
 });
 
@@ -520,12 +523,13 @@ function closeAuth(){const m=document.getElementById('auth-modal');if(m)m.classL
 function switchAuth(){authMode=authMode==='login'?'signup':'login';refreshAuth();}
 function refreshAuth(){
   const s=authMode==='signup';
-  document.getElementById('auth-h2').textContent=s?'Create your account':'Welcome back';
-  document.getElementById('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
-  document.getElementById('auth-submit').textContent=s?'Create account':'Sign in';
-  document.getElementById('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don\'t have an account? <a onclick=\"switchAuth()\">Sign up free</a>";
-  document.getElementById('auth-name-wrap').style.display=s?'block':'none';
-  document.getElementById('auth-err').classList.remove('show');
+  const get=id=>document.getElementById(id);
+  if(get('auth-h2'))get('auth-h2').textContent=s?'Create your account':'Welcome back';
+  if(get('auth-sub'))get('auth-sub').textContent=s?'Get your full GTM strategy in 60 seconds.':'Sign in to continue.';
+  if(get('auth-submit'))get('auth-submit').textContent=s?'Create account':'Sign in';
+  if(get('auth-switch'))get('auth-switch').innerHTML=s?'Already have an account? <a onclick="switchAuth()">Sign in</a>':"Don't have an account? <a onclick="switchAuth()">Sign up free</a>";
+  if(get('auth-name-wrap'))get('auth-name-wrap').style.display=s?'block':'none';
+  if(get('auth-err'))get('auth-err').classList.remove('show');
 }
 function showErr(m){const e=document.getElementById('auth-err');e.textContent=m;e.classList.add('show');}
 async function signInGoogle(){
