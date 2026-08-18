@@ -1720,14 +1720,8 @@ function renderConnect(){
   </div>`;
 }
 
-function getNextSync(){
-  const schedule = S.schedule||'Weekly';
-  const now = new Date();
-  if(schedule==='Daily') { now.setDate(now.getDate()+1); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
-  if(schedule==='Weekly') { now.setDate(now.getDate()+7); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
-  now.setMonth(now.getMonth()+1); return now.toLocaleDateString('en-IN',{month:'long',day:'numeric'})+' at 9am';
-}
-window.getNextSync=getNextSync;
+
+
 
 // ── Connection logic ───────────────────────────────────────────────────────
 
