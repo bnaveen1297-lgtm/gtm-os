@@ -31,7 +31,7 @@ input,textarea,select{font-family:inherit;outline:none}
   --shadow:0 1px 3px rgba(27,43,75,.07),0 4px 16px rgba(27,43,75,.05);
   --shadow2:0 8px 32px rgba(27,43,75,.12);
 }
-.sb{width:236px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto}
+.sb{width:200px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto}
 .sb-top{padding:16px 14px 12px;border-bottom:1px solid var(--nav-rule)}
 .sb-user{margin-top:10px;display:flex;align-items:center;gap:8px;padding:8px 9px;background:rgba(255,255,255,.06);border-radius:var(--r);border:1px solid var(--nav-rule);cursor:pointer;position:relative}
 .sb-avatar{width:26px;height:26px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden}
@@ -1086,12 +1086,12 @@ window.showLandingHome=showLandingHome;
 <div id="view-app" style="display:none">
   <div class="sb">
     <div class="sb-top">
-      <div class="logo-svg logo-svg-sm"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="logo-svg logo-svg-sm" style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
   <path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#3B82F6" stroke-width="3.5" fill="rgba(255,255,255,0.06)"/>
   <rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#3B82F6"/>
   <rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="white"/>
   <rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="rgba(255,255,255,0.4)"/>
-</svg><div class="logo-wordmark logo-wordmark-sm" style="color:white">Engine <span class="w360">360</span></div></div>
+</svg><div style="color:white;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:800;letter-spacing:-.2px">Engine<span style="color:#818CF8">360</span></div></div>
       <div class="sb-user" style="cursor:pointer;position:relative" onclick="toggleUserMenu(this)">
         <div class="sb-avatar" id="sb-av">?</div>
         <div class="sb-uname" id="sb-nm">Loading</div>
@@ -2619,7 +2619,32 @@ ${icp.objectionToExpect?`<div style="background:var(--amber-l);border-radius:var
 // ── Render: GTM ───────────────────────────────────────────────────────────
 function renderGTM(){
   const err=requireData('gtm');if(err)return err;const d=S.data.gtm;
-  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 03</div><div class="sec-title">GTM Strategy</div><div class="sec-sub">Motion, channels, competitive positioning, and 90-day execution roadmap</div></div>
+  return`<div class="sec-hdr"><div class="sec-eyebrow">Module 03</div><div class="sec-title">GTM Strategy</div><div class="sec-sub">Motion, channels, competitive positioning, and 90-day execution roadmap</div>
+</div>
+<!-- GTM Plan Options -->
+<div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+  <button onclick="document.getElementById('gtm-quick').style.display='block';document.getElementById('gtm-full').style.display='none';this.style.background='var(--blue)';this.style.color='#fff';document.getElementById('gtm-full-btn').style.background='var(--bg2)';document.getElementById('gtm-full-btn').style.color='var(--ink2)'" style="padding:9px 18px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">⚡ Quick Start Plan</button>
+  <button id="gtm-full-btn" onclick="document.getElementById('gtm-full').style.display='block';document.getElementById('gtm-quick').style.display='none';this.style.background='var(--blue)';this.style.color='#fff';document.getElementById('gtm-quick').previousElementSibling&&null" style="padding:9px 18px;background:var(--bg2);color:var(--ink2);border:1px solid var(--rule);border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">📋 Full GTM Plan</button>
+</div>
+<!-- Quick Start -->
+<div id="gtm-quick">
+  <div style="background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(99,102,241,.06));border:1px solid rgba(37,99,235,.2);border-radius:var(--r2);padding:20px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;font-family:var(--mono)">⚡ Quick Start — Do these 5 things this week</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">1</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">GTM Motion: ${d.motion||'Account-based'}</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${d.motionReason||d.wedgeReason||'Start with your highest-fit ICP segment first'}</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">2</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">Wedge: ${d.wedge||'Define your entry point'}</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${d.wedgeReason||'Win here first before expanding'}</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">3</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">Top channel: ${(d.channels||[])[0]?.name||'Choose your primary channel'}</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${(d.channels||[])[0]?.why||'Focus your energy here first'}</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">4</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">Set up CRM this week</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${(d.roadmap?.days1_30||[])[0]||'Configure your CRM and import first 50 prospects'}</div></div></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:22px;height:22px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px">5</div><div><div style="font-size:13px;font-weight:700;color:var(--navy)">First hypothesis to test</div><div style="font-size:12px;color:var(--ink3);margin-top:3px">${(d.hypothesesToTest||[])[0]||'Run 20 outreach messages using your ICP profile'}</div></div></div>
+    </div>
+  </div>
+  <div style="text-align:center;padding:12px 0">
+    <button onclick="document.getElementById('gtm-full').style.display='block';document.getElementById('gtm-quick').style.display='none';document.getElementById('gtm-full-btn').style.background='var(--blue)';document.getElementById('gtm-full-btn').style.color='#fff'" style="padding:8px 20px;background:var(--bg2);color:var(--ink2);border:1px solid var(--rule);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">See full GTM plan →</button>
+  </div>
+</div>
+<!-- Full Plan wrapper -->
+<div id="gtm-full" style="display:none">
+<div style="display:none">placeholder</div>
 ${outBlock('gtm1','<svg style="width:15px;height:15px;stroke:#2563EB;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>','#EFF6FF','GTM Motion & Wedge','Recommended strategy and market entry',()=>`
 <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r2);padding:18px;margin-bottom:14px">
 <div style="font-size:26px;font-weight:800;color:var(--blue);margin-bottom:6px">${d.motion}</div>
@@ -2654,7 +2679,7 @@ ${c.weaknesses?`<div style="font-size:12px;color:var(--ink3);margin-bottom:7px">
 <div style="background:var(--green-l);border:1px solid rgba(5,150,105,.2);border-radius:var(--r);padding:10px 13px;font-size:12.5px;color:var(--ink);line-height:1.5">msg When they mention ${c.competitor}: "${c.winLine}"</div>
 ${c.landmine?`<div style="margin-top:7px;font-size:12px;padding:8px 12px;background:var(--amber-l);border-radius:var(--r);border-left:3px solid var(--amber)"><span style="font-weight:700;color:var(--amber)">Landmine: </span>"${c.landmine}"</div>`:''}
 </div>`).join('')}
-`)}`;
+`)}</div></div>`;
 }
 
 // ── Render: Playbook ──────────────────────────────────────────────────────
