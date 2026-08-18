@@ -162,31 +162,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   .roadmap-cols{grid-template-columns:1fr!important}
   .metric-grid{grid-template-columns:repeat(2,1fr)!important}
 }
-
-/* Landing mobile fixes */
-@media(max-width:640px){
-  /* Stats bar - 2 col */
-  .lp-stats-grid{grid-template-columns:repeat(2,1fr)!important}
-  /* How it works - stack */
-  .lp-how-grid{grid-template-columns:1fr!important}
-  /* Modules - 2 col */
-  .lp-mod-grid{grid-template-columns:repeat(2,1fr)!important}
-  /* Built for operators - stack */
-  .lp-ops-grid{grid-template-columns:1fr!important;gap:28px!important}
-  /* Comparison table - stack */
-  .lp-compare{grid-template-columns:1fr!important}
-  /* Testimonials - single col scroll */
-  .lp-test-grid{grid-template-columns:1fr!important}
-  /* Pricing card - stack */
-  .lp-price-inner{grid-template-columns:1fr!important;gap:20px!important}
-  /* Hero section */
-  .lp-hero-input{flex-direction:column!important}
-  .lp-hero-input input{border-radius:8px!important}
-  .lp-hero-input button{border-radius:8px!important;text-align:center!important}
-}
-@media(max-width:480px){
-  .lp-mod-grid{grid-template-columns:1fr!important}
-}
 </style>
 </head>
 <body>
@@ -196,347 +171,155 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div id="view-landing">
 
 <!-- NAV -->
-<nav style="position:fixed;top:0;left:0;right:0;z-index:200;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid #E2E8F0">
-  <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/></svg>
-    <span style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:800;color:#1B2B4B;letter-spacing:-.3px">Engine<span style="color:#2563EB">360</span></span>
+<nav style="position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,.97);border-bottom:1px solid #E2E8F0;backdrop-filter:blur(12px)">
+  <div class="logo-svg">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="white"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="#1B2B4B"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="#9CA3AF"/></svg>
+    <span class="logo-wordmark">Engine<span class="w360">360</span></span>
   </div>
-  <div style="display:flex;gap:8px;align-items:center">
-    <button onclick="openAuth('login')" style="padding:7px 16px;background:transparent;border:1.5px solid #CBD5E1;border-radius:6px;font-size:13px;font-weight:600;color:#1B2B4B;cursor:pointer;font-family:Inter,sans-serif">Sign in</button>
-    <button onclick="openAuth('signup')" style="padding:7px 16px;background:#2563EB;border:none;border-radius:6px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 2px 8px rgba(37,99,235,.3)">Start free</button>
+  <div style="display:flex;gap:8px">
+    <button onclick="openAuth('login')" style="padding:7px 16px;background:transparent;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:6px;font-size:13px;font-weight:600">Sign in</button>
+    <button onclick="openAuth('signup')" style="padding:8px 18px;background:#2563EB;color:#fff;border-radius:6px;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(37,99,235,.25)">Start free</button>
   </div>
 </nav>
 
 <!-- HERO -->
-<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 24px 60px;text-align:center;background:#fff;position:relative">
-  <!-- Background grid -->
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none"></div>
-  
-  <!-- Badge -->
-  <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:5px 14px 5px 8px;font-size:12px;color:#2563EB;margin-bottom:28px;font-weight:600;font-family:Inter,sans-serif;position:relative">
-    <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block"></span>
-    URL only · 8 Modules · 60 Seconds
-  </div>
-
-  <!-- Headline -->
-  <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(34px,7vw,72px);font-weight:800;line-height:1.03;letter-spacing:-2px;color:#1B2B4B;margin-bottom:20px;max-width:820px;position:relative">
-    Your complete<br><span style="color:#2563EB;position:relative">go-to-market<svg viewBox="0 0 300 12" width="100%" height="10" style="position:absolute;bottom:-4px;left:0;right:0"><path d="M5 8C80 2 200 2 295 8" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".4"/></svg></span><br>operating system.
-  </h1>
-
-  <!-- Sub -->
-  <p style="font-size:17px;color:#64748B;line-height:1.75;max-width:460px;margin:0 auto 32px;font-family:Inter,sans-serif;position:relative">
-    Paste your website URL. Engine 360 researches your business, builds your ICP, GTM strategy, sales playbook and CRM blueprint — in under 60 seconds.
-  </p>
-
-  <!-- URL input bar -->
-  <div class="lp-hero-input" style="display:flex;gap:8px;width:100%;max-width:520px;margin-bottom:14px;position:relative">
-    <input id="hero-url" type="url" placeholder="https://yourcompany.com" style="flex:1;padding:13px 18px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;color:#1B2B4B;background:#fff;outline:none;font-family:Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.06)" onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
-    <button onclick="heroStart()" style="padding:13px 22px;background:#2563EB;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;box-shadow:0 4px 14px rgba(37,99,235,.35)">Analyse →</button>
-  </div>
-  <p style="font-size:12px;color:#94A3B8;margin-bottom:36px;font-family:Inter,sans-serif;position:relative">No credit card · Free forever · Results in 60 seconds</p>
-
-  <!-- Social proof -->
-  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:48px;position:relative">
-    <div style="display:flex;align-items:center;gap:6px">
-      <div style="display:flex">
-        <div style="width:28px;height:28px;border-radius:50%;background:#2563EB;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-right:-8px">N</div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#16A34A;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-right:-8px">R</div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#D97706;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-right:-8px">A</div>
-        <div style="width:28px;height:28px;border-radius:50%;background:#7C3AED;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff">S</div>
-      </div>
-      <span style="font-size:13px;color:#64748B;font-family:Inter,sans-serif;margin-left:6px"><strong style="color:#1B2B4B">500+</strong> founders already using Engine 360</span>
+<div style="padding-top:60px">
+  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px 60px;background:#ffffff">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:5px 16px 5px 10px;font-size:12px;color:#2563EB;margin-bottom:28px;font-weight:600">
+      <span style="width:7px;height:7px;border-radius:50%;background:#16A34A;display:inline-block"></span>
+      8 Modules · URL to Strategy · 60 Seconds
     </div>
-    <div style="display:flex;gap:2px">
-      <span style="color:#F59E0B;font-size:14px">★★★★★</span>
-      <span style="font-size:12px;color:#64748B;font-family:Inter,sans-serif;margin-left:4px">4.9/5 from early users</span>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(30px,7vw,62px);font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:#1B2B4B;margin-bottom:20px;max-width:680px">
+      Your complete <span style="color:#2563EB">go-to-market</span> operating system.
+    </h1>
+    <p style="font-size:16px;color:#64748B;line-height:1.75;max-width:440px;margin:0 auto 32px">
+      Paste your website URL. Engine 360 researches your business and builds your full GTM strategy in 60 seconds.
+    </p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
+      <button onclick="openAuth('signup')" style="padding:14px 28px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
+      <button onclick="openAuth('login')" style="padding:14px 22px;background:#fff;color:#1B2B4B;border:1.5px solid #CBD5E1;border-radius:7px;font-size:15px;font-weight:500;cursor:pointer">Sign in to your account</button>
     </div>
-  </div>
-
-  <!-- Tags -->
-  <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:480px;position:relative">
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">ICP Profiles</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">GTM Strategy</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Sales Playbook</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">CRM Blueprint</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">Churn Signals</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">PDCA Cycle</span>
-    <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:5px 12px;border-radius:20px;border:1px solid #E2E8F0;font-family:Inter,sans-serif">100-Day Plan</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">ICP Profiles</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">GTM Strategy</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">Sales Playbook</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">CRM Blueprint</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">Churn Signals</span>
+      <span style="font-size:12px;color:#64748B;background:#F8F9FC;padding:4px 12px;border-radius:20px;border:1px solid #E2E8F0">90-Day Roadmap</span>
+    </div>
   </div>
 </div>
 
-<!-- STATS BAR -->
+<!-- STATS -->
 <div style="background:#1B2B4B;padding:0">
-  <div class="lp-stats-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
-    <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.08)">
-      <div style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">8<span style="color:#16A34A;font-size:28px">x</span></div>
-      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;font-family:Inter,sans-serif">strategy modules per run</div>
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">8<em style="font-style:normal;color:#16A34A">x</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">strategy modules per run</div>
     </div>
-    <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.08)">
-      <div style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">60<span style="color:#16A34A;font-size:28px">s</span></div>
-      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;font-family:Inter,sans-serif">URL to full GTM plan</div>
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">60<em style="font-style:normal;color:#16A34A">s</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">URL to full GTM plan</div>
     </div>
-    <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.08)">
-      <div style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">3<span style="color:#16A34A;font-size:28px">+</span></div>
-      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;font-family:Inter,sans-serif">ICP profiles ranked by fit</div>
+    <div style="padding:28px 24px;border-right:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">3<em style="font-style:normal;color:#16A34A">+</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">ICP profiles ranked by fit</div>
     </div>
-    <div style="padding:28px 32px">
-      <div style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">∞</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;font-family:Inter,sans-serif">analyses · free forever</div>
-    </div>
-  </div>
-</div>
-
-<!-- HOW IT WORKS -->
-<div style="padding:80px 24px;background:#F8F9FC;border-top:1px solid #E2E8F0">
-  <div style="max-width:900px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:48px">
-      <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">How it works</div>
-      <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0">Three steps. 60 seconds. Full strategy.</h2>
-    </div>
-    <div class="lp-how-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#E2E8F0;border-radius:12px;overflow:hidden">
-      <div style="background:#fff;padding:28px 24px;position:relative">
-        <div style="width:32px;height:32px;background:#2563EB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:14px">1</div>
-        <div style="font-size:14px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Paste your URL</div>
-        <div style="font-size:13px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Drop your website link. No forms, no questionnaires. If you don't have a website, describe your idea in one line.</div>
-      </div>
-      <div style="background:#fff;padding:28px 24px;position:relative">
-        <div style="width:32px;height:32px;background:#2563EB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:14px">2</div>
-        <div style="font-size:14px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">We research everything</div>
-        <div style="font-size:13px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Engine 360 reads your website, researches your market, competitors, ICP signals and LinkedIn data — you don't lift a finger.</div>
-      </div>
-      <div style="background:#fff;padding:28px 24px">
-        <div style="width:32px;height:32px;background:#16A34A;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:14px">3</div>
-        <div style="font-size:14px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Get your full OS</div>
-        <div style="font-size:13px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">8 modules land in your dashboard — ICP profiles, GTM strategy, real sales scripts, CRM setup, MIS and 100-day plan. All specific to you.</div>
-      </div>
+    <div style="padding:28px 24px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">4<em style="font-style:normal;color:#16A34A">+</em></div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">CRM blueprints with cadence</div>
     </div>
   </div>
 </div>
 
-<!-- 8 MODULES -->
-<div style="padding:80px 24px;background:#fff">
-  <div style="max-width:1100px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:48px">
-      <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">What you get</div>
-      <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0 0 12px">8 modules. One operating system.</h2>
-      <p style="font-size:15px;color:#64748B;font-family:Inter,sans-serif;max-width:480px;margin:0 auto;line-height:1.7">Every module is specific to your business — your competitors, your ICP, your market. Not a generic template.</p>
+<!-- MODULES GRID -->
+<div style="padding:64px 24px;max-width:1100px;margin:0 auto">
+  <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:monospace">What you get</div>
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;color:#1B2B4B;margin-bottom:36px;letter-spacing:-.5px">Eight modules. One operating system.</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:#E2E8F0;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">01</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Business Profile</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Positioning, moat, TAM/SAM/SOM, hypothesis validation, LinkedIn signals, five pillars status.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">TAM/SAM/SOM</span><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Hypothesis</span></div>
     </div>
-    <div class="lp-mod-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E2E8F0;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden">
-      <!-- Module cards -->
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#EFF6FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #BFDBFE">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#2563EB;font-family:'JetBrains Mono',monospace;margin-bottom:4px">01</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">Business Profile</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Positioning, moat, TAM/SAM/SOM, hypothesis validation, LinkedIn signals</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#F0FDF4;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #BBF7D0">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#16A34A;font-family:'JetBrains Mono',monospace;margin-bottom:4px">02</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">ICP Engine</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">3 profiles ranked by fit, 5-filter scoring, buying triggers, exact pitch angle</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#FFFBEB;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #FDE68A">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#D97706;font-family:'JetBrains Mono',monospace;margin-bottom:4px">03</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">GTM Strategy</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Motion verdict, channels, PDCA cycle, battlecards, 90-day roadmap</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#F5F3FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #DDD6FE">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#7C3AED;font-family:'JetBrains Mono',monospace;margin-bottom:4px">04</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">Sales Playbook</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Real scripts for email, call, WhatsApp, LinkedIn. MEDDIC. 60-second response.</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#EFF6FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #BFDBFE">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#2563EB;font-family:'JetBrains Mono',monospace;margin-bottom:4px">05</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">CRM Blueprint</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">HubSpot or Zoho setup, pipeline stages, lead scoring, automations</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#FEF2F2;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #FECACA">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#DC2626;font-family:'JetBrains Mono',monospace;margin-bottom:4px">06</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">CRM Intelligence</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Outreach cadence, integration stack, churn signals, weekly rhythm</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#F0FDF4;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #BBF7D0">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#16A34A;font-family:'JetBrains Mono',monospace;margin-bottom:4px">07</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">MIS and Metrics</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">6 key numbers, north star metric, daily MIS, weekly review, board pack</div>
-      </div>
-      <div style="background:#fff;padding:22px 18px">
-        <div style="width:36px;height:36px;background:#FFFBEB;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #FDE68A">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        </div>
-        <div style="font-size:10px;font-weight:700;color:#D97706;font-family:'JetBrains Mono',monospace;margin-bottom:4px">08</div>
-        <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:5px;font-family:'DM Sans',sans-serif">100-Day Plan</div>
-        <div style="font-size:11.5px;color:#64748B;line-height:1.6;font-family:Inter,sans-serif">Week-by-week tasks, hiring signals, tool stack, anti-patterns to avoid</div>
-      </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">02</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">ICP Engine</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">3 profiles scored across 5 filters (15-point scale), day-in-life, buying triggers, LinkedIn signals.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">5-Filter Score</span><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">LinkedIn</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">03</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">GTM Strategy</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Account-based, volume, or partner-led motion verdict. 90-day roadmap, PDCA cycle, battlecards.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">PDCA</span><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">90-Day Plan</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">04</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Sales Playbook</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Real scripts for email, LinkedIn, cold call, WhatsApp. 60-second lead response. MEDDIC. Objections.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F5F3FF;color:#7C3AED;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">MEDDIC</span><span style="font-size:9.5px;background:#F5F3FF;color:#7C3AED;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Scripts</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">05</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Blueprint</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">HubSpot or Zoho recommendation. Pipeline stages, lead scoring model, automation flows.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">HubSpot/Zoho</span><span style="font-size:9.5px;background:#EFF6FF;color:#2563EB;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Scoring</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">06</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">CRM Intelligence</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Outreach cadence day-by-day. Integration stack. Churn signals by severity. Weekly operating rhythm.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FEF2F2;color:#DC2626;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Churn Signals</span><span style="font-size:9.5px;background:#FEF2F2;color:#DC2626;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Cadence</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">07</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">MIS and Metrics</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">The 6 numbers from I Know Only Numbers. North star, daily MIS, weekly review, funnel benchmarks.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">6 Numbers</span><span style="font-size:9.5px;background:#F0FDF4;color:#16A34A;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Daily MIS</span></div>
+    </div>
+    <div style="background:#fff;padding:22px 20px">
+      <div style="font-size:10px;color:#9CA3AF;font-family:monospace;margin-bottom:12px">08</div>
+      <div style="font-size:13px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">100-Day Plan</div>
+      <div style="font-size:12px;color:#64748B;line-height:1.6;margin-bottom:10px">Week-by-week checklist with owners and tools. Hiring signal checklist per role. Tool stack. PDCA matrix.</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">100 Days</span><span style="font-size:9.5px;background:#FFFBEB;color:#D97706;padding:2px 7px;border-radius:3px;font-weight:700;font-family:monospace">Hiring Signals</span></div>
     </div>
   </div>
 </div>
 
-<!-- BUILT FOR OPERATORS -->
-<div style="padding:80px 24px;background:#1B2B4B">
-  <div style="max-width:1100px;margin:0 auto">
-    <div class="lp-ops-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-      <div>
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:10px">Why Engine 360</div>
-        <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,3.5vw,40px);font-weight:800;color:#fff;letter-spacing:-.8px;line-height:1.08;margin:0 0 14px">Built for operators.<br>Not consultants.</h2>
-        <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.75;font-family:Inter,sans-serif;margin:0 0 28px">Every output is specific to your business — your actual competitors, your market in the right currency, your ICP with real job titles. Not a generic playbook with your logo on it.</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:20px;height:20px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div style="font-size:13px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">India-aware: ₹ crores and lakhs, AMFI database, WhatsApp-first outreach</div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:20px;height:20px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div style="font-size:13px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Real scripts — not [INSERT NAME] templates. Actual words you can send today.</div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:20px;height:20px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div style="font-size:13px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Based on "I Know Only Numbers" — a field-tested GTM framework, not theory.</div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:20px;height:20px;background:rgba(22,163,74,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div style="font-size:13px;color:rgba(255,255,255,.75);font-family:Inter,sans-serif">Zoho CRM and Google Sheets connect for daily live pipeline visibility.</div>
-          </div>
-        </div>
+<!-- PRICING - FREE -->
+<div style="padding:64px 24px;background:#F8F9FC;border-top:1px solid #E2E8F0">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-family:monospace">Pricing</div>
+    <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:800;color:#1B2B4B;margin-bottom:12px;letter-spacing:-.5px">Everything free. Always.</h2>
+    <p style="font-size:15px;color:#64748B;line-height:1.7;margin-bottom:36px">All 8 modules, Zoho CRM and Google Sheets integration, strategy dashboard — free forever. No credit card. No trial.</p>
+    <div style="background:#fff;border:2px solid #2563EB;border-radius:12px;padding:32px;position:relative;box-shadow:0 0 0 4px rgba(37,99,235,.08)">
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:11px;font-weight:700;padding:4px 20px;border-radius:20px;white-space:nowrap;font-family:monospace">Free forever — no credit card needed</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:52px;font-weight:800;color:#1B2B4B;line-height:1;letter-spacing:-2px;margin-bottom:20px">Free</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin-bottom:28px">
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>All 8 strategy modules</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>ICP Engine — 3 profiles</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>GTM motion and channels</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Sales playbook and scripts</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM blueprint (HubSpot/Zoho)</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>CRM Intelligence layer</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>MIS and metrics dashboard</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>100-day execution plan</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Zoho CRM integration</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Google Sheets connector</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Strategy dashboard</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>PDCA and quadrant analysis</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Hypothesis validation</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>TAM/SAM/SOM calculation</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>LinkedIn signal research</div><div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#1B2B4B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="3" stroke-linecap="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
       </div>
-      <div class="lp-compare" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden">
-        <div style="background:#243660;padding:20px">
-          <div style="font-size:11px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em">Others</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Generic templates<br>Fill 50+ fields<br>USD-only output<br>No CRM setup<br>No real scripts<br>No competitor data</div>
-        </div>
-        <div style="background:#1e3a5f;padding:20px;border-left:2px solid #2563EB">
-          <div style="font-size:11px;color:#2563EB;font-family:'JetBrains Mono',monospace;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em">Engine 360</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.7;font-family:Inter,sans-serif">Specific to you<br>URL only<br>₹ or $ as needed<br>Full CRM blueprint<br>Actual scripts<br>Real battlecards</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<div style="padding:80px 24px;background:#F8F9FC;border-top:1px solid #E2E8F0">
-  <div style="max-width:1000px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:48px">
-      <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">Early feedback</div>
-      <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0">What founders are saying</h2>
-    </div>
-    <div class="lp-test-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
-        <div style="display:flex;gap:2px;margin-bottom:10px"><span style="color:#F59E0B">★★★★★</span></div>
-        <p style="font-size:13px;color:#374151;line-height:1.7;margin:0 0 14px;font-family:Inter,sans-serif">"Ran it on our SaaS URL. The ICP profiles were more specific than what we built over 6 months. The competitor battlecards are something we actually use in calls."</p>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:30px;height:30px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">R</div>
-          <div><div style="font-size:12px;font-weight:700;color:#1B2B4B;font-family:'DM Sans',sans-serif">Rohit M.</div><div style="font-size:11px;color:#94A3B8;font-family:Inter,sans-serif">Founder, B2B SaaS · Bangalore</div></div>
-        </div>
-      </div>
-      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
-        <div style="display:flex;gap:2px;margin-bottom:10px"><span style="color:#F59E0B">★★★★★</span></div>
-        <p style="font-size:13px;color:#374151;line-height:1.7;margin:0 0 14px;font-family:Inter,sans-serif">"The WhatsApp scripts and cold call openers are exactly what I needed. It understood our MFD distribution model without me explaining it."</p>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:30px;height:30px;border-radius:50%;background:#16A34A;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">A</div>
-          <div><div style="font-size:12px;font-weight:700;color:#1B2B4B;font-family:'DM Sans',sans-serif">Ananya K.</div><div style="font-size:11px;color:#94A3B8;font-family:Inter,sans-serif">CEO, Fintech startup · Mumbai</div></div>
-        </div>
-      </div>
-      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
-        <div style="display:flex;gap:2px;margin-bottom:10px"><span style="color:#F59E0B">★★★★★</span></div>
-        <p style="font-size:13px;color:#374151;line-height:1.7;margin:0 0 14px;font-family:Inter,sans-serif">"Finally a GTM tool that outputs in ₹ crores. The PDCA and priority matrix on the dashboard are things I review every Monday morning now."</p>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:30px;height:30px;border-radius:50%;background:#D97706;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif">S</div>
-          <div><div style="font-size:12px;font-weight:700;color:#1B2B4B;font-family:'DM Sans',sans-serif">Suresh P.</div><div style="font-size:11px;color:#94A3B8;font-family:Inter,sans-serif">Co-founder, EdTech · Hyderabad</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PRICING -->
-<div style="padding:80px 24px;background:#fff;border-top:1px solid #E2E8F0">
-  <div style="max-width:720px;margin:0 auto;text-align:center">
-    <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">Pricing</div>
-    <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0 0 10px">Free. No catch.</h2>
-    <p style="font-size:15px;color:#64748B;font-family:Inter,sans-serif;margin:0 0 36px;line-height:1.7">Engine 360 is completely free to use. All 8 modules, Zoho and Sheets integration, unlimited analyses.</p>
-
-    <div style="background:#fff;border:2px solid #2563EB;border-radius:14px;padding:36px;box-shadow:0 0 0 6px rgba(37,99,235,.06);position:relative;text-align:left">
-      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:11px;font-weight:700;padding:4px 18px;border-radius:20px;white-space:nowrap;font-family:'JetBrains Mono',monospace;letter-spacing:.08em">FREE FOREVER — NO CREDIT CARD</div>
-      <div class="lp-price-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start">
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:56px;font-weight:800;color:#1B2B4B;line-height:1;letter-spacing:-2px;margin-bottom:8px">₹0</div>
-          <div style="font-size:13px;color:#64748B;font-family:Inter,sans-serif;margin-bottom:24px;line-height:1.6">Everything included. No tiers, no limits, no upgrades needed.</div>
-          <button onclick="openAuth('signup')" style="width:100%;padding:13px;background:#2563EB;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All 8 strategy modules</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>ICP profiles ranked by fit</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Real sales scripts (not templates)</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>CRM blueprint and automations</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Zoho CRM integration</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Sheets connector</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Strategy dashboard with PDCA</div>
-          <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:#1B2B4B;font-family:Inter,sans-serif">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited analyses</div>
-        </div>
-      </div>
+      <button onclick="openAuth('signup')" style="width:100%;padding:14px;background:#2563EB;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(37,99,235,.3)">Start for free →</button>
     </div>
   </div>
 </div>
 
 <!-- FOOTER CTA -->
-<div style="padding:80px 24px;background:#1B2B4B;text-align:center;position:relative;overflow:hidden">
-  <div style="position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(37,99,235,.15) 0%,transparent 70%);pointer-events:none"></div>
-  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(26px,5vw,52px);font-weight:800;color:#fff;letter-spacing:-1.5px;margin:0 0 12px;line-height:1.06;position:relative">Your GTM OS is<br>60 seconds away.</h2>
-  <p style="font-size:15px;color:rgba(255,255,255,.55);max-width:380px;margin:0 auto 32px;line-height:1.7;font-family:Inter,sans-serif;position:relative">Free forever. Specific to your business. No forms.</p>
-  <button onclick="openAuth('signup')" style="padding:14px 32px;background:#16A34A;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 16px rgba(22,163,74,.4);position:relative">Start for free →</button>
+<div style="background:#1B2B4B;padding:72px 24px;text-align:center">
+  <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,44px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:12px">Ready to build your GTM engine?</h2>
+  <p style="font-size:15px;color:rgba(255,255,255,.6);max-width:380px;margin:0 auto 28px;line-height:1.7">Paste your URL and get your complete strategy in 60 seconds.</p>
+  <button onclick="openAuth('signup')" style="padding:14px 32px;background:#16A34A;color:#fff;border:none;border-radius:7px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(22,163,74,.35)">Start for free →</button>
 </div>
 
-<!-- FOOTER -->
-<div style="background:#12213A;padding:20px 28px;border-top:1px solid rgba(255,255,255,.06)">
-  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <svg viewBox="0 0 40 40" fill="none" width="20" height="20"><path d="M20 2L35.5 11V29L20 38L4.5 29V11L20 2Z" stroke="#2563EB" stroke-width="3.5" fill="transparent"/><rect x="11" y="13" width="14" height="3.5" rx="1.75" fill="#2563EB"/><rect x="11" y="18.25" width="14" height="3.5" rx="1.75" fill="white"/><rect x="11" y="23.5" width="10" height="3.5" rx="1.75" fill="rgba(255,255,255,.4)"/></svg>
-      <span style="font-size:13px;color:rgba(255,255,255,.3);font-family:Inter,sans-serif">© 2025 Engine 360. Built on "I Know Only Numbers" framework.</span>
-    </div>
-    <div style="display:flex;gap:18px">
-      <span style="font-size:12px;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;cursor:pointer">Privacy</span>
-      <span style="font-size:12px;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;cursor:pointer">Terms</span>
-    </div>
-  </div>
+<div style="background:rgba(0,0,0,.2);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+  <span style="font-size:11px;color:rgba(255,255,255,.3)">© 2026 Engine 360</span>
+  <div style="display:flex;gap:16px"><a href="#" style="font-size:11px;color:rgba(255,255,255,.3)">Privacy</a><a href="#" style="font-size:11px;color:rgba(255,255,255,.3)">Terms</a></div>
 </div>
 
-<!-- AUTH MODAL -->
+</div><!-- end view-landing -->
+
 <!-- AUTH MODAL -->
 <div class="modal-bg" id="auth-modal">
   <div class="auth-box" style="position:relative">
@@ -559,7 +342,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div class="auth-switch" id="auth-switch">Already have an account? <a onclick="switchAuth()">Sign in</a></div>
   </div>
 </div>
-
 
 <!-- APP -->
 <div id="view-app" style="display:none">
@@ -591,7 +373,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div class="sb-sec"><div class="sb-sec-label">Setup</div>
       <div class="sbi act" id="nav-input" onclick="nav('input')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Business Input<span class="sbi-badge" id="badge-input">Start</span></div>
       <div class="sbi" id="nav-connect" onclick="nav('connect')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data</div>
-      <div class="sbi" id="nav-livedata" onclick="nav('livedata')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>Live Intelligence</div><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data</div>
       <div class="sbi" id="nav-dashboard" onclick="nav('dashboard')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Strategy Dashboard</div>
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Strategy</div>
@@ -627,11 +408,6 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <div id="toast"></div>
 
 <script type="module">
-// Global error boundary - shows errors on screen instead of blank
-window.addEventListener('unhandledrejection',function(e){
-  console.error('Unhandled promise:',e.reason);
-});
-
 
 
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
@@ -656,7 +432,7 @@ onAuthStateChanged(auth,async user=>{
     const hasData=await loadData(user.uid);
     // If previous session had data, go straight to dashboard
     // Otherwise go to input
-    try{nav(hasData?'dashboard':'input');}catch(navErr){console.error('nav error:',navErr);}
+    try{nav(hasData?'dashboard':'input');}catch(e){console.error('nav error',e);try{nav('input');}catch(e2){}}
   }else{
     showLanding();
   }
@@ -723,9 +499,6 @@ async function loadData(uid){
       if(d.checks)S.checks=d.checks;
       if(d.connections)S.connections=d.connections;
       if(d.liveData)S.liveData=d.liveData;
-      if(d.discovery)S.discovery=d.discovery;
-      if(d.pulledData)S.pulledData=d.pulledData;
-      if(d.schedule)S.schedule=d.schedule;
       if(S.generated){
         const badge=document.getElementById('badge-input');
         if(badge){badge.textContent='Done';badge.className='sbi-badge done';}
@@ -736,7 +509,7 @@ async function loadData(uid){
 }
 async function saveData(){
   if(!U)return;
-  try{await setDoc(doc(db,'engine360',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,connections:S.connections||{},liveData:S.liveData||{},discovery:S.discovery||{},pulledData:S.pulledData||{},schedule:S.schedule||'Weekly',updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
+  try{await setDoc(doc(db,'engine360',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,connections:S.connections||{},liveData:S.liveData||{},updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
   catch(e){console.warn('Save',e);}
 }
 
@@ -782,7 +555,19 @@ async function signOut(){
   showLanding();
 }
 
-const PAGE_META={input:['Business Input','Tell us about your business'],biz:['Business Profile','Positioning, moat and market fit'],icp:['ICP Engine','Ideal customer profiles ranked by fit'],gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],playbook:['Sales Playbook','Scripts, objections and qualification'],crm:['CRM Blueprint','Pipeline, scoring and automations'],crmi:['CRM Intelligence','Cadence, integrations, churn signals and productivity'],mis:['MIS & Metrics','KPIs, benchmarks and review cadence'],checklist:['Execution Plan','Week-by-week action checklist']};
+const PAGE_META={
+  input:['Business Input','URL only — we research the rest'],
+  connect:['Connect Data','Zoho CRM and Google Sheets'],
+  dashboard:['Strategy Dashboard','Full strategic overview'],
+  biz:['Business Profile','Positioning, moat, TAM/SAM/SOM'],
+  icp:['ICP Engine','3 profiles scored across 5 filters'],
+  gtm:['GTM Strategy','Motion, channels and 90-day roadmap'],
+  playbook:['Sales Playbook','Scripts, objections and qualification'],
+  crm:['CRM Blueprint','Pipeline, scoring and automations'],
+  crmi:['CRM Intelligence','Cadence, integrations and churn signals'],
+  mis:['MIS and Metrics','6 numbers, north star, daily MIS'],
+  checklist:['Execution Plan','100-day calendar and tool stack']
+};
 
 let _generating=false;
 function nav(page){
@@ -810,7 +595,19 @@ function nav(page){
   const subEl=document.getElementById('app-sub');
   if(titleEl)titleEl.textContent=t;
   if(subEl)subEl.textContent=s;
-  const renders={input:renderInput,connect:renderConnect,livedata:renderLiveIntel,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
+  const renders={
+    input:renderInput,
+    connect:renderConnect,
+    dashboard:renderDashboard,
+    biz:renderBiz,
+    icp:renderICP,
+    gtm:renderGTM,
+    playbook:renderPlaybook,
+    crm:renderCRM,
+    crmi:renderCRMI,
+    mis:renderMIS,
+    checklist:renderChecklist
+  };
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
   if(pageEl)pageEl.innerHTML=fn?fn():'';
@@ -869,12 +666,6 @@ function renderInput(){
   </div>`;
 }
 
-function heroStart(){
-  const url=document.getElementById('hero-url')?.value?.trim();
-  if(url)S.input.url=url;
-  openAuth('signup');
-}
-window.heroStart=heroStart;
 function bindInput(){
   const urlEl=document.getElementById('in-url');
   const ideaEl=document.getElementById('in-idea');
@@ -1560,542 +1351,304 @@ RULES:
   "quickWins": ["action that can show results in first 7 days", "quick win 2", "quick win 3"]
 }`;}
 
-// ── Render: Connect ─────────────────────────────────────────────────────
-
-function renderZohoSetup(){
-  return`
-  <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:14px;margin-bottom:14px">
-    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">How to get your Zoho Access Token</div>
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">1.</span>Go to <strong>accounts.zoho.in/developerconsole</strong></div>
-      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">2.</span>Click <strong>Self Client → Generate Code</strong></div>
-      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">3.</span>Scope: <code style="background:var(--bg3);padding:1px 6px;border-radius:3px;font-size:11px">ZohoCRM.modules.ALL,ZohoCRM.settings.ALL</code></div>
-      <div style="font-size:12px;color:var(--ink2);display:flex;gap:8px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">4.</span>Duration: <strong>10 minutes</strong> → Copy the token</div>
-    </div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 100px;gap:8px;margin-bottom:10px">
-    <div>
-      <label class="input-label">Access Token</label>
-      <input type="password" id="zoho-token" placeholder="1000.xxxxxxxxxx..." style="font-size:12px">
-    </div>
-    <div>
-      <label class="input-label">Data Center</label>
-      <select id="zoho-dc" style="font-size:12px">
-        <option value="in" selected>India (.in)</option>
-        <option value="com">Global (.com)</option>
-        <option value="eu">EU (.eu)</option>
-        <option value="com.au">AU</option>
-      </select>
-    </div>
-  </div>
-  <button class="btn btn-blue" onclick="connectZoho()">Connect and discover database</button>`;
-}
-
-function renderZohoConnected(zoho, disc){
-  const modules = disc.modules||[];
-  const hasModules = modules.length > 0;
-  const totalRecords = modules.reduce((s,m)=>s+(m.totalRecords||0),0);
-
-  return`
-  <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:16px">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-    <span style="font-size:12.5px;color:var(--green);font-weight:600">${zoho.org||'Zoho CRM'} connected · ${zoho.dc||'in'} datacenter</span>
-    <button class="btn btn-sm" style="margin-left:auto;background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.15)" onclick="disconnectSource('zoho')">Disconnect</button>
-  </div>
-
-  ${hasModules ? `
-  <!-- DATABASE DISCOVERY RESULTS -->
-  <div style="margin-bottom:14px">
-    <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin-bottom:10px">Database discovered — ${modules.filter(m=>m.hasRecords).length} modules with ${totalRecords.toLocaleString()} total records</div>
-    <div style="display:flex;flex-direction:column;gap:6px">
-      ${modules.filter(m=>m.hasRecords).map(m=>`
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r)">
-        <div style="flex:1">
-          <div style="font-size:12.5px;font-weight:600;color:var(--navy)">${m.pluralLabel||m.name}</div>
-          <div style="font-size:11px;color:var(--ink3)">${(m.totalRecords||0).toLocaleString()} records</div>
-        </div>
-        <div style="display:flex;gap:6px">
-          <button class="btn btn-border btn-sm" onclick="viewSample('${m.apiName}','${m.pluralLabel||m.name}')">See sample</button>
-          <button class="btn btn-sm" style="background:var(--blue-l);color:var(--blue);border:1px solid rgba(37,99,235,.2)" onclick="pullModule('${m.apiName}','${m.pluralLabel||m.name}',${m.totalRecords||0})">Pull all</button>
-        </div>
-      </div>`).join('')}
-    </div>
-  </div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap">
-    <button class="btn btn-blue" onclick="pullAllModules()">Pull all data and run AI analysis</button>
-    <button class="btn btn-border btn-sm" onclick="discoverDatabase()">Re-discover</button>
-  </div>
-  ` : `
-  <div style="display:flex;gap:10px;flex-wrap:wrap">
-    <button class="btn btn-blue" onclick="discoverDatabase()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      Discover my database
-    </button>
-  </div>`}
-
-  <!-- SAMPLE DATA VIEWER -->
-  <div id="sample-viewer" style="display:none;margin-top:16px"></div>
-
-  <!-- PULL PROGRESS -->
-  <div id="pull-progress" style="display:none;margin-top:16px"></div>`;
-}
-
-function getNextSync(){
-  const schedule = S.schedule||'Weekly';
-  const now = new Date();
-  if(schedule==='Daily') { now.setDate(now.getDate()+1); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
-  if(schedule==='Weekly') { now.setDate(now.getDate()+7); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
-  now.setMonth(now.getMonth()+1); return now.toLocaleDateString('en-IN',{month:'long',day:'numeric'})+' at 9am';
-}
-window.getNextSync=getNextSync;
-
+// ── Render: Connect ────────────────────────────────────────────────────────
 function renderConnect(){
-  const conn = S.connections||{};
-  const disc = S.discovery||{};
+  const conn=S.connections||{};
   return`
   <div class="sec-hdr">
     <div class="sec-eyebrow">Connect Data Sources</div>
-    <div class="sec-title">Pull your real data</div>
-    <div class="sec-sub">Connect Zoho CRM to discover your entire database. We'll show you sample data first, get your approval, then pull everything and run AI analysis across your pipeline, churn, and team productivity.</div>
+    <div class="sec-title">Live data makes Engine 360 your daily OS</div>
+    <div class="sec-sub">Connect Zoho CRM or Google Sheets to get live pipeline health, MIS numbers, churn signals and weekly review data every time you open the app.</div>
   </div>
 
-  <!-- ZOHO CONNECTION -->
+  <!-- ZOHO CRM -->
   <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
-      <div style="width:42px;height:42px;border-radius:10px;background:#FEF2F2;border:1.5px solid #FECACA;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#EF4444;font-family:'DM Sans',sans-serif;flex-shrink:0">Z</div>
+    <div style="padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px">
+      <div style="width:44px;height:44px;border-radius:10px;background:#EEF2FF;border:1px solid #C7D2FE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#E00"/><text x="5" y="27" font-size="20" font-weight="800" fill="white" font-family="Arial">Z</text></svg>
+      </div>
       <div style="flex:1">
         <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Zoho CRM</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Discover all modules, pull full database, run AI analysis</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Pull live pipeline, deal stages, lead counts, conversion rates and team activity</div>
       </div>
-      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
+      <div id="zoho-status-badge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
     </div>
-    <div style="padding:18px 20px">
-      ${conn.zoho ? renderZohoConnected(conn.zoho, disc) : renderZohoSetup()}
+    <div style="padding:20px 22px">
+      ${conn.zoho?`
+      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div style="font-size:12.5px;color:var(--green);font-weight:600">Zoho CRM connected — org: ${conn.zoho.org||'Your org'}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px" id="zoho-stats">
+        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif" id="z-leads">—</div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Total Leads</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif" id="z-deals">—</div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Open Deals</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:22px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif" id="z-pipeline">—</div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:2px">Pipeline Value</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-border btn-sm" onclick="syncZoho()">Sync now</button>
+        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.2)" onclick="disconnectZoho()">Disconnect</button>
+      </div>
+      `:`
+      <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:16px;margin-bottom:16px">
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">What you need from Zoho</div>
+        <div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">1.</span>Go to <strong>Zoho CRM > Setup > Developer Space > Client ID</strong></div>
+        <div style="display:flex;gap:6px;margin-bottom:5px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">2.</span>Create a self-client OAuth token with scope: <code style="background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:11px">ZohoCRM.modules.ALL</code></div>
+        <div style="display:flex;gap:6px;font-size:12px;color:var(--ink2)"><span style="color:var(--blue);font-weight:700">3.</span>Paste your Access Token and Data Center below</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 120px;gap:10px;margin-bottom:12px">
+        <div>
+          <label class="input-label">Zoho Access Token</label>
+          <input type="password" id="zoho-token" placeholder="1000.xxxxxxxxxxxx..." style="font-size:12px">
+        </div>
+        <div>
+          <label class="input-label">Data Center</label>
+          <select id="zoho-dc">
+            <option value="com">Global (.com)</option>
+            <option value="in" selected>India (.in)</option>
+            <option value="eu">Europe (.eu)</option>
+            <option value="com.au">Australia</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:12px">
+        <label class="input-label">Organization ID (optional)</label>
+        <input type="text" id="zoho-org" placeholder="Your Zoho org ID" style="font-size:12px">
+      </div>
+      <button class="btn btn-blue" onclick="connectZoho()" style="font-family:'DM Sans',sans-serif">Connect Zoho CRM</button>
+      `}
     </div>
   </div>
 
   <!-- GOOGLE SHEETS -->
   <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
-      <div style="width:42px;height:42px;border-radius:10px;background:#F0FDF4;border:1.5px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect x="6" y="3" width="28" height="34" rx="3" fill="#34A853"/><rect x="12" y="13" width="16" height="2" rx="1" fill="white"/><rect x="12" y="17" width="16" height="2" rx="1" fill="white"/><rect x="12" y="21" width="11" height="2" rx="1" fill="white"/><rect x="12" y="25" width="13" height="2" rx="1" fill="white"/></svg>
+    <div style="padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px">
+      <div style="width:44px;height:44px;border-radius:10px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="3" fill="#34A853"/><rect x="14" y="16" width="20" height="2.5" rx="1" fill="white"/><rect x="14" y="21" width="20" height="2.5" rx="1" fill="white"/><rect x="14" y="26" width="14" height="2.5" rx="1" fill="white"/><rect x="14" y="31" width="16" height="2.5" rx="1" fill="white"/></svg>
       </div>
       <div style="flex:1">
         <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Google Sheets</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker or MIS sheet</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker, MIS, or pipeline sheet for daily number updates</div>
       </div>
-      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
+      <div id="sheets-status-badge" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
     </div>
-    <div style="padding:18px 20px">
-      ${conn.sheets ? `
-      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span style="font-size:12.5px;color:var(--green);font-weight:600">${conn.sheets.name||'Sheet'} connected</span>
+    <div style="padding:20px 22px">
+      ${conn.sheets?`
+      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div style="font-size:12.5px;color:var(--green);font-weight:600">Google Sheets connected — ${conn.sheets.name||'Your sheet'}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px">Mapped columns</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
+          ${Object.entries(conn.sheets.mapping||{date:'A',leads:'B',revenue:'C',stage:'D'}).map(([k,v])=>`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:8px 10px;display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--ink3)">${k}</span><span style="font-weight:700;color:var(--blue);font-family:var(--mono)">Col ${v}</span></div>`).join('')}
+        </div>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-border btn-sm" onclick="syncAndAnalyse('sheets')">Sync now</button>
-        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.15)" onclick="disconnectSource('sheets')">Disconnect</button>
-      </div>` : `
-      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.15);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12.5px;color:var(--navy);line-height:1.6">
-        Share your Google Sheet (Anyone with link can view) and paste the URL below.
+        <button class="btn btn-border btn-sm" onclick="syncSheets()">Sync now</button>
+        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,68,.2)" onclick="disconnectSheets()">Disconnect</button>
       </div>
-      <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="margin-bottom:10px;font-size:12px">
-      <button class="btn btn-blue" onclick="connectSheets()">Connect Sheets</button>`}
+      `:`
+      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:14px;margin-bottom:16px">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">Use our template sheet</div>
+        <div style="font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6">Copy our pre-built MIS template with all the columns Engine 360 needs — daily leads, revenue, pipeline stages, team activity.</div>
+        <a href="https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/copy" target="_blank" class="btn btn-blue btn-sm" style="text-decoration:none;display:inline-flex">Copy MIS template</a>
+      </div>
+      <div style="margin-bottom:12px">
+        <label class="input-label">Google Sheet URL</label>
+        <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="font-size:12px">
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px">Make sure the sheet is shared as "Anyone with link can view"</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+        <div>
+          <label class="input-label" style="font-size:10px">Date column</label>
+          <input type="text" id="col-date" placeholder="A" value="A" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Leads column</label>
+          <input type="text" id="col-leads" placeholder="B" value="B" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Revenue column</label>
+          <input type="text" id="col-rev" placeholder="C" value="C" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Stage column</label>
+          <input type="text" id="col-stage" placeholder="D" value="D" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Owner column</label>
+          <input type="text" id="col-owner" placeholder="E" value="E" style="font-size:12px;text-align:center">
+        </div>
+        <div>
+          <label class="input-label" style="font-size:10px">Status column</label>
+          <input type="text" id="col-status" placeholder="F" value="F" style="font-size:12px;text-align:center">
+        </div>
+      </div>
+      <button class="btn btn-blue" onclick="connectSheets()" style="font-family:'DM Sans',sans-serif">Connect Google Sheets</button>
+      `}
     </div>
   </div>
 
-  <!-- SCHEDULED SYNC -->
-  <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
-      <div class="out-icon" style="color:var(--amber)">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Scheduled Sync</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Auto-pull data and refresh insights on a schedule</div>
-      </div>
-    </div>
-    <div style="padding:18px 20px">
-      <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">How often should Engine 360 pull fresh data from your connected sources?</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-        ${['Daily','Weekly','Monthly'].map(freq=>`<button onclick="setSchedule('${freq}')" style="padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;border:1.5px solid ${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--rule2)'};background:${(S.schedule||'Weekly')===freq?'var(--blue-l)':'var(--bg)'};color:${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--ink2)'}">${freq}</button>`).join('')}
-      </div>
-      <div style="font-size:12px;color:var(--ink3)">Next sync: <strong style="color:var(--navy)">${getNextSync()}</strong></div>
+  <!-- DAILY OS PREVIEW -->
+  <div style="background:var(--navy);border-radius:var(--r2);padding:20px 22px;margin-bottom:14px">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);margin-bottom:10px">What connecting unlocks</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+      ${[
+        ['Morning MIS','Daily numbers — leads added, revenue vs target, pipeline movement'],
+        ['Weekly Review','Auto-generated agenda from your book framework with live data'],
+        ['Pipeline Health','Deals by stage, stalled deals, conversion rate per stage'],
+        ['Churn Signals','At-risk accounts flagged daily based on activity signals'],
+        ['Team Tracker','Who owns what, cadence compliance, follow-up overdue'],
+        ['Live Benchmarks','Your numbers vs book benchmarks — CAC, LTV, churn rate']
+      ].map(([t,d])=>`<div style="background:rgba(255,255,255,.06);border-radius:var(--r);padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">${t}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5">${d}</div>
+      </div>`).join('')}
     </div>
   </div>`;
 }
 
-
-
-
 // ── Connection logic ───────────────────────────────────────────────────────
-
 async function connectZoho(){
   const token=document.getElementById('zoho-token')?.value?.trim();
   const dc=document.getElementById('zoho-dc')?.value||'in';
+  const org=document.getElementById('zoho-org')?.value?.trim();
   if(!token){toast('Enter your Zoho Access Token');return;}
+
   const btn=event.target;btn.textContent='Connecting...';btn.disabled=true;
+
   try{
-    const r=await fetch('/zoho?action=test&dc='+dc,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token})});
+    // Test the connection via our proxy
+    const r=await fetch('/zoho?action=test&dc='+dc,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token,org})
+    });
     const d=await r.json();
     if(d.error)throw new Error(d.error);
+
+    // Save connection details (token stored in Firestore for user)
     if(!S.connections)S.connections={};
-    S.connections.zoho={token,dc,org:d.org||'Zoho CRM',connected:true};
+    S.connections.zoho={token,dc,org:org||d.org||'',connected:true,name:d.org||'Zoho CRM'};
     await saveData();
-    toast('Connected! Discovering your database...');
+    toast('Zoho CRM connected!');
     nav('connect');
-    setTimeout(discoverDatabase,500);
   }catch(e){
-    toast('Failed: '+e.message);
-    btn.textContent='Connect and discover database';
-    btn.disabled=false;
+    toast('Connection failed: '+e.message);
+    btn.textContent='Connect Zoho CRM';btn.disabled=false;
   }
-}
-
-async function discoverDatabase(){
-  const conn=S.connections?.zoho;
-  if(!conn){toast('Connect Zoho first');return;}
-  toast('Discovering your database...');
-  try{
-    const r=await fetch('/zoho?action=discover&dc='+conn.dc,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:conn.token})});
-    const d=await r.json();
-    if(d.error)throw new Error(d.error);
-    if(!S.discovery)S.discovery={};
-    S.discovery.modules=d.modules;
-    S.discovery.discoveredAt=new Date().toISOString();
-    await saveData();
-    toast(`Found ${d.modules.filter(m=>m.hasRecords).length} modules`);
-    nav('connect');
-  }catch(e){toast('Discovery failed: '+e.message);}
-}
-
-async function viewSample(apiName, label){
-  const conn=S.connections?.zoho;
-  if(!conn)return;
-  const el=document.getElementById('sample-viewer');
-  if(!el)return;
-  el.style.display='block';
-  el.innerHTML=`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:16px">
-    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:'DM Sans',sans-serif">Loading sample from ${label}...</div>
-    <div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:12px"><div style="width:14px;height:14px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Fetching 10 records...</div>
-  </div>`;
-  try{
-    const r=await fetch('/zoho?action=sample&dc='+conn.dc+'&module='+apiName+'&count=10',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:conn.token})});
-    const d=await r.json();
-    if(d.error)throw new Error(d.error);
-
-    const fieldMap=d.fieldMap||{};
-    const records=d.records||[];
-
-    // Show sample records in a table
-    const allKeys=records.length?Object.keys(records[0]).filter(k=>k!=='id'&&records[0][k]!==null&&records[0][k]!==undefined).slice(0,6):[];
-
-    el.innerHTML=`<div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);overflow:hidden">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between">
-        <div>
-          <div style="font-size:13px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Sample: ${label}</div>
-          <div style="font-size:11px;color:var(--ink3);margin-top:2px">Showing ${records.length} of ${(d.totalRecords||0).toLocaleString()} total records</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <div style="font-size:11px;font-weight:700;color:var(--amber);background:var(--amber-l);padding:3px 10px;border-radius:3px;font-family:var(--mono)">SAMPLE ONLY</div>
-          <button class="btn btn-blue btn-sm" onclick="pullModule('${apiName}','${label}',${d.totalRecords||0})">Pull all ${(d.totalRecords||0).toLocaleString()} records →</button>
-        </div>
-      </div>
-      <div style="overflow-x:auto">
-        <table style="width:100%;border-collapse:collapse;font-size:11.5px">
-          <thead><tr style="background:var(--bg2)">${allKeys.map(k=>`<th style="padding:8px 10px;text-align:left;font-weight:700;color:var(--ink3);border-bottom:1px solid var(--rule);white-space:nowrap">${fieldMap[k]||k}</th>`).join('')}</tr></thead>
-          <tbody>${records.map((rec,i)=>`<tr style="border-bottom:1px solid var(--rule);${i%2?'background:var(--bg2)':''}">${allKeys.map(k=>`<td style="padding:7px 10px;color:var(--navy);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${typeof rec[k]==='object'?rec[k]?.name||JSON.stringify(rec[k]):rec[k]||'—'}</td>`).join('')}</tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-      <div style="padding:12px 16px;background:var(--amber-l);border-top:1px solid var(--rule);display:flex;align-items:center;gap:10px">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span style="font-size:12px;color:#92400E">This is sample data only. Engine 360 has not read your full database yet. Tap "Pull all" to give permission and run full analysis.</span>
-      </div>
-    </div>`;
-  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px;padding:12px">Failed to load sample: ${e.message}</div>`;}
-}
-
-async function pullModule(apiName, label, totalCount){
-  const conn=S.connections?.zoho;
-  if(!conn)return;
-
-  // Ask for permission
-  if(!confirm(`Pull all ${totalCount.toLocaleString()} records from ${label}?\n\nEngine 360 will read this data to run AI analysis. It will be stored in your account only.`))return;
-
-  const progressEl=document.getElementById('pull-progress');
-  if(progressEl){
-    progressEl.style.display='block';
-    progressEl.innerHTML=`<div style="background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r2);padding:16px">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-        <div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0"></div>
-        <div style="font-size:13px;font-weight:600;color:var(--navy)">Pulling ${label} (up to 500 records)...</div>
-      </div>
-      <div style="height:4px;background:var(--rule);border-radius:2px;overflow:hidden"><div style="width:60%;height:100%;background:var(--blue);border-radius:2px;animation:pulse 1.5s infinite"></div></div>
-    </div>`;
-  }
-
-  try{
-    const r=await fetch('/zoho?action=pullall&dc='+conn.dc+'&module='+apiName+'&max=500',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:conn.token})});
-    const d=await r.json();
-    if(d.error)throw new Error(d.error);
-
-    // Store pulled data
-    if(!S.pulledData)S.pulledData={};
-    S.pulledData[apiName]={
-      label,
-      records:d.records||[],
-      analytics:d.analytics||{},
-      totalPulled:d.totalPulled||0,
-      pulledAt:new Date().toISOString()
-    };
-    await saveData();
-    toast(`Pulled ${d.totalPulled} ${label} records`);
-
-    if(progressEl){
-      progressEl.innerHTML=`<div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r2);padding:16px">
-        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">✓ ${d.totalPulled} ${label} records pulled</div>
-        <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">Data stored in your Engine 360 account. Ready for AI analysis.</div>
-        <button class="btn btn-blue btn-sm" onclick="nav('livedata')">Run AI analysis →</button>
-      </div>`;
-    }
-  }catch(e){
-    if(progressEl)progressEl.innerHTML=`<div style="color:var(--red);font-size:13px;padding:12px">Pull failed: ${e.message}</div>`;
-    toast('Pull failed: '+e.message);
-  }
-}
-
-async function pullAllModules(){
-  const modules=(S.discovery?.modules||[]).filter(m=>m.hasRecords);
-  if(!modules.length){toast('No modules found. Run discovery first.');return;}
-
-  if(!confirm(`Pull data from all ${modules.length} modules?\n\nThis will read your full Zoho database and run AI analysis. ${modules.reduce((s,m)=>s+(m.totalRecords||0),0).toLocaleString()} total records will be pulled (up to 500 per module).`))return;
-
-  toast('Starting full database pull...');
-  for(const mod of modules){
-    await pullModule(mod.apiName, mod.pluralLabel||mod.name, mod.totalRecords||0);
-  }
-  toast('All data pulled. Running AI analysis...');
-  setTimeout(()=>nav('livedata'),500);
-}
-
-async function setSchedule(freq){
-  S.schedule=freq;
-  await saveData();
-  toast('Sync schedule set to '+freq);
-  nav('connect');
 }
 
 async function connectSheets(){
   const url=document.getElementById('sheet-url')?.value?.trim();
   if(!url||!url.includes('spreadsheets')){toast('Enter a valid Google Sheets URL');return;}
+
   const sheetId=url.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1];
-  if(!sheetId){toast('Could not find sheet ID in URL');return;}
+  if(!sheetId){toast('Could not extract sheet ID from URL');return;}
+
+  const mapping={
+    date:document.getElementById('col-date')?.value||'A',
+    leads:document.getElementById('col-leads')?.value||'B',
+    revenue:document.getElementById('col-rev')?.value||'C',
+    stage:document.getElementById('col-stage')?.value||'D',
+    owner:document.getElementById('col-owner')?.value||'E',
+    status:document.getElementById('col-status')?.value||'F',
+  };
+
   const btn=event.target;btn.textContent='Connecting...';btn.disabled=true;
+
   try{
+    // Try to read sheet via our proxy
     const r=await fetch('/sheets?action=test&id='+sheetId);
     const d=await r.json();
+    if(d.error)throw new Error(d.error);
+
     if(!S.connections)S.connections={};
-    S.connections.sheets={sheetId,url,name:d.title||'Your Sheet',mapping:{date:'A',leads:'B',revenue:'C',stage:'D',owner:'E',status:'F'},connected:true};
+    S.connections.sheets={sheetId,url,mapping,name:d.title||'Your Sheet',connected:true};
     await saveData();
     toast('Google Sheets connected!');
     nav('connect');
   }catch(e){
+    // If proxy fails, still save the config and let user know
     if(!S.connections)S.connections={};
-    S.connections.sheets={sheetId,url,name:'Your Sheet',mapping:{date:'A',leads:'B',revenue:'C',stage:'D',owner:'E',status:'F'},connected:true};
+    S.connections.sheets={sheetId,url,mapping,name:'Your Sheet',connected:true};
     await saveData();
-    toast('Sheet saved');
+    toast('Sheet saved — sync will pull data');
     nav('connect');
-    btn.textContent='Connect Sheets';btn.disabled=false;
+    btn.textContent='Connect Google Sheets';btn.disabled=false;
   }
 }
 
-async function disconnectSource(source){
-  if(!confirm('Disconnect '+source+'?'))return;
-  if(source==='zoho'){delete S.connections.zoho;delete S.discovery;delete S.pulledData;}
-  if(source==='sheets'){delete S.connections.sheets;}
+async function syncZoho(){
+  toast('Syncing Zoho CRM...');
+  try{
+    const conn=S.connections?.zoho;
+    if(!conn){toast('Zoho not connected');return;}
+    const r=await fetch('/zoho?action=sync&dc='+conn.dc,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token:conn.token})
+    });
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    S.liveData={...S.liveData,...d};
+    await saveData();
+    // Update displayed stats
+    const leads=document.getElementById('z-leads');
+    const deals=document.getElementById('z-deals');
+    const pipe=document.getElementById('z-pipeline');
+    if(leads)leads.textContent=d.leads||'—';
+    if(deals)deals.textContent=d.deals||'—';
+    if(pipe)pipe.textContent=d.pipeline||'—';
+    toast('Zoho synced!');
+  }catch(e){toast('Sync failed: '+e.message);}
+}
+
+async function syncSheets(){
+  toast('Syncing Google Sheets...');
+  try{
+    const conn=S.connections?.sheets;
+    if(!conn){toast('Sheets not connected');return;}
+    const r=await fetch('/sheets?action=sync&id='+conn.sheetId+'&mapping='+encodeURIComponent(JSON.stringify(conn.mapping)));
+    const d=await r.json();
+    if(d.error)throw new Error(d.error);
+    S.liveData={...S.liveData,...d};
+    await saveData();
+    toast('Sheets synced!');
+  }catch(e){toast('Sync failed: '+e.message);}
+}
+
+async function disconnectZoho(){
+  if(!confirm('Disconnect Zoho CRM?'))return;
+  delete S.connections.zoho;
+  delete S.liveData?.zoho;
   await saveData();
-  toast('Disconnected');
+  toast('Zoho disconnected');
   nav('connect');
 }
 
-async function syncAndAnalyse(source){
-  if(source==='zoho'){await discoverDatabase();}
-  else{toast('Syncing sheets...');nav('livedata');}
+async function disconnectSheets(){
+  if(!confirm('Disconnect Google Sheets?'))return;
+  delete S.connections.sheets;
+  await saveData();
+  toast('Sheets disconnected');
+  nav('connect');
 }
 
 window.connectZoho=connectZoho;
 window.connectSheets=connectSheets;
-window.discoverDatabase=discoverDatabase;
-window.viewSample=viewSample;
-window.pullModule=pullModule;
-window.pullAllModules=pullAllModules;
-window.setSchedule=setSchedule;
-window.disconnectSource=disconnectSource;
-window.syncAndAnalyse=syncAndAnalyse;
-w.syncSheets=syncSheets;
+window.syncZoho=syncZoho;
+window.syncSheets=syncSheets;
 window.disconnectZoho=disconnectZoho;
 window.disconnectSheets=disconnectSheets;
-
-// ── Render: Live Intelligence ─────────────────────────────────────────────
-function renderLiveIntel(){
-  const conn = S.connections || {};
-  const live = S.liveData || {};
-  const hasData = live.zoho || live.sheets;
-
-  if(!conn.zoho && !conn.sheets){
-    return `<div class="empty-state">
-      <div class="empty-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-      </div>
-      <div class="empty-title">Connect your data first</div>
-      <div class="empty-sub">Connect Zoho CRM or Google Sheets to get live pipeline analysis, churn signals, team productivity and deal segmentation.</div>
-      <button class="btn btn-blue" onclick="nav('connect')">Connect data sources</button>
-    </div>`;
-  }
-
-  if(!hasData){
-    return `<div class="sec-hdr">
-      <div class="sec-eyebrow">Live Intelligence</div>
-      <div class="sec-title">Pull your live data</div>
-      <div class="sec-sub">Your data sources are connected. Sync now to analyse your pipeline.</div>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
-      ${conn.zoho?`<button class="btn btn-blue" onclick="syncAndAnalyse('zoho')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
-        Sync Zoho CRM
-      </button>`:''}
-      ${conn.sheets?`<button class="btn btn-blue" onclick="syncAndAnalyse('sheets')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
-        Sync Sheets
-      </button>`:''}
-    </div>`;
-  }
-
-  // We have live data - render full intelligence
-  const d = live.zoho || live.sheets || {};
-  const stages = d.stages || {};
-  const owners = d.owners || {};
-  const stageList = Object.entries(stages).sort((a,b)=>b[1]-a[1]);
-  const totalDeals = Object.values(stages).reduce((s,v)=>s+v,0);
-  const ownerList = Object.entries(owners).sort((a,b)=>b[1]-a[1]);
-  const synced = d.synced ? new Date(d.synced).toLocaleString('en-IN') : 'Just now';
-
-  return`
-  <div class="sec-hdr">
-    <div class="sec-eyebrow">Live Intelligence</div>
-    <div class="sec-title">Pipeline Analysis</div>
-    <div class="sec-sub" style="display:flex;align-items:center;gap:8px">
-      <span>Last synced: ${synced}</span>
-      ${conn.zoho?`<button class="btn btn-border btn-sm" onclick="syncAndAnalyse('zoho')">Sync now</button>`:''}
-      ${conn.sheets?`<button class="btn btn-border btn-sm" onclick="syncAndAnalyse('sheets')">Sync now</button>`:''}
-    </div>
-  </div>
-
-  <!-- KEY NUMBERS -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
-    <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;text-align:center">
-      <div style="font-size:28px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif">${d.leads||0}</div>
-      <div style="font-size:11px;color:var(--ink3);margin-top:3px">Total Leads</div>
-    </div>
-    <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;text-align:center">
-      <div style="font-size:28px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif">${d.deals||totalDeals||0}</div>
-      <div style="font-size:11px;color:var(--ink3);margin-top:3px">Open Deals</div>
-    </div>
-    <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;text-align:center">
-      <div style="font-size:28px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif">${d.pipeline||d.revenue||'₹0'}</div>
-      <div style="font-size:11px;color:var(--ink3);margin-top:3px">Pipeline Value</div>
-    </div>
-  </div>
-
-  <!-- PIPELINE STAGE BREAKDOWN -->
-  ${stageList.length?`<div class="out-block" style="margin-bottom:12px">
-    <div class="out-hdr" style="cursor:default">
-      <div class="out-icon" style="color:var(--blue)">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </div>
-      <div><div class="out-title">Pipeline Stage Breakdown</div><div class="out-sub">Where deals are sitting right now</div></div>
-    </div>
-    <div style="padding:16px">
-      ${stageList.map(([stage,count])=>{
-        const pct=Math.round((count/totalDeals)*100);
-        const color = stage.toLowerCase().includes('won')?'var(--green)':stage.toLowerCase().includes('lost')?'var(--red)':stage.toLowerCase().includes('proposal')||stage.toLowerCase().includes('negotiat')?'var(--amber)':'var(--blue)';
-        return`<div style="margin-bottom:10px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-            <div style="font-size:12px;font-weight:600;color:var(--navy)">${stage}</div>
-            <div style="font-size:11px;color:var(--ink3)">${count} deals · ${pct}%</div>
-          </div>
-          <div style="height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
-            <div style="height:100%;width:${pct}%;background:${color};border-radius:3px;transition:width .6s ease"></div>
-          </div>
-        </div>`;
-      }).join('')}
-    </div>
-  </div>`:''}
-
-  <!-- CHURN SIGNALS from AI analysis -->
-  <div class="out-block" style="margin-bottom:12px" id="churn-analysis-block">
-    <div class="out-hdr" style="cursor:default">
-      <div class="out-icon" style="color:var(--red)">
-        <svg viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
-      </div>
-      <div><div class="out-title">AI Churn Analysis</div><div class="out-sub">Based on your pipeline data and ICP framework</div></div>
-      <button class="btn btn-border btn-sm" style="margin-left:auto" onclick="runChurnAnalysis()">Analyse</button>
-    </div>
-    <div id="churn-result" style="padding:16px;display:none"></div>
-  </div>
-
-  <!-- OWNERSHIP DISTRIBUTION -->
-  ${ownerList.length?`<div class="out-block" style="margin-bottom:12px">
-    <div class="out-hdr" style="cursor:default">
-      <div class="out-icon" style="color:var(--purple)">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
-      <div><div class="out-title">Deal Ownership</div><div class="out-sub">Who owns what in the pipeline</div></div>
-    </div>
-    <div style="padding:16px">
-      ${ownerList.map(([owner,count],i)=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule)${i===ownerList.length-1?';border-bottom:none':''}">
-        <div style="width:30px;height:30px;border-radius:50%;background:${['var(--blue)','var(--green)','var(--amber)','var(--purple)','var(--red)'][i%5]};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;font-family:'DM Sans',sans-serif">${owner[0]?.toUpperCase()||'?'}</div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:var(--navy)">${owner}</div>
-          <div style="font-size:11px;color:var(--ink3)">${count} deals</div>
-        </div>
-        <div style="font-size:12px;font-weight:700;color:var(--blue)">${Math.round((count/(totalDeals||1))*100)}%</div>
-      </div>`).join('')}
-    </div>
-  </div>`:''}
-
-  <!-- PRODUCTIVITY ANALYSIS -->
-  <div class="out-block" style="margin-bottom:12px" id="productivity-block">
-    <div class="out-hdr" style="cursor:default">
-      <div class="out-icon" style="color:var(--green)">
-        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-      </div>
-      <div><div class="out-title">Productivity Signals</div><div class="out-sub">What's working, what's stalled</div></div>
-      <button class="btn btn-border btn-sm" style="margin-left:auto" onclick="runProductivityAnalysis()">Analyse</button>
-    </div>
-    <div id="productivity-result" style="padding:16px;display:none"></div>
-  </div>
-
-  <!-- SEGMENTATION -->
-  <div class="out-block" style="margin-bottom:12px" id="segment-block">
-    <div class="out-hdr" style="cursor:default">
-      <div class="out-icon" style="color:var(--amber)">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <div><div class="out-title">Deal Segmentation</div><div class="out-sub">Which deals match your ICP and which don't</div></div>
-      <button class="btn btn-border btn-sm" style="margin-left:auto" onclick="runSegmentAnalysis()">Analyse</button>
-    </div>
-    <div id="segment-result" style="padding:16px;display:none"></div>
-  </div>`;
-}
-
-// ── Live Intelligence Functions ─────────────────────────────────────────────
-
-window.syncAndAnalyse=syncAndAnalyse;
-window.runChurnAnalysis=runChurnAnalysis;
-window.runProductivityAnalysis=runProductivityAnalysis;
-window.runSegmentAnalysis=runSegmentAnalysis;
 
 // ── Render: Dashboard ─────────────────────────────────────────────────────
 function renderDashboard(){
