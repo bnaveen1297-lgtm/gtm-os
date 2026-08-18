@@ -2427,18 +2427,13 @@ async function refreshFromCRM(){
     S.liveData={...S.liveData,...d};
     
     // Now re-run AI for playbook and CRM intelligence with live data injected
-    const liveContext=\`
-LIVE CRM DATA (just synced from Zoho):
-- Total Leads: \${d.leads||'unknown'}
-- Open Deals: \${d.deals||'unknown'}  
-- Pipeline Value: \${d.pipeline||'unknown'}
-- Churn Risk Accounts: \${JSON.stringify(d.churnRisk||[])}
-- Top lead sources: \${JSON.stringify(d.leadSources||[])}
-- Stage breakdown: \${JSON.stringify(d.stageBreakdown||{})}
-- ICP match rate: \${d.icpMatchRate||'unknown'}
-Update the Sales Playbook and CRM Intelligence to reflect this live data.
-Scripts should reference actual pipeline numbers. Churn risk section should list specific at-risk deals.
-\`;
+    const liveContext='LIVE CRM DATA (just synced from Zoho):'+
+      '\n- Total Leads: '+(d.leads||'unknown')+
+      '\n- Open Deals: '+(d.deals||'unknown')+
+      '\n- Pipeline Value: '+(d.pipeline||'unknown')+
+      '\n- Churn Risk: '+JSON.stringify(d.churnRisk||[])+
+      '\n- ICP match rate: '+(d.icpMatchRate||'unknown')+
+      '\nUpdate playbook and CRM intelligence to reflect this live data.';
     // Re-generate CRM intelligence section with live data
     if(S.data?.crmi){
       S.data.crmi._liveUpdate=liveContext;
