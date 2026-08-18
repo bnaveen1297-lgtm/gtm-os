@@ -836,229 +836,328 @@ window.addEventListener('popstate',function(e){
 </script>
 
 <!-- ══ PRODUCT PAGE: CRM Intelligence ═══════════════════════════════ -->
-<div id="lp-product-crm" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
-  <div style="max-width:1100px;margin:0 auto">
-    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-      Back to home
+<div id="lp-product-crm" style="display:none;background:#fff;min-height:100vh">
+  <!-- Shared product page nav (same as homepage) - reuses pk-nav which is fixed -->
+  <div style="padding:100px 40px 80px;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px;transition:border-color .15s" onmouseenter="this.style.borderColor='#9CA3AF'" onmouseleave="this.style.borderColor='#E5E7EB'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
     </button>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#818CF8;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · CRM INTELLIGENCE</div>
-    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Connect your CRM.<br>Agent does the rest.</h1>
-    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 discovers every module in your Zoho CRM, shows you a sample first, gets your permission, then pulls the full database and runs deep AI analysis across churn, pipeline health, ICP fit, and team productivity.</p>
-    <div style="display:flex;gap:12px;margin-bottom:72px;flex-wrap:wrap">
-      <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px">Connect Zoho now →</button>
-      <button onclick="showLandingHome()" class="lp-btn-ghost" style="padding:13px 22px;font-size:14px">See all features</button>
+
+    <!-- Hero -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:80px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#4338CA;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          CRM Intelligence
+        </div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(32px,4vw,54px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">Connect your CRM.<br>Agent reads every deal.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 28px">Engine 360 discovers every module in your Zoho CRM, shows you a sample first, gets your approval, then pulls your full database and runs deep AI analysis - churn signals, pipeline health, ICP fit, and rep productivity.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Connect Zoho now</button>
+          <button onclick="showLandingHome()" class="pk-btn-ghost" style="padding:12px 20px;font-size:14px">See all features</button>
+        </div>
+      </div>
+      <!-- Live CRM mockup -->
+      <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+        <div style="background:#fff;border-bottom:1px solid #E5E7EB;padding:10px 14px;display:flex;gap:5px;align-items:center">
+          <div style="width:9px;height:9px;border-radius:50%;background:#FF5F57"></div>
+          <div style="width:9px;height:9px;border-radius:50%;background:#FFBD2E;margin-left:4px"></div>
+          <div style="width:9px;height:9px;border-radius:50%;background:#28CA41;margin-left:4px"></div>
+          <span style="font-size:11px;color:#9CA3AF;margin-left:10px;font-family:Inter,sans-serif">CRM Intelligence - Live</span>
+          <span style="margin-left:auto;width:7px;height:7px;border-radius:50%;background:#22C55E"></span>
+        </div>
+        <div style="padding:18px;display:flex;flex-direction:column;gap:8px">
+          <div style="padding:12px 14px;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-size:12.5px;font-weight:700;color:#DC2626;font-family:'DM Sans',sans-serif">3 deals at churn risk</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:2px">No activity 18+ days - Demo stage</div></div>
+            <span style="font-size:10px;font-weight:700;color:#DC2626;background:#FEE2E2;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">CRITICAL</span>
+          </div>
+          <div style="padding:12px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-size:12.5px;font-weight:700;color:#D97706;font-family:'DM Sans',sans-serif">Pipeline stalled at Proposal</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:2px">7 deals - avg 24 days - $340K at risk</div></div>
+            <span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">HIGH</span>
+          </div>
+          <div style="padding:12px 14px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-size:12.5px;font-weight:700;color:#16A34A;font-family:'DM Sans',sans-serif">ICP match rate: 67%</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:2px">12 of 18 deals fit your best ICP</div></div>
+            <span style="font-size:10px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">GOOD</span>
+          </div>
+          <div style="padding:12px 14px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:8px">
+            <div style="font-size:12.5px;font-weight:700;color:#4338CA;font-family:'DM Sans',sans-serif">Rep productivity gap</div>
+            <div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif;margin-top:2px">Rahul: 8 deals - Priya: 2 deals - same territory</div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- How it works -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px">
-      <div class="lp-card">
-        <div style="font-size:28px;margin-bottom:12px">🔍</div>
-        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">1. Discover</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Engine 360 calls Zoho's API to map every module - Leads, Deals, Contacts, Activities, and any custom modules you've created with your own field names.</div>
-      </div>
-      <div class="lp-card">
-        <div style="font-size:28px;margin-bottom:12px">📋</div>
-        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">2. Sample first</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Shows you 10 real records from each module in a table with your actual field names. You approve before we pull anything more.</div>
-      </div>
-      <div class="lp-card">
-        <div style="font-size:28px;margin-bottom:12px">🤖</div>
-        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">3. AI analysis</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">After your approval, pulls all records and runs churn detection, ICP scoring, productivity analysis, and deal segmentation - with specific actions for your team.</div>
+    <div style="border-top:1px solid #F3F4F6;padding-top:64px;margin-bottom:64px">
+      <div style="font-size:11px;font-weight:700;color:#6366F1;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:32px">How it works</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
+          <div style="width:40px;height:40px;background:#EEF2FF;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px">🔍</div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:6px;font-family:'DM Sans',sans-serif">1. Discover</div>
+          <div style="font-size:13px;color:#4B5563;line-height:1.7;font-family:Inter,sans-serif">Engine 360 calls your CRM's API to map every module - Leads, Deals, Contacts, Activities, and any custom modules with your own field names.</div>
+        </div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
+          <div style="width:40px;height:40px;background:#F0FDF4;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px">👁</div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:6px;font-family:'DM Sans',sans-serif">2. Sample first</div>
+          <div style="font-size:13px;color:#4B5563;line-height:1.7;font-family:Inter,sans-serif">Shows you 10 real records from each module in a table with your actual field names. You explicitly approve before we pull anything more.</div>
+        </div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:24px">
+          <div style="width:40px;height:40px;background:#FFFBEB;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px">🤖</div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:6px;font-family:'DM Sans',sans-serif">3. AI analysis</div>
+          <div style="font-size:13px;color:#4B5563;line-height:1.7;font-family:Inter,sans-serif">After your approval, pulls all records and runs churn detection, ICP scoring, productivity analysis, and deal segmentation with specific actions for your team.</div>
+        </div>
       </div>
     </div>
-    <!-- What you get -->
-    <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px">What the agent finds</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#F87171;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Churn signals by severity</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Critical / High / Medium - with save script for each</div></div></div>
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#FBBF24;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Pipeline stage breakdown</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Where deals are stalling and why</div></div></div>
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#34D399;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">ICP match rate</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Which deals fit, which to drop, where to double down</div></div></div>
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#818CF8;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Rep productivity gaps</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Who's owning what, where activity has dropped</div></div></div>
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#38BDF8;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Lead source analysis</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Which channels are producing the best deals</div></div></div>
-      <div class="lp-card" style="display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#C084FC;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:4px">Auto-sync schedule</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Daily / weekly / monthly refresh - always current</div></div></div>
+
+    <!-- What the agent finds -->
+    <div style="border-top:1px solid #F3F4F6;padding-top:64px">
+      <div style="font-size:11px;font-weight:700;color:#6366F1;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:32px">What the agent finds</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#DC2626;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:3px">Churn signals by severity</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Critical / High / Medium - with a specific save script for each account</div></div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#D97706;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:3px">Pipeline stage breakdown</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Where deals are stalling, for how long, and exactly why</div></div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#16A34A;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:3px">ICP match rate</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Which deals fit, which to drop, where to double down on prospecting</div></div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#6366F1;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:3px">Rep productivity gaps</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Who is owning what, where activity has dropped, territory imbalances</div></div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#0891B2;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:3px">Lead source analysis</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Which channels are producing the best-fit, fastest-closing deals</div></div></div>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start"><div style="width:8px;height:8px;background:#9333EA;border-radius:50%;margin-top:5px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:3px">Auto-sync schedule</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Daily / weekly / monthly refresh - CRM intelligence always current</div></div></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ══ PRODUCT PAGE: Sales Playbook ══════════════════════════════════ -->
-<div id="lp-product-playbook" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
-  <div style="max-width:1100px;margin:0 auto">
-    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+<div id="lp-product-playbook" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 80px;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
     </button>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#34D399;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · SALES PLAYBOOK</div>
-    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Real scripts.<br>Not templates.</h1>
-    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Every cold email, WhatsApp message, call script and objection response is written specifically for your business - using your competitors, your ICP's language, and your market context. Actual words you can send today.</p>
-    <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my playbook →</button>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px">
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#34D399;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">EMAIL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Cold email sequences</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Subject, body, 3 follow-ups - each a different angle</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#25D366;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">WHATSAPP</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">WhatsApp openers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">First message, follow-up, and voice note script</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#818CF8;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">COLD CALL</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Call framework</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Opener, permission ask, elevator pitch, 4 discovery questions</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#0A66C2;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">LINKEDIN</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">LinkedIn outreach</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Connection note, InMail, after-connect message</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#FBBF24;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">OBJECTIONS</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Objection handling</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words to say - empathy + reframe + next step</div></div>
-      <div class="lp-card"><div style="font-size:11px;font-weight:700;color:#F87171;font-family:Inter,sans-serif;letter-spacing:.1em;margin-bottom:8px">60s RESPONSE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Inbound lead script</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Call a lead within 60 seconds of form fill - exact script</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:80px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#16A34A;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          Sales Playbook
+        </div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(32px,4vw,54px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">Real scripts.<br>Not templates.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 28px">Every cold email, WhatsApp message, call script and objection response is written specifically for your business using your market data, your ICP's language, and your actual competitors. Actual words your team can send today.</p>
+        <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Build my playbook</button>
+      </div>
+      <!-- Script preview -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px">
+          <div style="font-size:10px;font-weight:700;color:#6366F1;letter-spacing:.1em;font-family:Inter,sans-serif;margin-bottom:8px">COLD EMAIL - SUBJECT LINE</div>
+          <div style="font-size:13.5px;color:#111;font-family:Inter,sans-serif;line-height:1.6">How we helped 3 companies in your segment reduce sales cycle by 40% in 90 days</div>
+        </div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px">
+          <div style="font-size:10px;font-weight:700;color:#16A34A;letter-spacing:.1em;font-family:Inter,sans-serif;margin-bottom:8px">WHATSAPP OPENER</div>
+          <div style="font-size:13.5px;color:#111;font-family:Inter,sans-serif;line-height:1.6">Hi [Name], saw you're managing 300+ clients manually. Built something that handles the tracking automatically - 2 min to show you?</div>
+        </div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px">
+          <div style="font-size:10px;font-weight:700;color:#D97706;letter-spacing:.1em;font-family:Inter,sans-serif;margin-bottom:8px">OBJECTION REFRAME</div>
+          <div style="font-size:13px;color:#374151;font-family:Inter,sans-serif;line-height:1.6">"Already using Excel" - "73% of our customers came from Excel. The issue is not the tool, it's the time. Can I show you what 20 minutes looks like vs 3 hours?"</div>
+        </div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px">
+          <div style="font-size:10px;font-weight:700;color:#DC2626;letter-spacing:.1em;font-family:Inter,sans-serif;margin-bottom:8px">60-SECOND INBOUND RESPONSE</div>
+          <div style="font-size:13px;color:#374151;font-family:Inter,sans-serif;line-height:1.6">"Hi [Name], thanks for signing up - I saw you work at [Company]. Quick question - are you looking to [pain point] or [alternative goal]? Happy to jump on a 10-min call now."</div>
+        </div>
+      </div>
+    </div>
+    <!-- 6 script types -->
+    <div style="border-top:1px solid #F3F4F6;padding-top:64px">
+      <div style="font-size:11px;font-weight:700;color:#16A34A;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:32px">What you get</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px"><div style="font-size:11px;font-weight:700;color:#6366F1;font-family:Inter,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📧 Email</div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Cold email sequence</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Subject, body, 3 follow-ups on different angles</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px"><div style="font-size:11px;font-weight:700;color:#16A34A;font-family:Inter,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">💬 WhatsApp</div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">WhatsApp openers</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">First message, follow-up, and voice note script</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px"><div style="font-size:11px;font-weight:700;color:#6B7280;font-family:Inter,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📞 Cold Call</div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Call framework</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Opener, permission ask, pitch, 4 discovery questions</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px"><div style="font-size:11px;font-weight:700;color:#0A66C2;font-family:Inter,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔗 LinkedIn</div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">LinkedIn outreach</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Connection note, InMail, after-connect message</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px"><div style="font-size:11px;font-weight:700;color:#D97706;font-family:Inter,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🛡 Objections</div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Objection handling</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Exact words with empathy, reframe, and next step</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px"><div style="font-size:11px;font-weight:700;color:#DC2626;font-family:Inter,sans-serif;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">⚡ 60s Response</div><div style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Inbound lead script</div><div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif">Call a lead within 60 seconds of form fill</div></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ══ PRODUCT PAGE: GTM Strategy ════════════════════════════════════ -->
-<div id="lp-product-gtm" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
-  <div style="max-width:1100px;margin:0 auto">
-    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+<div id="lp-product-gtm" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 80px;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
     </button>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#FBBF24;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · GTM STRATEGY</div>
-    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Your GTM motion,<br>researched and built.</h1>
-    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 researches your market on Google, picks the right GTM motion for your stage, builds competitor battlecards with real win lines, and creates a 90-day execution roadmap.</p>
-    <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my GTM strategy →</button>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">GTM Motion verdict</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Account-based, Volume, Partner-led, or Hybrid - picked based on your ICP, deal size, and stage</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Competitor battlecards</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Real competitor names, their weakness, your win line, and a landmine question to expose them</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">90-day roadmap</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Days 1-30, 31-60, 61-90 - specific actions with named tools, not generic milestones</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">PDCA cycle</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Plan → Do → Check → Act framework with specific checkpoints for your business</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Channel strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Online and offline engine - specific platforms, content types, and weekly time investment</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Wedge strategy</div><div style="font-size:12.5px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Which exact market segment to enter first before expanding - and why</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:80px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#D97706;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          GTM Strategy
+        </div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(32px,4vw,54px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">Your go-to-market,<br>researched and built.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 28px">Engine 360 searches Google for real market data, picks the right GTM motion for your stage, builds competitor battlecards with actual win lines, and creates a 90-day execution roadmap - all from your URL.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Build my GTM strategy</button>
+        </div>
+      </div>
+      <!-- Battlecard mockup -->
+      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06)">
+        <div style="background:#F9FAFB;border-bottom:1px solid #E5E7EB;padding:11px 16px;display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:28px;height:28px;background:#E5E7EB;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#374151;font-family:'DM Sans',sans-serif">S</div>
+            <span style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif">vs Salesforce</span>
+          </div>
+          <span style="font-size:10px;font-weight:700;color:#6366F1;background:#EEF2FF;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">B2B SaaS</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #F3F4F6">
+          <div style="padding:12px 14px;border-right:1px solid #F3F4F6"><div style="font-size:9px;font-weight:700;color:#DC2626;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;font-family:Inter,sans-serif">Their Strength</div><div style="font-size:12px;color:#374151;font-family:Inter,sans-serif;line-height:1.5">Dominant enterprise brand, deep ecosystem integrations</div></div>
+          <div style="padding:12px 14px"><div style="font-size:9px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;font-family:Inter,sans-serif">Your Advantage</div><div style="font-size:12px;color:#374151;font-family:Inter,sans-serif;line-height:1.5">10x faster to set up, no admin needed, built for your team size</div></div>
+        </div>
+        <div style="padding:12px 14px;background:#EFF6FF;border-bottom:1px solid #F3F4F6"><div style="font-size:9px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;font-family:Inter,sans-serif">Win Line</div><div style="font-size:12.5px;color:#1D4ED8;font-family:Inter,sans-serif;font-style:italic;line-height:1.5">"Salesforce is built for 500-person enterprise teams. You have 12 reps. You'd spend 6 months and $80K just configuring it."</div></div>
+        <div style="padding:12px 14px;background:#FFFBEB"><div style="font-size:9px;font-weight:700;color:#D97706;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;font-family:Inter,sans-serif">Landmine Question</div><div style="font-size:12.5px;color:#92400E;font-family:Inter,sans-serif;font-style:italic;line-height:1.5">"What's your Salesforce admin budget this year? Who manages your current instance?"</div></div>
+      </div>
+    </div>
+    <!-- GTM Modules -->
+    <div style="border-top:1px solid #F3F4F6;padding-top:64px">
+      <div style="font-size:11px;font-weight:700;color:#D97706;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:32px">What's inside GTM Strategy</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:18px"><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:5px">GTM motion verdict</div><div style="font-size:12.5px;color:#6B7280;font-family:Inter,sans-serif">Account-based, Volume, Partner-led, or Hybrid - picked based on your ICP, deal size, and stage</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:18px"><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:5px">Competitor battlecards</div><div style="font-size:12.5px;color:#6B7280;font-family:Inter,sans-serif">Real competitor names, their weakness, your win line, and a landmine question to expose them</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:18px"><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:5px">90-day roadmap</div><div style="font-size:12.5px;color:#6B7280;font-family:Inter,sans-serif">Days 1-30, 31-60, 61-90 with specific actions, named tools, and measurable goals</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:18px"><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:5px">PDCA cycle</div><div style="font-size:12.5px;color:#6B7280;font-family:Inter,sans-serif">Plan, Do, Check, Act framework with specific weekly checkpoints for your business</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:18px"><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:5px">Channel strategy</div><div style="font-size:12.5px;color:#6B7280;font-family:Inter,sans-serif">Online and offline engine with specific platforms, content types, and weekly time investment</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:18px"><div style="font-size:13px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:5px">Wedge strategy</div><div style="font-size:12.5px;color:#6B7280;font-family:Inter,sans-serif">Which exact market segment to enter first before expanding - and the reasoning behind it</div></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ══ PRODUCT PAGE: ICP Engine ══════════════════════════════════════ -->
-<div id="lp-product-icp" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
-  <div style="max-width:1100px;margin:0 auto">
-    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+<div id="lp-product-icp" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 80px;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
     </button>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#C084FC;font-family:Inter,sans-serif;margin-bottom:20px">PRODUCT · ICP ENGINE</div>
-    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 20px">Know exactly<br>who to sell to.</h1>
-    <p style="font-size:18px;color:rgba(255,255,255,.55);line-height:1.75;max-width:560px;font-family:Inter,sans-serif;margin:0 0 40px">Engine 360 builds 3 ICP profiles ranked by commercial potential - with real job titles, buying triggers, day-in-life context, disqualifiers, and the exact first 10 words to say to each one.</p>
-    <button onclick="openAuth('signup')" class="lp-btn-glow" style="padding:13px 26px;font-size:14px;margin-bottom:72px">Build my ICP profiles →</button>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px">
-      <div class="lp-card" style="border-color:rgba(192,132,252,.3)"><div style="font-size:10px;font-weight:700;color:#C084FC;font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #1 · HIGHEST FIT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Primary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Real job title, company type, revenue range, geography, team size, buying triggers, disqualifiers, deal size, sales cycle</div></div>
-      <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #2 · GOOD FIT</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Secondary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Adjacent segment with slightly different triggers and pitch angle</div></div>
-      <div class="lp-card"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.3);font-family:Inter,sans-serif;margin-bottom:6px">ICP RANK #3 · EXPLORE</div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'DM Sans',sans-serif">Tertiary ICP</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif;line-height:1.6">Future expansion opportunity - worth monitoring, not primary focus yet</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:80px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#FDF4FF;border:1px solid #E9D5FF;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#7C3AED;font-family:Inter,sans-serif;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          ICP Engine
+        </div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(32px,4vw,54px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 18px">Know exactly<br>who to sell to.</h1>
+        <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;margin:0 0 28px">Engine 360 builds 3 ICP profiles ranked by commercial fit using real research - job titles, company types, buying triggers, day-in-life context, disqualifiers, deal size, sales cycle, and the exact first sentence to open with.</p>
+        <button onclick="openAuth('signup')" class="pk-btn-primary" style="padding:12px 22px;font-size:14px">Build my ICP profiles</button>
+      </div>
+      <!-- ICP profile mockup -->
+      <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <span style="font-size:11px;font-weight:700;color:#7C3AED;background:#F5F3FF;padding:3px 9px;border-radius:3px;font-family:Inter,sans-serif">RANK 1 - HIGHEST FIT</span>
+          <span style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;font-weight:600">Score: 91/100</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+          <div style="background:#fff;border:1px solid #E5E7EB;border-radius:7px;padding:10px"><div style="font-size:9px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:3px">Role</div><div style="font-size:12.5px;font-weight:600;color:#111;font-family:'DM Sans',sans-serif">VP Sales / Head of Growth</div></div>
+          <div style="background:#fff;border:1px solid #E5E7EB;border-radius:7px;padding:10px"><div style="font-size:9px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:3px">Company</div><div style="font-size:12.5px;font-weight:600;color:#111;font-family:'DM Sans',sans-serif">B2B SaaS, 20-200 employees</div></div>
+          <div style="background:#fff;border:1px solid #E5E7EB;border-radius:7px;padding:10px"><div style="font-size:9px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:3px">Buying Trigger</div><div style="font-size:12.5px;font-weight:600;color:#111;font-family:'DM Sans',sans-serif">Just hired Head of Sales</div></div>
+          <div style="background:#fff;border:1px solid #E5E7EB;border-radius:7px;padding:10px"><div style="font-size:9px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:3px">Deal size</div><div style="font-size:12.5px;font-weight:600;color:#111;font-family:'DM Sans',sans-serif">$8K-$25K / year</div></div>
+        </div>
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:7px;padding:12px">
+          <div style="font-size:9px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:.08em;font-family:Inter,sans-serif;margin-bottom:5px">First 10 words to say</div>
+          <div style="font-size:13px;color:#111;font-family:Inter,sans-serif;font-style:italic">"Saw you just scaled the team - how are you tracking pipeline?"</div>
+        </div>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">5-filter scoring</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Firmographic, Pain urgency, Budget signal, Decision maker access, Timing trigger</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Day-in-life mapping</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">What their actual workday looks like and where your product fits naturally</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">Buying triggers</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Specific events that make them buy NOW - not general interest signals</div></div>
-      <div class="lp-card"><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;font-family:'DM Sans',sans-serif">First objection</div><div style="font-size:12px;color:rgba(255,255,255,.45);font-family:Inter,sans-serif">Exact words they'll say first - and how to reframe it</div></div>
+    <!-- 5 filter scoring -->
+    <div style="border-top:1px solid #F3F4F6;padding-top:64px">
+      <div style="font-size:11px;font-weight:700;color:#7C3AED;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:32px">5-filter scoring system</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:8px">🏢</div><div style="font-size:12px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:4px">Firmographic</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif">Size, industry, stage, revenue</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:8px">🔥</div><div style="font-size:12px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:4px">Pain urgency</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif">How acute is the problem</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:8px">💰</div><div style="font-size:12px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:4px">Budget signal</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif">Evidence they can pay</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:8px">🎯</div><div style="font-size:12px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:4px">Decision access</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif">Can we reach the buyer</div></div>
+        <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:8px">⏰</div><div style="font-size:12px;font-weight:700;color:#111;font-family:'DM Sans',sans-serif;margin-bottom:4px">Timing trigger</div><div style="font-size:11px;color:#6B7280;font-family:Inter,sans-serif">Event making them buy NOW</div></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ══ INTEGRATIONS FULL PAGE ═════════════════════════════════════════ -->
-<div id="lp-page-integrations" style="display:none;background:#080B14;min-height:100vh;padding:100px 24px 80px">
-  <div style="max-width:1100px;margin:0 auto">
-    <button onclick="showLandingHome()" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
+<div id="lp-page-integrations" style="display:none;background:#fff;min-height:100vh">
+  <div style="padding:100px 40px 80px;max-width:1100px;margin:0 auto">
+    <button onclick="showLandingHome()" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid #E5E7EB;border-radius:6px;padding:6px 14px;font-size:12.5px;color:#6B7280;cursor:pointer;font-family:Inter,sans-serif;margin-bottom:40px">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Back to home
     </button>
-    <div class="lp-section-label" style="margin-bottom:12px">Integrations</div>
-    <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:800;color:#fff;letter-spacing:-2px;line-height:1.05;margin:0 0 16px">Connects with everything<br>you already use.</h1>
-    <p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;max-width:520px;font-family:Inter,sans-serif;margin:0 0 60px">Engine 360 plugs into your existing stack. No migration, no switching tools. Pull live data from your CRM, sync with your sheets, and push insights where your team works.</p>
-    
+    <div style="margin-bottom:56px">
+      <div style="font-size:11px;font-weight:700;color:#6366F1;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:14px">Integrations</div>
+      <h1 style="font-family:'DM Sans',sans-serif;font-size:clamp(32px,4vw,54px);font-weight:800;color:#0A0A0A;letter-spacing:-1.5px;line-height:1.06;margin:0 0 16px">Connects with your<br>existing stack.</h1>
+      <p style="font-size:16px;color:#4B5563;line-height:1.75;font-family:Inter,sans-serif;max-width:520px;margin:0">No migration, no switching tools. Engine 360 plugs into what you already use and makes it smarter.</p>
+    </div>
     <!-- CRM -->
-    <div style="margin-bottom:52px">
-      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)">CRM Platforms</div>
+    <div style="margin-bottom:48px">
+      <div style="font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #F3F4F6">CRM Platforms</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
-        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#E74C3C;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">Z</div>
-            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ LIVE</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Zoho CRM</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Discover all modules, sample 10 records, pull full database, daily sync</div>
-          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Connect now →</button>
+        <div style="background:#fff;border:1.5px solid #BBF7D0;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#E74C3C;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">Z</div><span style="font-size:10px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">LIVE</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Zoho CRM</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Full discover, sample, pull all records, daily sync</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:#DCFCE7;border:1px solid #BBF7D0;border-radius:6px;font-size:12px;font-weight:600;color:#16A34A;cursor:pointer;font-family:Inter,sans-serif">Connect now</button>
         </div>
-        <div class="lp-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#FF7A59;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">H</div>
-            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">HubSpot</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Contacts, deals, pipeline, sequences, properties</div>
-          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#FF7A59;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">H</div><span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">HubSpot</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Contacts, deals, pipeline, sequences</div>
+          <button disabled style="width:100%;padding:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Coming soon</button>
         </div>
-        <div class="lp-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#1DBFC1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">F</div>
-            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Freshsales</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Leads, contacts, deals, activities, sequences</div>
-          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#1DBFC1;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">F</div><span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Freshsales</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Leads, contacts, deals, activities</div>
+          <button disabled style="width:100%;padding:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Coming soon</button>
         </div>
-        <div class="lp-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#BD4F00;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">P</div>
-            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Pipedrive</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Deals, pipeline stages, activities, insights</div>
-          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#BD4F00;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">P</div><span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Pipedrive</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Deals, stages, activities, insights</div>
+          <button disabled style="width:100%;padding:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Coming soon</button>
         </div>
       </div>
     </div>
-
     <!-- Productivity -->
-    <div style="margin-bottom:52px">
-      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)">Data & Productivity</div>
+    <div style="margin-bottom:48px">
+      <div style="font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #F3F4F6">Data and Productivity</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
-        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#34A853;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">G</div>
-            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ LIVE</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Google Sheets</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Connect your sales tracker, MIS sheet, or any spreadsheet</div>
-          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Connect now →</button>
+        <div style="background:#fff;border:1.5px solid #BBF7D0;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#34A853;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">G</div><span style="font-size:10px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">LIVE</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Google Sheets</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Connect your sales tracker or MIS sheet</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:#DCFCE7;border:1px solid #BBF7D0;border-radius:6px;font-size:12px;font-weight:600;color:#16A34A;cursor:pointer;font-family:Inter,sans-serif">Connect now</button>
         </div>
-        <div class="lp-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#EA4335;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">M</div>
-            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Gmail</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Email thread analysis, reply rate tracking</div>
-          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#EA4335;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">M</div><span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Gmail</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Email thread analysis, reply rate tracking</div>
+          <button disabled style="width:100%;padding:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Coming soon</button>
         </div>
-        <div class="lp-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#4A154B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">#</div>
-            <div style="font-size:10px;font-weight:700;color:#FBBF24;background:rgba(251,191,36,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">Slack</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Push churn alerts and weekly MIS to your team channel</div>
-          <button style="width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;color:rgba(255,255,255,.35);cursor:default;font-family:Inter,sans-serif">Coming soon</button>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#4A154B;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">#</div><span style="font-size:10px;font-weight:700;color:#D97706;background:#FEF3C7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">SOON</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">Slack</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Push churn alerts and weekly MIS to your team</div>
+          <button disabled style="width:100%;padding:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;font-size:12px;color:#9CA3AF;font-family:Inter,sans-serif">Coming soon</button>
         </div>
-        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#25D366;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff">✆</div>
-            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ BUILT-IN</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">WhatsApp</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Scripts for opener, follow-up, and voice note - ready to copy</div>
-          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Get scripts →</button>
+        <div style="background:#fff;border:1.5px solid #BBF7D0;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#25D366;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff">✆</div><span style="font-size:10px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">BUILT-IN</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">WhatsApp</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Opener, follow-up, and voice note scripts</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:#DCFCE7;border:1px solid #BBF7D0;border-radius:6px;font-size:12px;font-weight:600;color:#16A34A;cursor:pointer;font-family:Inter,sans-serif">Get scripts</button>
         </div>
       </div>
     </div>
-
-    <!-- Pro Networks -->
+    <!-- Networks -->
     <div>
-      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)">Professional Networks</div>
+      <div style="font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:.12em;text-transform:uppercase;font-family:Inter,sans-serif;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #F3F4F6">Professional Networks</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
-        <div class="lp-card" style="border-color:rgba(52,211,153,.25)">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-            <div style="width:44px;height:44px;background:#0A66C2;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">in</div>
-            <div style="font-size:10px;font-weight:700;color:#34D399;background:rgba(52,211,153,.1);padding:3px 8px;border-radius:3px;font-family:Inter,sans-serif">✓ BUILT-IN</div>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;font-family:'DM Sans',sans-serif">LinkedIn</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Connection note, InMail, and after-connect message scripts</div>
-          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:6px;font-size:12px;font-weight:600;color:#34D399;cursor:pointer;font-family:Inter,sans-serif">Get scripts →</button>
+        <div style="background:#fff;border:1.5px solid #BBF7D0;border-radius:12px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="width:40px;height:40px;background:#0A66C2;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif">in</div><span style="font-size:10px;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:3px;font-family:Inter,sans-serif">BUILT-IN</span></div>
+          <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:4px;font-family:'DM Sans',sans-serif">LinkedIn</div>
+          <div style="font-size:12px;color:#6B7280;font-family:Inter,sans-serif;line-height:1.6;margin-bottom:12px">Connection note, InMail, after-connect scripts</div>
+          <button onclick="openAuth('signup')" style="width:100%;padding:8px;background:#DCFCE7;border:1px solid #BBF7D0;border-radius:6px;font-size:12px;font-weight:600;color:#16A34A;cursor:pointer;font-family:Inter,sans-serif">Get scripts</button>
         </div>
-        <div class="lp-card" style="border:1px dashed rgba(255,255,255,.12);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:140px">
-          <div style="font-size:28px;margin-bottom:8px;color:rgba(255,255,255,.2)">+</div>
-          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,.35);font-family:'DM Sans',sans-serif;margin-bottom:4px">Request an integration</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.2);font-family:Inter,sans-serif">Tell us what you need</div>
+        <div style="background:#F9FAFB;border:1.5px dashed #E5E7EB;border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:140px">
+          <div style="font-size:24px;color:#D1D5DB;margin-bottom:8px">+</div>
+          <div style="font-size:13px;font-weight:600;color:#9CA3AF;font-family:'DM Sans',sans-serif;margin-bottom:4px">Request an integration</div>
+          <div style="font-size:11px;color:#D1D5DB;font-family:Inter,sans-serif">Tell us what you need</div>
         </div>
       </div>
     </div>
