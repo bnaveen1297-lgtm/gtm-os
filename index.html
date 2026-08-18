@@ -436,7 +436,7 @@ onAuthStateChanged(auth,async user=>{
     try{nav(hasData?'dashboard':'input');}catch(e){
       console.error('nav error:',e);
       const p=document.getElementById('app-page');
-      if(p)p.innerHTML='<div style="padding:32px;text-align:center"><div style="font-size:15px;font-weight:700;color:#1B2B4B;margin-bottom:10px">Ready</div><button onclick="nav('input')" style="padding:10px 20px;background:#2563EB;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">Go to input</button></div>';
+      if(p)p.innerHTML='<div style="padding:32px;text-align:center"><button onclick="location.reload()" style="padding:10px 20px;background:#2563EB;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">Reload</button></div>';
     }
   }else{
     try{showLanding();}catch(e){location.reload();}
