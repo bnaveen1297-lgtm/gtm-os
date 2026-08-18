@@ -640,7 +640,7 @@ const app=initializeApp({apiKey:"AIzaSyCxS_yTqtgvGalHW-LD-jiT8AvI0N_5VvY",authDo
 const auth=getAuth(app),db=getFirestore(app),gp=new GoogleAuthProvider();
 
 let U=null,authMode='signup';
-const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{}};
+const S={input:{url:'',idea:''},generated:false,data:{},checks:{},connections:{},liveData:{},discovery:{},pulledData:{},schedule:'Weekly'};
 
 onAuthStateChanged(auth,async user=>{
   U=user;
@@ -718,6 +718,9 @@ async function loadData(uid){
       if(d.checks)S.checks=d.checks;
       if(d.connections)S.connections=d.connections;
       if(d.liveData)S.liveData=d.liveData;
+      if(d.discovery)S.discovery=d.discovery;
+      if(d.pulledData)S.pulledData=d.pulledData;
+      if(d.schedule)S.schedule=d.schedule;
       if(S.generated){
         const badge=document.getElementById('badge-input');
         if(badge){badge.textContent='Done';badge.className='sbi-badge done';}
@@ -728,7 +731,7 @@ async function loadData(uid){
 }
 async function saveData(){
   if(!U)return;
-  try{await setDoc(doc(db,'engine360',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,connections:S.connections||{},liveData:S.liveData||{},updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
+  try{await setDoc(doc(db,'engine360',U.uid),{input:S.input,data:S.data,generated:S.generated,checks:S.checks,connections:S.connections||{},liveData:S.liveData||{},discovery:S.discovery||{},pulledData:S.pulledData||{},schedule:S.schedule||'Weekly',updatedAt:serverTimestamp(),uid:U.uid,email:U.email},{merge:true});}
   catch(e){console.warn('Save',e);}
 }
 
@@ -1553,81 +1556,6 @@ RULES:
 }`;}
 
 // ── Render: Connect ─────────────────────────────────────────────────────
-function renderConnect(){
-  const conn = S.connections||{};
-  const disc = S.discovery||{};
-  return`
-  <div class="sec-hdr">
-    <div class="sec-eyebrow">Connect Data Sources</div>
-    <div class="sec-title">Pull your real data</div>
-    <div class="sec-sub">Connect Zoho CRM to discover your entire database. We'll show you sample data first, get your approval, then pull everything and run AI analysis across your pipeline, churn, and team productivity.</div>
-  </div>
-
-  <!-- ZOHO CONNECTION -->
-  <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
-      <div style="width:42px;height:42px;border-radius:10px;background:#FEF2F2;border:1.5px solid #FECACA;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#EF4444;font-family:'DM Sans',sans-serif;flex-shrink:0">Z</div>
-      <div style="flex:1">
-        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Zoho CRM</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Discover all modules, pull full database, run AI analysis</div>
-      </div>
-      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
-    </div>
-    <div style="padding:18px 20px">
-      ${conn.zoho ? renderZohoConnected(conn.zoho, disc) : renderZohoSetup()}
-    </div>
-  </div>
-
-  <!-- GOOGLE SHEETS -->
-  <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
-      <div style="width:42px;height:42px;border-radius:10px;background:#F0FDF4;border:1.5px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect x="6" y="3" width="28" height="34" rx="3" fill="#34A853"/><rect x="12" y="13" width="16" height="2" rx="1" fill="white"/><rect x="12" y="17" width="16" height="2" rx="1" fill="white"/><rect x="12" y="21" width="11" height="2" rx="1" fill="white"/><rect x="12" y="25" width="13" height="2" rx="1" fill="white"/></svg>
-      </div>
-      <div style="flex:1">
-        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Google Sheets</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker or MIS sheet</div>
-      </div>
-      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
-    </div>
-    <div style="padding:18px 20px">
-      ${conn.sheets ? `
-      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span style="font-size:12.5px;color:var(--green);font-weight:600">${conn.sheets.name||'Sheet'} connected</span>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-border btn-sm" onclick="syncAndAnalyse('sheets')">Sync now</button>
-        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.15)" onclick="disconnectSource('sheets')">Disconnect</button>
-      </div>` : `
-      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.15);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12.5px;color:var(--navy);line-height:1.6">
-        Share your Google Sheet (Anyone with link can view) and paste the URL below.
-      </div>
-      <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="margin-bottom:10px;font-size:12px">
-      <button class="btn btn-blue" onclick="connectSheets()">Connect Sheets</button>`}
-    </div>
-  </div>
-
-  <!-- SCHEDULED SYNC -->
-  <div class="out-block" style="margin-bottom:14px">
-    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
-      <div class="out-icon" style="color:var(--amber)">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Scheduled Sync</div>
-        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Auto-pull data and refresh insights on a schedule</div>
-      </div>
-    </div>
-    <div style="padding:18px 20px">
-      <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">How often should Engine 360 pull fresh data from your connected sources?</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-        ${['Daily','Weekly','Monthly'].map(freq=>`<button onclick="setSchedule('${freq}')" style="padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;border:1.5px solid ${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--rule2)'};background:${(S.schedule||'Weekly')===freq?'var(--blue-l)':'var(--bg)'};color:${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--ink2)'}">${freq}</button>`).join('')}
-      </div>
-      <div style="font-size:12px;color:var(--ink3)">Next sync: <strong style="color:var(--navy)">${getNextSync()}</strong></div>
-    </div>
-  </div>`;
-}
 
 function renderZohoSetup(){
   return`
@@ -1705,6 +1633,91 @@ function renderZohoConnected(zoho, disc){
 
   <!-- PULL PROGRESS -->
   <div id="pull-progress" style="display:none;margin-top:16px"></div>`;
+}
+
+function getNextSync(){
+  const schedule = S.schedule||'Weekly';
+  const now = new Date();
+  if(schedule==='Daily') { now.setDate(now.getDate()+1); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
+  if(schedule==='Weekly') { now.setDate(now.getDate()+7); return now.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'})+' at 9am'; }
+  now.setMonth(now.getMonth()+1); return now.toLocaleDateString('en-IN',{month:'long',day:'numeric'})+' at 9am';
+}
+window.getNextSync=getNextSync;
+
+function renderConnect(){
+  const conn = S.connections||{};
+  const disc = S.discovery||{};
+  return`
+  <div class="sec-hdr">
+    <div class="sec-eyebrow">Connect Data Sources</div>
+    <div class="sec-title">Pull your real data</div>
+    <div class="sec-sub">Connect Zoho CRM to discover your entire database. We'll show you sample data first, get your approval, then pull everything and run AI analysis across your pipeline, churn, and team productivity.</div>
+  </div>
+
+  <!-- ZOHO CONNECTION -->
+  <div class="out-block" style="margin-bottom:14px">
+    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
+      <div style="width:42px;height:42px;border-radius:10px;background:#FEF2F2;border:1.5px solid #FECACA;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#EF4444;font-family:'DM Sans',sans-serif;flex-shrink:0">Z</div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Zoho CRM</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Discover all modules, pull full database, run AI analysis</div>
+      </div>
+      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.zoho?'var(--green-l)':'var(--bg3)'};color:${conn.zoho?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.zoho?'Connected':'Not connected'}</div>
+    </div>
+    <div style="padding:18px 20px">
+      ${conn.zoho ? renderZohoConnected(conn.zoho, disc) : renderZohoSetup()}
+    </div>
+  </div>
+
+  <!-- GOOGLE SHEETS -->
+  <div class="out-block" style="margin-bottom:14px">
+    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
+      <div style="width:42px;height:42px;border-radius:10px;background:#F0FDF4;border:1.5px solid #BBF7D0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect x="6" y="3" width="28" height="34" rx="3" fill="#34A853"/><rect x="12" y="13" width="16" height="2" rx="1" fill="white"/><rect x="12" y="17" width="16" height="2" rx="1" fill="white"/><rect x="12" y="21" width="11" height="2" rx="1" fill="white"/><rect x="12" y="25" width="13" height="2" rx="1" fill="white"/></svg>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Google Sheets</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Connect your sales tracker or MIS sheet</div>
+      </div>
+      <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${conn.sheets?'var(--green-l)':'var(--bg3)'};color:${conn.sheets?'var(--green)':'var(--ink3)'};font-family:var(--mono)">${conn.sheets?'Connected':'Not connected'}</div>
+    </div>
+    <div style="padding:18px 20px">
+      ${conn.sheets ? `
+      <div style="background:var(--green-l);border:1px solid rgba(22,163,74,.2);border-radius:var(--r);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-size:12.5px;color:var(--green);font-weight:600">${conn.sheets.name||'Sheet'} connected</span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-border btn-sm" onclick="syncAndAnalyse('sheets')">Sync now</button>
+        <button class="btn btn-sm" style="background:var(--red-m);color:var(--red);border:1px solid rgba(220,38,38,.15)" onclick="disconnectSource('sheets')">Disconnect</button>
+      </div>` : `
+      <div style="background:var(--blue-l);border:1px solid rgba(37,99,235,.15);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12.5px;color:var(--navy);line-height:1.6">
+        Share your Google Sheet (Anyone with link can view) and paste the URL below.
+      </div>
+      <input type="text" id="sheet-url" placeholder="https://docs.google.com/spreadsheets/d/..." style="margin-bottom:10px;font-size:12px">
+      <button class="btn btn-blue" onclick="connectSheets()">Connect Sheets</button>`}
+    </div>
+  </div>
+
+  <!-- SCHEDULED SYNC -->
+  <div class="out-block" style="margin-bottom:14px">
+    <div style="padding:18px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">
+      <div class="out-icon" style="color:var(--amber)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif">Scheduled Sync</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">Auto-pull data and refresh insights on a schedule</div>
+      </div>
+    </div>
+    <div style="padding:18px 20px">
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">How often should Engine 360 pull fresh data from your connected sources?</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        ${['Daily','Weekly','Monthly'].map(freq=>`<button onclick="setSchedule('${freq}')" style="padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;border:1.5px solid ${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--rule2)'};background:${(S.schedule||'Weekly')===freq?'var(--blue-l)':'var(--bg)'};color:${(S.schedule||'Weekly')===freq?'var(--blue)':'var(--ink2)'}">${freq}</button>`).join('')}
+      </div>
+      <div style="font-size:12px;color:var(--ink3)">Next sync: <strong style="color:var(--navy)">${getNextSync()}</strong></div>
+    </div>
+  </div>`;
 }
 
 function getNextSync(){
