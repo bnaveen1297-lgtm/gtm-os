@@ -162,6 +162,31 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   .roadmap-cols{grid-template-columns:1fr!important}
   .metric-grid{grid-template-columns:repeat(2,1fr)!important}
 }
+
+/* Landing mobile fixes */
+@media(max-width:640px){
+  /* Stats bar - 2 col */
+  .lp-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* How it works - stack */
+  .lp-how-grid{grid-template-columns:1fr!important}
+  /* Modules - 2 col */
+  .lp-mod-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Built for operators - stack */
+  .lp-ops-grid{grid-template-columns:1fr!important;gap:28px!important}
+  /* Comparison table - stack */
+  .lp-compare{grid-template-columns:1fr!important}
+  /* Testimonials - single col scroll */
+  .lp-test-grid{grid-template-columns:1fr!important}
+  /* Pricing card - stack */
+  .lp-price-inner{grid-template-columns:1fr!important;gap:20px!important}
+  /* Hero section */
+  .lp-hero-input{flex-direction:column!important}
+  .lp-hero-input input{border-radius:8px!important}
+  .lp-hero-input button{border-radius:8px!important;text-align:center!important}
+}
+@media(max-width:480px){
+  .lp-mod-grid{grid-template-columns:1fr!important}
+}
 </style>
 </head>
 <body>
@@ -204,7 +229,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
   </p>
 
   <!-- URL input bar -->
-  <div style="display:flex;gap:8px;width:100%;max-width:520px;margin-bottom:14px;position:relative">
+  <div class="lp-hero-input" style="display:flex;gap:8px;width:100%;max-width:520px;margin-bottom:14px;position:relative">
     <input id="hero-url" type="url" placeholder="https://yourcompany.com" style="flex:1;padding:13px 18px;border:1.5px solid #E2E8F0;border-radius:8px;font-size:14px;color:#1B2B4B;background:#fff;outline:none;font-family:Inter,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.06)" onfocus="this.style.borderColor='#2563EB'" onblur="this.style.borderColor='#E2E8F0'">
     <button onclick="heroStart()" style="padding:13px 22px;background:#2563EB;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;box-shadow:0 4px 14px rgba(37,99,235,.35)">Analyse →</button>
   </div>
@@ -241,7 +266,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 
 <!-- STATS BAR -->
 <div style="background:#1B2B4B;padding:0">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
+  <div class="lp-stats-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
     <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.08)">
       <div style="font-family:'DM Sans',sans-serif;font-size:40px;font-weight:800;color:#fff;line-height:1;letter-spacing:-1px">8<span style="color:#16A34A;font-size:28px">x</span></div>
       <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;font-family:Inter,sans-serif">strategy modules per run</div>
@@ -268,7 +293,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">How it works</div>
       <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0">Three steps. 60 seconds. Full strategy.</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#E2E8F0;border-radius:12px;overflow:hidden">
+    <div class="lp-how-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#E2E8F0;border-radius:12px;overflow:hidden">
       <div style="background:#fff;padding:28px 24px;position:relative">
         <div style="width:32px;height:32px;background:#2563EB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;font-family:'DM Sans',sans-serif;margin-bottom:14px">1</div>
         <div style="font-size:14px;font-weight:700;color:#1B2B4B;margin-bottom:6px;font-family:'DM Sans',sans-serif">Paste your URL</div>
@@ -296,7 +321,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0 0 12px">8 modules. One operating system.</h2>
       <p style="font-size:15px;color:#64748B;font-family:Inter,sans-serif;max-width:480px;margin:0 auto;line-height:1.7">Every module is specific to your business — your competitors, your ICP, your market. Not a generic template.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E2E8F0;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden">
+    <div class="lp-mod-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E2E8F0;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden">
       <!-- Module cards -->
       <div style="background:#fff;padding:22px 18px">
         <div style="width:36px;height:36px;background:#EFF6FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid #BFDBFE">
@@ -369,7 +394,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 <!-- BUILT FOR OPERATORS -->
 <div style="padding:80px 24px;background:#1B2B4B">
   <div style="max-width:1100px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div class="lp-ops-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
       <div>
         <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:10px">Why Engine 360</div>
         <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(24px,3.5vw,40px);font-weight:800;color:#fff;letter-spacing:-.8px;line-height:1.08;margin:0 0 14px">Built for operators.<br>Not consultants.</h2>
@@ -401,7 +426,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
           </div>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden">
+      <div class="lp-compare" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden">
         <div style="background:#243660;padding:20px">
           <div style="font-size:11px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em">Others</div>
           <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-family:Inter,sans-serif">Generic templates<br>Fill 50+ fields<br>USD-only output<br>No CRM setup<br>No real scripts<br>No competitor data</div>
@@ -422,7 +447,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
       <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.14em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:8px">Early feedback</div>
       <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(22px,3.5vw,34px);font-weight:800;color:#1B2B4B;letter-spacing:-.5px;margin:0">What founders are saying</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div class="lp-test-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
       <div style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
         <div style="display:flex;gap:2px;margin-bottom:10px"><span style="color:#F59E0B">★★★★★</span></div>
         <p style="font-size:13px;color:#374151;line-height:1.7;margin:0 0 14px;font-family:Inter,sans-serif">"Ran it on our SaaS URL. The ICP profiles were more specific than what we built over 6 months. The competitor battlecards are something we actually use in calls."</p>
@@ -460,7 +485,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
 
     <div style="background:#fff;border:2px solid #2563EB;border-radius:14px;padding:36px;box-shadow:0 0 0 6px rgba(37,99,235,.06);position:relative;text-align:left">
       <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;font-size:11px;font-weight:700;padding:4px 18px;border-radius:20px;white-space:nowrap;font-family:'JetBrains Mono',monospace;letter-spacing:.08em">FREE FOREVER — NO CREDIT CARD</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start">
+      <div class="lp-price-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start">
         <div>
           <div style="font-family:'DM Sans',sans-serif;font-size:56px;font-weight:800;color:#1B2B4B;line-height:1;letter-spacing:-2px;margin-bottom:8px">₹0</div>
           <div style="font-size:13px;color:#64748B;font-family:Inter,sans-serif;margin-bottom:24px;line-height:1.6">Everything included. No tiers, no limits, no upgrades needed.</div>
@@ -566,6 +591,7 @@ textarea{resize:vertical;min-height:80px;line-height:1.6}
     <div class="sb-sec"><div class="sb-sec-label">Setup</div>
       <div class="sbi act" id="nav-input" onclick="nav('input')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Business Input<span class="sbi-badge" id="badge-input">Start</span></div>
       <div class="sbi" id="nav-connect" onclick="nav('connect')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data</div>
+      <div class="sbi" id="nav-livedata" onclick="nav('livedata')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>Live Intelligence</div><span class="sbi-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Connect Data</div>
       <div class="sbi" id="nav-dashboard" onclick="nav('dashboard')"><span class="sbi-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Strategy Dashboard</div>
     </div>
     <div class="sb-sec"><div class="sb-sec-label">Strategy</div>
@@ -776,7 +802,7 @@ function nav(page){
   const subEl=document.getElementById('app-sub');
   if(titleEl)titleEl.textContent=t;
   if(subEl)subEl.textContent=s;
-  const renders={input:renderInput,connect:renderConnect,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
+  const renders={input:renderInput,connect:renderConnect,livedata:renderLiveIntel,dashboard:renderDashboard,biz:renderBiz,icp:renderICP,gtm:renderGTM,playbook:renderPlaybook,crm:renderCRM,crmi:renderCRMI,mis:renderMIS,checklist:renderChecklist};
   const fn=renders[page];
   const pageEl=document.getElementById('app-page');
   if(pageEl)pageEl.innerHTML=fn?fn():'';
@@ -1824,6 +1850,338 @@ window.syncZoho=syncZoho;
 window.syncSheets=syncSheets;
 window.disconnectZoho=disconnectZoho;
 window.disconnectSheets=disconnectSheets;
+
+// ── Render: Live Intelligence ─────────────────────────────────────────────
+function renderLiveIntel(){
+  const conn = S.connections || {};
+  const live = S.liveData || {};
+  const hasData = live.zoho || live.sheets;
+
+  if(!conn.zoho && !conn.sheets){
+    return `<div class="empty-state">
+      <div class="empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      </div>
+      <div class="empty-title">Connect your data first</div>
+      <div class="empty-sub">Connect Zoho CRM or Google Sheets to get live pipeline analysis, churn signals, team productivity and deal segmentation.</div>
+      <button class="btn btn-blue" onclick="nav('connect')">Connect data sources</button>
+    </div>`;
+  }
+
+  if(!hasData){
+    return `<div class="sec-hdr">
+      <div class="sec-eyebrow">Live Intelligence</div>
+      <div class="sec-title">Pull your live data</div>
+      <div class="sec-sub">Your data sources are connected. Sync now to analyse your pipeline.</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
+      ${conn.zoho?`<button class="btn btn-blue" onclick="syncAndAnalyse('zoho')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+        Sync Zoho CRM
+      </button>`:''}
+      ${conn.sheets?`<button class="btn btn-blue" onclick="syncAndAnalyse('sheets')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+        Sync Sheets
+      </button>`:''}
+    </div>`;
+  }
+
+  // We have live data - render full intelligence
+  const d = live.zoho || live.sheets || {};
+  const stages = d.stages || {};
+  const owners = d.owners || {};
+  const stageList = Object.entries(stages).sort((a,b)=>b[1]-a[1]);
+  const totalDeals = Object.values(stages).reduce((s,v)=>s+v,0);
+  const ownerList = Object.entries(owners).sort((a,b)=>b[1]-a[1]);
+  const synced = d.synced ? new Date(d.synced).toLocaleString('en-IN') : 'Just now';
+
+  return`
+  <div class="sec-hdr">
+    <div class="sec-eyebrow">Live Intelligence</div>
+    <div class="sec-title">Pipeline Analysis</div>
+    <div class="sec-sub" style="display:flex;align-items:center;gap:8px">
+      <span>Last synced: ${synced}</span>
+      ${conn.zoho?`<button class="btn btn-border btn-sm" onclick="syncAndAnalyse('zoho')">Sync now</button>`:''}
+      ${conn.sheets?`<button class="btn btn-border btn-sm" onclick="syncAndAnalyse('sheets')">Sync now</button>`:''}
+    </div>
+  </div>
+
+  <!-- KEY NUMBERS -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+    <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;text-align:center">
+      <div style="font-size:28px;font-weight:800;color:var(--navy);font-family:'DM Sans',sans-serif">${d.leads||0}</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:3px">Total Leads</div>
+    </div>
+    <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;text-align:center">
+      <div style="font-size:28px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif">${d.deals||totalDeals||0}</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:3px">Open Deals</div>
+    </div>
+    <div style="background:var(--bg);border:1px solid var(--rule);border-radius:var(--r2);padding:16px;text-align:center">
+      <div style="font-size:28px;font-weight:800;color:var(--green);font-family:'DM Sans',sans-serif">${d.pipeline||d.revenue||'₹0'}</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:3px">Pipeline Value</div>
+    </div>
+  </div>
+
+  <!-- PIPELINE STAGE BREAKDOWN -->
+  ${stageList.length?`<div class="out-block" style="margin-bottom:12px">
+    <div class="out-hdr" style="cursor:default">
+      <div class="out-icon" style="color:var(--blue)">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <div><div class="out-title">Pipeline Stage Breakdown</div><div class="out-sub">Where deals are sitting right now</div></div>
+    </div>
+    <div style="padding:16px">
+      ${stageList.map(([stage,count])=>{
+        const pct=Math.round((count/totalDeals)*100);
+        const color = stage.toLowerCase().includes('won')?'var(--green)':stage.toLowerCase().includes('lost')?'var(--red)':stage.toLowerCase().includes('proposal')||stage.toLowerCase().includes('negotiat')?'var(--amber)':'var(--blue)';
+        return`<div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <div style="font-size:12px;font-weight:600;color:var(--navy)">${stage}</div>
+            <div style="font-size:11px;color:var(--ink3)">${count} deals · ${pct}%</div>
+          </div>
+          <div style="height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${color};border-radius:3px;transition:width .6s ease"></div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`:''}
+
+  <!-- CHURN SIGNALS from AI analysis -->
+  <div class="out-block" style="margin-bottom:12px" id="churn-analysis-block">
+    <div class="out-hdr" style="cursor:default">
+      <div class="out-icon" style="color:var(--red)">
+        <svg viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+      </div>
+      <div><div class="out-title">AI Churn Analysis</div><div class="out-sub">Based on your pipeline data and ICP framework</div></div>
+      <button class="btn btn-border btn-sm" style="margin-left:auto" onclick="runChurnAnalysis()">Analyse</button>
+    </div>
+    <div id="churn-result" style="padding:16px;display:none"></div>
+  </div>
+
+  <!-- OWNERSHIP DISTRIBUTION -->
+  ${ownerList.length?`<div class="out-block" style="margin-bottom:12px">
+    <div class="out-hdr" style="cursor:default">
+      <div class="out-icon" style="color:var(--purple)">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div><div class="out-title">Deal Ownership</div><div class="out-sub">Who owns what in the pipeline</div></div>
+    </div>
+    <div style="padding:16px">
+      ${ownerList.map(([owner,count],i)=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule)${i===ownerList.length-1?';border-bottom:none':''}">
+        <div style="width:30px;height:30px;border-radius:50%;background:${['var(--blue)','var(--green)','var(--amber)','var(--purple)','var(--red)'][i%5]};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;font-family:'DM Sans',sans-serif">${owner[0]?.toUpperCase()||'?'}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:var(--navy)">${owner}</div>
+          <div style="font-size:11px;color:var(--ink3)">${count} deals</div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--blue)">${Math.round((count/(totalDeals||1))*100)}%</div>
+      </div>`).join('')}
+    </div>
+  </div>`:''}
+
+  <!-- PRODUCTIVITY ANALYSIS -->
+  <div class="out-block" style="margin-bottom:12px" id="productivity-block">
+    <div class="out-hdr" style="cursor:default">
+      <div class="out-icon" style="color:var(--green)">
+        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div><div class="out-title">Productivity Signals</div><div class="out-sub">What's working, what's stalled</div></div>
+      <button class="btn btn-border btn-sm" style="margin-left:auto" onclick="runProductivityAnalysis()">Analyse</button>
+    </div>
+    <div id="productivity-result" style="padding:16px;display:none"></div>
+  </div>
+
+  <!-- SEGMENTATION -->
+  <div class="out-block" style="margin-bottom:12px" id="segment-block">
+    <div class="out-hdr" style="cursor:default">
+      <div class="out-icon" style="color:var(--amber)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div><div class="out-title">Deal Segmentation</div><div class="out-sub">Which deals match your ICP and which don't</div></div>
+      <button class="btn btn-border btn-sm" style="margin-left:auto" onclick="runSegmentAnalysis()">Analyse</button>
+    </div>
+    <div id="segment-result" style="padding:16px;display:none"></div>
+  </div>`;
+}
+
+// ── Live Intelligence Functions ─────────────────────────────────────────────
+async function syncAndAnalyse(source){
+  toast('Syncing '+source+'...');
+  try{
+    let d;
+    if(source==='zoho'&&S.connections?.zoho){
+      const r=await fetch('/zoho?action=sync&dc='+(S.connections.zoho.dc||'in'),{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({token:S.connections.zoho.token})
+      });
+      d=await r.json();
+      if(d.error)throw new Error(d.error);
+      S.liveData.zoho=d;
+    }else if(source==='sheets'&&S.connections?.sheets){
+      const r=await fetch('/sheets?action=sync&id='+S.connections.sheets.sheetId+'&mapping='+encodeURIComponent(JSON.stringify(S.connections.sheets.mapping||{})));
+      d=await r.json();
+      if(d.error)throw new Error(d.error);
+      S.liveData.sheets=d;
+    }
+    await saveData();
+    toast('Synced! Running analysis...');
+    nav('livedata');
+    // Auto-run all analyses
+    setTimeout(()=>{runChurnAnalysis();runProductivityAnalysis();runSegmentAnalysis();},500);
+  }catch(e){toast('Sync failed: '+e.message);}
+}
+
+async function runChurnAnalysis(){
+  const live=S.liveData?.zoho||S.liveData?.sheets||{};
+  const el=document.getElementById('churn-result');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:13px"><div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Analysing churn signals...</div>';
+
+  try{
+    const prompt=`You are a revenue analyst. Analyse this pipeline data and identify churn signals, at-risk deals, and what actions to take immediately.
+
+PIPELINE DATA: ${JSON.stringify(live)}
+ICP: ${JSON.stringify(S.data?.icp?.icps?.[0]||{})}
+CRM FRAMEWORK: ${JSON.stringify(S.data?.crm||{})}
+
+Return ONLY valid JSON:
+{
+  "riskLevel": "High / Medium / Low",
+  "summary": "one sentence on overall pipeline health",
+  "atRiskDeals": [{"signal": "specific signal", "action": "immediate action", "urgency": "Today / This week"}],
+  "churnSignals": [{"signal": "observable signal", "severity": "Critical / High / Medium", "recommendation": "what to do"}],
+  "immediateActions": ["specific action 1", "action 2", "action 3"],
+  "healthScore": "1-10 score with reason"
+}`;
+    const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:800})});
+    const data=await r.json();
+    const text=data.content?.[0]?.text||'{}';
+    const analysis=parseJ(text);
+
+    const riskColor=analysis.riskLevel==='High'?'var(--red)':analysis.riskLevel==='Medium'?'var(--amber)':'var(--green)';
+    el.innerHTML=`
+    <div style="background:var(--bg2);border-radius:var(--r);padding:12px;margin-bottom:12px;display:flex;align-items:center;gap:10px">
+      <div style="font-size:11px;font-weight:700;color:${riskColor};background:${riskColor}22;padding:3px 10px;border-radius:3px;font-family:var(--mono)">${analysis.riskLevel||'Unknown'} RISK</div>
+      <div style="font-size:13px;color:var(--navy)">${analysis.summary||'Analysis complete'}</div>
+      <div style="margin-left:auto;font-size:18px;font-weight:800;color:${riskColor};font-family:'DM Sans',sans-serif">${analysis.healthScore||'?'}/10</div>
+    </div>
+    ${(analysis.immediateActions||[]).length?`<div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--mono)">Do today</div>
+    ${analysis.immediateActions.map(a=>`<div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:12.5px;color:var(--navy)"><span style="color:var(--red);font-weight:700;flex-shrink:0">!</span>${a}</div>`).join('')}`:''}
+    ${(analysis.churnSignals||[]).length?`<div style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin:12px 0 8px;font-family:var(--mono)">Signals detected</div>
+    ${analysis.churnSignals.map(s=>`<div style="padding:10px;background:${s.severity==='Critical'?'var(--red-m)':s.severity==='High'?'var(--amber-m)':'var(--bg2)'};border-radius:var(--r);margin-bottom:6px">
+      <div style="font-size:11px;font-weight:700;color:${s.severity==='Critical'?'var(--red)':'var(--amber)'};margin-bottom:3px">${s.severity}</div>
+      <div style="font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:3px">${s.signal}</div>
+      <div style="font-size:12px;color:var(--ink3)">${s.recommendation}</div>
+    </div>`).join('')}`:''}`;
+  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px">Analysis failed: ${e.message}</div>`;}
+}
+
+async function runProductivityAnalysis(){
+  const live=S.liveData?.zoho||S.liveData?.sheets||{};
+  const el=document.getElementById('productivity-result');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:13px"><div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Analysing productivity...</div>';
+
+  try{
+    const prompt=`Analyse this pipeline data and identify productivity signals, what's working, what's stalled, and rep performance.
+
+PIPELINE DATA: ${JSON.stringify(live)}
+MIS FRAMEWORK: ${JSON.stringify(S.data?.mis||{})}
+
+Return ONLY valid JSON:
+{
+  "summary": "one sentence on team productivity",
+  "whatIsWorking": ["specific thing working well with evidence"],
+  "whatIsStalled": ["specific thing not working with evidence"],
+  "bottleneck": "the single biggest bottleneck right now",
+  "recommendations": [{"action": "specific action", "expectedImpact": "what it will achieve", "effort": "Low / Medium / High"}],
+  "weeklyFocus": "the one thing the team should focus on this week"
+}`;
+    const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:700})});
+    const data=await r.json();
+    const analysis=parseJ(data.content?.[0]?.text||'{}');
+
+    el.innerHTML=`
+    <div style="background:var(--green-l);border-radius:var(--r);padding:12px;margin-bottom:12px;border-left:3px solid var(--green)">
+      <div style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono);margin-bottom:4px">THIS WEEK'S FOCUS</div>
+      <div style="font-size:13px;font-weight:600;color:var(--navy)">${analysis.weeklyFocus||'Review and update'}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--mono)">Working ✓</div>
+        ${(analysis.whatIsWorking||[]).map(w=>`<div style="font-size:12px;color:var(--navy);padding:5px 0;border-bottom:1px solid var(--rule)">${w}</div>`).join('')}
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:var(--mono)">Stalled ✗</div>
+        ${(analysis.whatIsStalled||[]).map(w=>`<div style="font-size:12px;color:var(--navy);padding:5px 0;border-bottom:1px solid var(--rule)">${w}</div>`).join('')}
+      </div>
+    </div>
+    ${(analysis.recommendations||[]).map(r=>`<div style="padding:10px;background:var(--bg2);border-radius:var(--r);margin-bottom:6px;display:flex;gap:10px;align-items:flex-start">
+      <div style="background:${r.effort==='Low'?'var(--green-l)':r.effort==='High'?'var(--red-m)':'var(--amber-l)'};color:${r.effort==='Low'?'var(--green)':r.effort==='High'?'var(--red)':'var(--amber)'};font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;font-family:var(--mono);white-space:nowrap;margin-top:2px">${r.effort}</div>
+      <div><div style="font-size:12.5px;font-weight:600;color:var(--navy)">${r.action}</div><div style="font-size:11.5px;color:var(--ink3);margin-top:2px">${r.expectedImpact}</div></div>
+    </div>`).join('')}`;
+  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px">Analysis failed: ${e.message}</div>`;}
+}
+
+async function runSegmentAnalysis(){
+  const live=S.liveData?.zoho||S.liveData?.sheets||{};
+  const el=document.getElementById('segment-result');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;color:var(--ink3);font-size:13px"><div style="width:16px;height:16px;border:2px solid var(--rule);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite"></div>Segmenting deals...</div>';
+
+  try{
+    const prompt=`Segment this pipeline against the ICP framework. Identify which deals are good fit vs wrong ICP.
+
+PIPELINE DATA: ${JSON.stringify(live)}
+ICP PROFILES: ${JSON.stringify(S.data?.icp?.icps||[])}
+
+Return ONLY valid JSON:
+{
+  "icpMatchRate": "% of deals that match ICP",
+  "topSegment": "best performing segment",
+  "worstSegment": "worst performing segment with highest drop-off",
+  "segments": [{"name": "segment name", "dealCount": 5, "fitScore": "High/Medium/Low", "recommendation": "what to do with this segment", "action": "specific next action"}],
+  "pruningRecommendation": "which deals to stop chasing and why",
+  "doubleDownOn": "where to focus more effort and why"
+}`;
+    const r=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}],max_tokens:700})});
+    const data=await r.json();
+    const analysis=parseJ(data.content?.[0]?.text||'{}');
+
+    el.innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:var(--blue-l);border-radius:var(--r);padding:12px;text-align:center">
+        <div style="font-size:24px;font-weight:800;color:var(--blue);font-family:'DM Sans',sans-serif">${analysis.icpMatchRate||'?'}</div>
+        <div style="font-size:11px;color:var(--blue);margin-top:3px">ICP match rate</div>
+      </div>
+      <div style="background:var(--green-l);border-radius:var(--r);padding:12px">
+        <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:4px">Double down on</div>
+        <div style="font-size:12px;color:var(--navy)">${analysis.doubleDownOn||'See segments below'}</div>
+      </div>
+    </div>
+    ${(analysis.segments||[]).map(s=>`<div style="padding:12px;background:var(--bg2);border-radius:var(--r);margin-bottom:8px;border-left:3px solid ${s.fitScore==='High'?'var(--green)':s.fitScore==='Medium'?'var(--amber)':'var(--red)'}">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <div style="font-size:13px;font-weight:700;color:var(--navy)">${s.name}</div>
+        <div style="font-size:10px;font-weight:700;background:${s.fitScore==='High'?'var(--green-l)':s.fitScore==='Medium'?'var(--amber-l)':'var(--red-m)'};color:${s.fitScore==='High'?'var(--green)':s.fitScore==='Medium'?'var(--amber)':'var(--red)'};padding:2px 8px;border-radius:3px;font-family:var(--mono)">${s.fitScore} FIT</div>
+        <div style="font-size:11px;color:var(--ink3);margin-left:auto">${s.dealCount} deals</div>
+      </div>
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:5px">${s.recommendation}</div>
+      <div style="font-size:12px;font-weight:600;color:var(--blue)">→ ${s.action}</div>
+    </div>`).join('')}
+    <div style="padding:12px;background:var(--red-m);border-radius:var(--r);border-left:3px solid var(--red)">
+      <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:4px">Stop chasing</div>
+      <div style="font-size:12.5px;color:var(--navy)">${analysis.pruningRecommendation||'—'}</div>
+    </div>`;
+  }catch(e){el.innerHTML=`<div style="color:var(--red);font-size:13px">Analysis failed: ${e.message}</div>`;}
+}
+
+window.syncAndAnalyse=syncAndAnalyse;
+window.runChurnAnalysis=runChurnAnalysis;
+window.runProductivityAnalysis=runProductivityAnalysis;
+window.runSegmentAnalysis=runSegmentAnalysis;
 
 // ── Render: Dashboard ─────────────────────────────────────────────────────
 function renderDashboard(){
